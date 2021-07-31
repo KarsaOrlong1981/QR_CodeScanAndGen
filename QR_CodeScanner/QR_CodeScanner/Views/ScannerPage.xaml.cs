@@ -17,6 +17,7 @@ namespace QR_CodeScanner.Views
         public ScannerPage()
         {
             InitializeComponent();
+            
         }
         public void scanView_OnScanResult(Result result)
         {
@@ -40,5 +41,12 @@ namespace QR_CodeScanner.Views
 
                 
         }
+
+        private void ZXingDefaultOverlay_FlashButtonClicked(Button sender, EventArgs e)
+        {
+            scanView.ToggleTorch();
+        }
+
+       
     }
 }

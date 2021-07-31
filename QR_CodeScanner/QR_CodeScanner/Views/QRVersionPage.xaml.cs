@@ -16,5 +16,15 @@ namespace QR_CodeScanner.Views
         {
             InitializeComponent();
         }
+        async void CallWebsitePage()
+        {
+            WebsitePage call = new WebsitePage();
+            await Navigation.PushAsync(call);
+        }
+
+        private void btn_Website_Clicked(object sender, EventArgs e)
+        {
+            CallWebsitePage();
+        }
     }
 }

@@ -13,15 +13,19 @@
               HorizontalOptions="CenterAndExpand">
             
             
-            <zxing:ZXingScannerView x:Name="scanView"
+            <zxing:ZXingScannerView  x:Name="scanView"
                                         OnScanResult="scanView_OnScanResult"
-
+                                       
                                         IsScanning="True"
                                         WidthRequest="300"
                                         HeightRequest="500"
                                         VerticalOptions="CenterAndExpand"
-                                        HorizontalOptions="CenterAndExpand"/>
-            <zxing:ZXingDefaultOverlay TopText="Align the barcode within the frame"/>
+                                        HorizontalOptions="CenterAndExpand" />
+            
+            <zxing:ZXingDefaultOverlay TopText="Align the barcode within the frame" 
+                                       ShowFlashButton="True" 
+                                        FlashButtonClicked="ZXingDefaultOverlay_FlashButtonClicked"
+                                       />
         </Grid>
         </StackLayout>
     </ContentPage.Content>

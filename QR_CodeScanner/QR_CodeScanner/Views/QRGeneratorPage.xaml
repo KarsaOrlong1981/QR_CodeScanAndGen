@@ -1,16 +1,57 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentPage BackgroundColor="MintCream" xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="QR_CodeScanner.Views.QRGeneratorPage"
              xmlns:ZXing="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms" 
-             xmlns:zxingcommon="clr-namespace:ZXing.Common;assembly=zxing.portable" >
-    <ContentPage.Content>
-        <StackLayout>
-            <ZXing:ZXingBarcodeImageView BarcodeValue="{Binding Text}" BarcodeFormat="QR_CODE" >
-                <ZXing:ZXingBarcodeImageView.BarcodeOptions >
-                    <zxingcommon:EncodingOptions Height="500" Width="500" />
-                </ZXing:ZXingBarcodeImageView.BarcodeOptions>
-            </ZXing:ZXingBarcodeImageView>
-        </StackLayout>
-    </ContentPage.Content>
+             xmlns:zxingcommon="clr-namespace:ZXing.Common;assembly=zxing.portable" 
+              >
+    <StackLayout Margin="20" >
+       
+                            
+
+
+                            <ZXing:ZXingBarcodeImageView x:Name="barCode" BackgroundColor="MintCream" BarcodeFormat="QR_CODE" HeightRequest="500" WidthRequest="500" >
+                                <ZXing:ZXingBarcodeImageView.BarcodeOptions >
+                                    <zxingcommon:EncodingOptions Height="700" Width="700" />
+                                </ZXing:ZXingBarcodeImageView.BarcodeOptions>
+                            </ZXing:ZXingBarcodeImageView>
+                            <Label Margin="10"
+                                   x:Name="lab_Gen"
+                                   HorizontalTextAlignment="Center"  
+                                   Text="{Binding Text} "
+                                   BackgroundColor="MintCream" 
+                                   FontSize="20" 
+                                   TextColor="Black"/>
+                            <StackLayout Orientation="Horizontal">
+                                <Button Text="Save"
+                                        TextColor="White"
+                                        ContentLayout="Top,0" 
+                                        
+                                        ImageSource="Save.png" 
+                                        CornerRadius="20"
+                                        BackgroundColor="LightSteelBlue" 
+                                        BorderWidth="2"
+                                        BorderColor="Gray"
+                                        FontSize="30"/>
+                                <Button Text="Share"
+                                        TextColor="White"
+                                        ContentLayout="Top,0" 
+                                        
+                                        ImageSource="Share.png"
+                                        CornerRadius="20"
+                                        BackgroundColor="LightSteelBlue" 
+                                        BorderWidth="2"
+                                        BorderColor="Gray"
+                                        FontSize="30"
+                                        HorizontalOptions="EndAndExpand"
+                                        x:Name="btn_Share"
+                                        Clicked="btn_Share_Clicked"/>
+                            </StackLayout>
+                            
+                       
+                 
+    </StackLayout>
+    
+       
+    
 </ContentPage>

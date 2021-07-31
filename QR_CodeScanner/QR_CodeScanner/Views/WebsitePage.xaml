@@ -1,12 +1,89 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentPage BackgroundColor="MintCream"
+             xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="QR_CodeScanner.Views.WebsitePage">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+    <StackLayout Padding="0,30,0,0">
+        <Frame Margin="10" BorderColor="SteelBlue" CornerRadius="20" HasShadow="true">
+            <Entry Keyboard="Url" 
+               BackgroundColor="White" 
+               TextColor="Black" 
+               FontSize="20" 
+               Placeholder="Website" 
+               PlaceholderColor="SteelBlue" 
+               x:Name="entryWebsite"/>
+        </Frame>
+        <StackLayout Margin="10" Orientation="Horizontal">
+            <Button 
+                    x:Name="btn_HTTPS"
+                    Clicked="btn_HTTPS_Clicked" 
+                    CornerRadius="20" 
+                    Text="https://"
+                    FontSize="12"
+                    BackgroundColor="White" 
+                    BorderColor="Gray" 
+                    BorderWidth="2" 
+                    HorizontalOptions="StartAndExpand"  />
+            <Button 
+                    x:Name="btn_HTTP"
+                    Clicked="btn_HTTP_Clicked" 
+                    CornerRadius="20" 
+                    Text="http://"
+                     FontSize="12"
+                    BackgroundColor="White" 
+                    BorderColor="Gray" 
+                    BorderWidth="2" 
+                    HorizontalOptions="StartAndExpand"  />
+            <Button 
+                    x:Name="btn_WWW"
+                    Clicked="btn_WWW_Clicked"
+                    CornerRadius="20" 
+                    Text="www."
+                    FontSize="12"
+                    BackgroundColor="White" 
+                    BorderColor="Gray" 
+                    BorderWidth="2" 
+                    HorizontalOptions="StartAndExpand"   />
+            <Button 
+                x:Name="btn_Com"
+                Clicked="btn_Com_Clicked" 
+                    CornerRadius="20" 
+                    Text=".com"
+                    FontSize="12"
+                    BackgroundColor="White" 
+                    BorderColor="Gray" 
+                    BorderWidth="2" 
+                    HorizontalOptions="CenterAndExpand"  />
+           
         </StackLayout>
-    </ContentPage.Content>
+        <Button 
+            
+            Margin="10"
+            x:Name="btn_DE"
+            Clicked="btn_DE_Clicked"
+                    CornerRadius="20" 
+                    Text=".de"
+                    FontSize="12"
+                
+                    BackgroundColor="White" 
+                    BorderColor="Gray" 
+                    BorderWidth="2" 
+                    HorizontalOptions="StartAndExpand"   />
+        <StackLayout Margin="0,40,0,0">
+            <Button 
+            
+            
+            x:Name="btn_Generate"
+            Clicked="btn_Generate_Clicked"
+                
+                    CornerRadius="20" 
+                    Text="QR-Code generieren "
+                    FontSize="30"
+                    TextColor="White"
+                    BackgroundColor="LightSteelBlue"  
+                    BorderColor="Gray" 
+                    BorderWidth="4" 
+                    HorizontalOptions="Center"    />
+        </StackLayout>
+    </StackLayout>
 </ContentPage>
