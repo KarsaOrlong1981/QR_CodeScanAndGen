@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="QR_CodeScanner.Views.QRGeneratorPage"
+             xmlns:ZXing="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms" 
+             xmlns:zxingcommon="clr-namespace:ZXing.Common;assembly=zxing.portable" >
+    <ContentPage.Content>
+        <StackLayout>
+            <ZXing:ZXingBarcodeImageView BarcodeValue="{Binding Text}" BarcodeFormat="QR_CODE" >
+                <ZXing:ZXingBarcodeImageView.BarcodeOptions >
+                    <zxingcommon:EncodingOptions Height="500" Width="500" />
+                </ZXing:ZXingBarcodeImageView.BarcodeOptions>
+            </ZXing:ZXingBarcodeImageView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage BackgroundColor="MintCream" xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="QR_CodeScanner.Views.MainPage"
+            >
+
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem 
+            Text="QR-Code Generator"
+                 
+                 Order="Secondary"
+                 Priority="0"
+                  Clicked="ToolbarItemGenerator_Clicked" 
+                           />
+        
+    </ContentPage.ToolbarItems>
+    
+    <StackLayout>
+        <Image Source="QRCode.gif"  Aspect="AspectFit" HorizontalOptions="Center" VerticalOptions="CenterAndExpand"/>
+        <Button 
+            Text="Scannen mit Kamera" 
+            CornerRadius="20" 
+            BorderColor="Gray" 
+            BorderWidth="3" 
+            FontSize="30" 
+            BackgroundColor="White" 
+            TextColor="Black" 
+            HeightRequest="200" 
+            WidthRequest="300" 
+            HorizontalOptions="CenterAndExpand" 
+            VerticalOptions="CenterAndExpand" 
+            x:Name="btn_Scann" 
+            Clicked="btn_Scann_Clicked"/>
+    </StackLayout>
+    
+
+</ContentPage>
