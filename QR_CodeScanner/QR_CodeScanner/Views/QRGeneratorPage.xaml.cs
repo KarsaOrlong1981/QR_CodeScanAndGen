@@ -8,6 +8,7 @@ using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using ZXing;
+using QR_CodeScanner.ViewModel;
 
 namespace QR_CodeScanner.Views
 {
@@ -18,44 +19,16 @@ namespace QR_CodeScanner.Views
         
         Image image;
         
-        public QRGeneratorPage(string text)
+        public QRGeneratorPage(string qrCodeText)
         {
             InitializeComponent();
-            barCode.BarcodeValue = text;
-            lab_Gen.Text = text;
            
-          
-            image = new Image() 
-            { 
+            BindingContext = new QRGeneratorViewModel(qrCodeText);
                
-            MinimumHeightRequest = 400,
-            MinimumWidthRequest = 400 
-            };
-            
-            
         }
-        async Task CaptureScreenshot()
-        {
-            var screenshot = await Screenshot.CaptureAsync();
-            var stream = await screenshot.OpenReadAsync();
-
-            image.Source = ImageSource.FromStream(() => stream);
-        }
-        //Ermöglicht das Teilen einer Notiz über andere Apps
-        async void ShareQR(string message)
-        {
-
-            await Share.RequestAsync(new ShareTextRequest
-            {
-                Text = message,
-                Title = "Share!"
-            });
-      
-        }
-        private void btn_Share_Clicked(object sender, EventArgs e)
-        {
-            
-            ShareQR(barCode.BarcodeValue);
-        }
+       
+        
+        
+       
     }
 }

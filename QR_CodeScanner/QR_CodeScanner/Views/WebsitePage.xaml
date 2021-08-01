@@ -1,11 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage BackgroundColor="MintCream"
              xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewmodel="clr-namespace:QR_CodeScanner.ViewModel" x:DataType="viewmodel:WebsiteViewModel"
              x:Class="QR_CodeScanner.Views.WebsitePage">
     <StackLayout Padding="0,30,0,0">
         <Frame Margin="10" BorderColor="SteelBlue" CornerRadius="20" HasShadow="true">
-            <Entry Keyboard="Url" 
+            <Entry
+                Text="{Binding EntryText}"
+                Keyboard="Url" 
                BackgroundColor="White" 
                TextColor="Black" 
                FontSize="20" 
@@ -16,7 +18,7 @@
         <StackLayout Margin="10" Orientation="Horizontal">
             <Button 
                     x:Name="btn_HTTPS"
-                    Clicked="btn_HTTPS_Clicked" 
+                    Command="{Binding ButtonHTTPSClicked}"
                     CornerRadius="20" 
                     Text="https://"
                     FontSize="12"
@@ -26,17 +28,17 @@
                     HorizontalOptions="StartAndExpand"  />
             <Button 
                     x:Name="btn_HTTP"
-                    Clicked="btn_HTTP_Clicked" 
+                    Command="{Binding ButtonHTTPClicked}"
                     CornerRadius="20" 
                     Text="http://"
-                     FontSize="12"
+                    FontSize="12"
                     BackgroundColor="White" 
                     BorderColor="Gray" 
                     BorderWidth="2" 
                     HorizontalOptions="StartAndExpand"  />
             <Button 
                     x:Name="btn_WWW"
-                    Clicked="btn_WWW_Clicked"
+                    Command="{Binding ButtonWWWClicked}"
                     CornerRadius="20" 
                     Text="www."
                     FontSize="12"
@@ -45,8 +47,8 @@
                     BorderWidth="2" 
                     HorizontalOptions="StartAndExpand"   />
             <Button 
-                x:Name="btn_Com"
-                Clicked="btn_Com_Clicked" 
+                    x:Name="btn_Com"
+                    Command="{Binding ButtonCOMClicked}"
                     CornerRadius="20" 
                     Text=".com"
                     FontSize="12"
@@ -58,9 +60,9 @@
         </StackLayout>
         <Button 
             
-            Margin="10"
-            x:Name="btn_DE"
-            Clicked="btn_DE_Clicked"
+                    Margin="10"
+                    x:Name="btn_DE"
+                    Command="{Binding ButtonDEClicked}"
                     CornerRadius="20" 
                     Text=".de"
                     FontSize="12"
@@ -74,8 +76,8 @@
             
             
             x:Name="btn_Generate"
-            Clicked="btn_Generate_Clicked"
-                
+            
+                    Command="{Binding ButtonGeneratorPageClicked}"
                     CornerRadius="20" 
                     Text="QR-Code generieren "
                     FontSize="30"

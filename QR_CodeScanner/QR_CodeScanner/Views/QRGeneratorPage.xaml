@@ -3,14 +3,18 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="QR_CodeScanner.Views.QRGeneratorPage"
              xmlns:ZXing="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms" 
-             xmlns:zxingcommon="clr-namespace:ZXing.Common;assembly=zxing.portable" 
-              >
+             xmlns:zxingcommon="clr-namespace:ZXing.Common;assembly=zxing.portable" xmlns:viewmodel="clr-namespace:QR_CodeScanner.ViewModel" x:DataType="viewmodel:QRGeneratorViewModel">
     <StackLayout Margin="20" >
-       
-                            
 
 
-                            <ZXing:ZXingBarcodeImageView x:Name="barCode" BackgroundColor="MintCream" BarcodeFormat="QR_CODE" HeightRequest="500" WidthRequest="500" >
+
+
+        <ZXing:ZXingBarcodeImageView x:Name="barCode" 
+                                     BackgroundColor="MintCream" 
+                                     BarcodeValue="{Binding QRCodeText}" 
+                                     BarcodeFormat="QR_CODE" 
+                                     HeightRequest="500" 
+                                     WidthRequest="500" >
                                 <ZXing:ZXingBarcodeImageView.BarcodeOptions >
                                     <zxingcommon:EncodingOptions Height="700" Width="700" />
                                 </ZXing:ZXingBarcodeImageView.BarcodeOptions>
@@ -18,7 +22,7 @@
                             <Label Margin="10"
                                    x:Name="lab_Gen"
                                    HorizontalTextAlignment="Center"  
-                                   Text="{Binding Text} "
+                                   Text="{Binding QRCodeText} "
                                    BackgroundColor="MintCream" 
                                    FontSize="20" 
                                    TextColor="Black"/>
@@ -36,7 +40,7 @@
                                 <Button Text="Share"
                                         TextColor="White"
                                         ContentLayout="Top,0" 
-                                        
+                                        Command="{Binding ButtonShareClicked}"
                                         ImageSource="Share.png"
                                         CornerRadius="20"
                                         BackgroundColor="LightSteelBlue" 
@@ -45,7 +49,7 @@
                                         FontSize="30"
                                         HorizontalOptions="EndAndExpand"
                                         x:Name="btn_Share"
-                                        Clicked="btn_Share_Clicked"/>
+                                        />
                             </StackLayout>
                             
                        
