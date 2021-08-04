@@ -58,5 +58,6 @@
 
   <ItemGroup>
     <Folder Include="Model\" />
+    <Folder Include="Service\" />
   </ItemGroup>
 </Project>

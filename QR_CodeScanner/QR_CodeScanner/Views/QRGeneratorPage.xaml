@@ -1,43 +1,47 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage BackgroundColor="MintCream" xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentPage  BackgroundColor="{Binding BGColor}" xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="QR_CodeScanner.Views.QRGeneratorPage"
              xmlns:ZXing="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms" 
              xmlns:zxingcommon="clr-namespace:ZXing.Common;assembly=zxing.portable" xmlns:viewmodel="clr-namespace:QR_CodeScanner.ViewModel" x:DataType="viewmodel:QRGeneratorViewModel">
-    <StackLayout Margin="20" >
+    <ScrollView >
+        <StackLayout Margin="20">
 
 
 
 
-        <ZXing:ZXingBarcodeImageView x:Name="barCode" 
-                                     BackgroundColor="MintCream" 
+            <ZXing:ZXingBarcodeImageView x:Name="barCode" 
+                                     BackgroundColor="{Binding BGColor}" 
                                      BarcodeValue="{Binding QRCodeText}" 
                                      BarcodeFormat="QR_CODE" 
                                      HeightRequest="500" 
                                      WidthRequest="500" >
-                                <ZXing:ZXingBarcodeImageView.BarcodeOptions >
-                                    <zxingcommon:EncodingOptions Height="700" Width="700" />
-                                </ZXing:ZXingBarcodeImageView.BarcodeOptions>
-                            </ZXing:ZXingBarcodeImageView>
-                            <Label Margin="10"
+                <ZXing:ZXingBarcodeImageView.BarcodeOptions >
+                    <zxingcommon:EncodingOptions Height="700" Width="700" />
+                </ZXing:ZXingBarcodeImageView.BarcodeOptions>
+            </ZXing:ZXingBarcodeImageView>
+            <Label Margin="10"
                                    x:Name="lab_Gen"
                                    HorizontalTextAlignment="Center"  
                                    Text="{Binding QRCodeText} "
-                                   BackgroundColor="MintCream" 
+                                   BackgroundColor="{Binding BGColor}" 
                                    FontSize="20" 
-                                   TextColor="Black"/>
-                            <StackLayout Orientation="Horizontal">
-                                <Button Text="Save"
+                                   TextColor="{Binding TCColor}"/>
+            <StackLayout Orientation="Horizontal">
+                <Button Text="Save"
+                                        IsVisible="{Binding SaveIsVis}"
                                         TextColor="White"
                                         ContentLayout="Top,0" 
-                                        
+                                        x:Name="btn_Save"
                                         ImageSource="Save.png" 
                                         CornerRadius="20"
                                         BackgroundColor="LightSteelBlue" 
                                         BorderWidth="2"
                                         BorderColor="Gray"
                                         FontSize="30"/>
-                                <Button Text="Share"
+                <Button Text="Share"
+                                        IsVisible="{Binding ShareIsVis}"
+                                        x:Name="btn_Share"
                                         TextColor="White"
                                         ContentLayout="Top,0" 
                                         Command="{Binding ButtonShareClicked}"
@@ -48,13 +52,16 @@
                                         BorderColor="Gray"
                                         FontSize="30"
                                         HorizontalOptions="EndAndExpand"
-                                        x:Name="btn_Share"
+                                        
                                         />
-                            </StackLayout>
-                            
-                       
                  
-    </StackLayout>
+            </StackLayout>
+
+
+
+            </StackLayout>
+    </ScrollView>
+   
     
        
     

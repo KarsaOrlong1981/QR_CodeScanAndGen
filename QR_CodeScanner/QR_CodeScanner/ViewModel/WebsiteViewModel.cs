@@ -64,11 +64,6 @@ namespace QR_CodeScanner.ViewModel
             
             EntryText += ".de";
         }
-        void GeneratorPage_Clicked()
-        {
-
-            
-        }
-
+       
     }
 }
