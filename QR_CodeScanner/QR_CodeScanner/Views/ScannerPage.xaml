@@ -25,6 +25,7 @@
             <zxing:ZXingDefaultOverlay TopText="Align the barcode within the frame" 
                                        ShowFlashButton="True" 
                                         FlashButtonClicked="ZXingDefaultOverlay_FlashButtonClicked"
+                                       
                                        />
         </Grid>
         </StackLayout>

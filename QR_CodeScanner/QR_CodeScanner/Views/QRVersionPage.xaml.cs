@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-
+using QR_CodeScanner.ViewModel;
 namespace QR_CodeScanner.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
@@ -15,16 +15,11 @@ namespace QR_CodeScanner.Views
         public QRVersionPage()
         {
             InitializeComponent();
+            BindingContext = new QRVersionViewModel(Navigation);
         }
-        async void CallWebsitePage()
-        {
-            WebsitePage call = new WebsitePage();
-            await Navigation.PushAsync(call);
-        }
+       
+      
 
-        private void btn_Website_Clicked(object sender, EventArgs e)
-        {
-            CallWebsitePage();
-        }
+       
     }
 }

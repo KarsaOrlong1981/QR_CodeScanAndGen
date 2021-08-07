@@ -6,6 +6,7 @@
     <StackLayout Padding="0,30,0,0">
         <Frame Margin="10" BorderColor="SteelBlue" CornerRadius="20" HasShadow="true">
             <Entry
+                
                 Text="{Binding EntryText}"
                 Keyboard="Url" 
                BackgroundColor="White" 
@@ -59,8 +60,7 @@
            
         </StackLayout>
         <Button 
-            
-                    Margin="10"
+                Margin="10"
                     x:Name="btn_DE"
                     Command="{Binding ButtonDEClicked}"
                     CornerRadius="20" 
@@ -73,13 +73,11 @@
                     HorizontalOptions="StartAndExpand"   />
         <StackLayout Margin="0,40,0,0">
             <Button 
-            
-            
-            x:Name="btn_Generate"
+                    x:Name="btn_Generate"
             
                     Command="{Binding ButtonGeneratorPageClicked}"
                     CornerRadius="20" 
-                    Text="QR-Code generieren "
+                    Text="Generate QR-Code "
                     FontSize="30"
                     TextColor="White"
                     BackgroundColor="LightSteelBlue"  
