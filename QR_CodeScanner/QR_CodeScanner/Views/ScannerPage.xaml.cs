@@ -17,7 +17,7 @@ namespace QR_CodeScanner.Views
         public ScannerPage()
         {
             InitializeComponent();
-            
+            //Das Scannen Bearbeite ich zum Schluss und füge dafür noch eine Datenbank hinzu um die gescannten Daten Aufzunehmen.
         }
         public void scanView_OnScanResult(Result result)
         {

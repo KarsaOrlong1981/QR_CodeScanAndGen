@@ -76,7 +76,7 @@ namespace QR_CodeScanner.ViewModel
             var screenshot = await Screenshot.CaptureAsync();
             stream = await screenshot.OpenReadAsync();
 
-            var file = Path.Combine(FileSystem.CacheDirectory, "screenshot.png");
+            var file = Path.Combine(FileSystem.CacheDirectory, "screensh.png");
             using (FileStream fs = File.Open(file, FileMode.Create))
             {
                 await stream.CopyToAsync(fs);
@@ -94,7 +94,7 @@ namespace QR_CodeScanner.ViewModel
             SaveIsVis = "false";
 
             string file = Convert.ToString(CaptureScreenshot());
-            var filepath = Path.Combine(FileSystem.CacheDirectory, "screenshot.png");
+            var filepath = Path.Combine(FileSystem.CacheDirectory, "screensh.png");
             ShareQR(file, filepath);
 
             BGColor = "MintCream";

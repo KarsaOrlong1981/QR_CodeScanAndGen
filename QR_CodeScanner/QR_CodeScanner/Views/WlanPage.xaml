@@ -1,12 +1,104 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewmodel="clr-namespace:QR_CodeScanner.ViewModel" x:DataType="viewmodel:WLanViewModel"
              x:Class="QR_CodeScanner.Views.WlanPage">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+    <StackLayout >
+        <Frame Margin="10" BorderColor="SteelBlue" CornerRadius="20" HasShadow="true">
+            <Entry
+                
+                Text="{Binding SSIDText}"
+                Keyboard="Url" 
+               BackgroundColor="White" 
+               TextColor="Black" 
+               FontSize="20" 
+               Placeholder="SSID" 
+               PlaceholderColor="SteelBlue" 
+               />
+        </Frame>
+        <StackLayout >
+            <Frame Margin="10" BorderColor="SteelBlue" CornerRadius="20" HasShadow="true">
+                <StackLayout>
+                    <Entry
+                
+                Text="{Binding WpaWep}"
+                Keyboard="Url" 
+               BackgroundColor="White" 
+               TextColor="Black" 
+               FontSize="20" 
+                
+              
+                    IsReadOnly="{Binding ReadOnly}"
+               />
+                    <StackLayout Orientation="Horizontal">
+                        <Button 
+                Margin="10"
+                   
+                    Command="{Binding ButtonWPAClicked}"
+                    CornerRadius="20" 
+                    Text="WPA/WPA2"
+                    FontSize="12"
+                
+                    BackgroundColor="White" 
+                    BorderColor="SteelBlue" 
+                    BorderWidth="2" 
+                    HorizontalOptions="StartAndExpand"   />
+                        <Button 
+                Margin="10"
+                   
+                    Command="{Binding ButtonWEPClicked}"
+                    CornerRadius="20" 
+                    Text="WEP"
+                    FontSize="12"
+                
+                    BackgroundColor="White" 
+                    BorderColor="SteelBlue" 
+                    BorderWidth="2" 
+                    HorizontalOptions="StartAndExpand"   />
+                        <Button 
+                Margin="10"
+                   
+                    Command="{Binding ButtonNoneClicked}"
+                    CornerRadius="20" 
+                    Text="none"
+                    FontSize="12"
+                
+                    BackgroundColor="White" 
+                    BorderColor="SteelBlue" 
+                    BorderWidth="2" 
+                    HorizontalOptions="StartAndExpand"   />
+                    </StackLayout>
+                </StackLayout>
+                
+            </Frame>
+            
+            
+               
+            <Grid RowDefinitions="110" >
+
+                <Frame Margin="10" CornerRadius="20" BorderColor="SteelBlue" BackgroundColor="White">
+                    <Entry  Placeholder="Password"
+                            Text="{Binding Password}"    
+                           
+                            TextColor="Black" 
+                            PlaceholderColor="SteelBlue" />
+                </Frame>
+
+               
+            </Grid>
         </StackLayout>
-    </ContentPage.Content>
+        <StackLayout Margin="0,40,0,0">
+            <Button 
+                    x:Name="btn_Generate"
+            
+                    Command="{Binding ButtonGenerateClicked}"
+                    CornerRadius="20" 
+                    Text="Generate QR-Code "
+                    FontSize="30"
+                    TextColor="White"
+                    BackgroundColor="LightSteelBlue"  
+                    BorderColor="Gray" 
+                    BorderWidth="4" 
+                    HorizontalOptions="Center"    />
+        </StackLayout>
+    </StackLayout>
 </ContentPage>

@@ -17,7 +17,7 @@ namespace QR_CodeScanner.Views
     {
        
         
-        Image image;
+        
         
         public QRGeneratorPage(string qrCodeText)
         {
