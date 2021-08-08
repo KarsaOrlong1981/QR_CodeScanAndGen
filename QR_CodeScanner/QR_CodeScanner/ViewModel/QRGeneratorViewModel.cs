@@ -23,6 +23,7 @@ namespace QR_CodeScanner.ViewModel
         string shareIsVisible;
         Stream stream;
         public ICommand ButtonShareClicked { get; set; }
+        public ICommand ButtonSaveClicked { get; set; }
         public QRGeneratorViewModel(string qrTxt)
         {
             tcColor = "Black";

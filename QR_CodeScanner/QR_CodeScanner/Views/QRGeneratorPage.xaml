@@ -29,6 +29,7 @@
                                    TextColor="{Binding TCColor}"/>
             <StackLayout Orientation="Horizontal">
                 <Button Text="Save"
+                                        Command="{Binding ButtonSaveClicked}"
                                         IsVisible="{Binding SaveIsVis}"
                                         TextColor="White"
                                         ContentLayout="Top,0" 
