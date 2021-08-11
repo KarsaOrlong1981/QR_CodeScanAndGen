@@ -18,6 +18,8 @@ namespace QR_CodeScanner.ViewModel
         public ICommand ButtonDEClicked { get; set; }
         public ICommand ButtonGeneratorPageClicked { get; set; }
         public INavigation Navigation { get; set; }
+
+        [Obsolete]
         public WebsiteViewModel(INavigation navigation)
         {
             this.Navigation = navigation;
@@ -29,10 +31,12 @@ namespace QR_CodeScanner.ViewModel
             ButtonDEClicked = new Command(DE_Clicked);
            
         }
+
+        [Obsolete]
         public async Task CallQRGeneratorPage()
         {
-
-            await Navigation.PushAsync(new QRGeneratorPage(EntryText));
+            bool isContact = false;
+            await Navigation.PushAsync(new QRGeneratorPage(EntryText,isContact));
         }
         public string EntryText
         {

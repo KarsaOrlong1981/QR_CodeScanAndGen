@@ -1,12 +1,143 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="QR_CodeScanner.Views.ContactPage">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+<ContentPage Padding="10" BackgroundColor="MintCream" xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewmodel="clr-namespace:QR_CodeScanner.ViewModel" x:DataType="viewmodel:ContactViewModel"
+             x:Class="QR_CodeScanner.Views.ContactPage" Title="Generate Contact QR-Code">
+    <ScrollView>
+        <StackLayout >
+            <Frame Margin="10,0,10,0" BorderColor="SteelBlue" CornerRadius="20"  HasShadow="true">
+                <Entry 
+                
+                Text="{Binding CompName}"
+                Keyboard="Text"  
+               BackgroundColor="White" 
+               TextColor="Black" 
+               FontSize="20" 
+               Placeholder="Complete Name" 
+               PlaceholderColor="SteelBlue" 
+               />
+            </Frame>
+            <StackLayout >
+                <Frame Margin="10,0,10,0" BorderColor="SteelBlue" CornerRadius="20" HasShadow="true">
+                    <Entry
+                 
+                Text="{Binding Titel}"
+                Keyboard="Text"   
+               BackgroundColor="White" 
+               TextColor="Black" 
+               FontSize="20" 
+               Placeholder="Titel" 
+               PlaceholderColor="SteelBlue" 
+               />
+                </Frame>
+            </StackLayout>
+            <StackLayout>
+                <Frame Margin="10,0,10,0" BorderColor="SteelBlue" CornerRadius="20" HasShadow="true" >
+                    <StackLayout Orientation="Horizontal">
+                        <Image Source="Company.png" />
+                        <Entry
+                HorizontalOptions="FillAndExpand" 
+                Text="{Binding Company}"
+                Keyboard="Text" 
+               BackgroundColor="White" 
+               TextColor="Black" 
+               FontSize="20" 
+               SelectionLength="200"
+               Placeholder="Company" 
+               PlaceholderColor="SteelBlue" 
+               />
+                    </StackLayout>
+
+                </Frame>
+            </StackLayout>
+            <StackLayout>
+                <Frame Margin="10,0,10,0" BorderColor="SteelBlue" CornerRadius="20" HasShadow="true" >
+                    <StackLayout Orientation="Horizontal">
+                        <Image Source="EMailQR.png" />
+                        <Entry
+                HorizontalOptions="FillAndExpand" 
+                Text="{Binding Email}"
+                Keyboard="Email"  
+               BackgroundColor="White" 
+               TextColor="Black" 
+               FontSize="20" 
+               Placeholder="E-Mail" 
+               PlaceholderColor="SteelBlue" 
+               />
+                    </StackLayout>
+
+                </Frame>
+            </StackLayout>
+            <StackLayout>
+                <Frame Margin="10,0,10,0" BorderColor="SteelBlue" CornerRadius="20" HasShadow="true" >
+                    <StackLayout Orientation="Horizontal">
+                        <Image Source="Telefon.png" />
+                        <Entry
+                HorizontalOptions="FillAndExpand"
+                Text="{Binding Phone}"
+                Keyboard="Telephone"  
+               BackgroundColor="White" 
+               TextColor="Black" 
+               FontSize="20" 
+               Placeholder="Phone" 
+               PlaceholderColor="SteelBlue" 
+               />
+                    </StackLayout>
+                </Frame>
+                </StackLayout>
+           
+            
+            <StackLayout>
+                <Frame Margin="10,0,10,0" BorderColor="SteelBlue" CornerRadius="20" HasShadow="true" >
+                    <StackLayout Orientation="Horizontal">
+                        <Image Source="Adress.png" />
+                        <Entry
+                HorizontalOptions="FillAndExpand"
+                Text="{Binding Adress}"
+                Keyboard="Text"  
+               BackgroundColor="White" 
+               TextColor="Black" 
+               FontSize="20" 
+               Placeholder="Adress" 
+               PlaceholderColor="SteelBlue" 
+               />
+                    </StackLayout>
+
+                </Frame>
+            </StackLayout>
+            <StackLayout>
+                <Frame Margin="10,0,10,0" BorderColor="SteelBlue" CornerRadius="20" HasShadow="true" >
+                    <StackLayout Orientation="Horizontal">
+                        <Image Source="Web.png" />
+                        <Entry
+                HorizontalOptions="FillAndExpand"
+                Text="{Binding Website}"
+                Keyboard="Url" 
+               BackgroundColor="White" 
+               TextColor="Black" 
+               FontSize="20" 
+               Placeholder="Website" 
+               PlaceholderColor="SteelBlue" 
+               />
+                    </StackLayout>
+
+                </Frame>
+            </StackLayout>
+            <StackLayout >
+                <Button 
+                 
+            Command="{Binding ButtonGenerateClicked}"
+                    
+                    CornerRadius="20" 
+                    Text="Generate QR-Code "
+                    FontSize="30"
+                    TextColor="White"
+                    BackgroundColor="LightSteelBlue"  
+                    BorderColor="Gray" 
+                    BorderWidth="4" 
+                    HorizontalOptions="CenterAndExpand"      />
+            </StackLayout>
         </StackLayout>
-    </ContentPage.Content>
+    </ScrollView>
+       
+    
 </ContentPage>

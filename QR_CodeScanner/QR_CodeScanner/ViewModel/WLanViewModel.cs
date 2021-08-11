@@ -34,7 +34,7 @@ namespace QR_CodeScanner.ViewModel
             ButtonGenerateClicked = new Command(GetWlanConnectionCode);
            
         }
-        public string GeneratText
+        public string GenerateText
         {
             get => generate;
             set => SetProperty(ref generate, value);
@@ -80,30 +80,33 @@ namespace QR_CodeScanner.ViewModel
         {
             ReadOnly = "False";
             WpaWep = "";
-            wlanKey = "";
+            wlanKey = "none";
             WpaWep = wlanKey;
             ReadOnly = "True";
         }
 
+        [Obsolete]
         async void GetWlanConnectionCode()
 
         {
-
+            bool isContact = false;
 
                 if (wlanKey == "WPA/WPA2")
                 {
-                 GeneratText = "WIFI:S:" + SSIDText + ";T:WPA;P:" + Password + ";";
+                 GenerateText = "WIFI:S:" + SSIDText + ";T:WPA;P:" + Password + ";";
                 }
+                
                 if (wlanKey == "WEP")
                 {
-                    GeneratText = "WIFI:S:" + SSIDText + ";T:WEP;P:" + Password + ";";
+                    GenerateText = "WIFI:S:" + SSIDText + ";T:WEP;P:" + Password + ";";
                 }
+                
                 if (wlanKey == "none")
                 {
-                    GeneratText = "WIFI:S:" + SSIDText + ";T:;P:" + Password + ";";
+                    GenerateText = "WIFI:S:" + SSIDText + ";T:;P:" + Password + ";";
                 }
 
-            await Navigation.PushAsync(new QRGeneratorPage(GeneratText));
+            await Navigation.PushAsync(new QRGeneratorPage(GenerateText,isContact));
         }
     } 
 }

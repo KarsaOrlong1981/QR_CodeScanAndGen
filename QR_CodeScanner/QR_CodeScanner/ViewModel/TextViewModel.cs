@@ -15,17 +15,20 @@ namespace QR_CodeScanner.ViewModel
         string entry;
         public ICommand ButtonGeneratorPageClicked { get; set; }
         public INavigation Navigation { get; set; }
-        
+
+        [Obsolete]
         public TextViewModel(INavigation navigation)
         {
             this.Navigation = navigation;
            
             ButtonGeneratorPageClicked = new Command(async () => await CallQRGeneratorPage());
         }
+
+        [Obsolete]
         public async Task CallQRGeneratorPage()
         {
-           
-            await Navigation.PushAsync(new QRGeneratorPage(EntryText));
+            bool isContact = false;
+            await Navigation.PushAsync(new QRGeneratorPage(EntryText,isContact));
         }
         public string EntryText
         {

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using QR_CodeScanner.ViewModel;
 
 namespace QR_CodeScanner.Views
 {
@@ -15,6 +16,12 @@ namespace QR_CodeScanner.Views
         public ContactPage()
         {
             InitializeComponent();
+            BindingContext = new ContactViewModel(Navigation);
+        }
+
+        private void Entry_Focused(object sender, FocusEventArgs e)
+        {
+
         }
     }
 }

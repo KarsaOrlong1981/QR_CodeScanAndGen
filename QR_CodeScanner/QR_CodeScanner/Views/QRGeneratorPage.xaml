@@ -2,34 +2,68 @@
 <ContentPage  BackgroundColor="{Binding BGColor}" xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="QR_CodeScanner.Views.QRGeneratorPage"
+              
              xmlns:ZXing="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms" 
-             xmlns:zxingcommon="clr-namespace:ZXing.Common;assembly=zxing.portable" xmlns:viewmodel="clr-namespace:QR_CodeScanner.ViewModel" x:DataType="viewmodel:QRGeneratorViewModel">
+             xmlns:zxingcommon="clr-namespace:ZXing.Common;assembly=zxing.portable" xmlns:viewmodel="clr-namespace:QR_CodeScanner.ViewModel" xmlns:local1="clr-namespace:QR_CodeScanner.Model" x:DataType="viewmodel:QRGeneratorViewModel">
     <ScrollView >
-        <StackLayout Margin="20">
+        <StackLayout Margin="10,10,10,0" >
 
 
 
 
             <ZXing:ZXingBarcodeImageView x:Name="barCode" 
                                      BackgroundColor="{Binding BGColor}" 
-                                     BarcodeValue="{Binding QRCodeText}" 
+                                     BarcodeValue="{Binding Text}" 
                                      BarcodeFormat="QR_CODE" 
                                      HeightRequest="500" 
                                      WidthRequest="500" >
                 <ZXing:ZXingBarcodeImageView.BarcodeOptions >
-                    <zxingcommon:EncodingOptions Height="700" Width="700" />
+                    <zxingcommon:EncodingOptions Height="500" Width="500" />
                 </ZXing:ZXingBarcodeImageView.BarcodeOptions>
             </ZXing:ZXingBarcodeImageView>
-            <Label Margin="10"
-                                   x:Name="lab_Gen"
+            <Label  x:Name="lab_Gen"
                                    HorizontalTextAlignment="Center"  
-                                   Text="{Binding QRCodeText} "
+                                  
                                    BackgroundColor="{Binding BGColor}" 
-                                   FontSize="20" 
-                                   TextColor="{Binding TCColor}"/>
+                                   FontSize="13" 
+                                   TextColor="{Binding TCColor}">
+                <Label.FormattedText >
+                    <FormattedString >
+                        <Span Text="{Binding LabelText}" />
+                        <Span Text="{Binding VCard1 }" />
+                        <Span Text="{Binding VCard2 }"/>
+                        <Span Text="{Binding VCard3 }"/>
+                        <Span Text="{Binding VCard4 }"/>
+                        <Span Text="{Binding VCard5 }"/>
+                        <Span Text="{Binding VCard6 }"/>
+                        <local1:HyperlinkSpan 
+                                              Text="{Binding VCard7}"
+                                              Url="{Binding VCard7Link}"/>
+                        <Span Text="{Binding VCard8 }"/>
+
+                        <local1:HyperlinkSpan
+                                              Text="{Binding VCard9}"
+                                              Url="{Binding VCard9Link}"/>
+                        <Span Text="{Binding VCard10 }"/>
+
+                        <local1:HyperlinkSpan  
+                                               Text="{Binding VCard11}"
+                                               Url="{Binding VCard11Link}"
+                                              />
+
+
+                        <Span Text="{Binding VCard12 }"/>
+                        <Span Text="{Binding VCard13 }"/>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+
+
             <StackLayout Orientation="Horizontal">
-                <Button Text="Save"
-                        Command="{Binding ButtonSaveClicked}"
+                <Button Text="Save"      
+                        HorizontalOptions="CenterAndExpand"
+                        Margin="10,10,10,10"
+                                        Command="{Binding ButtonSaveClicked}"
                                         IsVisible="{Binding SaveIsVis}"
                                         TextColor="White"
                                         ContentLayout="Top,0" 
@@ -39,8 +73,10 @@
                                         BackgroundColor="LightSteelBlue" 
                                         BorderWidth="2"
                                         BorderColor="Gray"
-                                        FontSize="30"/>
+                                        FontSize="20"/>
                 <Button Text="Share"
+                       
+                                        Margin="10,10,10,10"
                                         IsVisible="{Binding ShareIsVis}"
                                         x:Name="btn_Share"
                                         TextColor="White"
@@ -51,17 +87,20 @@
                                         BackgroundColor="LightSteelBlue" 
                                         BorderWidth="2"
                                         BorderColor="Gray"
-                                        FontSize="30"
-                                        HorizontalOptions="EndAndExpand"
+                                        FontSize="20"
+                                        HorizontalOptions="CenterAndExpand"
+                      
                                         
                                         />
-                 
-            </StackLayout>
-
-
 
             </StackLayout>
+
+
+
+        </StackLayout>
+
     </ScrollView>
+        
    
     
        

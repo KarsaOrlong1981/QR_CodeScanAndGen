@@ -15,16 +15,12 @@ namespace QR_CodeScanner.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class QRGeneratorPage : ContentPage
     {
-       
-        
-        
-        
-        public QRGeneratorPage(string qrCodeText)
+        [Obsolete]
+        public QRGeneratorPage(string qrCodeText,bool isContact)
         {
             InitializeComponent();
-           
-            BindingContext = new QRGeneratorViewModel(qrCodeText);
-               
+
+            BindingContext = new QRGeneratorViewModel(qrCodeText, isContact);              
         }
        
         
