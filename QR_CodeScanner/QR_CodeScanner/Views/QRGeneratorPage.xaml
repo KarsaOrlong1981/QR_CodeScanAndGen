@@ -2,65 +2,74 @@
 <ContentPage  BackgroundColor="{Binding BGColor}" xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="QR_CodeScanner.Views.QRGeneratorPage"
-              
+          xmlns:local="clr-namespace:QR_CodeScanner.Model"
              xmlns:ZXing="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms" 
              xmlns:zxingcommon="clr-namespace:ZXing.Common;assembly=zxing.portable" xmlns:viewmodel="clr-namespace:QR_CodeScanner.ViewModel" xmlns:local1="clr-namespace:QR_CodeScanner.Model" x:DataType="viewmodel:QRGeneratorViewModel">
     <ScrollView >
-        <StackLayout Margin="10,10,10,0" >
+       
+            <StackLayout >
+                <local:PinchToZoomContainer>
+                    <local:PinchToZoomContainer.Content>
+                    <StackLayout Margin="10,10,10,0" >
 
 
 
 
-            <ZXing:ZXingBarcodeImageView x:Name="barCode" 
+                        <ZXing:ZXingBarcodeImageView x:Name="barCode" 
                                      BackgroundColor="{Binding BGColor}" 
                                      BarcodeValue="{Binding Text}" 
                                      BarcodeFormat="QR_CODE" 
                                      HeightRequest="500" 
                                      WidthRequest="500" >
-                <ZXing:ZXingBarcodeImageView.BarcodeOptions >
-                    <zxingcommon:EncodingOptions Height="500" Width="500" />
-                </ZXing:ZXingBarcodeImageView.BarcodeOptions>
-            </ZXing:ZXingBarcodeImageView>
-            <Label  x:Name="lab_Gen"
+                            <ZXing:ZXingBarcodeImageView.BarcodeOptions >
+                                <zxingcommon:EncodingOptions Height="500" Width="500" />
+                            </ZXing:ZXingBarcodeImageView.BarcodeOptions>
+                        </ZXing:ZXingBarcodeImageView>
+                        
+                        <Label  x:Name="lab_Gen"
+                   
+                    
                                    HorizontalTextAlignment="Center"  
                                   
                                    BackgroundColor="{Binding BGColor}" 
                                    FontSize="13" 
                                    TextColor="{Binding TCColor}">
-                <Label.FormattedText >
-                    <FormattedString >
-                        <Span Text="{Binding LabelText}" />
-                        <Span Text="{Binding VCard1 }" />
-                        <Span Text="{Binding VCard2 }"/>
-                        <Span Text="{Binding VCard3 }"/>
-                        <Span Text="{Binding VCard4 }"/>
-                        <Span Text="{Binding VCard5 }"/>
-                        <Span Text="{Binding VCard6 }"/>
-                        <local1:HyperlinkSpan 
+
+                            <Label.FormattedText >
+                                <FormattedString >
+
+                                    <Span Text="{Binding LabelText}" />
+                                    <Span Text="{Binding VCard1 }" />
+                                    <Span Text="{Binding VCard2 }"/>
+                                    <Span Text="{Binding VCard3 }"/>
+                                    <Span Text="{Binding VCard4 }"/>
+                                    <Span Text="{Binding VCard5 }"/>
+                                    <Span Text="{Binding VCard6 }"/>
+                                    <local1:HyperlinkSpan 
                                               Text="{Binding VCard7}"
                                               Url="{Binding VCard7Link}"/>
-                        <Span Text="{Binding VCard8 }"/>
+                                    <Span Text="{Binding VCard8 }"/>
 
-                        <local1:HyperlinkSpan
+                                    <local1:HyperlinkSpan
                                               Text="{Binding VCard9}"
                                               Url="{Binding VCard9Link}"/>
-                        <Span Text="{Binding VCard10 }"/>
+                                    <Span Text="{Binding VCard10 }"/>
 
-                        <local1:HyperlinkSpan  
+                                    <local1:HyperlinkSpan  
                                                Text="{Binding VCard11}"
                                                Url="{Binding VCard11Link}"
                                               />
 
 
-                        <Span Text="{Binding VCard12 }"/>
-                        <Span Text="{Binding VCard13 }"/>
-                    </FormattedString>
-                </Label.FormattedText>
-            </Label>
+                                    <Span Text="{Binding VCard12 }"/>
+                                    <Span Text="{Binding VCard13 }"/>
 
+                                </FormattedString>
+                            </Label.FormattedText>
 
-            <StackLayout Orientation="Horizontal">
-                <Button Text="Save"      
+                        </Label>
+                        <StackLayout Orientation="Horizontal">
+                            <Button Text="Save"      
                         HorizontalOptions="CenterAndExpand"
                         Margin="10,10,10,10"
                                         Command="{Binding ButtonSaveClicked}"
@@ -74,7 +83,7 @@
                                         BorderWidth="2"
                                         BorderColor="Gray"
                                         FontSize="20"/>
-                <Button Text="Share"
+                            <Button Text="Share"
                        
                                         Margin="10,10,10,10"
                                         IsVisible="{Binding ShareIsVis}"
@@ -93,11 +102,22 @@
                                         
                                         />
 
+                        </StackLayout>
+
+
+
+                    </StackLayout>
+
+                </local:PinchToZoomContainer.Content>
+                </local:PinchToZoomContainer>
             </StackLayout>
+          
+            
+            
 
-
-
-        </StackLayout>
+            
+           
+          
 
     </ScrollView>
         
