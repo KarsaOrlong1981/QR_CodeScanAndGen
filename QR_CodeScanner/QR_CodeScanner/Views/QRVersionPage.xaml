@@ -53,7 +53,16 @@
                     BorderColor="Gray"
                     BorderWidth="1" />
             <Button  ContentLayout="Top,0" 
-                     ImageSource="Ereignis.png" Text="Event" FontSize="20" HorizontalOptions="End"  HeightRequest="100" WidthRequest="191" CornerRadius="20" BackgroundColor="White" BorderColor="Gray" BorderWidth="1"/>
+                     Command="{Binding ButtonEventClicked}"
+                     ImageSource="Ereignis.png" 
+                     Text="Event" FontSize="20"
+                     HorizontalOptions="End"  
+                     HeightRequest="100" 
+                     WidthRequest="191" 
+                     CornerRadius="20" 
+                     BackgroundColor="White" 
+                     BorderColor="Gray" 
+                     BorderWidth="1"/>
         </StackLayout>
             <StackLayout Orientation="Horizontal">
             <Button Margin="12,0,0,0" 
