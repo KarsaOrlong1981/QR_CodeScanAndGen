@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 using QR_CodeScanner.ViewModel;
+using Android.Content;
 
 namespace QR_CodeScanner.ViewModel
 {
@@ -29,9 +30,15 @@ namespace QR_CodeScanner.ViewModel
         }
         public async Task CallEventPage()
         {
-
+            
             await Navigation.PushAsync(new EventPage());
         }
+
+        
+        
+          
+        
+
         public async Task CallTextPage()
         {
 

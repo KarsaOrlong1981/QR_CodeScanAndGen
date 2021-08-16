@@ -5,12 +5,13 @@ using Xamarin.Forms;
 using QR_CodeScanner.Views;
 using QR_CodeScanner.ViewModel;
 using System.Windows.Input;
+using System.Threading.Tasks;
 
 namespace QR_CodeScanner.ViewModel
 {
     public class EventViewModel : BaseViewModel
     {
-        string title, startDate, endDate, location, description,dateTimeNow;
+        string title, startDate, endDate, location, description;
         TimeSpan timeStart, timeEnd;
         DateTime dateTime;
       
@@ -19,12 +20,14 @@ namespace QR_CodeScanner.ViewModel
         public EventViewModel(INavigation navigation)
         {
             this.Navigation = navigation;
-            ButtonGenerateClicked = new Command(Placeholder);
+            ButtonGenerateClicked = new Command(async () => await CallQRGeneratorPage());
+
             
-            StartDate = "Start date";
-            EndDate = "End date";
+            
             dateTime = DateTime.Now;
-            DateTimeNow = Convert.ToString(dateTime);
+            StartDate = Convert.ToString(dateTime.ToString("d"));
+
+            EndDate = Convert.ToString(dateTime.ToString("d"));
             TimePicker timePicker = new TimePicker
             {
                 Time = new TimeSpan(dateTime.Hour, dateTime.Minute,dateTime.Second) // Time set to Now
@@ -33,16 +36,25 @@ namespace QR_CodeScanner.ViewModel
             TimeStart = timePicker.Time;
             TimeEnd = timePicker.Time;
         }
-        void Placeholder()
+
+        [Obsolete]
+        async Task CallQRGeneratorPage()
         {
+            bool isContact = false;
+            bool isEvent = true;
+            
+            await Navigation.PushAsync(new QRGeneratorPage(GetEvent(), isContact,isEvent));
+
+        }
+        string GetEvent()
+        {
+            string vCalendar = "BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:-//hacksw/handcal//NONSGML v1.0//EN\nBEGIN:VEVENT\nDTSTART:" + StartDate + "T" + TimeStart + "Z"
+                             + "\nDTEND:" + EndDate + "T" + TimeEnd + "Z" + "\nSUMMARY:" + Title + "\nDESCRIPTION:" + Description + "\nLOCATION:" + Location + "\nEND:VEVENT\nEND:VCALENDAR";
+            return vCalendar;
 
         }
 
-        public string DateTimeNow
-        {
-            get => dateTimeNow;
-            set => SetProperty(ref dateTimeNow, value);
-        }
+        
         public TimeSpan TimeStart
         {
             get => timeStart;

@@ -32,7 +32,7 @@
                                    HorizontalTextAlignment="Center"  
                                   
                                    BackgroundColor="{Binding BGColor}" 
-                                   FontSize="13" 
+                                   FontSize="{Binding FontSizeQR}" 
                                    TextColor="{Binding TCColor}">
 
                             <Label.FormattedText >

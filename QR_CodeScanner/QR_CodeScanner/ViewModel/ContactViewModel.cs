@@ -33,10 +33,12 @@ namespace QR_CodeScanner.ViewModel
         }
 
         [Obsolete]
-        public async Task CallQRGeneratorPage()
+         async Task CallQRGeneratorPage()
         {
             bool isContact = true;
-            await Navigation.PushAsync(new QRGeneratorPage(GetContact(),isContact));
+            bool isEvent = false;
+            
+            await Navigation.PushAsync(new QRGeneratorPage(GetContact(),isContact,isEvent));
         }
         string GetContact()
         {

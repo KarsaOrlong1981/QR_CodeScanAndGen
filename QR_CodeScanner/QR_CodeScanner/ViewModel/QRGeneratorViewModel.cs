@@ -26,17 +26,18 @@ namespace QR_CodeScanner.ViewModel
         string shareIsVisible;
         string filepath;
         string vcard1, vcard2, vcard3, vcard4, vcard5, vcard6, vcard7,vcard7Link, vcard8, vcard9,vcard9Link, vcard10, vcard11,vcard11Link, vcard12, vcard13;
+        int fontSize;
         Stream stream;
         
         public ICommand ButtonShareClicked { get; set; }
         public ICommand ButtonSaveClicked { get; set; }
        
         [Obsolete]
-        public QRGeneratorViewModel(string qrTxt,bool isContact)
+        public QRGeneratorViewModel(string qrTxt,bool isContact,bool isEvent)
         {
             if (isContact)
             {
-              
+                FontSizeQR = 13;
                     splitVCard = qrTxt.Split(':', '\n');
 
 
@@ -76,10 +77,16 @@ namespace QR_CodeScanner.ViewModel
                 VCard11Link = "mailto:" + splitVCard[15] + " ";
                 VCard12 = splitVCard[16] + ":" + splitVCard[17] + " ";
                 VCard13 = splitVCard[18] + ":" + splitVCard[19] ;
+                
+               
             }
            
             else
             {
+                if (isEvent)
+                {
+                    FontSizeQR = 10;
+                }
                 Text = qrTxt;
                 LabelText = qrTxt;
 
@@ -116,6 +123,11 @@ namespace QR_CodeScanner.ViewModel
         {
             get => labelText;
             set => SetProperty(ref labelText, value);
+        }
+        public int FontSizeQR
+        {
+            get => fontSize;
+            set => SetProperty(ref fontSize, value);
         }
         public string Text
         {
