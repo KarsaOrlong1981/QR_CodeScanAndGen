@@ -37,8 +37,9 @@ namespace QR_CodeScanner.ViewModel
         {
             bool isContact = true;
             bool isEvent = false;
-            
-            await Navigation.PushAsync(new QRGeneratorPage(GetContact(),isContact,isEvent));
+            bool isPhoneNumber = false;
+            bool isEmail = false;
+            await Navigation.PushAsync(new QRGeneratorPage(GetContact(),isContact,isEvent,isPhoneNumber,isEmail));
         }
         string GetContact()
         {

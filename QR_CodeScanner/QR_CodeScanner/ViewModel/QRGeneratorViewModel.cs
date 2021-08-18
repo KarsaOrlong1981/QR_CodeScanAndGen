@@ -33,8 +33,9 @@ namespace QR_CodeScanner.ViewModel
         public ICommand ButtonSaveClicked { get; set; }
        
         [Obsolete]
-        public QRGeneratorViewModel(string qrTxt,bool isContact,bool isEvent)
+        public QRGeneratorViewModel(string qrTxt,bool isContact,bool isEvent,bool isPhoneNumber,bool isEmail)
         {
+           
             if (isContact)
             {
                 FontSizeQR = 13;
@@ -87,6 +88,7 @@ namespace QR_CodeScanner.ViewModel
                 {
                     FontSizeQR = 10;
                 }
+               
                 Text = qrTxt;
                 LabelText = qrTxt;
 
@@ -96,14 +98,36 @@ namespace QR_CodeScanner.ViewModel
                 VCard4 = "";
                 VCard5 = "";
                 VCard6 = "";
-                VCard7 = "";
-                VCard7Link = "";
+                
+                if (isPhoneNumber)
+                {
+                    LabelText = "TEL: ";
+                    VCard7 = qrTxt;
+                    VCard7Link = "tel:" + qrTxt;
+                }
+                else
+                {
+                    VCard7 = "";
+                    VCard7Link = "";
+                }
+               
                 VCard8 = "";
                 VCard9 = "";
                 VCard9Link = "";
                 VCard10 = "";
-                VCard11 = "";
-                VCard11Link = "";
+                if (isEmail)
+                {
+                    
+                        LabelText = "Email: ";
+                        VCard11 = qrTxt;
+                        VCard11Link = "mailto:" + qrTxt;
+                     
+                }
+                else
+                {
+                    VCard11 = "";
+                    VCard11Link = "";
+                }
                 VCard12 = "";
                 VCard13 = "";
 

@@ -22,11 +22,11 @@ namespace QR_CodeScanner.Views
         private double yOffset;
 
         [Obsolete]
-        public QRGeneratorPage(string qrCodeText,bool isContact,bool isEvent)
+        public QRGeneratorPage(string qrCodeText,bool isContact,bool isEvent,bool isPhoneNumber,bool isEmail)
         {
             InitializeComponent();
 
-            BindingContext = new QRGeneratorViewModel(qrCodeText, isContact,isEvent);              
+            BindingContext = new QRGeneratorViewModel(qrCodeText, isContact,isEvent,isPhoneNumber,isEmail);              
         }
 
       

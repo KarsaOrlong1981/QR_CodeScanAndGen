@@ -22,6 +22,8 @@ namespace QR_CodeScanner.ViewModel
         public ICommand ButtonWEPClicked { get; set; }
         public ICommand ButtonNoneClicked { get; set; }
         public INavigation Navigation { get; set; }
+
+        [Obsolete]
         public WLanViewModel(INavigation navigation)
         {
             ReadOnly = "True";
@@ -91,6 +93,8 @@ namespace QR_CodeScanner.ViewModel
         {
             bool isContact = false;
             bool isEvent = false;
+            bool isPhoneNumber = false;
+            bool isEmail = false;
 
                 if (wlanKey == "WPA/WPA2")
                 {
@@ -107,7 +111,7 @@ namespace QR_CodeScanner.ViewModel
                     GenerateText = "WIFI:S:" + SSIDText + ";T:;P:" + Password + ";";
                 }
 
-            await Navigation.PushAsync(new QRGeneratorPage(GenerateText,isContact,isEvent));
+            await Navigation.PushAsync(new QRGeneratorPage(GenerateText,isContact,isEvent,isPhoneNumber,isEmail));
         }
     } 
 }

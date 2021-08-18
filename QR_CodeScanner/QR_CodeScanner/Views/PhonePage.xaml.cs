@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QR_CodeScanner.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,7 @@ namespace QR_CodeScanner.Views
         public PhonePage()
         {
             InitializeComponent();
+            BindingContext = new PhoneViewModel(Navigation);
         }
     }
 }

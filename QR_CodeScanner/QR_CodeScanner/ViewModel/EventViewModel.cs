@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Text;
 using Xamarin.Forms;
 using QR_CodeScanner.Views;
-using QR_CodeScanner.ViewModel;
 using System.Windows.Input;
 using System.Threading.Tasks;
 
@@ -42,8 +41,9 @@ namespace QR_CodeScanner.ViewModel
         {
             bool isContact = false;
             bool isEvent = true;
-            
-            await Navigation.PushAsync(new QRGeneratorPage(GetEvent(), isContact,isEvent));
+            bool isPhoneNumber = false;
+            bool isEmail = false;
+            await Navigation.PushAsync(new QRGeneratorPage(GetEvent(), isContact,isEvent,isPhoneNumber,isEmail));
 
         }
         string GetEvent()

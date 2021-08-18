@@ -19,6 +19,10 @@ namespace QR_CodeScanner.ViewModel
         public ICommand ButtonWLanClicked { get; set; }
         public ICommand ButtonContactClicked { get; set; }
         public ICommand ButtonEventClicked { get; set; }
+        public ICommand ButtonPhoneClicked { get; set; }
+        public ICommand ButtonEmailClicked { get; set; }
+
+        [Obsolete]
         public QRVersionViewModel(INavigation navigation)
         {
             this.Navigation = navigation;
@@ -27,6 +31,19 @@ namespace QR_CodeScanner.ViewModel
             ButtonWLanClicked = new Command(GotoWlanPage);
             ButtonContactClicked = new Command(GotoContactPage);
             ButtonEventClicked = new Command(GotoEventPage);
+            ButtonPhoneClicked = new Command(GotoPhonePage);
+            ButtonEmailClicked = new Command(GotoEmailPage);
+
+        }
+        public async Task CallPhonePage()
+        {
+
+            await Navigation.PushAsync(new PhonePage());
+        }
+        public async Task CallEmailPage()
+        {
+
+            await Navigation.PushAsync(new EmailPage());
         }
         public async Task CallEventPage()
         {
@@ -34,11 +51,7 @@ namespace QR_CodeScanner.ViewModel
             await Navigation.PushAsync(new EventPage());
         }
 
-        
-        
-          
-        
-
+        [Obsolete]
         public async Task CallTextPage()
         {
 
@@ -63,6 +76,8 @@ namespace QR_CodeScanner.ViewModel
         {
           await CallWebsitePage();
         }
+
+        [Obsolete]
         async void GotoTextPage()
         {
             await CallTextPage();
@@ -78,6 +93,14 @@ namespace QR_CodeScanner.ViewModel
         async void GotoEventPage()
         {
             await CallEventPage();
+        }
+        async void GotoPhonePage()
+        {
+            await CallPhonePage();
+        }
+        async void GotoEmailPage()
+        {
+            await CallEmailPage();
         }
     }
 }

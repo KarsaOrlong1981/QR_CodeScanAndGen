@@ -1,42 +1,39 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Windows.Input;
 using QR_CodeScanner.Views;
-using QR_CodeScanner.ViewModel;
-
+using System.Windows.Input;
 using Xamarin.Forms;
 using System.Threading.Tasks;
 
 namespace QR_CodeScanner.ViewModel
 {
-    public class TextViewModel : BaseViewModel 
+   
+    public class PhoneViewModel : BaseViewModel
     {
-        string entry;
-        public ICommand ButtonGeneratorPageClicked { get; set; }
+        string phoneNumber;
         public INavigation Navigation { get; set; }
+        public ICommand ButtonGeneratorPageClicked { get; set; }
 
         [Obsolete]
-        public TextViewModel(INavigation navigation)
+        public PhoneViewModel(INavigation navigation)
         {
             this.Navigation = navigation;
-           
             ButtonGeneratorPageClicked = new Command(async () => await CallQRGeneratorPage());
         }
-
         [Obsolete]
         public async Task CallQRGeneratorPage()
         {
             bool isContact = false;
             bool isEvent = false;
-            bool isPhoneNumber = false;
+            bool isPhoneNumber = true;
             bool isEmail = false;
-            await Navigation.PushAsync(new QRGeneratorPage(EntryText,isContact,isEvent,isPhoneNumber,isEmail));
+            await Navigation.PushAsync(new QRGeneratorPage(PhoneNumber, isContact, isEvent,isPhoneNumber,isEmail));
         }
-        public string EntryText
+        public string PhoneNumber
         {
-            get => entry;
-            set => SetProperty(ref entry, value);
+            get => phoneNumber;
+            set => SetProperty(ref phoneNumber, value);
         }
 
     }
