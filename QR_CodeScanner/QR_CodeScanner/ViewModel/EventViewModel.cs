@@ -24,8 +24,8 @@ namespace QR_CodeScanner.ViewModel
             
             
             dateTime = DateTime.Now;
+           
             StartDate = Convert.ToString(dateTime.ToString("d"));
-
             EndDate = Convert.ToString(dateTime.ToString("d"));
             TimePicker timePicker = new TimePicker
             {
@@ -48,8 +48,20 @@ namespace QR_CodeScanner.ViewModel
         }
         string GetEvent()
         {
-            string vCalendar = "BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:-//hacksw/handcal//NONSGML v1.0//EN\nBEGIN:VEVENT\nDTSTART:" + StartDate + "T" + TimeStart + "Z"
-                             + "\nDTEND:" + EndDate + "T" + TimeEnd + "Z" + "\nSUMMARY:" + Title + "\nDESCRIPTION:" + Description + "\nLOCATION:" + Location + "\nEND:VEVENT\nEND:VCALENDAR";
+           
+            string[] splitDate = StartDate.Split('.', ':', ',','/',' ');
+            string[] splitEndDate = EndDate.Split('.', ':', ',','/',' ');
+            string[] splitTimeStartDate = Convert.ToString(TimeStart).Split('.', ':', ',','/',' '); 
+            string[] splitTimeEndDate = Convert.ToString(TimeEnd).Split('.', ':', ',','/',' ');
+            string startDateG = splitDate[1] + splitDate[0] + splitDate[2];
+            string endDateG = splitEndDate[1] + splitEndDate[0] + splitEndDate[2];
+            string timeStartG = splitTimeStartDate[0] + splitTimeStartDate[1] + splitTimeStartDate[2];
+            string timeEndG = splitTimeEndDate[0] + splitTimeEndDate[1] + splitTimeEndDate[2];
+
+            string vCalendar = "BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:-//J.T/Th//EN\nBEGIN:VEVENT\nDTSTART:" + startDateG + "T" + timeStartG + "Z"
+                             + "\nDTEND:" + endDateG + "T" + timeEndG + "Z" + "\nSUMMARY:" + Title + "\nDESCRIPTION:" + Description + "\nLOCATION:" + Location + "\nEND:VEVENT\nEND:VCALENDAR";
+           
+            
             return vCalendar;
 
         }

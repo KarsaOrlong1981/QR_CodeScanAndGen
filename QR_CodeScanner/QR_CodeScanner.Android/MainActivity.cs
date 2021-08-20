@@ -5,7 +5,16 @@ using Android.Content.PM;
 using Android.Runtime;
 using Android.OS;
 using Xamarin.Forms;
-
+using Android;
+using Android.Content;
+using Android.Provider;
+using System.Collections.Generic;
+using Android.Util;
+using Google.Android.Material.Snackbar;
+using QR_CodeScanner.Droid.Models;
+using QR_CodeScanner.Views;
+using Android.Support.V4.App;
+using Android.Widget;
 
 namespace QR_CodeScanner.Droid
 {
@@ -19,15 +28,22 @@ namespace QR_CodeScanner.Droid
     [Activity(Label = "QR_CodeScanner", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ScreenOrientation = ScreenOrientation.Portrait, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
+      
+       
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
+           
+
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             //für BarCode Scanner
             ZXing.Net.Mobile.Forms.Android.Platform.Init();
             LoadApplication(new App());
+           
+
+
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
@@ -35,7 +51,14 @@ namespace QR_CodeScanner.Droid
             //für BarCode Scanner
             global::ZXing.Net.Mobile.Android.PermissionsHandler.OnRequestPermissionsResult(requestCode, permissions, grantResults);
 
+        
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
+
+      
+        
+       
+        
+
     }
 }

@@ -6,8 +6,8 @@ using System.IO;
 using System.Threading.Tasks;
 using QR_CodeScanner.Views;
 using Android.Content;
-
-
+using Android.App;
+using Android.Widget;
 
 namespace QR_CodeScanner.ViewModel
 {
@@ -285,7 +285,7 @@ namespace QR_CodeScanner.ViewModel
             var screenshot = await Screenshot.CaptureAsync();
             stream = await screenshot.OpenReadAsync();
 
-            var file = Path.Combine(FileSystem.CacheDirectory, "screenshot.jpg");
+            var file = Path.Combine(FileSystem.CacheDirectory, "screenshot.png");
             using (FileStream fs = File.Open(file, FileMode.Create))
             {
                 await stream.CopyToAsync(fs);
@@ -305,7 +305,7 @@ namespace QR_CodeScanner.ViewModel
             
             
             string file = Convert.ToString(CaptureScreenshot());
-             filepath = Path.Combine(FileSystem.CacheDirectory, "screenshot.jpg");
+             filepath = Path.Combine(FileSystem.CacheDirectory, "screenshot.png");
             ShareQR(file, filepath);
 
            
@@ -317,7 +317,7 @@ namespace QR_CodeScanner.ViewModel
         }
 
         [Obsolete]
-        async void SaveQR()
+        async  void SaveQR()
         {
             BGColor = "Black";
             TCColor = "White";
@@ -332,20 +332,20 @@ namespace QR_CodeScanner.ViewModel
             TCColor = "Black";
             ShareIsVis = "true";
             SaveIsVis = "true";
-            
-            await App.Current.MainPage.DisplayAlert("QR-Code was saved in the Gallery", "", "OK");
+            var activity = Forms.Context as Activity;
+            Toast.MakeText(activity, "Qr-Code was saved in Gallery", ToastLength.Short).Show();
+           // await App.Current.MainPage.DisplayAlert("QR-Code was saved in the Gallery", "", "OK");
         }
-      
+
         [Obsolete]
         public void SaveImage(string filepath)
         {
             try
             {
                 var imageData = File.ReadAllBytes(filepath);
-                var dir = Android.OS.Environment.GetExternalStoragePublicDirectory(
-                Android.OS.Environment.DirectoryDcim);
+                var dir = Android.OS.Environment.GetExternalStoragePublicDirectory(Android.OS.Environment.DirectoryPictures);
                 var pictures = dir.AbsolutePath;
-                var filename = "QR-Code_" + DateTime.Now.ToString("yyyyMMddHHmmssfff") + ".jpg";
+                var filename = "QR_Code_" + DateTime.Now.ToString("yyyyMMddHHmmssfff") + ".png";
                 var newFilepath = Path.Combine(pictures, filename);
 
                 File.WriteAllBytes(newFilepath, imageData);

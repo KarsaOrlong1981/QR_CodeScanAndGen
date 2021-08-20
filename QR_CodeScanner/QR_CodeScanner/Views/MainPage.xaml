@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage BackgroundColor="MintCream" xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="QR_CodeScanner.Views.MainPage"
+             x:Class="QR_CodeScanner.Views.MainPage" Title="QR-Code Scan &amp; Gen"
             >
 
 
@@ -17,7 +17,7 @@
     </ContentPage.ToolbarItems>
     
     <StackLayout>
-        <Image Source="QRCode.gif"  Aspect="AspectFit" HorizontalOptions="Center" VerticalOptions="CenterAndExpand"/>
+        <Image Source="ScanGen.png"  Aspect="AspectFit" HorizontalOptions="Center" VerticalOptions="CenterAndExpand"/>
         <Button 
             Text="Scannen mit Kamera" 
             CornerRadius="20" 

@@ -22,6 +22,7 @@
                     <Image Source="DateTime.png" />
                     <Label Text="Start date" TextColor="SteelBlue" FontSize="20" />
                     <DatePicker HorizontalOptions="StartAndExpand"
+                                Date="{Binding StartDate}"
                                 MinimumDate="{Binding StartDate}"
                                 MaximumDate="12/31/2040" />
                     <TimePicker Time="{Binding TimeStart}">
@@ -38,7 +39,8 @@
                             <Image Source="DateTime.png" />
                     <Label Text="End date" TextColor="SteelBlue" FontSize="20" />
                     <DatePicker HorizontalOptions="StartAndExpand"
-                                MinimumDate="{Binding EndDate}"
+                                Date="{Binding EndDate}"
+                                MinimumDate="{Binding StartDate}"
                                 MaximumDate="12/31/2040" />
                     <TimePicker Time="{Binding TimeEnd}" >
                         <TimePicker.Format>HH:mm</TimePicker.Format>
