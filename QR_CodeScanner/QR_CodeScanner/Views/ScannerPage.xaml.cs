@@ -18,6 +18,7 @@ using QR_CodeScanner.Model;
 using Java.Util;
 
 
+
 namespace QR_CodeScanner.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
@@ -310,6 +311,6 @@ namespace QR_CodeScanner.Views
             scanView.ToggleTorch();
         }
 
-       
+      
     }
 }
