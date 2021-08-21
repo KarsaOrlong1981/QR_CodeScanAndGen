@@ -33,7 +33,7 @@ namespace QR_CodeScanner.Views
            
             
         }
-        
+        //If the Scanner recognizes an QR-Code
         [Obsolete]
         public void scanView_OnScanResult(Result result)
         {
@@ -42,7 +42,7 @@ namespace QR_CodeScanner.Views
             Device.BeginInvokeOnMainThread(async () =>
             {
               
-               
+               //To recognize an VCard and read the Vcard
                 string resultString = Convert.ToString(result);
                 
                  if(resultString.Substring(0, 11) == "BEGIN:VCARD")
@@ -119,7 +119,7 @@ namespace QR_CodeScanner.Views
 
                     }
 
-
+                    //Add vcard to contacts
                     SaveContacts(vCardName,vCardTel,vCardEmail,vCardORG,vCardTitle,vCardAdress,vCardURL);
                   
 
@@ -128,6 +128,7 @@ namespace QR_CodeScanner.Views
 
 
                 }
+                 //To recognizes an VCalendar and read Vcalendar
                 if (resultString.Substring(0, 15) == "BEGIN:VCALENDAR")
                 {
 
@@ -188,7 +189,7 @@ namespace QR_CodeScanner.Views
                         
                     }
 
-                  
+                    // Add vcalendar to contacts
                     SaveEvents(titleEvent, descriptionEvent, dtStartEvent, dtEndEvent, locationEvent);
                     Navigation.RemovePage(this);
 
@@ -201,7 +202,7 @@ namespace QR_CodeScanner.Views
         }
 
        
-
+        //If Scanner recognizes an Website open Browser
         public async Task OpenBrowser(string uri)
         {
             try
