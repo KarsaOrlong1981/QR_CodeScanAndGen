@@ -27,7 +27,7 @@ namespace QR_CodeScanner.Droid
     [Activity(Label = "QR_CodeScanner", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ScreenOrientation = ScreenOrientation.Portrait, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
-        public string TAG
+        /*public string TAG
         {
             get
             {
@@ -43,16 +43,16 @@ namespace QR_CodeScanner.Droid
 
         Android.Widget.Button button;
 
-        Android.Views.View layout;
+        Android.Views.View layout;*/
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
-            SetContentView(Resource.Layout.activity_main);
+            //SetContentView(Resource.Layout.activity_main);
 
-            layout = FindViewById(Resource.Id.root_layout);
+            //layout = FindViewById(Resource.Id.root_layout);
 
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             //für BarCode Scanner
@@ -68,7 +68,7 @@ namespace QR_CodeScanner.Droid
             //für BarCode Scanner
             global::ZXing.Net.Mobile.Android.PermissionsHandler.OnRequestPermissionsResult(requestCode, permissions, grantResults);
 
-            if (requestCode == REQUEST_CONTACTS)
+           /* if (requestCode == REQUEST_CONTACTS)
             {
                 Log.Info(TAG, "Received response for contact permissions request.");
 
@@ -89,10 +89,10 @@ namespace QR_CodeScanner.Droid
                 }
 
             }
-            else
-            {
+            else*/
+            
                 base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
-            }
+            
         
 
 
@@ -101,7 +101,7 @@ namespace QR_CodeScanner.Droid
 
     }
 
-        void RequestContactsPermissions()
+      /*  void RequestContactsPermissions()
         {
             if (ActivityCompat.ShouldShowRequestPermissionRationale(this, Manifest.Permission.ReadContacts)
                 || ActivityCompat.ShouldShowRequestPermissionRationale(this, Manifest.Permission.WriteContacts))
@@ -124,9 +124,9 @@ namespace QR_CodeScanner.Droid
                 // Contact permissions have not been granted yet. Request them directly.
                 ActivityCompat.RequestPermissions(this, PERMISSIONS_CONTACT, REQUEST_CONTACTS);
             }
-        }
+        }*/
 
-        public void saveContact()
+       /* public void saveContact()
         {
             List<ContentProviderOperation> ops = new List<ContentProviderOperation>();
             NewContact(ref ops, "test", "1234", "2234", "3234", "4234");
@@ -144,10 +144,10 @@ namespace QR_CodeScanner.Droid
                 System.Diagnostics.Debug.WriteLine("**************-----------> : " + e.Message);
                 Toast.MakeText(this, "contact not saved_message !", ToastLength.Long).Show();
             }
-        }
+        }*/
     
 
-    public void NewContact(ref List<ContentProviderOperation> ops, string displayName, string Number1, string Number2, string Number3, string Number4)
+    /*public void NewContact(ref List<ContentProviderOperation> ops, string displayName, string Number1, string Number2, string Number3, string Number4)
         {
             ContentProviderOperation.Builder builder =
                 ContentProviderOperation.NewInsert(ContactsContract.RawContacts.ContentUri);
@@ -239,7 +239,7 @@ namespace QR_CodeScanner.Droid
 
                 saveContact();
             }
-        }
+        }*/
 
 
 

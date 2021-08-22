@@ -42,160 +42,190 @@ namespace QR_CodeScanner.Views
             Device.BeginInvokeOnMainThread(async () =>
             {
               
-               //To recognize an VCard and read the Vcard
-                string resultString = Convert.ToString(result);
-                
-                 if(resultString.Substring(0, 11) == "BEGIN:VCARD")
-                {
-                    string[] splitVcardADR;
-                    string[] splitVcardEMAIL;
-                    string[] splitVcardURL;
-                    string[] splitVcardTEL;
-                    string[] splitVcardTitle;
-                    string[] splitVcardORG;
-                    string[] splitVcardName;
-                    string[] splitVcard = result.Text.Split('\n');
-
-                    for (int i = 0; i < splitVcard.Length; i++)
-                    {
-                        if (splitVcard[i] == "")
-                        {
-                            continue;
-                        }
-                        else
-                        {
-                            try
-                            {
-
-
-                                if (splitVcard[i].Substring(0, 1) == "N")
-                                {
-                                    splitVcardName = splitVcard[i].Split(':');
-                                     vCardName = splitVcardName[1];
-                                }
-                                if (splitVcard[i].Substring(0, 3) == "ORG")
-                                {
-                                    splitVcardORG = splitVcard[i].Split(':');
-                                    vCardORG = splitVcardORG[1];
-                                }
-
-                                if (splitVcard[i].Substring(0, 4) == "TITL")
-                                {
-                                    splitVcardTitle = splitVcard[i].Split(':');
-                                    vCardTitle = splitVcardTitle[1];
-                                }
-                                if (splitVcard[i].Substring(0, 3) == "TEL")
-                                {
-                                    splitVcardTEL = splitVcard[i].Split(':');
-                                    vCardTel = splitVcardTEL[1];
-                                }
-                                if (splitVcard[i].Substring(0, 3) == "URL")
-                                {
-                                    splitVcardURL = splitVcard[i].Split(':');
-                                    if (splitVcardURL[1] == "https" || splitVcardURL[1] == "http")
-                                        vCardURL = splitVcardURL[1] + ":" + splitVcardURL[2];
-                                    else
-                                        vCardURL = splitVcardURL[1];
-                                }
-                                if (splitVcard[i].Substring(0, 4) == "EMAI")
-                                {
-                                    splitVcardEMAIL = splitVcard[i].Split(':');
-                                    vCardEmail = splitVcardEMAIL[1];
-                                }
-                                if (splitVcard[i].Substring(0, 3) == "ADR")
-                                {
-                                    splitVcardADR = splitVcard[i].Split(':');
-                                    vCardAdress = splitVcardADR[1];
-                                }
-
-                            }
-                            catch
-                            {
-                                var activity = Forms.Context as Activity;
-                                Toast.MakeText(activity, "QR-Code nicht lesbar !" ,ToastLength.Long).Show();
-                            }
-
-                        }
-
-                    }
-
-                    //Add vcard to contacts
-                    SaveContacts(vCardName,vCardTel,vCardEmail,vCardORG,vCardTitle,vCardAdress,vCardURL);
-                  
-
-                    Navigation.RemovePage(this);
-
-
-
-                }
-                 //To recognizes an VCalendar and read Vcalendar
-                if (resultString.Substring(0, 15) == "BEGIN:VCALENDAR")
-                {
-
-                    string[] splitDTStart;
-                    string[] splitDTEnd;
-                    string[] splitSummary;
-                    string[] splitDescription;
-                    string[] splitLocation;
-
-                    string[] splitVcal = result.Text.Split('\n');
-
-                for (int i = 0; i < splitVcal.Length; i++)
-                    {
-                        if (splitVcal[i] == "")
-                        {
-                            continue;
-                        }
-                        else
-                        {
-                            try
-                            {
-                              
-
-                                if (splitVcal[i].Substring(0, 4) == "DTST")
-                                {
-                                    splitDTStart = splitVcal[i].Split(':');
-                                    dtStartEvent = splitDTStart[1];
-                                }
-                                if (splitVcal[i].Substring(0, 4) == "DTEN")
-                                {
-                                    splitDTEnd = splitVcal[i].Split(':');
-                                    dtEndEvent = splitDTEnd[1];
-                                }
-
-                                if (splitVcal[i].Substring(0, 4) == "SUMM")
-                                {
-                                    splitSummary = splitVcal[i].Split(':');
-                                    titleEvent = splitSummary[1];
-                                }
-                                if (splitVcal[i].Substring(0, 4) == "DESC")
-                                {
-                                    splitDescription = splitVcal[i].Split(':');
-                                    descriptionEvent = splitDescription[1];
-                                }
-                                if (splitVcal[i].Substring(0, 4) == "LOCA")
-                                {
-                                    splitLocation = splitVcal[i].Split(':');
-                                    locationEvent = splitLocation[1];
-                                }
-                            }
-                            catch
-                            {
-                                var activity = Forms.Context as Activity;
-                                Toast.MakeText(activity, "QR-Code nicht lesbar !", ToastLength.Long).Show();
-                            }
-                           
-                        }
-                        
-                    }
-
-                    // Add vcalendar to contacts
-                    SaveEvents(titleEvent, descriptionEvent, dtStartEvent, dtEndEvent, locationEvent);
-                    Navigation.RemovePage(this);
-
-                }
                
-                await OpenBrowser(result.Text);
+                string resultString = Convert.ToString(result);
+
+                if (resultString.Length >= 11)
+                {
+                    //To recognize an VCard and read the Vcard
+                    if (resultString.Substring(0, 11) == "BEGIN:VCARD")
+                    {
+                        string[] splitVcardADR;
+                        string[] splitVcardEMAIL;
+                        string[] splitVcardURL;
+                        string[] splitVcardTEL;
+                        string[] splitVcardTitle;
+                        string[] splitVcardORG;
+                        string[] splitVcardName;
+                        string[] splitVcard = result.Text.Split('\n');
+
+                        for (int i = 0; i < splitVcard.Length; i++)
+                        {
+                            if (splitVcard[i] == "")
+                            {
+                                continue;
+                            }
+                            else
+                            {
+                                try
+                                {
+
+
+                                    if (splitVcard[i].Substring(0, 1) == "N")
+                                    {
+                                        splitVcardName = splitVcard[i].Split(':');
+                                        vCardName = splitVcardName[1];
+                                    }
+                                    if (splitVcard[i].Substring(0, 3) == "ORG")
+                                    {
+                                        splitVcardORG = splitVcard[i].Split(':');
+                                        vCardORG = splitVcardORG[1];
+                                    }
+
+                                    if (splitVcard[i].Substring(0, 4) == "TITL")
+                                    {
+                                        splitVcardTitle = splitVcard[i].Split(':');
+                                        vCardTitle = splitVcardTitle[1];
+                                    }
+                                    if (splitVcard[i].Substring(0, 3) == "TEL")
+                                    {
+                                        splitVcardTEL = splitVcard[i].Split(':');
+                                        vCardTel = splitVcardTEL[1];
+                                    }
+                                    if (splitVcard[i].Substring(0, 3) == "URL")
+                                    {
+                                        splitVcardURL = splitVcard[i].Split(':');
+                                        if (splitVcardURL[1] == "https" || splitVcardURL[1] == "http")
+                                            vCardURL = splitVcardURL[1] + ":" + splitVcardURL[2];
+                                        else
+                                            vCardURL = splitVcardURL[1];
+                                    }
+                                    if (splitVcard[i].Substring(0, 4) == "EMAI")
+                                    {
+                                        splitVcardEMAIL = splitVcard[i].Split(':');
+                                        vCardEmail = splitVcardEMAIL[1];
+                                    }
+                                    if (splitVcard[i].Substring(0, 3) == "ADR")
+                                    {
+                                        splitVcardADR = splitVcard[i].Split(':');
+                                        vCardAdress = splitVcardADR[1];
+                                    }
+
+                                }
+                                catch
+                                {
+                                    var activity = Forms.Context as Activity;
+                                    Toast.MakeText(activity, "QR-Code nicht lesbar !", ToastLength.Long).Show();
+                                }
+
+                            }
+
+                        }
+
+                        //Add vcard to contacts
+                        SaveContacts(vCardName, vCardTel, vCardEmail, vCardORG, vCardTitle, vCardAdress, vCardURL);
+
+
+                        Navigation.RemovePage(this);
+
+
+
+                    }
+                }
+                else
+                {
+                    lab_Label.Text = resultString;
+                }
+                 
+                
+                    if(resultString.Length >= 15)
+                    {
+                        //To recognizes an VCalendar and read Vcalendar
+                        if (resultString.Substring(0, 15) == "BEGIN:VCALENDAR")
+                        {
+
+                            string[] splitDTStart;
+                            string[] splitDTEnd;
+                            string[] splitSummary;
+                            string[] splitDescription;
+                            string[] splitLocation;
+
+                            string[] splitVcal = result.Text.Split('\n');
+
+                            for (int i = 0; i < splitVcal.Length; i++)
+                            {
+                                if (splitVcal[i] == "")
+                                {
+                                    continue;
+                                }
+                                else
+                                {
+                                    try
+                                    {
+
+
+                                        if (splitVcal[i].Substring(0, 4) == "DTST")
+                                        {
+                                            splitDTStart = splitVcal[i].Split(':');
+                                            dtStartEvent = splitDTStart[1];
+                                        }
+                                        if (splitVcal[i].Substring(0, 4) == "DTEN")
+                                        {
+                                            splitDTEnd = splitVcal[i].Split(':');
+                                            dtEndEvent = splitDTEnd[1];
+                                        }
+
+                                        if (splitVcal[i].Substring(0, 4) == "SUMM")
+                                        {
+                                            splitSummary = splitVcal[i].Split(':');
+                                            titleEvent = splitSummary[1];
+                                        }
+                                        if (splitVcal[i].Substring(0, 4) == "DESC")
+                                        {
+                                            splitDescription = splitVcal[i].Split(':');
+                                            descriptionEvent = splitDescription[1];
+                                        }
+                                        if (splitVcal[i].Substring(0, 4) == "LOCA")
+                                        {
+                                            splitLocation = splitVcal[i].Split(':');
+                                            locationEvent = splitLocation[1];
+                                        }
+                                    }
+                                    catch
+                                    {
+                                        var activity = Forms.Context as Activity;
+                                        Toast.MakeText(activity, "QR-Code nicht lesbar !", ToastLength.Long).Show();
+                                    }
+
+                                }
+
+                            }
+
+                            // Add vcalendar to contacts
+                            SaveEvents(titleEvent, descriptionEvent, dtStartEvent, dtEndEvent, locationEvent);
+                            Navigation.RemovePage(this);
+
+                        }
+
+                    }
+                else
+                {
+                    lab_Label.Text = resultString;
+                }
+                    
+                        
+                    
+
+                
+                try
+                {
+                    await OpenBrowser(result.Text);
+                }
+                catch
+                {
+
+                }
+                
                
           
             });

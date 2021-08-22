@@ -9,10 +9,10 @@ namespace QR_CodeScanner.ViewModel
 {
     public abstract class BaseViewModel : INotifyPropertyChanged
     {
-        //deklariert das (erforderliche) Ereignis PropertyChanged, das von der Schnittstelle definiert wird.  
+        //declares the (required) PropertyChanged event that is defined by the interface.
         public event PropertyChangedEventHandler PropertyChanged;
-        //als nächstes wird überprüft, ob sich jemand für das Ereignis registriert hat,
-        //und in diesem Fall wird das Ereignis mit dem Namen der aktualisierten Eigenschaft ausgelöst.
+        // next it is checked if someone has registered for the event,
+        // and in this case the event will be raised with the name of the property being updated.
         protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
         {
             var changed = PropertyChanged;
@@ -21,8 +21,8 @@ namespace QR_CodeScanner.ViewModel
 
             changed.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-        //Dies ist eine Hilfsmethode, die das Festlegen der Eigenschaft erleichtern soll. Im Moment können Sie dieses einfach im Glauben nehmen,
-        //oder wenn Sie mit Generika vertraut sind, können Sie es ein wenig studieren, um zu sehen, wie es funktioniert.  
+        // This is a helper method to make setting the property easier. Right now you can just take this with faith
+        // or if you are familiar with generics you can study it a little to see how it works.
         protected bool SetProperty<T>(ref T backingStore, T value,
            [CallerMemberName] string propertyName = "",
            Action onChanged = null)
