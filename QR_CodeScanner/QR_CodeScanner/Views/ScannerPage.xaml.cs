@@ -16,7 +16,8 @@ using Result = ZXing.Result;
 using QR_CodeScanner.ViewModel;
 using QR_CodeScanner.Model;
 using Java.Util;
-
+using Android.OS;
+using static Xamarin.Essentials.Permissions;
 
 
 namespace QR_CodeScanner.Views
@@ -115,18 +116,19 @@ namespace QR_CodeScanner.Views
                                 catch
                                 {
                                     var activity = Forms.Context as Activity;
-                                    Toast.MakeText(activity, "QR-Code nicht lesbar !", ToastLength.Long).Show();
+                                    Toast.MakeText(activity, "QR-Code not readable !", ToastLength.Long).Show();
                                 }
 
                             }
 
                         }
+                        await CheckAndRequestContactsPermission();
+                        //Permisssions must be granted for Contacts
+                        await GetContactAsync();
+                        
 
-                        //Add vcard to contacts
-                        SaveContacts(vCardName, vCardTel, vCardEmail, vCardORG, vCardTitle, vCardAdress, vCardURL);
 
-
-                        Navigation.RemovePage(this);
+                       
 
 
 
@@ -194,16 +196,16 @@ namespace QR_CodeScanner.Views
                                     catch
                                     {
                                         var activity = Forms.Context as Activity;
-                                        Toast.MakeText(activity, "QR-Code nicht lesbar !", ToastLength.Long).Show();
+                                        Toast.MakeText(activity, "QR-Code not readable !", ToastLength.Long).Show();
                                     }
 
                                 }
 
                             }
 
-                            // Add vcalendar to contacts
-                            SaveEvents(titleEvent, descriptionEvent, dtStartEvent, dtEndEvent, locationEvent);
-                            Navigation.RemovePage(this);
+                        await CheckAndRequestCALENDARPermission();
+                        //Permisssions must be granted for Calendar
+                        await GetCalendarAsync();
 
                         }
 
@@ -249,7 +251,7 @@ namespace QR_CodeScanner.Views
        
         
         [Obsolete]
-         void SaveContacts(string name, string number, string email,string company,string jobtitle,string postal,string website)
+        public void SaveContacts(string name, string number, string email,string company,string jobtitle,string postal,string website)
         {
            
             try
@@ -272,7 +274,8 @@ namespace QR_CodeScanner.Views
             }
             catch
             {
-
+                var activity = Forms.Context as Activity;
+                Toast.MakeText(activity, "Can not Save", ToastLength.Long).Show();
             }
             
         }
@@ -317,7 +320,8 @@ namespace QR_CodeScanner.Views
             }
             catch
             {
-
+                var activity = Forms.Context as Activity;
+                Toast.MakeText(activity, "Can not Save", ToastLength.Long).Show();
             }
            
 
@@ -342,6 +346,107 @@ namespace QR_CodeScanner.Views
             scanView.ToggleTorch();
         }
 
-      
+        [Obsolete]
+        public async Task<PermissionStatus> CheckAndRequestContactsPermission()
+        {
+            var status = await Permissions.CheckStatusAsync<Permissions.ContactsWrite>();
+
+            if (status == PermissionStatus.Granted)
+                return status;
+
+            if (status == PermissionStatus.Denied && DeviceInfo.Platform == DevicePlatform.iOS)
+            {
+                var activity = Forms.Context as Activity;
+                Toast.MakeText(activity, "Turn on the Contacts permission that the App can write a new Contact from QR-Code result.", ToastLength.Long).Show();
+                // Prompt the user with additional information as to why the permission is needed
+                // Prompt the user to turn on in settings
+                // On iOS once a permission has been denied it may not be requested again from the application
+                return status;
+            }
+
+            if (Permissions.ShouldShowRationale<Permissions.ContactsWrite>())
+            {
+                var activity = Forms.Context as Activity;
+                Toast.MakeText(activity, "Needed your permission to write a new Contact from QR-Code result.", ToastLength.Long).Show();
+                // Prompt the user with additional information as to why the permission is needed
+            }
+
+            status = await Permissions.RequestAsync<Permissions.ContactsWrite>();
+
+            return status;
+        }
+
+        [Obsolete]
+        public async Task<PermissionStatus> CheckAndRequestCALENDARPermission()
+        {
+            var status = await Permissions.CheckStatusAsync<Permissions.CalendarWrite>();
+
+            if (status == PermissionStatus.Granted)
+                return status;
+
+            if (status == PermissionStatus.Denied && DeviceInfo.Platform == DevicePlatform.iOS)
+            {
+                var activity = Forms.Context as Activity;
+                Toast.MakeText(activity, "Turn on the Calendar permission that the App can write a new Event from QR-Code result.", ToastLength.Long).Show();
+                // Prompt the user with additional information as to why the permission is needed
+                // Prompt the user to turn on in settings
+                // On iOS once a permission has been denied it may not be requested again from the application
+                return status;
+            }
+
+            if (Permissions.ShouldShowRationale<Permissions.CalendarWrite>())
+            {
+                var activity = Forms.Context as Activity;
+                Toast.MakeText(activity, "Needed your permission to write a new Event in Calendar from QR-Code result.", ToastLength.Long).Show();
+                // Prompt the user with additional information as to why the permission is needed
+            }
+
+            status = await Permissions.RequestAsync<Permissions.CalendarWrite>();
+
+            return status;
+        }
+        [Obsolete]
+        public async Task GetContactAsync()
+        {
+            var status = await CheckAndRequestPermissionAsync(new Permissions.ContactsWrite());
+            if (status != PermissionStatus.Granted)
+            {
+                await DisplayAlert("Permission for Contacts denied.", "The last time you refused the authorization to access the Contacts.Give this App the authorization for your Contacts to add Contacts directly via a QR-Code.", "OK.");
+                Navigation.RemovePage(this);
+                return;
+            }
+
+            //Add vcard to contacts
+            SaveContacts(vCardName, vCardTel, vCardEmail, vCardORG, vCardTitle, vCardAdress, vCardURL);
+            Navigation.RemovePage(this);
+        }
+
+        [Obsolete]
+        public async Task GetCalendarAsync()
+        {
+            var status = await CheckAndRequestPermissionAsync(new Permissions.CalendarWrite());
+            if (status != PermissionStatus.Granted)
+            {
+                await DisplayAlert("Permission for Calendar denied.", "The last time you refused the authorization to access the Calendar.Give this App the authorization for your Calendar to add Calendar directly via a QR-Code.", "OK.");
+                Navigation.RemovePage(this);
+                return;
+            }
+
+            // Add vcalendar to contacts
+            SaveEvents(titleEvent, descriptionEvent, dtStartEvent, dtEndEvent, locationEvent);
+            Navigation.RemovePage(this);
+        }
+
+        public async Task<PermissionStatus> CheckAndRequestPermissionAsync<T>(T permission)
+                    where T : BasePermission
+        {
+            var status = await permission.CheckStatusAsync();
+            if (status != PermissionStatus.Granted)
+            {
+                status = await permission.RequestAsync();
+            }
+
+            return status;
+        }
     }
 }

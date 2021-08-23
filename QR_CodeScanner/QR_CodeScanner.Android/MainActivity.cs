@@ -27,7 +27,8 @@ namespace QR_CodeScanner.Droid
     [Activity(Label = "QR_CodeScanner", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ScreenOrientation = ScreenOrientation.Portrait, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
-        /*public string TAG
+        
+       /* public string TAG
         {
             get
             {
@@ -41,7 +42,7 @@ namespace QR_CodeScanner.Droid
             Manifest.Permission.WriteContacts
         };
 
-        Android.Widget.Button button;
+        
 
         Android.Views.View layout;*/
 
@@ -68,7 +69,7 @@ namespace QR_CodeScanner.Droid
             //für BarCode Scanner
             global::ZXing.Net.Mobile.Android.PermissionsHandler.OnRequestPermissionsResult(requestCode, permissions, grantResults);
 
-           /* if (requestCode == REQUEST_CONTACTS)
+            /*if (requestCode == REQUEST_CONTACTS)
             {
                 Log.Info(TAG, "Received response for contact permissions request.");
 
@@ -101,7 +102,7 @@ namespace QR_CodeScanner.Droid
 
     }
 
-      /*  void RequestContactsPermissions()
+       /*void RequestContactsPermissions()
         {
             if (ActivityCompat.ShouldShowRequestPermissionRationale(this, Manifest.Permission.ReadContacts)
                 || ActivityCompat.ShouldShowRequestPermissionRationale(this, Manifest.Permission.WriteContacts))
@@ -128,8 +129,9 @@ namespace QR_CodeScanner.Droid
 
        /* public void saveContact()
         {
-            List<ContentProviderOperation> ops = new List<ContentProviderOperation>();
-            NewContact(ref ops, "test", "1234", "2234", "3234", "4234");
+             List<ContentProviderOperation> ops = new List<ContentProviderOperation>();
+            //NewContact(ref ops, "test", "1234", "2234", "3234", "4234");
+           
 
             //Add the new contact
             ContentProviderResult[] res;
@@ -215,9 +217,9 @@ namespace QR_CodeScanner.Droid
                 ops.Add(builder.Build());
             }
 
-        }
+        }*/
 
-        [Export]
+       /* [Export]
         public void SaveContacts(Android.Views.View v)
         {
             Log.Info(TAG, "Show contacts button pressed. Checking permissions.");
