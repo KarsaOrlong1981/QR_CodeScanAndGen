@@ -8,6 +8,8 @@ using QR_CodeScanner.Views;
 using Android.Content;
 using Android.App;
 using Android.Widget;
+using System.Globalization;
+using QR_CodeScanner.Model;
 
 namespace QR_CodeScanner.ViewModel
 {
@@ -18,15 +20,17 @@ namespace QR_CodeScanner.ViewModel
         string[] splitVCard;
         string text;
         string labelText;
-        string qrCodeTxt;
+       
+        
         string bgColor;
         string tcColor;
-       
+        string qrCode;
         string saveIsvisible;
         string shareIsVisible;
         string filepath;
         string vcard1, vcard2, vcard3, vcard4, vcard5, vcard6, vcard7,vcard7Link, vcard8, vcard9,vcard9Link, vcard10, vcard11,vcard11Link, vcard12, vcard13;
         int fontSize;
+        ShareContent share;
         Stream stream;
         
         public ICommand ButtonShareClicked { get; set; }
@@ -35,7 +39,11 @@ namespace QR_CodeScanner.ViewModel
         [Obsolete]
         public QRGeneratorViewModel(string qrTxt,bool isContact,bool isEvent,bool isPhoneNumber,bool isEmail)
         {
-           
+            Text = qrTxt;
+            share = new ShareContent();
+            qrCode = qrTxt;
+            FontSizeQR = 20;
+            LabelText = "";
             if (isContact)
             {
                 FontSizeQR = 13;
@@ -89,7 +97,7 @@ namespace QR_CodeScanner.ViewModel
                     FontSizeQR = 10;
                 }
                
-                Text = qrTxt;
+               // Text = qrTxt;
                 LabelText = qrTxt;
 
                 VCard1 = "";
@@ -101,6 +109,7 @@ namespace QR_CodeScanner.ViewModel
                 
                 if (isPhoneNumber)
                 {
+                    
                     LabelText = "TEL: ";
                     VCard7 = qrTxt;
                     VCard7Link = "tel:" + qrTxt;
@@ -148,6 +157,7 @@ namespace QR_CodeScanner.ViewModel
             get => labelText;
             set => SetProperty(ref labelText, value);
         }
+        
         public int FontSizeQR
         {
             get => fontSize;
@@ -180,11 +190,6 @@ namespace QR_CodeScanner.ViewModel
             set => SetProperty(ref shareIsVisible, value);
         }
 
-        public string QRCodeText
-        {
-            get => qrCodeTxt;
-            set => SetProperty(ref qrCodeTxt, value);
-        }
         public string VCard1
         {
             get => vcard1;
@@ -268,17 +273,7 @@ namespace QR_CodeScanner.ViewModel
             set => SetProperty(ref vcard13, value);
         }
 
-        async void ShareQR(string filename, string filepath)
-        {
-
-            await Share.RequestAsync(new ShareFileRequest()
-            {
-                Title = filename,
-                File = new ShareFile(filepath)
-            });
-
-
-        }
+        
         async Task<string> CaptureScreenshot()
         {
             
@@ -295,7 +290,7 @@ namespace QR_CodeScanner.ViewModel
 
 
         }
-        void ShareQRImage()
+        async void ShareQRImage()
         {
             
             BGColor = "Black";
@@ -306,7 +301,7 @@ namespace QR_CodeScanner.ViewModel
             
             string file = Convert.ToString(CaptureScreenshot());
              filepath = Path.Combine(FileSystem.CacheDirectory, "screenshot.png");
-            ShareQR(file, filepath);
+            await share.ShareFile(file, filepath);
 
            
             BGColor = "MintCream";
@@ -323,18 +318,75 @@ namespace QR_CodeScanner.ViewModel
             TCColor = "White";
             ShareIsVis = "false";
             SaveIsVis = "false";
-            
+            string labelT = LabelText;
+            LabelText = "";
+            string v1 = VCard1;
+            VCard1 = "";
+            string v2 = vcard2;
+            VCard2 = "";
+            string v3 = VCard3;
+            VCard3 = "";
+            string v4 = VCard4;
+            VCard4 = "";
+            string v5 = VCard5;
+            VCard5 = "";
+            string v6 = VCard6;
+            VCard6 = "";
+            string v7 = VCard7;
+            VCard7 = "";
+            string v7L = VCard7Link;
+            VCard7Link = "";
+            string v8 = VCard8;
+            VCard8 = "";
+            string v9 = VCard9;
+            VCard9 = "";
+            string v9L = VCard9Link;
+            VCard9Link = "";
+            string v10 = VCard10;
+            VCard10 = "";
+            string v11 = VCard11;
+            VCard11 = "";
+            string v11L = VCard11Link;
+            VCard11Link = "";
+            string v12 = VCard12;
+            VCard12 = "";
+            string v13 = VCard13;
+            VCard13 = "";
+           
+
+
+
             string file = await CaptureScreenshot();
             SaveImage(file);
-
-           
+            
+            LabelText = labelT;
+            VCard1 = v1 ;
+            VCard2 = v2 ;
+            VCard3 = v3 ;
+            VCard4 = v4 ;
+            VCard5 = v5 ;
+            VCard6 = v6 ;
+            VCard7 = v7 ;
+            VCard7Link = v7L;
+            VCard8 = v8 ;
+            VCard9 = v9 ;
+            VCard9Link = v9L ;
+            VCard10 = v10 ;
+            VCard11 = v11 ;
+            VCard11Link = v11L ;
+            VCard12 = v12 ;
+            VCard13 = v13;
             BGColor = "MintCream";
             TCColor = "Black";
             ShareIsVis = "true";
             SaveIsVis = "true";
             var activity = Forms.Context as Activity;
+            if(CultureInfo.CurrentCulture .TwoLetterISOLanguageName.ToString() == "us" || CultureInfo.CurrentCulture.TwoLetterISOLanguageName.ToString() == "en")
             Toast.MakeText(activity, "Qr-Code was saved in Gallery", ToastLength.Short).Show();
-           // await App.Current.MainPage.DisplayAlert("QR-Code was saved in the Gallery", "", "OK");
+            else
+            if (CultureInfo.CurrentCulture.TwoLetterISOLanguageName.ToString() == "de")
+                Toast.MakeText(activity, "Qr-Code in Gallery gespeichert", ToastLength.Short).Show();
+            // await App.Current.MainPage.DisplayAlert("QR-Code was saved in the Gallery", "", "OK");
         }
 
         [Obsolete]
@@ -356,7 +408,11 @@ namespace QR_CodeScanner.ViewModel
             }
             catch(Exception)
             {
-                App.Current.MainPage.DisplayAlert(" No Gallery found !!!", "", "OK");
+                if (CultureInfo.CurrentCulture.TwoLetterISOLanguageName.ToString() == "us" || CultureInfo.CurrentCulture.TwoLetterISOLanguageName.ToString() == "en")
+                    App.Current.MainPage.DisplayAlert("No Pictures Folder on Device.", "", "OK");
+                else
+                     if (CultureInfo.CurrentCulture.TwoLetterISOLanguageName.ToString() == "de")
+                    App.Current.MainPage.DisplayAlert("Kein Pictures Ordner auf dem Gerät.", "", "OK");
             }
            
         }

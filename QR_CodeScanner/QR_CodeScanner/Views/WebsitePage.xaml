@@ -2,7 +2,7 @@
 <ContentPage BackgroundColor="MintCream"
              xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewmodel="clr-namespace:QR_CodeScanner.ViewModel" x:DataType="viewmodel:WebsiteViewModel"
-             x:Class="QR_CodeScanner.Views.WebsitePage" Title="Generate Website QR-Code">
+             x:Class="QR_CodeScanner.Views.WebsitePage" Title="{Binding TitleCulture}">
     <StackLayout Padding="0,30,0,0">
         <Frame Margin="10" BorderColor="SteelBlue" CornerRadius="20" HasShadow="true">
             <Entry
@@ -12,7 +12,7 @@
                BackgroundColor="White" 
                TextColor="Black" 
                FontSize="20" 
-               Placeholder="Website" 
+               Placeholder="{Binding EntryTextCulture}" 
                PlaceholderColor="SteelBlue" 
                x:Name="entryWebsite"/>
         </Frame>
@@ -36,7 +36,7 @@
                     BackgroundColor="White" 
                     BorderColor="Gray" 
                     BorderWidth="2" 
-                    HorizontalOptions="StartAndExpand"  />
+                    HorizontalOptions="CenterAndExpand"  />
             <Button 
                     x:Name="btn_WWW"
                     Command="{Binding ButtonWWWClicked}"
@@ -46,20 +46,12 @@
                     BackgroundColor="White" 
                     BorderColor="Gray" 
                     BorderWidth="2" 
-                    HorizontalOptions="StartAndExpand"   />
-            <Button 
-                    x:Name="btn_Com"
-                    Command="{Binding ButtonCOMClicked}"
-                    CornerRadius="20" 
-                    Text=".com"
-                    FontSize="12"
-                    BackgroundColor="White" 
-                    BorderColor="Gray" 
-                    BorderWidth="2" 
-                    HorizontalOptions="CenterAndExpand"  />
+                    HorizontalOptions="EndAndExpand"   />
+            
            
         </StackLayout>
-        <Button 
+        <StackLayout Orientation="Horizontal">
+            <Button 
                 Margin="10"
                     x:Name="btn_DE"
                     Command="{Binding ButtonDEClicked}"
@@ -71,14 +63,27 @@
                     BorderColor="Gray" 
                     BorderWidth="2" 
                     HorizontalOptions="StartAndExpand"   />
+            <Button 
+                Margin="10"
+                    x:Name="btn_Com"
+                    Command="{Binding ButtonCOMClicked}"
+                    CornerRadius="20" 
+                    Text=".com"
+                    FontSize="12"
+                    BackgroundColor="White" 
+                    BorderColor="Gray" 
+                    BorderWidth="2" 
+                    HorizontalOptions="EndAndExpand"   />
+        </StackLayout>
+        
         <StackLayout Margin="0,40,0,0">
             <Button 
                     x:Name="btn_Generate"
             
                     Command="{Binding ButtonGeneratorPageClicked}"
                     CornerRadius="20" 
-                    Text="Generate QR-Code "
-                    FontSize="30"
+                    Text="{Binding ButtonCulture}"
+                    FontSize="20"
                     TextColor="White"
                     BackgroundColor="LightSteelBlue"  
                     BorderColor="Gray" 

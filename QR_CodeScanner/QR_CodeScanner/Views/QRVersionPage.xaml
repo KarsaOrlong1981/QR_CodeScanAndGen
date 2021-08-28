@@ -3,114 +3,125 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewmodel="clr-namespace:QR_CodeScanner.ViewModel" x:DataType="viewmodel:QRVersionViewModel"
              x:Class="QR_CodeScanner.Views.QRVersionPage"
              Title="QR-Code generieren">
-    
-    
-        <StackLayout Padding="0,30,0,0">
-            
-        <StackLayout Orientation="Horizontal">
-            
-            <Button x:Name="btn_Website" 
+
+    <ScrollView >
+        <StackLayout Padding="0,30,0,0" >
+
+            <StackLayout Orientation="Horizontal" Margin="10,0,10,0" >
+
+                <Button x:Name="btn_Website" 
                     Command="{Binding ButtonWebsiteClicked}"
-                    Margin="12,0,0,0" 
+                    
                     ContentLayout="Top,0" 
-                    ImageSource="Web.png" 
+                    ImageSource="Website24.png" 
                     Text="Website" 
                     FontSize="20" 
-                    HorizontalOptions="Start" 
-                    HeightRequest="100"
-                    WidthRequest="191" 
+                    HorizontalOptions="CenterAndExpand"   
+                    
+                    WidthRequest="166" 
                     CornerRadius="20" 
                     BackgroundColor="White"
                     BorderColor="Gray"
                     BorderWidth="1" />
-            
-            <Button  ContentLayout="Top,0" 
+
+                <Button  ContentLayout="Top,0" 
                      Command="{Binding ButtonTextClicked}"
-                     ImageSource="TextOR.png" 
+                     ImageSource="Text24.png" 
                      Text="Text" FontSize="20"
-                     HorizontalOptions="End"  
-                     HeightRequest="100"
-                     WidthRequest="191" 
+                     HorizontalOptions="CenterAndExpand"   
+                     
+                     WidthRequest="166" 
                      CornerRadius="20" 
                      BackgroundColor="White" 
                      BorderColor="Gray" 
                      BorderWidth="1"/>
-        </StackLayout>
-           
-            <StackLayout Orientation="Horizontal" >
+            </StackLayout>
 
-            <Button Margin="12,0,0,0" 
+            <StackLayout Orientation="Horizontal" Margin="10,0,10,0">
+
+                <Button 
                     Command="{Binding ButtonWLanClicked }"
                     ContentLayout="Top,0" 
-                    ImageSource="Wlan.png" 
+                    ImageSource="wlan24.png" 
                     Text="W-lan" 
                     FontSize="20" 
-                    HorizontalOptions="Start"
-                    HeightRequest="100" 
-                    WidthRequest="191" 
+                    HorizontalOptions="CenterAndExpand"
+                    
+                    WidthRequest="166" 
                     CornerRadius="20" 
                     BackgroundColor="White" 
                     BorderColor="Gray"
                     BorderWidth="1" />
-            <Button  ContentLayout="Top,0" 
+                <Button  ContentLayout="Top,0" 
                      Command="{Binding ButtonEventClicked}"
-                     ImageSource="Ereignis.png" 
+                     ImageSource="kalender24.png" 
                      Text="Event" FontSize="20"
-                     HorizontalOptions="End"  
-                     HeightRequest="100" 
-                     WidthRequest="191" 
+                     HorizontalOptions="CenterAndExpand"    
+                     
+                     WidthRequest="166" 
                      CornerRadius="20" 
                      BackgroundColor="White" 
                      BorderColor="Gray" 
                      BorderWidth="1"/>
-        </StackLayout>
-            <StackLayout Orientation="Horizontal">
-            <Button Margin="12,0,0,0" 
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" Margin="10,0,10,0">
+                <Button 
                     Command="{Binding ButtonContactClicked}"
                     ContentLayout="Top,0" 
-                    ImageSource="Kontakt.png"
+                    ImageSource="kontakt24.png"
                     Text="Contact"
                     FontSize="20" 
-                    HorizontalOptions="Start"
-                    HeightRequest="100" 
-                    WidthRequest="191" 
+                    HorizontalOptions="CenterAndExpand" 
+                  
+                    WidthRequest="166" 
                     CornerRadius="20" 
                     BackgroundColor="White" 
                     BorderColor="Gray"
                     BorderWidth="1" />
-            <Button  ContentLayout="Top,0" 
+                <Button  ContentLayout="Top,0" 
                      Command="{Binding ButtonEmailClicked}"
-                     ImageSource="EmailQR.png" 
+                     ImageSource="mail24.png" 
                      Text="E-Mail" FontSize="20" 
-                     HorizontalOptions="End" 
-                     HeightRequest="100" 
-                     WidthRequest="191"
+                     HorizontalOptions="CenterAndExpand"   
+                     
+                     WidthRequest="166"
                      CornerRadius="20" 
                      BackgroundColor="White" 
                      BorderColor="Gray" 
                      BorderWidth="1"/>
 
-        </StackLayout>
+            </StackLayout>
 
-           <StackLayout Orientation="Horizontal">
-            <Button Margin="12,0,0,0" 
+            <StackLayout Orientation="Horizontal" Margin="10,0,10,0">
+                <Button 
                     Command="{Binding ButtonPhoneClicked}"
                     ContentLayout="Top,0" 
-                    ImageSource="Telefon.png" 
+                    ImageSource="telefon24.png" 
                     Text="Phone" FontSize="20" 
-                    HorizontalOptions="Start" 
-                    HeightRequest="100" 
-                    WidthRequest="191" 
+                    HorizontalOptions="CenterAndExpand"  
+                   
+                    WidthRequest="166" 
                     CornerRadius="20" 
                     BackgroundColor="White" 
                     BorderColor="Gray" 
                     BorderWidth="1" />
-            <Button  ContentLayout="Top,0" ImageSource="SMS.png" Text="SMS" FontSize="20" HorizontalOptions="End"  HeightRequest="100" WidthRequest="191" CornerRadius="20" BackgroundColor="White" BorderColor="Gray" BorderWidth="1"/>
+                <Button  ContentLayout="Top,0" 
+                         ImageSource="sms24.png" 
+                         Text="SMS" FontSize="20" 
+                         HorizontalOptions="CenterAndExpand"   
+                         
+                         WidthRequest="166" 
+                         CornerRadius="20" 
+                         BackgroundColor="White" 
+                         BorderColor="Gray" 
+                         BorderWidth="1"/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" Margin="10,0,10,0">
+                <Button  ContentLayout="Top,0" ImageSource="essen24.png" Text="Food" FontSize="20" HorizontalOptions="CenterAndExpand" WidthRequest="166" CornerRadius="20" BackgroundColor="White" BorderColor="Gray" BorderWidth="1" />
+            </StackLayout>
+
         </StackLayout>
-        <StackLayout Orientation="Horizontal">
-            <Button Margin="12,0,0,0" ContentLayout="Top,0" ImageSource="Food.png" Text="Food" FontSize="20" HorizontalOptions="Start" HeightRequest="100" WidthRequest="191" CornerRadius="20" BackgroundColor="White" BorderColor="Gray" BorderWidth="1" />
-        </StackLayout>
-            
-         </StackLayout>
+    </ScrollView>
+      
    
 </ContentPage>

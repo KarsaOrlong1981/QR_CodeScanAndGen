@@ -7,16 +7,17 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using QR_CodeScanner.ViewModel;
+
 namespace QR_CodeScanner.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class EmailPage : ContentPage
+    public partial class ResultPage : ContentPage
     {
         [Obsolete]
-        public EmailPage()
+        public ResultPage(string qrCodeText,bool isContact,bool isEvent, bool isPhoneNr, bool isEmail)
         {
             InitializeComponent();
-            BindingContext = new EmailViewModel(Navigation);
+            BindingContext = new ResultViewModel(qrCodeText,isContact,isEvent,isPhoneNr,isEmail);
         }
     }
 }

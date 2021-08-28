@@ -12,6 +12,7 @@ namespace QR_CodeScanner.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class QRVersionPage : ContentPage
     {
+        [Obsolete]
         public QRVersionPage()
         {
             InitializeComponent();

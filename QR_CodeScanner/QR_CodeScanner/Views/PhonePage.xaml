@@ -4,7 +4,7 @@
              x:Class="QR_CodeScanner.Views.PhonePage" Title="Generate Phonenumber QR-Code">
     <StackLayout >
 
-        <Frame Margin="10,0,10,0" BorderColor="SteelBlue" CornerRadius="20" HasShadow="true" >
+        <Frame Margin="20,20,20,0" BorderColor="SteelBlue" CornerRadius="20" HasShadow="true" >
             <StackLayout Orientation="Horizontal">
                 <Image Source="Telefon.png" />
                 <Entry
@@ -29,7 +29,7 @@
                     Command="{Binding ButtonGeneratorPageClicked}"
                     CornerRadius="20" 
                     Text="Generate QR-Code"
-                    FontSize="30"
+                    FontSize="20"
                     TextColor="White"
                     BackgroundColor="LightSteelBlue"  
                     BorderColor="Gray" 

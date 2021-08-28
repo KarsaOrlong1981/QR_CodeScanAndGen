@@ -22,7 +22,9 @@ namespace QR_CodeScanner.Views
             InitializeComponent();
             
         }
-         async void CallQRVersionPage()
+
+        [Obsolete]
+        async void CallQRVersionPage()
         {
             QRVersionPage call = new QRVersionPage();
             await Navigation.PushAsync(call);
@@ -35,6 +37,7 @@ namespace QR_CodeScanner.Views
             await Navigation.PushAsync(call);
         }
 
+        [Obsolete]
         private void ToolbarItemGenerator_Clicked(object sender, EventArgs e)
         {
             CallQRVersionPage();

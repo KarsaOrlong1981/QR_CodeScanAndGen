@@ -8,8 +8,7 @@ namespace QR_CodeScanner.Model
 {
      public class HyperlinkSpan : Span
     {
-        public static readonly BindableProperty UrlProperty =
-       BindableProperty.Create(nameof(Url), typeof(string), typeof(HyperlinkSpan), null);
+        public static readonly BindableProperty UrlProperty = BindableProperty.Create(nameof(Url), typeof(string), typeof(HyperlinkSpan), null);
 
         public string Url
         {

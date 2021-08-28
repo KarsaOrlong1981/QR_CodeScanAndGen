@@ -5,28 +5,33 @@ using Xamarin.Forms;
 using QR_CodeScanner.Views;
 using System.Windows.Input;
 using System.Threading.Tasks;
+using QR_CodeScanner.Model;
 
 namespace QR_CodeScanner.ViewModel
 {
     public class EventViewModel : BaseViewModel
     {
-        string title, startDate, endDate, location, description;
+        string title, location, description;
         TimeSpan timeStart, timeEnd;
-        DateTime dateTime;
-      
+        DateTime dateTime, startDate,endDate;
+        CultureLang culture;
         public ICommand ButtonGenerateClicked { get; set; }
         public INavigation Navigation { get; set; }
+
+        [Obsolete]
         public EventViewModel(INavigation navigation)
         {
             this.Navigation = navigation;
+            culture = new CultureLang();
+
             ButtonGenerateClicked = new Command(async () => await CallQRGeneratorPage());
 
             
             
             dateTime = DateTime.Now;
            
-            StartDate = Convert.ToString(dateTime.ToString("d"));
-            EndDate = Convert.ToString(dateTime.ToString("d"));
+            StartDate = dateTime.Date;
+            EndDate = dateTime.Date;
             TimePicker timePicker = new TimePicker
             {
                 Time = new TimeSpan(dateTime.Hour, dateTime.Minute,dateTime.Second) // Time set to Now
@@ -48,13 +53,35 @@ namespace QR_CodeScanner.ViewModel
         }
         string GetEvent()
         {
+            string startDateG = "";
+            string endDateG = "";
+            string formatD = "";
+            string[] splitDate = Convert.ToString(StartDate).Split('.', ':', ',', '/', ' ');
+            string[] splitEndDate = Convert.ToString(EndDate).Split('.', ':', ',', '/', ' ');
+            string[] splitTimeStartDate = Convert.ToString(TimeStart).Split('.', ':', ',', '/', ' ');
+            string[] splitTimeEndDate = Convert.ToString(TimeEnd).Split('.', ':', ',', '/', ' ');
+            if(culture.GetCulture() == "de")
+            {
+                startDateG = splitDate[2] + splitDate[1] + splitDate[0];
+                endDateG = splitEndDate[2] + splitEndDate[1] + splitEndDate[0];
+            }
+            else
+            {
+                if (splitDate[0].Length < 2)
+
+                    formatD = "0" + splitDate[0];
+                else
+                    formatD = splitDate[0];
+
+                startDateG = splitDate[2] + formatD + splitDate[1]; //Bei de 0 und 1 tauschen (2,1,0) usEn (2,0,1)
+                if (splitEndDate[0].Length < 2)
+                    formatD = "0" + splitEndDate[0];
+                else
+                    formatD = splitEndDate[0];
+                endDateG = splitEndDate[2] + formatD + splitEndDate[1];
+            }
            
-            string[] splitDate = StartDate.Split('.', ':', ',','/',' ');
-            string[] splitEndDate = EndDate.Split('.', ':', ',','/',' ');
-            string[] splitTimeStartDate = Convert.ToString(TimeStart).Split('.', ':', ',','/',' '); 
-            string[] splitTimeEndDate = Convert.ToString(TimeEnd).Split('.', ':', ',','/',' ');
-            string startDateG = splitDate[1] + splitDate[0] + splitDate[2];
-            string endDateG = splitEndDate[1] + splitEndDate[0] + splitEndDate[2];
+           
             string timeStartG = splitTimeStartDate[0] + splitTimeStartDate[1] + splitTimeStartDate[2];
             string timeEndG = splitTimeEndDate[0] + splitTimeEndDate[1] + splitTimeEndDate[2];
 
@@ -82,12 +109,12 @@ namespace QR_CodeScanner.ViewModel
             get => title;
             set => SetProperty(ref title, value);
         }
-        public string StartDate
+        public DateTime StartDate
         {
             get => startDate;
             set => SetProperty(ref startDate, value);
         }
-        public string EndDate
+        public DateTime EndDate
         {
             get => endDate;
             set => SetProperty(ref endDate, value);

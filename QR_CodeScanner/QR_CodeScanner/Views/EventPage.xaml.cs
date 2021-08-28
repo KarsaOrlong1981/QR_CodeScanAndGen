@@ -13,10 +13,21 @@ namespace QR_CodeScanner.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class EventPage : ContentPage
     {
+        [Obsolete]
         public EventPage()
         {
             InitializeComponent();
+           
             BindingContext = new EventViewModel(Navigation);
+            btn_generate.IsEnabled = false;
+        }
+
+        private void entry_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (entry.Text == "")
+                btn_generate.IsEnabled = false;
+            else
+                btn_generate.IsEnabled = true;
         }
     }
 }

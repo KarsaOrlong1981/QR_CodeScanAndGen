@@ -5,17 +5,18 @@ using System.Windows.Input;
 using QR_CodeScanner.ViewModel;
 using QR_CodeScanner.Views;
 using Xamarin.Forms;
-
+using QR_CodeScanner.Model;
 
 namespace QR_CodeScanner.ViewModel
 {
     public class WLanViewModel : BaseViewModel
     {
+        CultureLang culture;
         string ssid;
         string wpa;
-        string password;
+        string password, passwordCulture, titleCulture;
         string wlanKey;
-        string generate;
+        string generate, buttonCulture;
         string readOnly;
         public ICommand ButtonGenerateClicked { get; set; }
         public ICommand ButtonWPAClicked { get; set; }
@@ -26,7 +27,24 @@ namespace QR_CodeScanner.ViewModel
         [Obsolete]
         public WLanViewModel(INavigation navigation)
         {
-            ReadOnly = "True";
+            culture = new CultureLang();
+
+            if(culture.GetCulture() == "de")
+            {
+                ButtonCulture = "QR-Code generieren";
+                TitleCulture = "Wlan QR-Code generieren";
+                PasswordCulture = "Passwort";
+            }
+            else
+            {
+                ButtonCulture = "Generate QR-Code";
+                TitleCulture = "Generate Wlan QR-Code";
+                PasswordCulture = "Password";
+            }
+           
+             
+            
+                ReadOnly = "True";
             WpaWep = "WPA/WPA2";
             this.Navigation = navigation;
             wlanKey = "WPA/WPA2";
@@ -35,6 +53,21 @@ namespace QR_CodeScanner.ViewModel
             ButtonNoneClicked = new Command(None_Clicked);
             ButtonGenerateClicked = new Command(GetWlanConnectionCode);
            
+        }
+        public string ButtonCulture
+        {
+            get => buttonCulture;
+            set => SetProperty(ref buttonCulture, value);
+        }
+        public string PasswordCulture
+        {
+            get => passwordCulture;
+            set => SetProperty(ref passwordCulture, value);
+        }
+        public string TitleCulture
+        {
+            get => titleCulture;
+            set => SetProperty(ref titleCulture, value);
         }
         public string GenerateText
         {

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage BackgroundColor="MintCream"  xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewmodel="clr-namespace:QR_CodeScanner.ViewModel" x:DataType="viewmodel:TextViewModel"
-             x:Class="QR_CodeScanner.Views.TextPage" Title="Generate Text QR-Code">
+             x:Class="QR_CodeScanner.Views.TextPage" Title="{Binding TitleCulture}">
     <ContentPage.Content>
         <StackLayout >
             <Frame Margin="10" BorderColor="SteelBlue" CornerRadius="20" HasShadow="true">
@@ -14,7 +14,7 @@
                BackgroundColor="White" 
                TextColor="Black" 
                FontSize="20" 
-               Placeholder="Add text" 
+               Placeholder="{Binding EditorCulture}" 
                PlaceholderColor="SteelBlue" 
                />
             </Frame>
@@ -24,8 +24,8 @@
             
                     Command="{Binding ButtonGeneratorPageClicked}"
                     CornerRadius="20" 
-                    Text="Generate QR-Code"
-                    FontSize="30"
+                    Text="{Binding ButtonCulture}"
+                    FontSize="20"
                     TextColor="White"
                     BackgroundColor="LightSteelBlue"  
                     BorderColor="Gray" 

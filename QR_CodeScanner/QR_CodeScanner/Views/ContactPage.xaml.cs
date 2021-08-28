@@ -13,15 +13,22 @@ namespace QR_CodeScanner.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ContactPage : ContentPage
     {
+        [Obsolete]
         public ContactPage()
         {
             InitializeComponent();
             BindingContext = new ContactViewModel(Navigation);
+            btn_Generate.IsEnabled = false;
         }
 
-        private void Entry_Focused(object sender, FocusEventArgs e)
-        {
+      
 
+        private void entry_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (entry.Text == "")
+                btn_Generate.IsEnabled = false;
+            else
+                btn_Generate.IsEnabled = true;
         }
     }
 }

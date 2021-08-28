@@ -2,11 +2,13 @@
 <ContentPage BackgroundColor="MintCream" xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewmodel="clr-namespace:QR_CodeScanner.ViewModel" x:DataType="viewmodel:EventViewModel"
              x:Class="QR_CodeScanner.Views.EventPage" Title="Generate Event QR-Code">
-    <StackLayout Margin="20" >
-        <Frame Margin="10,0,10,0" BorderColor="SteelBlue" CornerRadius="20"  HasShadow="true">
-            <Entry 
-                
+    <ScrollView>
+        <StackLayout Margin="20" >
+            <Frame Margin="10,0,10,0" BorderColor="SteelBlue" CornerRadius="20"  HasShadow="true">
+                <Entry 
+                x:Name="entry"
                 Text="{Binding Title}"
+                  TextChanged="entry_TextChanged" 
                 Keyboard="Text"  
                BackgroundColor="White" 
                TextColor="Black" 
@@ -14,49 +16,49 @@
                Placeholder="Title" 
                PlaceholderColor="SteelBlue" 
             />
-        </Frame>
-        <StackLayout>
-            
-            <Frame Margin="10,0,10,0" BorderColor="SteelBlue" CornerRadius="20" HasShadow="true" >
-                <StackLayout Orientation="Horizontal">
-                    <Image Source="DateTime.png" />
-                    <Label Text="Start date" TextColor="SteelBlue" FontSize="20" />
-                    <DatePicker HorizontalOptions="StartAndExpand"
+            </Frame>
+            <StackLayout>
+
+                <Frame Margin="10,0,10,0" BorderColor="SteelBlue" CornerRadius="20" HasShadow="true" >
+                    <StackLayout Orientation="Horizontal">
+                        <Image Source="DateTime.png" />
+                        <Label Text="Start date" TextColor="SteelBlue" FontSize="20" />
+                        <DatePicker HorizontalOptions="StartAndExpand"
                                 Date="{Binding StartDate}"
                                 MinimumDate="{Binding StartDate}"
                                 MaximumDate="12/31/2040" />
-                    <TimePicker Time="{Binding TimeStart}">
-                        <TimePicker.Format>HH:mm</TimePicker.Format>
-                    </TimePicker>
-                </StackLayout>
-            </Frame>
-        </StackLayout>
-             
-          
+                        <TimePicker Time="{Binding TimeStart}">
+                            <TimePicker.Format>HH:mm</TimePicker.Format>
+                        </TimePicker>
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+
+
             <StackLayout>
-                    <Frame Margin="10,0,10,0" BorderColor="SteelBlue" CornerRadius="20" HasShadow="true" >
-                        <StackLayout Orientation="Horizontal">
-                            <Image Source="DateTime.png" />
-                    <Label Text="End date" TextColor="SteelBlue" FontSize="20" />
-                    <DatePicker HorizontalOptions="StartAndExpand"
+                <Frame Margin="10,0,10,0" BorderColor="SteelBlue" CornerRadius="20" HasShadow="true" >
+                    <StackLayout Orientation="Horizontal">
+                        <Image Source="DateTime.png" />
+                        <Label Text="End date" TextColor="SteelBlue" FontSize="20" />
+                        <DatePicker HorizontalOptions="StartAndExpand"
                                 Date="{Binding EndDate}"
                                 MinimumDate="{Binding StartDate}"
                                 MaximumDate="12/31/2040" />
-                    <TimePicker Time="{Binding TimeEnd}" >
-                        <TimePicker.Format>HH:mm</TimePicker.Format>
-                    </TimePicker>
-                </StackLayout>
-                       </Frame>
+                        <TimePicker Time="{Binding TimeEnd}" >
+                            <TimePicker.Format>HH:mm</TimePicker.Format>
+                        </TimePicker>
+                    </StackLayout>
+                </Frame>
             </StackLayout >
-            
-        
-       
-                  
+
+
+
+
             <StackLayout>
                 <Frame Margin="10,0,10,0" BorderColor="SteelBlue" CornerRadius="20" HasShadow="true" >
-                 <StackLayout Orientation="Horizontal">
-                 <Image Source="Place.png" />
-                 <Entry
+                    <StackLayout Orientation="Horizontal">
+                        <Image Source="Place.png" />
+                        <Entry
                 HorizontalOptions="FillAndExpand" 
                 Text="{Binding Location}"
                 Keyboard="Text" 
@@ -67,14 +69,14 @@
                Placeholder="Location" 
                PlaceholderColor="SteelBlue" 
                />
-              </StackLayout>
-              </Frame>
-              </StackLayout>
-        <StackLayout>
-            <Frame Margin="10,0,10,0" BorderColor="SteelBlue" CornerRadius="20" HasShadow="true" >
-                <StackLayout Orientation="Horizontal">
-                    
-                    <Entry
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+            <StackLayout>
+                <Frame Margin="10,0,10,0" BorderColor="SteelBlue" CornerRadius="20" HasShadow="true" >
+                    <StackLayout Orientation="Horizontal">
+
+                        <Entry
                 HorizontalOptions="FillAndExpand" 
                 Text="{Binding Description}"
                 Keyboard="Text" 
@@ -85,24 +87,26 @@
                Placeholder="Description" 
                PlaceholderColor="SteelBlue" 
                />
-                </StackLayout>
-            </Frame>
-        </StackLayout>
-        <StackLayout >
-            <Button Margin="20"
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+            <StackLayout >
+                <Button Margin="20"
                  
             Command="{Binding ButtonGenerateClicked}"
-                    
+                    x:Name="btn_generate"
                     CornerRadius="20" 
                     Text="Generate QR-Code "
-                    FontSize="30"
+                    FontSize="20"
                     TextColor="White"
                     BackgroundColor="LightSteelBlue"  
                     BorderColor="Gray" 
                     BorderWidth="4" 
                     HorizontalOptions="CenterAndExpand"      />
+            </StackLayout>
+
+
         </StackLayout>
-       
-            
-    </StackLayout>
+    </ScrollView>
+    
 </ContentPage>

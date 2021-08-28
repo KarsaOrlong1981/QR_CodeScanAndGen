@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage BackgroundColor="MintCream" xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local1="clr-namespace:QR_CodeScanner.Model" xmlns:viewmodel="clr-namespace:QR_CodeScanner.ViewModel" x:DataType="viewmodel:ResultViewModel"
+             x:Class="QR_CodeScanner.Views.ResultPage">
+    <StackLayout >
+        
+      
+        <Frame Margin="20">
+            <StackLayout >
+                
+                    <Button 
+                    Margin="20"
+                    ContentLayout="top,50" 
+                    ImageSource="{Binding ImageTop}" 
+                    Text="{Binding Text1}" FontSize="20" 
+                    HorizontalOptions="CenterAndExpand"  
+                    TextColor="Black"
+                    WidthRequest="200" 
+                    CornerRadius="20" 
+                    BackgroundColor="White" 
+                    BorderColor="Gray" 
+                    BorderWidth="1" 
+                        IsVisible="{Binding IsVis}"
+                     />
+                
+
+
+
+
+
+
+                
+                    <StackLayout >
+                        <Label FontSize="20" TextColor="DarkGray" HorizontalTextAlignment="Center" Text="{Binding Text2}" />
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="Center" >
+                            <Image Source="zeit30.png" IsVisible="{Binding IsVisEvent}"/>
+                            <Label FontSize="20"  TextColor="Black" Text="{Binding Text3}"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="Center"  >
+                            <Image Source="zeit30.png" IsVisible="{Binding IsVisEvent}"/>
+                            <Label FontSize="20" TextColor="Black" Text="{Binding Text4}"/>
+                        </StackLayout>
+                    </StackLayout>
+                   
+
+                
+                
+                
+                
+
+                
+                <Label  x:Name="lab_Gen"
+                   
+                    
+                                   HorizontalTextAlignment="Center"  
+                                  
+                                   BackgroundColor="{Binding BGColor}" 
+                                   FontSize="{Binding FontSizeQR}" 
+                                   TextColor="{Binding TCColor}">
+
+                <Label.FormattedText >
+                    <FormattedString >
+
+                        <Span Text="{Binding LabelText}" />
+                        <Span Text="{Binding VCard1 }" />
+                        <Span Text="{Binding VCard2 }"/>
+                        <Span Text="{Binding VCard3 }"/>
+                        <Span Text="{Binding VCard4 }"/>
+                        <Span Text="{Binding VCard5 }"/>
+                        <Span Text="{Binding VCard6 }"/>
+                        <local1:HyperlinkSpan 
+                                              Text="{Binding VCard7}"
+                                              Url="{Binding VCard7Link}"/>
+                        <Span Text="{Binding VCard8 }"/>
+
+                        <local1:HyperlinkSpan
+                                              Text="{Binding VCard9}"
+                                              Url="{Binding VCard9Link}"/>
+                        <Span Text="{Binding VCard10 }"/>
+
+                        <local1:HyperlinkSpan  
+                                               Text="{Binding VCard11}"
+                                               Url="{Binding VCard11Link}"
+                                              />
+
+
+                        <Span Text="{Binding VCard12 }"/>
+                        <Span Text="{Binding VCard13 }"/>
+
+                    </FormattedString>
+                </Label.FormattedText>
+
+            </Label>
+                <Button 
+                    Command="{Binding ButtonLocation}"
+                    ContentLayout="left,0" 
+                    ImageSource="loca24.png" 
+                    Text="{Binding Location}" FontSize="15" 
+                    HorizontalOptions="CenterAndExpand"  
+                    TextColor="Green"
+                    WidthRequest="166" 
+                    CornerRadius="20" 
+                    BackgroundColor="LightGray" 
+                    BorderColor="Gray" 
+                    BorderWidth="1" 
+                    IsVisible="{Binding IsVisEvent}"/>
+
+            </StackLayout>
+        </Frame>
+        <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand"  >
+            <Button Text="{Binding SaveTo}"      
+                        HorizontalOptions="CenterAndExpand"  
+                        Margin="10,10,10,10"
+                           Command="{Binding ButtonAddTo}"           
+                                        
+                                        TextColor="White"
+                                        ContentLayout="Top,0" 
+                                        x:Name="btn_Save"
+                                        ImageSource="Save.png" 
+                                        CornerRadius="20"
+                                        BackgroundColor="LightSteelBlue" 
+                                        BorderWidth="2"
+                                        BorderColor="Gray"
+                                        FontSize="15"/>
+            <Button Text="{Binding ShareTo}"
+                       
+                                        Margin="10,10,10,10"
+                                        Command="{Binding ButtonShare}"
+                                        x:Name="btn_Share"
+                                        TextColor="White"
+                                        ContentLayout="Top,0" 
+                                        
+                                        ImageSource="Share.png"
+                                        CornerRadius="20"
+                                        BackgroundColor="LightSteelBlue" 
+                                        BorderWidth="2"
+                                        BorderColor="Gray"
+                                        FontSize="15"
+                                        HorizontalOptions="CenterAndExpand"  
+                      
+                                        
+                                        />
+        </StackLayout>
+    </StackLayout>
+</ContentPage>

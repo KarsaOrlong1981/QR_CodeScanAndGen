@@ -13,6 +13,7 @@ namespace QR_CodeScanner.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class WebsitePage : ContentPage
     {
+        [Obsolete]
         public WebsitePage()
         {
             InitializeComponent();

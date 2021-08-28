@@ -13,6 +13,7 @@ namespace QR_CodeScanner.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class WlanPage : ContentPage
     {
+        [Obsolete]
         public WlanPage()
         {
             InitializeComponent();

@@ -6,7 +6,8 @@
         <StackLayout >
             <Frame Margin="10,0,10,0" BorderColor="SteelBlue" CornerRadius="20"  HasShadow="true">
                 <Entry 
-                
+                x:Name="entry"
+                    TextChanged="entry_TextChanged" 
                 Text="{Binding CompName}"
                 Keyboard="Text"  
                BackgroundColor="White" 
@@ -122,14 +123,14 @@
 
                 </Frame>
             </StackLayout>
-            <StackLayout >
+            <StackLayout Padding="20" >
                 <Button 
                  
             Command="{Binding ButtonGenerateClicked}"
-                    
+                    x:Name="btn_Generate"
                     CornerRadius="20" 
                     Text="Generate QR-Code "
-                    FontSize="30"
+                    FontSize="20"
                     TextColor="White"
                     BackgroundColor="LightSteelBlue"  
                     BorderColor="Gray" 

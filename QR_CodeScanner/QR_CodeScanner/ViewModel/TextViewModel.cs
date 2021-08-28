@@ -7,12 +7,15 @@ using QR_CodeScanner.ViewModel;
 
 using Xamarin.Forms;
 using System.Threading.Tasks;
+using System.Globalization;
+using QR_CodeScanner.Model;
 
 namespace QR_CodeScanner.ViewModel
 {
     public class TextViewModel : BaseViewModel 
     {
-        string entry;
+        string entry,editorCulture,buttonCulture,titleCulture;
+        CultureLang culture;
         public ICommand ButtonGeneratorPageClicked { get; set; }
         public INavigation Navigation { get; set; }
 
@@ -20,7 +23,22 @@ namespace QR_CodeScanner.ViewModel
         public TextViewModel(INavigation navigation)
         {
             this.Navigation = navigation;
-           
+            culture = new CultureLang();
+
+            if(culture.GetCulture() == "de")
+            {
+                EditorCulture = "Text eintragen";
+                ButtonCulture = "QR-Code generieren";
+                TitleCulture = "Text QR-Code generieren";
+            }
+            else
+            {
+                EditorCulture = "Add Text";
+                ButtonCulture = "Generate QR-Code";
+                TitleCulture = "Generate Text QR-Code";
+            }
+            
+
             ButtonGeneratorPageClicked = new Command(async () => await CallQRGeneratorPage());
         }
 
@@ -38,6 +56,20 @@ namespace QR_CodeScanner.ViewModel
             get => entry;
             set => SetProperty(ref entry, value);
         }
-
+        public string EditorCulture
+        {
+            get => editorCulture;
+            set => SetProperty(ref editorCulture, value);
+        }
+        public string ButtonCulture
+        {
+            get => buttonCulture;
+            set => SetProperty(ref buttonCulture, value);
+        }
+        public string TitleCulture
+        {
+            get => titleCulture;
+            set => SetProperty(ref titleCulture, value);
+        }
     }
 }

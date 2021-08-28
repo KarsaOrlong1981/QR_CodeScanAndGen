@@ -5,12 +5,14 @@ using System.Windows.Input;
 using System.Threading.Tasks;
 using QR_CodeScanner.Views;
 using Xamarin.Forms;
+using QR_CodeScanner.Model;
 
 namespace QR_CodeScanner.ViewModel
 {
     public class WebsiteViewModel : BaseViewModel 
     {
-        string entry;
+        CultureLang culture;
+        string entry,entryCulture,buttonCulture,titleCulture;
         public ICommand ButtonHTTPSClicked { get; set; }
         public ICommand ButtonHTTPClicked { get; set; }
         public ICommand ButtonWWWClicked { get; set; }
@@ -22,14 +24,32 @@ namespace QR_CodeScanner.ViewModel
         [Obsolete]
         public WebsiteViewModel(INavigation navigation)
         {
+
             this.Navigation = navigation;
+            culture = new CultureLang();
             ButtonGeneratorPageClicked = new Command(async () => await CallQRGeneratorPage());
             ButtonHTTPSClicked = new Command(HTTPS_Clicked);
             ButtonHTTPClicked = new Command(HTTP_Clicked);
             ButtonWWWClicked = new Command(WWW_Clicked);
             ButtonCOMClicked = new Command(COM_Clicked);
             ButtonDEClicked = new Command(DE_Clicked);
-           
+
+            if(culture.GetCulture() == "de")
+            {
+                EntryTextCulture = "Website";
+                ButtonCulture = "QR-Code generieren";
+                TitleCulture = "Website QR-Code generieren";
+            }
+            else
+            {
+                EntryTextCulture = "Website";
+                ButtonCulture = "Generate QR-Code";
+                TitleCulture = "Generate Website QR-Code";
+            }
+                
+                
+                
+
         }
 
         [Obsolete]
@@ -45,6 +65,21 @@ namespace QR_CodeScanner.ViewModel
         {
             get => entry;
             set => SetProperty(ref entry, value);
+        }
+        public string EntryTextCulture
+        {
+            get => entryCulture;
+            set => SetProperty(ref entryCulture, value);
+        }
+        public string TitleCulture
+        {
+            get => titleCulture;
+            set => SetProperty(ref titleCulture, value);
+        }
+        public string ButtonCulture
+        {
+            get => buttonCulture;
+            set => SetProperty(ref buttonCulture, value);
         }
         void HTTPS_Clicked()
         {
