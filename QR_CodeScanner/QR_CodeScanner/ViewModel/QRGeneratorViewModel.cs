@@ -32,7 +32,7 @@ namespace QR_CodeScanner.ViewModel
         int fontSize;
         ShareContent share;
         Stream stream;
-        
+        CultureLang culture;
         public ICommand ButtonShareClicked { get; set; }
         public ICommand ButtonSaveClicked { get; set; }
        
@@ -44,6 +44,7 @@ namespace QR_CodeScanner.ViewModel
             qrCode = qrTxt;
             FontSizeQR = 20;
             LabelText = "";
+            culture = new CultureLang();
             if (isContact)
             {
                 FontSizeQR = 13;
@@ -381,11 +382,12 @@ namespace QR_CodeScanner.ViewModel
             ShareIsVis = "true";
             SaveIsVis = "true";
             var activity = Forms.Context as Activity;
-            if(CultureInfo.CurrentCulture .TwoLetterISOLanguageName.ToString() == "us" || CultureInfo.CurrentCulture.TwoLetterISOLanguageName.ToString() == "en")
-            Toast.MakeText(activity, "Qr-Code was saved in Gallery", ToastLength.Short).Show();
-            else
-            if (CultureInfo.CurrentCulture.TwoLetterISOLanguageName.ToString() == "de")
+            if(culture.GetCulture() == "de")
                 Toast.MakeText(activity, "Qr-Code in Gallery gespeichert", ToastLength.Short).Show();
+            else
+            
+                
+            Toast.MakeText(activity, "Qr-Code was saved in Gallery", ToastLength.Short).Show();
             // await App.Current.MainPage.DisplayAlert("QR-Code was saved in the Gallery", "", "OK");
         }
 
@@ -408,11 +410,12 @@ namespace QR_CodeScanner.ViewModel
             }
             catch(Exception)
             {
-                if (CultureInfo.CurrentCulture.TwoLetterISOLanguageName.ToString() == "us" || CultureInfo.CurrentCulture.TwoLetterISOLanguageName.ToString() == "en")
-                    App.Current.MainPage.DisplayAlert("No Pictures Folder on Device.", "", "OK");
-                else
-                     if (CultureInfo.CurrentCulture.TwoLetterISOLanguageName.ToString() == "de")
+               
+                     if (culture.GetCulture() == "de")
                     App.Current.MainPage.DisplayAlert("Kein Pictures Ordner auf dem Gerät.", "", "OK");
+                else
+                    App.Current.MainPage.DisplayAlert("No Pictures Folder on Device.", "", "OK");
+              
             }
            
         }
