@@ -37,12 +37,12 @@
 
 
 
-        <Grid Grid.Row="2" Grid.Column="1" VerticalOptions="EndAndExpand"     >
+        <Grid Grid.Row="2" Grid.Column="1" VerticalOptions="CenterAndExpand"        >
             <Grid.RowDefinitions>
               
+                <RowDefinition Height="0.1*"/>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="2*"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="0.1*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -51,9 +51,9 @@
             </Grid.ColumnDefinitions>
           
 
-            <Button Grid.Row="1" Grid.Column="2" Command="{Binding ButtonGeneratorClicked}" Text="QR-Code Generator" TextColor="Black" ImageSource="Gen24.png" ContentLayout="Top,0" BackgroundColor="MintCream" FontSize="Micro" VerticalOptions="CenterAndExpand"  />
-            <Button Grid.Row="1" Grid.Column="1" Text="Info" TextColor="Black" ImageSource="info26.png" ContentLayout="Top,0" BackgroundColor="MintCream" FontSize="Micro" VerticalOptions="CenterAndExpand"/>
-            <Button Grid.Row="1" Grid.Column="0" Text="Placeholder" ContentLayout="Top,0" TextColor="Black" BackgroundColor="MintCream" ImageSource="Gen24.png" FontSize="Micro" VerticalOptions="CenterAndExpand"/>
+            <Button Grid.Row="1" Grid.Column="2" Command="{Binding ButtonGeneratorClicked}" Text="Generator" TextColor="Black" ImageSource="Gen24.png" ContentLayout="Top,0" BackgroundColor="MintCream" FontSize="Micro"    VerticalOptions="CenterAndExpand"  />
+            <Button Grid.Row="1" Grid.Column="1" Text="Info" TextColor="Black" ImageSource="info26.png" ContentLayout="Top,0" BackgroundColor="MintCream" FontSize="Micro"   VerticalOptions="CenterAndExpand"/>
+            <Button Grid.Row="1" Grid.Column="0"   Text="Placeholder" ContentLayout="Top,0" TextColor="Black" BackgroundColor="MintCream" ImageSource="Gen24.png" FontSize="Micro"  VerticalOptions="CenterAndExpand"/>
         </Grid>
 
     </Grid>

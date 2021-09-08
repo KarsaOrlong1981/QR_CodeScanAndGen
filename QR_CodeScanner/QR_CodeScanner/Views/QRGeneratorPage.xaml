@@ -7,13 +7,23 @@
              xmlns:zxingcommon="clr-namespace:ZXing.Common;assembly=zxing.portable" xmlns:viewmodel="clr-namespace:QR_CodeScanner.ViewModel" xmlns:local1="clr-namespace:QR_CodeScanner.Model" x:DataType="viewmodel:QRGeneratorViewModel">
 
 
-    <ScrollView>
-        <StackLayout Padding="0,10,0,0">
+    <Grid >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+      
 
           
-            <StackLayout Orientation="Horizontal" VerticalOptions="StartAndExpand"  >
-                <Button Text="Save"      
-                        HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand"
+          
+                <Button Text="Save"   Grid.Row="0" Grid.Column="1" Margin=" 0,0,0,10"
+                        HorizontalOptions="StartAndExpand"    VerticalOptions="CenterAndExpand"  
                         
                                         Command="{Binding ButtonSaveClicked}"
                                         IsVisible="{Binding SaveIsVis}"
@@ -26,8 +36,8 @@
                                         BorderWidth="2"
                                         BorderColor="Gray"
                                         FontSize="15"/>
-                <Button Text="Share"
-                       VerticalOptions="StartAndExpand" 
+        <Button Text="Share"  Grid.Row="0" Grid.Column="1"  Margin=" 0,0,0,10"
+                       VerticalOptions="CenterAndExpand"   
                                         
                                         IsVisible="{Binding ShareIsVis}"
                                         x:Name="btn_Share"
@@ -40,14 +50,14 @@
                                         BorderWidth="2"
                                         BorderColor="Gray"
                                         FontSize="15"
-                                        HorizontalOptions="CenterAndExpand" />
+                                        HorizontalOptions="EndAndExpand"    />
 
 
                
-            </StackLayout>
+            
 
-            <StackLayout HorizontalOptions="CenterAndExpand"  VerticalOptions="Start"  >
-                <ZXing:ZXingBarcodeImageView x:Name="barCode" 
+           
+                <ZXing:ZXingBarcodeImageView x:Name="barCode" Grid.Row="1" Grid.Column="1"
                                      BackgroundColor="{Binding BGColor}" 
                                      BarcodeValue="{Binding Text}" 
                                      BarcodeFormat="QR_CODE" 
@@ -58,7 +68,7 @@
                         <zxingcommon:EncodingOptions Height="600" Width="600" />
                     </ZXing:ZXingBarcodeImageView.BarcodeOptions>
                 </ZXing:ZXingBarcodeImageView>
-                <Label  x:Name="lab_Gen" VerticalOptions="StartAndExpand" 
+        <Label  x:Name="lab_Gen" VerticalOptions="StartAndExpand"  Grid.Row="2" Grid.Column="1"   
                    
                     
                                    HorizontalTextAlignment="Center"  
@@ -100,14 +110,14 @@
                     </Label.FormattedText>
 
                 </Label>
-            </StackLayout>
+           
 
 
 
 
-        </StackLayout>
+        
 
-    </ScrollView>   
+    </Grid>   
 
       
       

@@ -2,12 +2,24 @@
 <ContentPage BackgroundColor="MintCream"  xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewmodel="clr-namespace:QR_CodeScanner.ViewModel" x:DataType="viewmodel:TextViewModel"
              x:Class="QR_CodeScanner.Views.TextPage" Title="{Binding TitleCulture}">
-    <ContentPage.Content>
-        <StackLayout >
-            <Frame Margin="10" BorderColor="SteelBlue" CornerRadius="20" HasShadow="true">
+
+        <Grid  >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.1*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="0.1*"/>
+        </Grid.ColumnDefinitions>
+            <Frame Grid.Row="0" Grid.Column="1" Margin="10" BorderColor="SteelBlue" CornerRadius="20" HasShadow="true" VerticalOptions="CenterAndExpand" >
                 <Editor
+                    x:Name="editor"
                     MaxLength="510"
-                    
+                    TextChanged="editor_TextChanged_1"  
                     AutoSize="TextChanges"
                 Text="{Binding EntryText}"
                 Keyboard="Text"  
@@ -18,8 +30,8 @@
                PlaceholderColor="SteelBlue" 
                />
             </Frame>
-            <StackLayout Margin="0,40,0,0">
-                <Button 
+           
+                <Button Grid.Row="1" Grid.Column="1" VerticalOptions="CenterAndExpand"
                     x:Name="btn_Generate"
             
                     Command="{Binding ButtonGeneratorPageClicked}"
@@ -30,8 +42,8 @@
                     BackgroundColor="LightSteelBlue"  
                     BorderColor="Gray" 
                     BorderWidth="4" 
-                    HorizontalOptions="Center"    />
-            </StackLayout>
-        </StackLayout>
-    </ContentPage.Content>
+                    HorizontalOptions="Fill"     />
+           
+        </Grid>
+    
 </ContentPage>

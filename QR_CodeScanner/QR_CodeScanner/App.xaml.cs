@@ -7,6 +7,7 @@ namespace QR_CodeScanner
 {
     public partial class App : Application
     {
+        [Obsolete]
         public App()
         {
             InitializeComponent();
