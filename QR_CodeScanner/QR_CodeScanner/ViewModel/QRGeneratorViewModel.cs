@@ -383,7 +383,7 @@ namespace QR_CodeScanner.ViewModel
             SaveIsVis = "true";
             var activity = Forms.Context as Activity;
             if(culture.GetCulture() == "de")
-                Toast.MakeText(activity, "Qr-Code in Gallery gespeichert", ToastLength.Short).Show();
+                Toast.MakeText(activity, "Qr-Code in der Gallrie gespeichert", ToastLength.Short).Show();
             else
             
                 

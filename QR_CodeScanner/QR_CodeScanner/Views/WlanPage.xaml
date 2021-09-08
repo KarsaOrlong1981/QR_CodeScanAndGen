@@ -1,22 +1,33 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentPage BackgroundColor="MintCream" xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewmodel="clr-namespace:QR_CodeScanner.ViewModel" x:DataType="viewmodel:WLanViewModel"
              x:Class="QR_CodeScanner.Views.WlanPage" Title="{Binding TitleCulture}">
-    <StackLayout >
-        <Frame Margin="10" BorderColor="SteelBlue" CornerRadius="20" HasShadow="true">
+    <Grid>
+        <Grid.RowDefinitions >
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.5*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="0.5*"/>
+        </Grid.ColumnDefinitions>
+        <Frame Grid.Row="0" Grid.Column="1" Margin="10" BorderColor="SteelBlue" CornerRadius="20" HasShadow="true" VerticalOptions="CenterAndExpand" >
             <Entry
                 
                 Text="{Binding SSIDText}"
                 Keyboard="Url" 
                BackgroundColor="White" 
                TextColor="Black" 
-               FontSize="20" 
+               FontSize="Medium" 
                Placeholder="SSID" 
                PlaceholderColor="SteelBlue" 
                />
         </Frame>
-        <StackLayout >
-            <Frame Margin="10" BorderColor="SteelBlue" CornerRadius="20" HasShadow="true">
+       
+            <Frame Grid.Row="1" Grid.Column="1" Margin="10" BorderColor="SteelBlue" CornerRadius="20" HasShadow="true" VerticalOptions="CenterAndExpand" >
                 <StackLayout>
                     <Entry
                 
@@ -24,70 +35,79 @@
                 Keyboard="Url" 
                BackgroundColor="White" 
                TextColor="Black" 
-               FontSize="20" 
+               FontSize="Medium"   
                 
               
                     IsReadOnly="{Binding ReadOnly}"
                />
-                    <StackLayout Orientation="Horizontal">
+                    <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
                         <Button 
                 
-                   
+                   Grid.Row="0" Grid.Column="0"
                     Command="{Binding ButtonWPAClicked}"
                     CornerRadius="20" 
                     Text="WPA/WPA2"
-                    FontSize="12"
-                
+                    FontSize="Micro" 
+                    TextColor="Black" 
                     BackgroundColor="White" 
                     BorderColor="SteelBlue" 
                     BorderWidth="2" 
                     HorizontalOptions="StartAndExpand"   />
                         <Button 
                 
-                   
+                   Grid.Row="0" Grid.Column="1"
                     Command="{Binding ButtonWEPClicked}"
                     CornerRadius="20" 
                     Text="WEP"
-                    FontSize="12"
-                
+                    FontSize="Micro"
+                    TextColor="Black"
                     BackgroundColor="White" 
                     BorderColor="SteelBlue" 
                     BorderWidth="2" 
                     HorizontalOptions="CenterAndExpand"    />
                         <Button 
                 
-                   
+                   Grid.Row="0" Grid.Column="2"
                     Command="{Binding ButtonNoneClicked}"
                     CornerRadius="20" 
                     Text="none"
-                    FontSize="12"
-                
+                    FontSize="Micro"  
+                TextColor="Black"
                     BackgroundColor="White" 
                     BorderColor="SteelBlue" 
                     BorderWidth="2" 
                     HorizontalOptions="EndAndExpand"   />
-                    </StackLayout>
+                    </Grid>
                 </StackLayout>
                 
             </Frame>
             
             
                
-            <Grid RowDefinitions="110" >
+          
 
-                <Frame Margin="10" CornerRadius="20" BorderColor="SteelBlue" BackgroundColor="White">
+                <Frame Grid.Row="2" Grid.Column="1" VerticalOptions="CenterAndExpand"  Margin="10" CornerRadius="20" BorderColor="SteelBlue" BackgroundColor="White">
                     <Entry  Placeholder="{Binding PasswordCulture}"
                             Text="{Binding Password}"    
-                           
+                            FontSize="Medium"
                             TextColor="Black" 
                             PlaceholderColor="SteelBlue" />
                 </Frame>
 
                
-            </Grid>
-        </StackLayout>
-        <StackLayout Margin="0,40,0,0">
-            <Button 
+            
+       
+        
+            <Button Grid.Row="3" Grid.Column="1" VerticalOptions="CenterAndExpand" 
                     x:Name="btn_Generate"
             
                     Command="{Binding ButtonGenerateClicked}"
@@ -99,6 +119,6 @@
                     BorderColor="Gray" 
                     BorderWidth="4" 
                     HorizontalOptions="Center"    />
-        </StackLayout>
-    </StackLayout>
+        
+    </Grid>
 </ContentPage>

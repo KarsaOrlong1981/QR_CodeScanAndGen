@@ -3,9 +3,20 @@
              xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewmodel="clr-namespace:QR_CodeScanner.ViewModel" x:DataType="viewmodel:WebsiteViewModel"
              x:Class="QR_CodeScanner.Views.WebsitePage" Title="{Binding TitleCulture}">
-    <StackLayout Padding="0,30,0,0">
-        <Frame Margin="10" BorderColor="SteelBlue" CornerRadius="20" HasShadow="true">
-            <Entry
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+       
+            <Frame Grid.Row="0" Grid.Column="0" Margin="10" BorderColor="SteelBlue" CornerRadius="20" HasShadow="true" VerticalOptions="CenterAndExpand"   >
+                <Entry
                 
                 Text="{Binding EntryText}"
                 Keyboard="Url" 
@@ -15,56 +26,72 @@
                Placeholder="{Binding EntryTextCulture}" 
                PlaceholderColor="SteelBlue" 
                x:Name="entryWebsite"/>
-        </Frame>
-        <StackLayout Margin="10" Orientation="Horizontal">
-            <Button 
+            </Frame>
+            <Grid Grid.Row="1" VerticalOptions="StartAndExpand"     >
+                <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+                <Button Grid.Row="0"
                     x:Name="btn_HTTPS"
                     Command="{Binding ButtonHTTPSClicked}"
                     CornerRadius="20" 
                     Text="https://"
-                    FontSize="12"
+                        TextColor="Black"
+                    FontSize="Small" 
                     BackgroundColor="White" 
                     BorderColor="Gray" 
                     BorderWidth="2" 
-                    HorizontalOptions="StartAndExpand"  />
-            <Button 
+                    VerticalOptions="CenterAndExpand"   
+                    HorizontalOptions="CenterAndExpand"   />
+                <Button Grid.Row="0" Grid.Column="1"
                     x:Name="btn_HTTP"
                     Command="{Binding ButtonHTTPClicked}"
                     CornerRadius="20" 
                     Text="http://"
-                    FontSize="12"
+                    TextColor="Black" 
+                    FontSize="Small"
                     BackgroundColor="White" 
                     BorderColor="Gray" 
                     BorderWidth="2" 
+                        VerticalOptions="CenterAndExpand" 
                     HorizontalOptions="CenterAndExpand"  />
-            <Button 
+                <Button Grid.Row="0" Grid.Column="2"
                     x:Name="btn_WWW"
                     Command="{Binding ButtonWWWClicked}"
                     CornerRadius="20" 
                     Text="www."
-                    FontSize="12"
+                        TextColor="Black"
+                    FontSize="Small"
                     BackgroundColor="White" 
                     BorderColor="Gray" 
                     BorderWidth="2" 
-                    HorizontalOptions="EndAndExpand"   />
+                        VerticalOptions="CenterAndExpand" 
+                    HorizontalOptions="CenterAndExpand"    />
+
+
             
-           
-        </StackLayout>
-        <StackLayout Orientation="Horizontal">
-            <Button 
-                Margin="10"
+          
+                <Button Grid.Row="1" Grid.Column="0" VerticalOptions="CenterAndExpand"  
+                
                     x:Name="btn_DE"
                     Command="{Binding ButtonDEClicked}"
                     CornerRadius="20" 
                     Text=".de"
-                    FontSize="12"
-                
+                    FontSize="Small" 
+                    TextColor="Black"
                     BackgroundColor="White" 
                     BorderColor="Gray" 
                     BorderWidth="2" 
-                    HorizontalOptions="StartAndExpand"   />
-            <Button 
-                Margin="10"
+                    HorizontalOptions="CenterAndExpand"    />
+                <Button Grid.Row="1" Grid.Column="2" VerticalOptions="CenterAndExpand"
+                    TextColor="Black"
                     x:Name="btn_Com"
                     Command="{Binding ButtonCOMClicked}"
                     CornerRadius="20" 
@@ -73,11 +100,11 @@
                     BackgroundColor="White" 
                     BorderColor="Gray" 
                     BorderWidth="2" 
-                    HorizontalOptions="EndAndExpand"   />
-        </StackLayout>
-        
-        <StackLayout Margin="0,40,0,0">
-            <Button 
+                    HorizontalOptions="CenterAndExpand"    />
+          </Grid> 
+
+          
+                <Button Grid.Row="2" VerticalOptions="CenterAndExpand" 
                     x:Name="btn_Generate"
             
                     Command="{Binding ButtonGeneratorPageClicked}"
@@ -88,7 +115,9 @@
                     BackgroundColor="LightSteelBlue"  
                     BorderColor="Gray" 
                     BorderWidth="4" 
-                    HorizontalOptions="Center"    />
-        </StackLayout>
-    </StackLayout>
+                    HorizontalOptions="CenterAndExpand"    />
+          
+     
+    </Grid>
+   
 </ContentPage>

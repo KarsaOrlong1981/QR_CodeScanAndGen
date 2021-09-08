@@ -1,25 +1,33 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage BackgroundColor="MintCream" xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewmodel="clr-namespace:QR_CodeScanner.ViewModel" x:DataType="viewmodel:MainViewModel"
              x:Class="QR_CodeScanner.Views.MainPage" Title="QR-Code Scan &amp; Gen"
             >
 
 
-    <ContentPage.ToolbarItems>
-        <ToolbarItem 
-            Text="QR-Code Generator"
-                 
-                 Order="Secondary"
-                 Priority="0"
-                  Clicked="ToolbarItemGenerator_Clicked" 
-                           />
-        
-    </ContentPage.ToolbarItems>
-    <ScrollView>
-        <StackLayout VerticalOptions="StartAndExpand" HorizontalOptions="CenterAndExpand" >
-            <Image  Source="ScanGen.png"  Aspect="AspectFit"   HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand"/>
+  
+    <Grid >
+
+        <StackLayout >
+            <Image Source="ScanGen.png"  Aspect="AspectFit"     HorizontalOptions="StartAndExpand"  VerticalOptions="StartAndExpand"  />
+        </StackLayout>
+            
            
-                <Button 
+                
+
+
+        <Grid  >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Row="2" Grid.Column="1" Command="{Binding ButtonScannerClicked}"
             Text="Scannen mit Kamera" 
             CornerRadius="20" 
             BorderColor="Gray" 
@@ -29,15 +37,16 @@
             TextColor="Black" 
             HeightRequest="100" 
             WidthRequest="200" 
-            HorizontalOptions="CenterAndExpand" 
-            VerticalOptions="EndAndExpand"  
-            x:Name="btn_Scann" 
-            Clicked="btn_Scann_Clicked"/>
-            </StackLayout>
+            HorizontalOptions="Fill"  
+            VerticalOptions="CenterAndExpand"   
+            />
 
-       
+            <Button Grid.Row="3" Grid.Column="2" Command="{Binding ButtonGeneratorClicked}" Text="QR-Code Generator" TextColor="Black" ImageSource="Gen.png" ContentLayout="Top,0" BackgroundColor="MintCream" FontSize="Small" VerticalOptions="CenterAndExpand"  />
+            <Button Grid.Row="3" Grid.Column="1" Text="Info" TextColor="Black" ImageSource="Info.png" ContentLayout="Top,0" BackgroundColor="MintCream" FontSize="Small" VerticalOptions="CenterAndExpand"/>
+            <Button Grid.Row="3" Grid.Column="0" Text="Placeholder" ContentLayout="Top,0" TextColor="Black" BackgroundColor="MintCream" ImageSource="Gen.png" FontSize="Small" VerticalOptions="CenterAndExpand"/>
+        </Grid>
 
-    </ScrollView>
+    </Grid>
    
 
 </ContentPage>
