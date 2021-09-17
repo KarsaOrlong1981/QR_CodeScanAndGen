@@ -3,80 +3,114 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewmodel="clr-namespace:QR_CodeScanner.ViewModel" x:DataType="viewmodel:EventViewModel"
              x:Class="QR_CodeScanner.Views.EventPage" Title="Generate Event QR-Code">
     <ScrollView>
-        <StackLayout Margin="20" >
-            <Frame Margin="10,0,10,0" BorderColor="SteelBlue" CornerRadius="20"  HasShadow="true">
-                <Entry 
+        
+   
+    <Grid Margin="20" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Frame Grid.Column="0" Grid.Row="0"  BorderColor="SteelBlue" CornerRadius="20"  HasShadow="true">
+            <Entry 
                 x:Name="entry"
                 Text="{Binding Title}"
                   TextChanged="entry_TextChanged" 
                 Keyboard="Text"  
                BackgroundColor="White" 
                TextColor="Black" 
-               FontSize="20" 
+               FontSize="Medium"  
                Placeholder="Title" 
                PlaceholderColor="SteelBlue" 
             />
-            </Frame>
-            <StackLayout>
+        </Frame>
+        
 
-                <Frame Margin="10,0,10,0" BorderColor="SteelBlue" CornerRadius="20" HasShadow="true" >
-                    <StackLayout Orientation="Horizontal">
-                        <Image Source="DateTime.png" />
-                        <Label Text="Start date" TextColor="SteelBlue" FontSize="20" />
-                        <DatePicker HorizontalOptions="StartAndExpand"
+            <Frame Grid.Row="1"  BorderColor="SteelBlue" CornerRadius="20" HasShadow="true" >
+              <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+
+                    <ColumnDefinition Width="0.5*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                    <Image Grid.Column="0" Source="DateTime.png"/>
+                    <Label Grid.Column="1" VerticalOptions="CenterAndExpand"  Text="Start date" TextColor="SteelBlue" FontSize="Medium"/>
+                    <DatePicker Grid.Column="2"
+                                HorizontalOptions="StartAndExpand"
                                 Date="{Binding StartDate}"
                                 MinimumDate="{Binding StartDate}"
                                 MaximumDate="12/31/2040" />
-                        <TimePicker Time="{Binding TimeStart}">
-                            <TimePicker.Format>HH:mm</TimePicker.Format>
-                        </TimePicker>
-                    </StackLayout>
-                </Frame>
-            </StackLayout>
+                    <TimePicker Grid.Column="3" Time="{Binding TimeStart}">
+                        <TimePicker.Format>HH:mm</TimePicker.Format>
+                    </TimePicker>
+                </Grid>
+            </Frame>
+        
 
 
-            <StackLayout>
-                <Frame Margin="10,0,10,0" BorderColor="SteelBlue" CornerRadius="20" HasShadow="true" >
-                    <StackLayout Orientation="Horizontal">
-                        <Image Source="DateTime.png" />
-                        <Label Text="End date" TextColor="SteelBlue" FontSize="20" />
-                        <DatePicker HorizontalOptions="StartAndExpand"
+        
+            <Frame Grid.Row="2" BorderColor="SteelBlue" CornerRadius="20" HasShadow="true" >
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+
+                    <ColumnDefinition Width="0.5*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Image Grid.Column="0" Source="DateTime.png" />
+                    <Label Grid.Column="1" VerticalOptions="CenterAndExpand"  Text="End date" TextColor="SteelBlue" FontSize="Medium"  />
+                    <DatePicker Grid.Column="2" HorizontalOptions="StartAndExpand"
                                 Date="{Binding EndDate}"
                                 MinimumDate="{Binding StartDate}"
                                 MaximumDate="12/31/2040" />
-                        <TimePicker Time="{Binding TimeEnd}" >
-                            <TimePicker.Format>HH:mm</TimePicker.Format>
-                        </TimePicker>
-                    </StackLayout>
-                </Frame>
-            </StackLayout >
+                    <TimePicker Grid.Column="3" Time="{Binding TimeEnd}" >
+                        <TimePicker.Format>HH:mm</TimePicker.Format>
+                    </TimePicker>
+                </Grid>
+            </Frame>
+        
 
 
 
 
-            <StackLayout>
-                <Frame Margin="10,0,10,0" BorderColor="SteelBlue" CornerRadius="20" HasShadow="true" >
-                    <StackLayout Orientation="Horizontal">
-                        <Image Source="Place.png" />
-                        <Entry
+        
+            <Frame Grid.Row="3" BorderColor="SteelBlue" CornerRadius="20" HasShadow="true" >
+                <StackLayout Orientation="Horizontal">
+                    <Image Source="Place.png" />
+                    <Entry
                 HorizontalOptions="FillAndExpand" 
                 Text="{Binding Location}"
                 Keyboard="Text" 
                BackgroundColor="White" 
                TextColor="Black" 
-               FontSize="20" 
+               FontSize="Medium"  
                SelectionLength="200"
                Placeholder="Location" 
                PlaceholderColor="SteelBlue" 
                />
-                    </StackLayout>
-                </Frame>
-            </StackLayout>
-            <StackLayout>
-                <Frame Margin="10,0,10,0" BorderColor="SteelBlue" CornerRadius="20" HasShadow="true" >
-                    <StackLayout Orientation="Horizontal">
+                </StackLayout>
+            </Frame>
+       
+        
+            <Frame Grid.Row="4" BorderColor="SteelBlue" CornerRadius="20" HasShadow="true" >
+                <StackLayout Orientation="Horizontal">
 
-                        <Entry
+                    <Entry
                 HorizontalOptions="FillAndExpand" 
                 Text="{Binding Description}"
                 Keyboard="Text" 
@@ -87,26 +121,27 @@
                Placeholder="Description" 
                PlaceholderColor="SteelBlue" 
                />
-                    </StackLayout>
-                </Frame>
-            </StackLayout>
-            <StackLayout >
-                <Button Margin="20"
+                </StackLayout>
+            </Frame>
+        
+        
+            <Button  Grid.Row="5"
                  
             Command="{Binding ButtonGenerateClicked}"
                     x:Name="btn_generate"
                     CornerRadius="20" 
                     Text="Generate QR-Code "
-                    FontSize="20"
+                    FontSize="Medium"  
                     TextColor="White"
                     BackgroundColor="LightSteelBlue"  
                     BorderColor="Gray" 
                     BorderWidth="4" 
-                    HorizontalOptions="CenterAndExpand"      />
-            </StackLayout>
+                    HorizontalOptions="FillAndExpand"  
+                     VerticalOptions="CenterAndExpand" />
+        
 
 
-        </StackLayout>
+
+    </Grid>
     </ScrollView>
-    
 </ContentPage>

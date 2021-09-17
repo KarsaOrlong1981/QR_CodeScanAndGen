@@ -1,37 +1,38 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage BackgroundColor="MintCream" xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local1="clr-namespace:QR_CodeScanner.Model" xmlns:viewmodel="clr-namespace:QR_CodeScanner.ViewModel" x:DataType="viewmodel:ResultViewModel"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local1="clr-namespace:QR_CodeScanner.Model" 
+             xmlns:viewmodel="clr-namespace:QR_CodeScanner.ViewModel" 
+             x:DataType="viewmodel:ResultViewModel"
              x:Class="QR_CodeScanner.Views.ResultPage">
-    <StackLayout >
-        
-      
-        <Frame Margin="20">
-            <StackLayout >
-                
+    <Grid>
+        <Grid.RowDefinitions >
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="*"/>
+           
+        </Grid.RowDefinitions>
+     
+        <Grid Grid.Row="0" >
+           
+
+            <Frame Margin="10" BackgroundColor="AliceBlue ">
+                <StackLayout >
+
                     <Button 
                     Margin="20"
                     ContentLayout="top,50" 
                     ImageSource="{Binding ImageTop}" 
-                    Text="{Binding Text1}" FontSize="20" 
+                    Text="{Binding Text1}" FontSize="Medium"   
                     HorizontalOptions="CenterAndExpand"  
                     TextColor="Black"
-                    WidthRequest="200" 
-                    CornerRadius="20" 
+                    
+                   
                     BackgroundColor="White" 
                     BorderColor="Gray" 
                     BorderWidth="1" 
                         IsVisible="{Binding IsVis}"
                      />
-                
-
-
-
-
-
-
-                
                     <StackLayout >
-                        <Label FontSize="20" TextColor="DarkGray" HorizontalTextAlignment="Center" Text="{Binding Text2}" />
+                        <Label FontSize="Medium"    TextColor="DarkGray" HorizontalTextAlignment="Center" Text="{Binding Text2}" />
                         <StackLayout Orientation="Horizontal" HorizontalOptions="Center" >
                             <Image Source="zeit30.png" IsVisible="{Binding IsVisEvent}"/>
                             <Label FontSize="20"  TextColor="Black" Text="{Binding Text3}"/>
@@ -41,15 +42,8 @@
                             <Label FontSize="20" TextColor="Black" Text="{Binding Text4}"/>
                         </StackLayout>
                     </StackLayout>
-                   
 
-                
-                
-                
-                
-
-                
-                <Label  x:Name="lab_Gen"
+                    <Label  x:Name="lab_Gen"
                    
                     
                                    HorizontalTextAlignment="Center"  
@@ -58,60 +52,73 @@
                                    FontSize="{Binding FontSizeQR}" 
                                    TextColor="{Binding TCColor}">
 
-                <Label.FormattedText >
-                    <FormattedString >
+                        <Label.FormattedText >
+                            <FormattedString >
 
-                        <Span Text="{Binding LabelText}" />
-                        <Span Text="{Binding VCard1 }" />
-                        <Span Text="{Binding VCard2 }"/>
-                        <Span Text="{Binding VCard3 }"/>
-                        <Span Text="{Binding VCard4 }"/>
-                        <Span Text="{Binding VCard5 }"/>
-                        <Span Text="{Binding VCard6 }"/>
-                        <local1:HyperlinkSpan 
+                                <Span Text="{Binding LabelText}" />
+                                <Span Text="{Binding VCard1 }" />
+                                <Span Text="{Binding VCard2 }"/>
+                                <Span Text="{Binding VCard3 }"/>
+                                <Span Text="{Binding VCard4 }"/>
+                                <Span Text="{Binding VCard5 }"/>
+                                <Span Text="{Binding VCard6 }"/>
+                                <local1:HyperlinkSpan 
                                               Text="{Binding VCard7}"
                                               Url="{Binding VCard7Link}"/>
-                        <Span Text="{Binding VCard8 }"/>
+                                <Span Text="{Binding VCard8 }"/>
 
-                        <local1:HyperlinkSpan
+                                <local1:HyperlinkSpan
                                               Text="{Binding VCard9}"
                                               Url="{Binding VCard9Link}"/>
-                        <Span Text="{Binding VCard10 }"/>
+                                <Span Text="{Binding VCard10 }"/>
 
-                        <local1:HyperlinkSpan  
+                                <local1:HyperlinkSpan  
                                                Text="{Binding VCard11}"
                                                Url="{Binding VCard11Link}"
                                               />
 
 
-                        <Span Text="{Binding VCard12 }"/>
-                        <Span Text="{Binding VCard13 }"/>
+                                <Span Text="{Binding VCard12 }"/>
+                                <Span Text="{Binding VCard13 }"/>
 
-                    </FormattedString>
-                </Label.FormattedText>
+                            </FormattedString>
+                        </Label.FormattedText>
 
-            </Label>
-                <Button 
+                    </Label>
+                    <Button Margin="20"
                     Command="{Binding ButtonLocation}"
                     ContentLayout="left,0" 
                     ImageSource="loca24.png" 
-                    Text="{Binding Location}" FontSize="15" 
+                    Text="{Binding Location}" FontSize="Small"  
                     HorizontalOptions="CenterAndExpand"  
-                    TextColor="Green"
-                    WidthRequest="166" 
+                    TextColor="DarkCyan"  
+                    WidthRequest="200" 
+                            
                     CornerRadius="20" 
-                    BackgroundColor="LightGray" 
-                    BorderColor="Gray" 
+                    BackgroundColor="LightSteelBlue"  
+                    BorderColor="SteelBlue"   
                     BorderWidth="1" 
                     IsVisible="{Binding IsVisEvent}"/>
 
-            </StackLayout>
-        </Frame>
-        <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand"  >
-            <Button Text="{Binding SaveTo}"      
-                        HorizontalOptions="CenterAndExpand"  
-                        Margin="10,10,10,10"
-                           Command="{Binding ButtonAddTo}"           
+                </StackLayout>
+            </Frame>
+        </Grid>
+        <Grid Grid.Row="1" >
+            <Grid.RowDefinitions >
+
+                <RowDefinition Height="*"/>
+
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Row="0" Grid.Column="0" Text="{Binding SaveTo}"      
+                       
+                                        VerticalOptions="CenterAndExpand" 
+                                        HorizontalOptions="CenterAndExpand" 
+                                        Command="{Binding ButtonAddTo}"           
                                         
                                         TextColor="White"
                                         ContentLayout="Top,0" 
@@ -120,26 +127,28 @@
                                         CornerRadius="20"
                                         BackgroundColor="LightSteelBlue" 
                                         BorderWidth="2"
+                                        WidthRequest="150"
                                         BorderColor="Gray"
-                                        FontSize="15"/>
-            <Button Text="{Binding ShareTo}"
+                                        FontSize="Small"/>
+                                      
+            <Button Grid.Row="0" Grid.Column="1" Text="{Binding ShareTo}"
                        
-                                        Margin="10,10,10,10"
+                                         
                                         Command="{Binding ButtonShare}"
                                         x:Name="btn_Share"
                                         TextColor="White"
                                         ContentLayout="Top,0" 
-                                        
+                                        WidthRequest="150"
                                         ImageSource="Share.png"
                                         CornerRadius="20"
                                         BackgroundColor="LightSteelBlue" 
                                         BorderWidth="2"
                                         BorderColor="Gray"
-                                        FontSize="15"
+                                        FontSize="Small" 
                                         HorizontalOptions="CenterAndExpand"  
-                      
-                                        
-                                        />
-        </StackLayout>
-    </StackLayout>
+                                        VerticalOptions="CenterAndExpand" />
+        </Grid>
+    </Grid>
+   
+    
 </ContentPage>

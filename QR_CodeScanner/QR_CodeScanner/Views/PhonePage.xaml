@@ -2,18 +2,23 @@
 <ContentPage BackgroundColor="MintCream" xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewmodel="clr-namespace:QR_CodeScanner.ViewModel" x:DataType="viewmodel:PhoneViewModel"
              x:Class="QR_CodeScanner.Views.PhonePage" Title="Generate Phonenumber QR-Code">
-    <StackLayout >
+    <Grid >
+        <Grid.RowDefinitions >
 
-        <Frame Margin="20,20,20,0" BorderColor="SteelBlue" CornerRadius="20" HasShadow="true" >
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+       
+        <Frame Grid.Row="0" Margin="20,20,20,0" BorderColor="SteelBlue" CornerRadius="20" HasShadow="true" HorizontalOptions="FillAndExpand"  VerticalOptions="CenterAndExpand" >
             <StackLayout Orientation="Horizontal">
                 <Image Source="Telefon.png" />
                 <Entry
-                HorizontalOptions="FillAndExpand" 
+                HorizontalOptions="CenterAndExpand"  
                 Text="{Binding PhoneNumber}"
                 Keyboard="Telephone" 
                BackgroundColor="White" 
                TextColor="Black" 
-               FontSize="20" 
+               FontSize="Large"   
                SelectionLength="200"
                Placeholder="Phone number" 
                PlaceholderColor="SteelBlue" 
@@ -22,19 +27,20 @@
             </Frame> 
         
                          
-                <StackLayout Margin="0,40,0,0">
-            <Button 
+               
+            <Button Grid.Row="1"
                     x:Name="btn_Generate"
-            
+                    Margin="20"
                     Command="{Binding ButtonGeneratorPageClicked}"
                     CornerRadius="20" 
                     Text="Generate QR-Code"
-                    FontSize="20"
+                    FontSize="Large" 
                     TextColor="White"
                     BackgroundColor="LightSteelBlue"  
                     BorderColor="Gray" 
                     BorderWidth="4" 
-                    HorizontalOptions="Center"    />
-        </StackLayout>
-    </StackLayout>
+                    HorizontalOptions="FillAndExpand"   
+                    VerticalOptions="StartAndExpand" />
+       
+    </Grid>
 </ContentPage>

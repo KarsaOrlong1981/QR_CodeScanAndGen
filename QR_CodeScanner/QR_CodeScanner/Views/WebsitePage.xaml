@@ -96,7 +96,7 @@
                     Command="{Binding ButtonCOMClicked}"
                     CornerRadius="20" 
                     Text=".com"
-                    FontSize="12"
+                    FontSize="Small" 
                     BackgroundColor="White" 
                     BorderColor="Gray" 
                     BorderWidth="2" 
