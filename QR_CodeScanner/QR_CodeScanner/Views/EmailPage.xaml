@@ -2,9 +2,18 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewmodel="clr-namespace:QR_CodeScanner.ViewModel" x:DataType="viewmodel:EmailViewModel"
              x:Class="QR_CodeScanner.Views.EmailPage">
-    <StackLayout Padding="10,20,10,0">
-
-        <Frame BorderColor="SteelBlue" CornerRadius="20" HasShadow="true" >
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+           
+            <ColumnDefinition Width="*"/>
+           
+        </Grid.ColumnDefinitions>
+        <Frame Grid.Row="0" Grid.Column="0" BorderColor="SteelBlue" CornerRadius="20" HasShadow="true" HorizontalOptions="FillAndExpand" Margin="10" VerticalOptions="CenterAndExpand"  >
             <StackLayout Orientation="Horizontal">
                 <Image Source="EmailQR.png" />
                 <Entry
@@ -22,10 +31,11 @@
         </Frame>
 
 
-        <StackLayout Margin="0,40,0,0">
-            <Button 
+       
+            <Button Grid.Row="2"  VerticalOptions="CenterAndExpand"
                     x:Name="btn_Generate"
-            
+                    Margin="10"
+                    HorizontalOptions="FillAndExpand"
                     Command="{Binding ButtonGeneratorPageClicked}"
                     CornerRadius="20" 
                     Text="Generate QR-Code"
@@ -34,7 +44,7 @@
                     BackgroundColor="LightSteelBlue"  
                     BorderColor="Gray" 
                     BorderWidth="4" 
-                    HorizontalOptions="Center"    />
-        </StackLayout>
-    </StackLayout>
+                      />
+      
+    </Grid>
 </ContentPage>

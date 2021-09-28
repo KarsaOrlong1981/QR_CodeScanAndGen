@@ -2,7 +2,7 @@
 <ContentPage BackgroundColor="MintCream" xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewmodel="clr-namespace:QR_CodeScanner.ViewModel" x:DataType="viewmodel:EventViewModel"
              x:Class="QR_CodeScanner.Views.EventPage" Title="Generate Event QR-Code">
-    <ScrollView>
+    
         
    
     <Grid Margin="20" >
@@ -151,5 +151,5 @@
 
 
     </Grid>
-    </ScrollView>
+    
 </ContentPage>
