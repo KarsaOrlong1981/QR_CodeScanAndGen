@@ -47,11 +47,14 @@
                     <Image Grid.Column="0" Source="DateTime.png"/>
                     <Label Grid.Column="1" VerticalOptions="CenterAndExpand"  Text="Start date" TextColor="SteelBlue" FontSize="Medium"/>
                     <DatePicker Grid.Column="2"
+                                 TextColor="Blue"
+                                Visual="Default"  
                                 HorizontalOptions="StartAndExpand"
                                 Date="{Binding StartDate}"
                                 MinimumDate="{Binding StartDate}"
                                 MaximumDate="12/31/2040" />
-                    <TimePicker Grid.Column="3" Time="{Binding TimeStart}">
+                    <TimePicker Grid.Column="3" Time="{Binding TimeStart}"
+                                 TextColor="Magenta">
                         <TimePicker.Format>HH:mm</TimePicker.Format>
                     </TimePicker>
                 </Grid>
@@ -74,11 +77,16 @@
                 </Grid.ColumnDefinitions>
                 <Image Grid.Column="0" Source="DateTime.png" />
                     <Label Grid.Column="1" VerticalOptions="CenterAndExpand"  Text="End date" TextColor="SteelBlue" FontSize="Medium"  />
-                    <DatePicker Grid.Column="2" HorizontalOptions="StartAndExpand"
+                    <DatePicker Grid.Column="2" 
+                                Visual="Default" 
+                                TextColor="Blue"
+                                
+                                HorizontalOptions="StartAndExpand"
                                 Date="{Binding EndDate}"
                                 MinimumDate="{Binding StartDate}"
                                 MaximumDate="12/31/2040" />
-                    <TimePicker Grid.Column="3" Time="{Binding TimeEnd}" >
+                    <TimePicker Grid.Column="3" Time="{Binding TimeEnd}" 
+                                 TextColor="Magenta">
                         <TimePicker.Format>HH:mm</TimePicker.Format>
                     </TimePicker>
                 </Grid>

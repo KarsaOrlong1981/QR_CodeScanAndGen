@@ -124,10 +124,7 @@ namespace QR_CodeScanner.ViewModel
         async void GetWlanConnectionCode()
 
         {
-            bool isContact = false;
-            bool isEvent = false;
-            bool isPhoneNumber = false;
-            bool isEmail = false;
+          
 
                 if (wlanKey == "WPA/WPA2")
                 {
@@ -144,7 +141,7 @@ namespace QR_CodeScanner.ViewModel
                     GenerateText = "WIFI:S:" + SSIDText + ";T:;P:" + Password + ";";
                 }
 
-            await Navigation.PushAsync(new QRGeneratorPage(GenerateText,isContact,isEvent,isPhoneNumber,isEmail));
+            await Navigation.PushAsync(new QRGeneratorPage(GenerateText,false,false,false,false,false,false,false,string.Empty));
         }
     } 
 }

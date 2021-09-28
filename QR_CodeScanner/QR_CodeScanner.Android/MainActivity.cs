@@ -19,6 +19,7 @@ using Android.Widget;
 using Java.Interop;
 using QR_CodeScanner.Droid.Models;
 using System.IO;
+using AndroidX.AppCompat.App;
 
 namespace QR_CodeScanner.Droid
 {
@@ -27,15 +28,15 @@ namespace QR_CodeScanner.Droid
     [Activity(Label = "QR_CodeScanner", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ScreenOrientation = ScreenOrientation.Portrait, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
-        
-      
-
+        [Obsolete]
+#pragma warning disable CS0809 // Veraltetes Element überschreibt nicht veraltetes Element
         protected override void OnCreate(Bundle savedInstanceState)
+#pragma warning restore CS0809 // Veraltetes Element überschreibt nicht veraltetes Element
         {
             base.OnCreate(savedInstanceState);
             
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
-            
+            AppCompatDelegate.DefaultNightMode = AppCompatDelegate.ModeNightNo;
 
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             //für BarCode Scanner

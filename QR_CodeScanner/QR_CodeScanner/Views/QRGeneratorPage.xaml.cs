@@ -19,11 +19,11 @@ namespace QR_CodeScanner.Views
        
 
         [Obsolete]
-        public QRGeneratorPage(string qrCodeText,bool isContact,bool isEvent,bool isPhoneNumber,bool isEmail)
+        public QRGeneratorPage(string qrCodeText,bool isContact,bool isEvent,bool isPhoneNumber,bool isEmail,bool isSMS, bool isFood, bool isWebsite,string number)
         {
             InitializeComponent();
 
-            BindingContext = new QRGeneratorViewModel(qrCodeText, isContact,isEvent,isPhoneNumber,isEmail);              
+            BindingContext = new QRGeneratorViewModel(qrCodeText, isContact,isEvent,isPhoneNumber,isEmail,isSMS,isFood,isWebsite,number);              
         }
 
       

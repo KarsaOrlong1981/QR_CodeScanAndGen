@@ -4,14 +4,17 @@
              x:Class="QR_CodeScanner.Views.QRGeneratorPage"
           xmlns:local="clr-namespace:QR_CodeScanner.Model"
              xmlns:ZXing="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms" 
-             xmlns:zxingcommon="clr-namespace:ZXing.Common;assembly=zxing.portable" xmlns:viewmodel="clr-namespace:QR_CodeScanner.ViewModel" xmlns:local1="clr-namespace:QR_CodeScanner.Model" x:DataType="viewmodel:QRGeneratorViewModel">
+             xmlns:zxingcommon="clr-namespace:ZXing.Common;assembly=zxing.portable"
+              xmlns:viewmodel="clr-namespace:QR_CodeScanner.ViewModel" xmlns:local1="clr-namespace:QR_CodeScanner.Model" x:DataType="viewmodel:QRGeneratorViewModel">
 
-
+    
+        
+   
     <Grid >
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="2*"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -117,24 +120,24 @@
 
         
 
-    </Grid>   
-
-      
-      
-               
-           
-          
-            
-            
-
-            
-           
-          
-
+    </Grid>
     
-        
-   
-    
-       
-    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </ContentPage>

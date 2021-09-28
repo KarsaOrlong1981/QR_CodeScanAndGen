@@ -23,7 +23,7 @@ namespace QR_CodeScanner.ViewModel
         {
             this.Navigation = navigation;
             culture = new CultureLang();
-
+            
             ButtonGenerateClicked = new Command(async () => await CallQRGeneratorPage());
 
             
@@ -44,11 +44,8 @@ namespace QR_CodeScanner.ViewModel
         [Obsolete]
         async Task CallQRGeneratorPage()
         {
-            bool isContact = false;
-            bool isEvent = true;
-            bool isPhoneNumber = false;
-            bool isEmail = false;
-            await Navigation.PushAsync(new QRGeneratorPage(GetEvent(), isContact,isEvent,isPhoneNumber,isEmail));
+           
+            await Navigation.PushAsync(new QRGeneratorPage(GetEvent(), false,true,false,false,false,false ,false,string.Empty));
 
         }
         string GetEvent()

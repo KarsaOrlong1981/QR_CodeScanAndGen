@@ -37,7 +37,7 @@ namespace QR_CodeScanner.ViewModel
         public ICommand ButtonSaveClicked { get; set; }
        
         [Obsolete]
-        public QRGeneratorViewModel(string qrTxt,bool isContact,bool isEvent,bool isPhoneNumber,bool isEmail)
+        public QRGeneratorViewModel(string qrTxt,bool isContact,bool isEvent,bool isPhoneNumber,bool isEmail,bool isSMS,bool isFood,bool isWebsite, string number)
         {
             Text = qrTxt;
             share = new ShareContent();
@@ -125,6 +125,7 @@ namespace QR_CodeScanner.ViewModel
                 VCard9 = "";
                 VCard9Link = "";
                 VCard10 = "";
+
                 if (isEmail)
                 {
                     
@@ -138,6 +139,22 @@ namespace QR_CodeScanner.ViewModel
                     VCard11 = "";
                     VCard11Link = "";
                 }
+
+                if (isSMS)
+                {
+
+                    LabelText = "SMS: ";
+                    VCard10 = number;
+                    VCard11 = qrTxt;
+                    VCard11Link = "smsto:" + number + ":" + qrTxt;
+
+                }
+                else
+                {
+                    VCard11 = "";
+                    VCard11Link = "";
+                }
+
                 VCard12 = "";
                 VCard13 = "";
 

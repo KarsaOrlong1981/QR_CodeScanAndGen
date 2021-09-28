@@ -21,6 +21,8 @@ namespace QR_CodeScanner.ViewModel
         public ICommand ButtonEventClicked { get; set; }
         public ICommand ButtonPhoneClicked { get; set; }
         public ICommand ButtonEmailClicked { get; set; }
+        public ICommand ButtonSmSClicked { get; set; }
+        public ICommand ButtonFoodClicked { get; set; }
 
         [Obsolete]
         public QRVersionViewModel(INavigation navigation)
@@ -33,7 +35,18 @@ namespace QR_CodeScanner.ViewModel
             ButtonEventClicked = new Command(GotoEventPage);
             ButtonPhoneClicked = new Command(GotoPhonePage);
             ButtonEmailClicked = new Command(GotoEmailPage);
+            ButtonSmSClicked = new Command(GotoSmSPage);
+            ButtonFoodClicked = new Command(GotoFoodPage);
+        }
 
+        [Obsolete]
+        public async Task CallFoodPage()
+        {
+            await Navigation.PushAsync(new FoodPage());
+        }
+        public async Task CallSmSPage()
+        {
+            await Navigation.PushAsync(new SMSPage());
         }
 
         [Obsolete]
@@ -86,45 +99,54 @@ namespace QR_CodeScanner.ViewModel
         }
 
         [Obsolete]
-        async void GotoWebsitePage()
+      private async void GotoWebsitePage()
         {
           await CallWebsitePage();
         }
 
         [Obsolete]
-        async void GotoTextPage()
+       private async void GotoTextPage()
         {
             await CallTextPage();
         }
 
         [Obsolete]
-        async void GotoWlanPage()
+        private async void GotoFoodPage()
+        {
+            await CallFoodPage();
+        }
+        [Obsolete]
+       private async void GotoWlanPage()
         {
             await CallWLanPage();
         }
 
         [Obsolete]
-        async void GotoContactPage()
+       private async void GotoContactPage()
         {
             await CallContactPage();
         }
 
         [Obsolete]
-        async void GotoEventPage()
+        private async void GotoEventPage()
         {
             await CallEventPage();
         }
 
         [Obsolete]
-        async void GotoPhonePage()
+        private async void GotoPhonePage()
         {
             await CallPhonePage();
         }
 
         [Obsolete]
-        async void GotoEmailPage()
+        private async void GotoEmailPage()
         {
             await CallEmailPage();
+        }
+        private async void GotoSmSPage()
+        {
+            await CallSmSPage();
         }
     }
 }

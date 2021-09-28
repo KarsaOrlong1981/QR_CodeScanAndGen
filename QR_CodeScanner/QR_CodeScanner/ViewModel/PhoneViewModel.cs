@@ -24,11 +24,8 @@ namespace QR_CodeScanner.ViewModel
         [Obsolete]
         public async Task CallQRGeneratorPage()
         {
-            bool isContact = false;
-            bool isEvent = false;
-            bool isPhoneNumber = true;
-            bool isEmail = false;
-            await Navigation.PushAsync(new QRGeneratorPage(PhoneNumber, isContact, isEvent,isPhoneNumber,isEmail));
+           
+            await Navigation.PushAsync(new QRGeneratorPage(PhoneNumber, false, false,true,false,false,false,false,string.Empty));
         }
         public string PhoneNumber
         {

@@ -129,7 +129,7 @@
                          Text="SMS" FontSize="Medium"   
                          HorizontalOptions="Fill"    
                          TextColor="Black"
-                        
+                        Command="{Binding ButtonSmSClicked }"
                          CornerRadius="20" 
                          BackgroundColor="White" 
                          BorderColor="Gray" 
@@ -137,6 +137,7 @@
          
             
                 <Button  Grid.Row="7" Grid.Column="1" VerticalOptions="CenterAndExpand" TextColor="Black"
+                         Command="{Binding ButtonFoodClicked }"
                          ContentLayout="Left,0" 
                          ImageSource="essen24.png"
                          Text="Food" FontSize="Medium"   

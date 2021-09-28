@@ -4,6 +4,9 @@
              xmlns:viewmodel="clr-namespace:QR_CodeScanner.ViewModel" 
              x:DataType="viewmodel:ResultViewModel"
              x:Class="QR_CodeScanner.Views.ResultPage">
+    <ScrollView >
+        
+    
     <Grid>
         <Grid.RowDefinitions >
             <RowDefinition Height="2*" />
@@ -149,6 +152,6 @@
                                         VerticalOptions="CenterAndExpand" />
         </Grid>
     </Grid>
-   
-    
+    </ScrollView>
+
 </ContentPage>
