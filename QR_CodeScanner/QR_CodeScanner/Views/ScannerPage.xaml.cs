@@ -77,7 +77,7 @@ namespace QR_CodeScanner.Views
                     {
                         if (!(resultString.Substring(0, 11) == "BEGIN:VCARD") && (!(resultString.Substring(0,11) == "BEGIN:VCALE")))
                         {
-                            if (resultString.Substring(0, 4).Length >= 4)
+                            if (resultString.Length >= 4)
                             //open website with Browser
                             {
                                 if (resultString.Substring(0, 4) == "http" || resultString.Substring(0, 4) == "smst")
