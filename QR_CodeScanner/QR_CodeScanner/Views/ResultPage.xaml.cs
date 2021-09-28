@@ -13,11 +13,11 @@ namespace QR_CodeScanner.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ResultPage : ContentPage
     {
-        [Obsolete]
-        public ResultPage(string qrCodeText,bool isContact,bool isEvent, bool isPhoneNr, bool isEmail)
+        [Obsolete]//hier noch die anderen schalter hinzufügen
+        public ResultPage(string qrCodeText,bool isContact,bool isEvent, bool isPhoneNr, bool isEmail,bool isSMS,bool isFood,bool isWebsite,string phoneNumber)
         {
             InitializeComponent();
-            BindingContext = new ResultViewModel(qrCodeText,isContact,isEvent,isPhoneNr,isEmail);
+            BindingContext = new ResultViewModel(qrCodeText,isContact,isEvent,isPhoneNr,isEmail,isSMS,isFood,isWebsite,string.Empty);
         }
     }
 }

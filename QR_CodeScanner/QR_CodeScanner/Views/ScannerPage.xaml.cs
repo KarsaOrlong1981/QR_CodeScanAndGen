@@ -13,10 +13,7 @@ using Android.Provider;
 using Android.App;
 using Android.Widget;
 using Result = ZXing.Result;
-
-
-
-
+using QR_CodeScanner.Model;
 
 namespace QR_CodeScanner.Views
 {
@@ -24,16 +21,13 @@ namespace QR_CodeScanner.Views
    
     public partial class ScannerPage : ContentPage
     {
-
-        private bool isContactS, isEventS, isPhoneNrS, isEmailS;
+        CultureLang culture;
+        
         public ScannerPage()
         {
             InitializeComponent();
 
-            isEventS = false;
-            isPhoneNrS = false;
-            isEmailS = false;
-            isContactS = false;
+            culture = new CultureLang();
         }
         //If the Scanner recognizes an QR-Code
         [Obsolete]
@@ -41,7 +35,7 @@ namespace QR_CodeScanner.Views
         {
            
 
-            Device.BeginInvokeOnMainThread(() =>
+            Device.BeginInvokeOnMainThread(async () =>
             {
                 scanView.IsScanning = false;
                 scanView.IsAnalyzing = false;
@@ -59,13 +53,13 @@ namespace QR_CodeScanner.Views
                         {
 
 
-                            BooleanCallResult(result.Text, false, true, false, false);
+                            BooleanCallResult(result.Text, false, true, false, false,false,false,false,string.Empty);
                         }
                         //To recognizes an VCalendar and read Vcalendar
                         if (resultString.Substring(0, 11) == "BEGIN:VCALE")
                         {
 
-                            BooleanCallResult(result.Text, true, false, false, false);
+                            BooleanCallResult(result.Text, true, false, false, false,false,false,false,string.Empty);
                             
                         }
                         
@@ -73,71 +67,76 @@ namespace QR_CodeScanner.Views
                     }
                     else
                     {
+                       
+
                         //here i can say that is Text
-                        BooleanCallResult(result.Text, false, false, false, false);
+                        BooleanCallResult(result.Text, false, false, false, false, false, false, false,string.Empty);
                     }
 
                     if (resultString.Length >= 11)
                     {
                         if (!(resultString.Substring(0, 11) == "BEGIN:VCARD") && (!(resultString.Substring(0,11) == "BEGIN:VCALE")))
                         {
-                            BooleanCallResult(result.Text, false, false, false, false);//Here ican say that is Text
+                            if (resultString.Substring(0, 4).Length >= 4)
+                            //open website with Browser
+                            {
+                                if (resultString.Substring(0, 4) == "http" || resultString.Substring(0, 4) == "smst")
+                                {
+                                    if (resultString.Substring(0, 4) == "http")
+                                    {
+                                        try
+                                        {
+                                            await OpenBrowser(resultString);
+                                        }
+                                        catch
+                                        {
+                                            var activity = Forms.Context as Activity;
+                                            if (culture.GetCulture() == "de")
+
+                                                Toast.MakeText(activity, "Website kann nicht geladen werden.", ToastLength.Long).Show();
+
+                                            else
+
+                                                Toast.MakeText(activity, "Website not found.", ToastLength.Long).Show();
+                                        }
+                                    }
+                                    if(resultString.Substring(0,4) == "smst")
+                                    {
+                                        //smsMethode aufrufen
+                                    }
+
+                                }
+                                else
+                                    BooleanCallResult(result.Text, false, false, false, false, false, false, false, string.Empty);//Here ican say that is Text
+                            }
+                            else
+                                BooleanCallResult(result.Text, false, false, false, false, false, false, false, string.Empty);//Here ican say that is Text
+
                         }
                     }
-
-
-
-
                 }
                 else
                 {
-                    BooleanCallResult(result.Text, false, false, true, false);
+                    //hére i can say its an Phonenumber
+                    BooleanCallResult(result.Text, false, false, true, false,false,false,false,string.Empty);
                 }
-                  
-
-
-
-               
-
-
-
-
-
-
-
-
-
-                /*try
-                {
-                    await OpenBrowser(result.Text);
-                }
-                catch
-                {
-
-                }*/
-
-
-
             });
         }
 
         [Obsolete]
-        void BooleanCallResult(string result,bool isEv, bool isCon, bool isPho, bool isEma)
+        void BooleanCallResult(string result,bool isEv, bool isCon, bool isPho, bool isEmail,bool isSMS,bool isFood, bool isWebsite,string phoneNumber)
         {
-            isEventS = isEv;
-            isContactS = isCon;
-            isPhoneNrS = isPho;
-            isEmailS = isEma;
+           
 
-            CallResultPageWithConEven(result, isContactS, isEventS, isPhoneNrS, isEmailS);
+            CallResultPageWithConEven(result, isEv, isCon, isPho,isEmail,isSMS,isFood , isWebsite, phoneNumber);
         }
 
         [Obsolete]
-        async void CallResultPageWithConEven(string resultQrCode,bool isContact,bool isEvent,bool isPhonenumber, bool isEmail)
+        async void CallResultPageWithConEven(string resultQrCode,bool isContact,bool isEvent,bool isPhonenumber, bool isEmail,bool isSMS,bool isFood, bool isWebsite,string phoneNumber)
         {
            
            
-            ResultPage call = new ResultPage(resultQrCode,isContact,isEvent,isPhonenumber,isEmail);
+            ResultPage call = new ResultPage(resultQrCode,isContact,isEvent,isPhonenumber,isEmail,isSMS,isFood,isWebsite,string.Empty);
             await Navigation.PushAsync(call);
             scanView.IsScanning = true;
             scanView.IsAnalyzing = true;
@@ -147,16 +146,7 @@ namespace QR_CodeScanner.Views
         //If Scanner recognizes an Website open Browser
         public async Task OpenBrowser(string uri)
         {
-            try
-            {
-                await Xamarin.Essentials.Browser.OpenAsync(uri, BrowserLaunchMode.SystemPreferred);
-            }
-            catch(Exception)
-            {
-               
-            }
-
-                
+           await Xamarin.Essentials.Browser.OpenAsync(uri, BrowserLaunchMode.SystemPreferred);
         }
        
         private void ZXingDefaultOverlay_FlashButtonClicked(Xamarin.Forms.Button sender, EventArgs e)

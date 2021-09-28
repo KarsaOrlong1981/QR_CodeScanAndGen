@@ -42,7 +42,7 @@ namespace QR_CodeScanner.ViewModel
         public ICommand ButtonShare { get; set; }
 
         [Obsolete]
-        public ResultViewModel(string qrTxt,bool isContact,bool isEvent,bool isPhoneNumber, bool isEmail)
+        public ResultViewModel(string qrTxt,bool isContact,bool isEvent,bool isPhoneNumber, bool isEmail,bool isSMS,bool isFood, bool isWebsite,string phoneNumberSMS)
         {
             shareQR = new ShareContent();
             culture = new CultureLang();
@@ -73,11 +73,6 @@ namespace QR_CodeScanner.ViewModel
                 ShareTo = "Share\nContact";
                 
                 GetContactsResult(qrTxt);
-               
-
-               
-
-
             }
 
             else
@@ -124,10 +119,7 @@ namespace QR_CodeScanner.ViewModel
                     VCard7Link = "";
                 }
 
-               /*VCard8 = "";
-                VCard9 = "";
-                VCard9Link = "";
-                VCard10 = "";*/
+              
                 if (isEmail)
                 {
                    
@@ -142,8 +134,7 @@ namespace QR_CodeScanner.ViewModel
                     VCard11 = "";
                     VCard11Link = "";
                 }
-                /*VCard12 = "";
-                VCard13 = "";*/
+                
 
 
 
