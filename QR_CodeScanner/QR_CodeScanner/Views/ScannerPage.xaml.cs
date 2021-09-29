@@ -103,6 +103,8 @@ namespace QR_CodeScanner.Views
                                     if(resultString.Substring(0,4) == "smst")
                                     {
                                         //smsMethode aufrufen
+                                        string[] messageAndNumber = resultString.Split(':');
+                                      await SendSms(messageAndNumber[2], messageAndNumber[1]);
                                     }
 
                                 }
@@ -154,13 +156,34 @@ namespace QR_CodeScanner.Views
             scanView.ToggleTorch();
         }
 
-       
+        [Obsolete]
+        private async Task SendSms(string messageText, string recipient)
+        {
+            try
+            {
+                var message = new SmsMessage(messageText, recipient);
+                await Sms.ComposeAsync(message);
+            }
+            catch
+            {
+                // Sms is not supported on this device.
+                var activity = Forms.Context as Activity;
+                if (culture.GetCulture() == "de")
 
-        
-        
-       
-       
+                    Toast.MakeText(activity, "SMS wird auf diesem Gerät nicht unterstützt.", ToastLength.Long).Show();
 
-     
+                else
+
+                    Toast.MakeText(activity, "Sms is not supported on this device.", ToastLength.Long).Show();
+            }
+            
+        }
+
+
+
+
+
+
+
     }
 }

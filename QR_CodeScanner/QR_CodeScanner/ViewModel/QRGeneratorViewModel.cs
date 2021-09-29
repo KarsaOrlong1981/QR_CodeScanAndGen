@@ -10,6 +10,9 @@ using Android.App;
 using Android.Widget;
 using System.Globalization;
 using QR_CodeScanner.Model;
+using System.Collections.ObjectModel;
+using SQLite;
+
 
 namespace QR_CodeScanner.ViewModel
 {
@@ -20,7 +23,7 @@ namespace QR_CodeScanner.ViewModel
         string[] splitVCard;
         string text;
         string labelText;
-       
+        string progressFile;
         
         string bgColor;
         string tcColor;
@@ -33,6 +36,8 @@ namespace QR_CodeScanner.ViewModel
         ShareContent share;
         Stream stream;
         CultureLang culture;
+       
+        
         public ICommand ButtonShareClicked { get; set; }
         public ICommand ButtonSaveClicked { get; set; }
        
@@ -41,11 +46,14 @@ namespace QR_CodeScanner.ViewModel
         {
             //this creates the Barcode text
             Text = qrTxt;
+            GetImageAndText();
             share = new ShareContent();
             qrCode = qrTxt;
             FontSizeQR = 20;
             LabelText = "";
             culture = new CultureLang();
+            
+            
             if (isContact)
             {
                 FontSizeQR = 13;
@@ -102,12 +110,7 @@ namespace QR_CodeScanner.ViewModel
                // Text = qrTxt;
                 LabelText = qrTxt;
 
-                VCard1 = "";
-                VCard2 = "";
-                VCard3 = "";
-                VCard4 = "";
-                VCard5 = "";
-                VCard6 = "";
+              
                 
                 if (isPhoneNumber)
                 {
@@ -116,16 +119,9 @@ namespace QR_CodeScanner.ViewModel
                     VCard7 = qrTxt;
                     VCard7Link = "tel:" + qrTxt;
                 }
-                else
-                {
-                    VCard7 = "";
-                    VCard7Link = "";
-                }
+              
                
-                VCard8 = "";
-                VCard9 = "";
-                VCard9Link = "";
-                VCard10 = "";
+               
 
                 if (isEmail)
                 {
@@ -135,11 +131,7 @@ namespace QR_CodeScanner.ViewModel
                         VCard11Link = "mailto:" + qrTxt;
                      
                 }
-                else
-                {
-                    VCard11 = "";
-                    VCard11Link = "";
-                }
+              
 
                 if (isSMS)
                 {
@@ -150,14 +142,9 @@ namespace QR_CodeScanner.ViewModel
                     VCard11Link = "smsto:" + phoneNumber + ":" + qrTxt;
                     Text = "smsto:" + phoneNumber + ":" + qrTxt;
                 }
-                else
-                {
-                    VCard11 = "";
-                    VCard11Link = "";
-                }
+                
 
-                VCard12 = "";
-                VCard13 = "";
+               
 
                
                
@@ -170,7 +157,11 @@ namespace QR_CodeScanner.ViewModel
             shareIsVisible = "true";
             ButtonShareClicked = new Command(ShareQRImage);
             ButtonSaveClicked = new Command(SaveQR);
+
+           
         }
+
+       
         public string LabelText
         {
             get => labelText;
@@ -292,7 +283,12 @@ namespace QR_CodeScanner.ViewModel
             set => SetProperty(ref vcard13, value);
         }
 
-        
+        private void GetImageAndText()
+        {
+            
+            string text = Text;
+            new ProgressPage(text);
+        }
         async Task<string> CaptureScreenshot()
         {
             
@@ -376,6 +372,7 @@ namespace QR_CodeScanner.ViewModel
 
 
             string file = await CaptureScreenshot();
+            progressFile = file;
             SaveImage(file);
             
             LabelText = labelT;

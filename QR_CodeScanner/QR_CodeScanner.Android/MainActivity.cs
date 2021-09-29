@@ -56,13 +56,7 @@ namespace QR_CodeScanner.Droid
             
                 base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
             
-        
-
-
-
-
-
-    }
+        }
 
        
 

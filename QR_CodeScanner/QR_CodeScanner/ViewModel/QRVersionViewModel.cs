@@ -44,6 +44,8 @@ namespace QR_CodeScanner.ViewModel
         {
             await Navigation.PushAsync(new FoodPage());
         }
+
+        [Obsolete]
         public async Task CallSmSPage()
         {
             await Navigation.PushAsync(new SMSPage());
@@ -144,6 +146,8 @@ namespace QR_CodeScanner.ViewModel
         {
             await CallEmailPage();
         }
+
+        [Obsolete]
         private async void GotoSmSPage()
         {
             await CallSmSPage();

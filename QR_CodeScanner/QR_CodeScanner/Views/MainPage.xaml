@@ -53,7 +53,7 @@
 
             <Button Grid.Row="1" Grid.Column="2" Command="{Binding ButtonGeneratorClicked}" Text="Generator" TextColor="Black" ImageSource="Gen24.png" ContentLayout="Top,0" BackgroundColor="MintCream" FontSize="Small"    VerticalOptions="CenterAndExpand"  />
             <Button Grid.Row="1" Grid.Column="1" Text="Info" TextColor="Black" ImageSource="info26.png" ContentLayout="Top,0" BackgroundColor="MintCream" FontSize="Small"    VerticalOptions="CenterAndExpand"/>
-            <Button Grid.Row="1" Grid.Column="0"   Text="Placeholder" ContentLayout="Top,0" TextColor="Black" BackgroundColor="MintCream" ImageSource="Gen24.png" FontSize="Small"  VerticalOptions="CenterAndExpand"/>
+            <Button Grid.Row="1" Grid.Column="0"  Command="{Binding ButtonProgressClicked}" Text="Verlauf" ContentLayout="Top,0" TextColor="Black" BackgroundColor="MintCream" ImageSource="Gen24.png" FontSize="Small"  VerticalOptions="CenterAndExpand"/>
         </Grid>
 
     </Grid>

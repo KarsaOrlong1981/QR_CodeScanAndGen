@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage BackgroundColor="MintCream" xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:ZXing="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms" xmlns:zxingcommon="clr-namespace:ZXing.Common;assembly=zxing.portable"
+             x:Class="QR_CodeScanner.Views.ProgressPage">
+    <ScrollView >
+        
+   
+    <Grid>
+        <Grid.RowDefinitions>
+            
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+          
+            <CollectionView x:Name="collectionView" Grid.Row="0" HorizontalOptions="CenterAndExpand" Margin="10"
+                            >
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame HasShadow="True" BorderColor="LightGray" Margin="10" CornerRadius="20" BackgroundColor="White" >
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Label Grid.Row="0" Text="{Binding Date}" HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand"
+                               FontSize="Medium" />
+                                <ZXing:ZXingBarcodeImageView x:Name="barCode" Grid.Row="1"
+                                    
+                                     BarcodeValue="{Binding QRText}" 
+                                     BarcodeFormat="QR_CODE" 
+                                     VerticalOptions="StartAndExpand"   
+                                     HeightRequest="100" 
+                                     WidthRequest="100" >
+                    <ZXing:ZXingBarcodeImageView.BarcodeOptions >
+                        <zxingcommon:EncodingOptions Height="100" Width="100" />
+                    </ZXing:ZXingBarcodeImageView.BarcodeOptions>
+                </ZXing:ZXingBarcodeImageView>
+                                <Label Grid.Row="2" Text="{Binding QRText}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" 
+                                       FontSize="Medium" />
+                              
+                            </Grid>
+                       
+                        </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+    </ScrollView>
+</ContentPage>
