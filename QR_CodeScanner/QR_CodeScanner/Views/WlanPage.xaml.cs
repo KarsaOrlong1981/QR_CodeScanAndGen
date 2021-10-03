@@ -13,15 +13,11 @@ namespace QR_CodeScanner.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class WlanPage : ContentPage
     {
-        
         [Obsolete]
         public WlanPage()
         {
             InitializeComponent();
-            
-           
             BindingContext = new WLanViewModel(Navigation);
-           
         }
 
         private void ContentPage_Disappearing(object sender, EventArgs e)

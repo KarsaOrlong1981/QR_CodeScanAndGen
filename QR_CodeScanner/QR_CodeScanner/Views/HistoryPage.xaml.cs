@@ -21,27 +21,27 @@ namespace QR_CodeScanner.Views
     {
         QRhistory history;
         CultureLang culture;
-        
+
         [Obsolete]
-        public HistoryPage(string qrText,string eventQR,bool course)
+        public HistoryPage(string qrText, string eventQR, bool course)
         {
             InitializeComponent();
             culture = new CultureLang();
             history = new QRhistory();
             DataBaseresult();
-           
-            if(qrText != null)
-            {
-               if(course == true)
-                AddToDB(qrText,eventQR);
-            }
-            
-            
-        }
-     
 
-       private void DataBaseresult()
-       {
+            if (qrText != null)
+            {
+                if (course == true)
+                    AddToDB(qrText, eventQR);
+            }
+
+
+        }
+
+
+        private void DataBaseresult()
+        {
             if (App.Database1.GetQRcodeAsync().Result.Count == 0)
             {
                 toolItem.IsEnabled = false;
@@ -64,29 +64,29 @@ namespace QR_CodeScanner.Views
                 };
                 grid.Children.Add(lab);
             }
-       }
-       
+        }
+
         protected override async void OnAppearing()
         {
             base.OnAppearing();
             collectionView.ItemsSource = await App.Database1.GetQRcodeAsync();
         }
 
-        private async void AddToDB(string qrTxt,string ev)
+        private async void AddToDB(string qrTxt, string ev)
         {
             if (!string.IsNullOrWhiteSpace(qrTxt) && !string.IsNullOrWhiteSpace(ev))
             {
-                
+
                 await App.Database1.SaveQRcodeAsync(new Model.QRhistory
                 {
-                    
-                    QRText = qrTxt ,
+
+                    QRText = qrTxt,
                     Event = ev,
-                    Date = DateTime.Now ,
+                    Date = DateTime.Now,
                 });
 
-                
-               
+
+
                 collectionView.ItemsSource = await App.Database1.GetQRcodeAsync();
             }
         }
@@ -96,7 +96,7 @@ namespace QR_CodeScanner.Views
         {
             string qrtxt = (e.CurrentSelection.FirstOrDefault() as QRhistory)?.QRText;
             string eve = (e.CurrentSelection.FirstOrDefault() as QRhistory)?.Event;
-           
+
             string number = string.Empty;
             bool text = false;
             bool wlan = false;
@@ -108,50 +108,57 @@ namespace QR_CodeScanner.Views
             bool sms = false;
             bool food = false;
             bool browser = false;
-            
-            
+
+
             switch (eve)
             {
-                case "Text": text = true;
+                case "Text":
+                    text = true;
                     break;
-                case "Wlan": wlan = true;
+                case "Wlan":
+                    wlan = true;
                     break;
-                case "Website": website = true;
+                case "Website":
+                    website = true;
                     break;
-                case "Contact": contact = true;
+                case "Contact":
+                    contact = true;
                     break;
-                case "Event": eventY = true;
+                case "Event":
+                    eventY = true;
                     break;
-                case "Phonenumber": phoneNR = true;
+                case "Phonenumber":
+                    phoneNR = true;
                     break;
-                case "Email": email = true;
+                case "Email":
+                    email = true;
                     break;
-                case "SMS": sms = true;
+                case "SMS":
+                    sms = true;
                     string[] messageAndNumber = qrtxt.Split(':');
                     qrtxt = messageAndNumber[1];
                     number = messageAndNumber[2];
                     break;
-                case "Food": food = true;
+                case "Food":
+                    food = true;
                     break;
-                    case "Browser": website = true;
+                case "Browser":
+                    website = true;
                     break;
             }
-            if(text == true)
+            if (text == true)
             {
-                OpenNewGenerator(qrtxt, false, false, false,false, false, false, false, false, false, number, true);
+                OpenNewGenerator(qrtxt, false, false, false, false, false, false, false, false, false, number, true);
             }
             else
-            //wenn hier generator geöffnet wird true
-            OpenNewGenerator(qrtxt,wlan,website,contact,eventY,phoneNR,email,sms,food,browser,number,true);
-           // collectionView.SelectionChanged -= this.CollectionView_SelectionChanged;
-            //collectionView.SelectedItem = null;
-           // collectionView.SelectionChanged += this.CollectionView_SelectionChanged;
+                //wenn hier generator geöffnet wird true
+                OpenNewGenerator(qrtxt, wlan, website, contact, eventY, phoneNR, email, sms, food, browser, number, true);
         }
 
         [Obsolete]
-        private async void OpenNewGenerator(string qrtxtX,bool wlanX, bool websiteX,bool contactX, bool eventX, bool phoneNRX,bool emailX, bool smsX, bool foodX,bool browserX, string numberX,bool fromProgress)
+        private async void OpenNewGenerator(string qrtxtX, bool wlanX, bool websiteX, bool contactX, bool eventX, bool phoneNRX, bool emailX, bool smsX, bool foodX, bool browserX, string numberX, bool fromProgress)
         {
-            QRGeneratorPage qrGVM = new QRGeneratorPage(qrtxtX,wlanX,websiteX, contactX, eventX, phoneNRX, emailX, smsX, foodX, browserX, numberX,true);
+            QRGeneratorPage qrGVM = new QRGeneratorPage(qrtxtX, wlanX, websiteX, contactX, eventX, phoneNRX, emailX, smsX, foodX, browserX, numberX, true);
             await Navigation.PushAsync(qrGVM);
         }
 
@@ -185,11 +192,11 @@ namespace QR_CodeScanner.Views
                 collectionView.ItemsSource = await App.Database1.GetQRcodeAsync();
                 DataBaseresult();
             }
-           
-          
+
+
         }
 
-       
+
 
         private void ContentPage_Disappearing(object sender, EventArgs e)
         {
@@ -215,17 +222,17 @@ namespace QR_CodeScanner.Views
                 yes = "Yes";
                 no = "No";
             }
-           
-            
-                string result = await DisplayActionSheet(title, null, null, yes, no);
-                if (result == yes)
-                {
-                    await App.Database1.DeleteAllItems<QRhistory>();
-                    collectionView.ItemsSource = await App.Database1.GetQRcodeAsync();
-                    DataBaseresult();
-                }
-            
-           
+
+
+            string result = await DisplayActionSheet(title, null, null, yes, no);
+            if (result == yes)
+            {
+                await App.Database1.DeleteAllItems<QRhistory>();
+                collectionView.ItemsSource = await App.Database1.GetQRcodeAsync();
+                DataBaseresult();
+            }
+
+
         }
     }
 }

@@ -10,7 +10,7 @@ using Android.Content;
 
 namespace QR_CodeScanner.ViewModel
 {
-    public class QRVersionViewModel : BaseViewModel 
+    public class QRVersionViewModel : BaseViewModel
     {
         public INavigation Navigation { get; set; }
         public ICommand ButtonTextClicked { get; set; }
@@ -49,7 +49,6 @@ namespace QR_CodeScanner.ViewModel
         public async Task CallSmSPage()
         {
             await Navigation.PushAsync(new SMSPage());
-           
         }
 
         [Obsolete]
@@ -57,7 +56,6 @@ namespace QR_CodeScanner.ViewModel
         {
 
             await Navigation.PushAsync(new PhonePage());
-            
         }
 
         [Obsolete]
@@ -65,74 +63,62 @@ namespace QR_CodeScanner.ViewModel
         {
 
             await Navigation.PushAsync(new EmailPage());
-           
         }
 
         [Obsolete]
         public async Task CallEventPage()
         {
-            
             await Navigation.PushAsync(new EventPage());
-           
         }
 
         [Obsolete]
         public async Task CallTextPage()
         {
-
             await Navigation.PushAsync(new TextPage());
-          
         }
 
         [Obsolete]
         public async Task CallWebsitePage()
         {
-
             await Navigation.PushAsync(new WebsitePage());
-            
         }
 
         [Obsolete]
         public async Task CallWLanPage()
         {
-
             await Navigation.PushAsync(new WlanPage());
-           
         }
 
         [Obsolete]
         public async Task CallContactPage()
         {
-
             await Navigation.PushAsync(new ContactPage());
-           
         }
 
         [Obsolete]
-      private async void GotoWebsitePage()
+        private async void GotoWebsitePage()
         {
-          await CallWebsitePage();
+            await CallWebsitePage();
         }
 
         [Obsolete]
-       private async void GotoTextPage()
+        private async void GotoTextPage()
         {
             await CallTextPage();
         }
-
         [Obsolete]
         private async void GotoFoodPage()
         {
             await CallFoodPage();
         }
         [Obsolete]
-       private async void GotoWlanPage()
+        private async void GotoWlanPage()
         {
             await CallWLanPage();
         }
 
         [Obsolete]
-       private async void GotoContactPage()
+        private async void GotoContactPage()
         {
             await CallContactPage();
         }

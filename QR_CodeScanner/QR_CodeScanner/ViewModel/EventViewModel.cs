@@ -13,7 +13,7 @@ namespace QR_CodeScanner.ViewModel
     {
         string title, location, description;
         TimeSpan timeStart, timeEnd;
-        DateTime dateTime, startDate,endDate;
+        DateTime dateTime, startDate, endDate;
         CultureLang culture;
         public ICommand ButtonGenerateClicked { get; set; }
         public INavigation Navigation { get; set; }
@@ -23,18 +23,15 @@ namespace QR_CodeScanner.ViewModel
         {
             this.Navigation = navigation;
             culture = new CultureLang();
-            
-            ButtonGenerateClicked = new Command(async () => await CallQRGeneratorPage());
 
-            
-            
+            ButtonGenerateClicked = new Command(async () => await CallQRGeneratorPage());
             dateTime = DateTime.Now;
-           
+
             StartDate = dateTime.Date;
             EndDate = dateTime.Date;
             TimePicker timePicker = new TimePicker
             {
-                Time = new TimeSpan(dateTime.Hour, dateTime.Minute,dateTime.Second) // Time set to Now
+                Time = new TimeSpan(dateTime.Hour, dateTime.Minute, dateTime.Second) // Time set to Now
             };
 
             TimeStart = timePicker.Time;
@@ -44,8 +41,8 @@ namespace QR_CodeScanner.ViewModel
         [Obsolete]
         async Task CallQRGeneratorPage()
         {
-           
-            await Navigation.PushAsync(new QRGeneratorPage(GetEvent(), false,false,false,true,false,false,false,false ,false,string.Empty,false));
+
+            await Navigation.PushAsync(new QRGeneratorPage(GetEvent(), false, false, false, true, false, false, false, false, false, string.Empty, false));
 
         }
         string GetEvent()
@@ -57,7 +54,7 @@ namespace QR_CodeScanner.ViewModel
             string[] splitEndDate = Convert.ToString(EndDate).Split('.', ':', ',', '/', ' ');
             string[] splitTimeStartDate = Convert.ToString(TimeStart).Split('.', ':', ',', '/', ' ');
             string[] splitTimeEndDate = Convert.ToString(TimeEnd).Split('.', ':', ',', '/', ' ');
-            if(culture.GetCulture() == "de")
+            if (culture.GetCulture() == "de")
             {
                 startDateG = splitDate[2] + splitDate[1] + splitDate[0];
                 endDateG = splitEndDate[2] + splitEndDate[1] + splitEndDate[0];
@@ -77,20 +74,20 @@ namespace QR_CodeScanner.ViewModel
                     formatD = splitEndDate[0];
                 endDateG = splitEndDate[2] + formatD + splitEndDate[1];
             }
-           
-           
+
+
             string timeStartG = splitTimeStartDate[0] + splitTimeStartDate[1] + splitTimeStartDate[2];
             string timeEndG = splitTimeEndDate[0] + splitTimeEndDate[1] + splitTimeEndDate[2];
 
             string vCalendar = "BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:-//J.T/Th//EN\nBEGIN:VEVENT\nDTSTART:" + startDateG + "T" + timeStartG + "Z"
                              + "\nDTEND:" + endDateG + "T" + timeEndG + "Z" + "\nSUMMARY:" + Title + "\nDESCRIPTION:" + Description + "\nLOCATION:" + Location + "\nEND:VEVENT\nEND:VCALENDAR";
-           
-            
+
+
             return vCalendar;
 
         }
 
-        
+
         public TimeSpan TimeStart
         {
             get => timeStart;
@@ -126,7 +123,5 @@ namespace QR_CodeScanner.ViewModel
             get => description;
             set => SetProperty(ref description, value);
         }
-       
-       
     }
 }

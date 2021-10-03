@@ -12,9 +12,9 @@ using QR_CodeScanner.Model;
 
 namespace QR_CodeScanner.ViewModel
 {
-    public class TextViewModel : BaseViewModel 
+    public class TextViewModel : BaseViewModel
     {
-        string entry,editorCulture,buttonCulture,titleCulture;
+        string entry, editorCulture, buttonCulture, titleCulture;
         CultureLang culture;
         public ICommand ButtonGeneratorPageClicked { get; set; }
         public INavigation Navigation { get; set; }
@@ -25,7 +25,7 @@ namespace QR_CodeScanner.ViewModel
             this.Navigation = navigation;
             culture = new CultureLang();
 
-            if(culture.GetCulture() == "de")
+            if (culture.GetCulture() == "de")
             {
                 EditorCulture = "Text eintragen";
                 ButtonCulture = "QR-Code generieren";
@@ -37,16 +37,13 @@ namespace QR_CodeScanner.ViewModel
                 ButtonCulture = "Generate QR-Code";
                 TitleCulture = "Generate Text QR-Code";
             }
-            
-
             ButtonGeneratorPageClicked = new Command(async () => await CallQRGeneratorPage());
         }
 
         [Obsolete]
         public async Task CallQRGeneratorPage()
         {
-            
-            await Navigation.PushAsync(new QRGeneratorPage(EntryText,false,false,false,false,false,false,false,false,false,string.Empty,false));
+            await Navigation.PushAsync(new QRGeneratorPage(EntryText, false, false, false, false, false, false, false, false, false, string.Empty, false));
         }
         public string EntryText
         {

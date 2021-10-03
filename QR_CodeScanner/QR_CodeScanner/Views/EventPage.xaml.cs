@@ -17,7 +17,7 @@ namespace QR_CodeScanner.Views
         public EventPage()
         {
             InitializeComponent();
-           
+
             BindingContext = new EventViewModel(Navigation);
             btn_generate.IsEnabled = false;
         }

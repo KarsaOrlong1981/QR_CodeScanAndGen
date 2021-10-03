@@ -23,13 +23,13 @@ namespace QR_CodeScanner.ViewModel
         [Obsolete]
         public async Task CallQRGeneratorPage()
         {
-           
-            await Navigation.PushAsync(new QRGeneratorPage(EmailADD,false,false, false, false, false, true,false,false,false,string.Empty,false));
+
+            await Navigation.PushAsync(new QRGeneratorPage(EmailADD, false, false, false, false, false, true, false, false, false, string.Empty, false));
         }
         public string EmailADD
         {
-            get => email ;
-            set => SetProperty(ref email , value);
+            get => email;
+            set => SetProperty(ref email, value);
         }
     }
 }

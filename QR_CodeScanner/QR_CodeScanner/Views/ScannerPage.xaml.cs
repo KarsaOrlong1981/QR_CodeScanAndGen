@@ -20,7 +20,7 @@ using Android.Media.Midi;
 namespace QR_CodeScanner.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-   
+
     public partial class ScannerPage : ContentPage
     {
         CultureLang culture;
@@ -36,7 +36,7 @@ namespace QR_CodeScanner.Views
         [Obsolete]
         public void scanView_OnScanResult(Result result)
         {
-           
+
 
             Device.BeginInvokeOnMainThread(async () =>
             {
@@ -56,34 +56,34 @@ namespace QR_CodeScanner.Views
                         {
 
 
-                            BooleanCallResult(result.Text,false,false, false, true, false, false,false,false,false,string.Empty);
+                            BooleanCallResult(result.Text, false, false, false, true, false, false, false, false, false, string.Empty);
                         }
                         //To recognizes an VCalendar and read Vcalendar
                         if (resultString.Substring(0, 11) == "BEGIN:VCALE")
                         {
 
-                            BooleanCallResult(result.Text,false,false, true, false, false, false,false,false,false,string.Empty);
-                            
+                            BooleanCallResult(result.Text, false, false, true, false, false, false, false, false, false, string.Empty);
+
                         }
-                        
+
 
                     }
                     else
                     {
-                       
+
 
                         //here i can say that is Text
-                        BooleanCallResult(result.Text,false,false, false, false, false, false, false, false, false,string.Empty);
+                        BooleanCallResult(result.Text, false, false, false, false, false, false, false, false, false, string.Empty);
                     }
 
                     if (resultString.Length >= 11)
                     {
-                        if (!(resultString.Substring(0, 11) == "BEGIN:VCARD") && (!(resultString.Substring(0,11) == "BEGIN:VCALE")))
+                        if (!(resultString.Substring(0, 11) == "BEGIN:VCARD") && (!(resultString.Substring(0, 11) == "BEGIN:VCALE")))
                         {
                             if (resultString.Length >= 4)
                             //open website with Browser or sms or wlan
                             {
-                                if (resultString.Substring(0, 4) == "http" || resultString.Substring(0, 4) == "smst" || resultString.Substring(0,4) == "WIFI")
+                                if (resultString.Substring(0, 4) == "http" || resultString.Substring(0, 4) == "smst" || resultString.Substring(0, 4) == "WIFI")
                                 {
                                     if (resultString.Substring(0, 4) == "http")
                                     {
@@ -103,11 +103,11 @@ namespace QR_CodeScanner.Views
                                                 Toast.MakeText(activity, "Website not found.", ToastLength.Long).Show();
                                         }
                                     }
-                                    if(resultString.Substring(0,4) == "smst")
+                                    if (resultString.Substring(0, 4) == "smst")
                                     {
-                                        
+
                                         string[] messageAndNumber = resultString.Split(':');
-                                      await SendSms(messageAndNumber[2], messageAndNumber[1]);
+                                        await SendSms(messageAndNumber[2], messageAndNumber[1]);
                                     }
                                     if (resultString.Substring(0, 4) == "WIFI")
                                     {
@@ -117,10 +117,10 @@ namespace QR_CodeScanner.Views
                                     }
                                 }
                                 else
-                                    BooleanCallResult(result.Text,false,false, false, false, false, false, false, false, false, string.Empty);//Here ican say that is Text
+                                    BooleanCallResult(result.Text, false, false, false, false, false, false, false, false, false, string.Empty);//Here ican say that is Text
                             }
                             else
-                                BooleanCallResult(result.Text,false,false, false, false, false, false, false, false, false, string.Empty);//Here ican say that is Text
+                                BooleanCallResult(result.Text, false, false, false, false, false, false, false, false, false, string.Empty);//Here ican say that is Text
 
                         }
                     }
@@ -128,38 +128,38 @@ namespace QR_CodeScanner.Views
                 else
                 {
                     //hére i can say its an Phonenumber
-                    BooleanCallResult(result.Text,false,false, false, false, true, false,false,false,false,string.Empty);
+                    BooleanCallResult(result.Text, false, false, false, false, true, false, false, false, false, string.Empty);
                 }
-                
+
             });
         }
 
         [Obsolete]
-        void BooleanCallResult(string result,bool isWL,bool isWeb,bool isEv, bool isCon, bool isPho, bool isEmail,bool isSMS,bool isFood, bool isBrowser,string phoneNumber)
+        void BooleanCallResult(string result, bool isWL, bool isWeb, bool isEv, bool isCon, bool isPho, bool isEmail, bool isSMS, bool isFood, bool isBrowser, string phoneNumber)
         {
-           
 
-            CallResultPageWithConEven(result,isWL,isWeb, isEv, isCon, isPho,isEmail,isSMS,isFood , isBrowser, phoneNumber);
+
+            CallResultPageWithConEven(result, isWL, isWeb, isEv, isCon, isPho, isEmail, isSMS, isFood, isBrowser, phoneNumber);
         }
 
         [Obsolete]
-        async void CallResultPageWithConEven(string resultQrCode,bool isWlan,bool isWebsite,bool isContact,bool isEvent,bool isPhonenumber, bool isEmail,bool isSMS,bool isFood, bool isBrowser,string phoneNumber)
+        async void CallResultPageWithConEven(string resultQrCode, bool isWlan, bool isWebsite, bool isContact, bool isEvent, bool isPhonenumber, bool isEmail, bool isSMS, bool isFood, bool isBrowser, string phoneNumber)
         {
-           
-           
-            ResultPage call = new ResultPage(resultQrCode,isWlan,isWebsite,isContact,isEvent,isPhonenumber,isEmail,isSMS,isFood,isBrowser,string.Empty);
+
+
+            ResultPage call = new ResultPage(resultQrCode, isWlan, isWebsite, isContact, isEvent, isPhonenumber, isEmail, isSMS, isFood, isBrowser, string.Empty);
             await Navigation.PushAsync(call);
             scanView.IsScanning = true;
             scanView.IsAnalyzing = true;
         }
 
-     
+
         //If Scanner recognizes an Website open Browser
         public async Task OpenBrowser(string uri)
         {
-           await Xamarin.Essentials.Browser.OpenAsync(uri, BrowserLaunchMode.SystemPreferred);
+            await Xamarin.Essentials.Browser.OpenAsync(uri, BrowserLaunchMode.SystemPreferred);
         }
-       
+
         private void ZXingDefaultOverlay_FlashButtonClicked(Xamarin.Forms.Button sender, EventArgs e)
         {
             scanView.ToggleTorch();
@@ -185,7 +185,6 @@ namespace QR_CodeScanner.Views
 
                     Toast.MakeText(activity, "Sms is not supported on this device.", ToastLength.Long).Show();
             }
-            
         }
 
         private void ContentPage_Disappearing(object sender, EventArgs e)

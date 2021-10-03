@@ -16,14 +16,14 @@ namespace QR_CodeScanner.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class QRGeneratorPage : ContentPage
     {
-       
+
 
         [Obsolete]
-        public QRGeneratorPage(string qrCodeText,bool isWlan,bool isWebsite,bool isContact,bool isEvent,bool isPhoneNumber,bool isEmail,bool isSMS, bool isFood, bool isBrowser,string phoneNumber,bool fromProgress)
+        public QRGeneratorPage(string qrCodeText, bool isWlan, bool isWebsite, bool isContact, bool isEvent, bool isPhoneNumber, bool isEmail, bool isSMS, bool isFood, bool isBrowser, string phoneNumber, bool fromProgress)
         {
             InitializeComponent();
 
-            BindingContext = new QRGeneratorViewModel(qrCodeText,isWlan ,isWebsite, isContact,isEvent,isPhoneNumber,isEmail,isSMS,isFood,isBrowser,phoneNumber,fromProgress);              
+            BindingContext = new QRGeneratorViewModel(qrCodeText, isWlan, isWebsite, isContact, isEvent, isPhoneNumber, isEmail, isSMS, isFood, isBrowser, phoneNumber, fromProgress);
         }
 
         private void ContentPage_Disappearing(object sender, EventArgs e)

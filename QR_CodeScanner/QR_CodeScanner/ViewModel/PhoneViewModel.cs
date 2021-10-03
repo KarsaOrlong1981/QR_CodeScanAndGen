@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace QR_CodeScanner.ViewModel
 {
-   
+
     public class PhoneViewModel : BaseViewModel
     {
         string phoneNumber;
@@ -24,8 +24,8 @@ namespace QR_CodeScanner.ViewModel
         [Obsolete]
         public async Task CallQRGeneratorPage()
         {
-           
-            await Navigation.PushAsync(new QRGeneratorPage(PhoneNumber,false,false, false, false,true,false,false,false,false,string.Empty,false));
+
+            await Navigation.PushAsync(new QRGeneratorPage(PhoneNumber, false, false, false, false, true, false, false, false, false, string.Empty, false));
         }
         public string PhoneNumber
         {

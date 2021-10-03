@@ -18,35 +18,33 @@ namespace QR_CodeScanner.ViewModel
 {
     public class ResultViewModel : BaseViewModel
     {
-        
-        string text1,location, text2,text3,text4;
-        string labelText,imageTop;
+        string text1, location, text2, text3, text4;
+        string labelText, imageTop;
         string resultToAdd;
         string bgColor;
         string tcColor;
-        string saveTo,shareTo;
+        string saveTo, shareTo;
         private readonly DateTime timeStart;
         private readonly DateTime timeEnd;
         readonly CultureLang culture;
-       
         string titleEvent, dtStartEvent, dtEndEvent, locationEvent, descriptionEvent;
         string vCardName, vCardEmail, vCardAdress, vCardURL, vCardTitle, vCardORG, vCardTel;
         string vcard1, vcard2, vcard3, vcard4, vcard5, vcard6, vcard7, vcard7Link, vcard8;
         string vcard9, vcard9Link, vcard10, vcard11, vcard11Link, vcard12, vcard13;
         int fontSize;
-        bool isVisEvent,isVis;
-        ShareContent shareQR; 
+        bool isVisEvent, isVis;
+        ShareContent shareQR;
         public ICommand ButtonAddTo { get; set; }
         public ICommand ButtonLocation { get; set; }
 
         public ICommand ButtonShare { get; set; }
 
         [Obsolete]
-        public ResultViewModel(string qrTxt,bool isWlan, bool isWebsite,bool isContact,bool isEvent,bool isPhoneNumber, bool isEmail,bool isSMS,bool isFood, bool isBrowser,string phoneNumberSMS)
+        public ResultViewModel(string qrTxt, bool isWlan, bool isWebsite, bool isContact, bool isEvent, bool isPhoneNumber, bool isEmail, bool isSMS, bool isFood, bool isBrowser, string phoneNumberSMS)
         {
             shareQR = new ShareContent();
             culture = new CultureLang();
-            if(culture.GetCulture() == "de")
+            if (culture.GetCulture() == "de")
             {
                 SaveTo = "Kopieren";
                 ShareTo = "Teilen";
@@ -56,7 +54,6 @@ namespace QR_CodeScanner.ViewModel
                 SaveTo = "Copy";
                 ShareTo = "Share";
             }
-            
             FontSizeQR = 20;
             resultToAdd = qrTxt;
             IsVisEvent = false;
@@ -71,7 +68,6 @@ namespace QR_CodeScanner.ViewModel
                 ImageTop = "kontakt40.png";
                 SaveTo = "Save\nto Contacts";
                 ShareTo = "Share\nContact";
-                
                 GetContactsResult(qrTxt);
             }
 
@@ -83,11 +79,8 @@ namespace QR_CodeScanner.ViewModel
                     ImageTop = "Ereignis.png";
                     SaveTo = "Save\nto Calendar";
                     ShareTo = "Share\nEvent";
-                   
                     GetCalendarResult(qrTxt);
                 }
-
-               
 
                 if (isPhoneNumber)
                 {
@@ -107,22 +100,18 @@ namespace QR_CodeScanner.ViewModel
                         ShareTo = "Share\nnumber";
                     }
 
-                        LabelText = "TEL: ";
+                    LabelText = "TEL: ";
                     VCard7 = qrTxt;
-                    
                     VCard7Link = "tel:" + qrTxt;
                 }
                 else
                 {
-                    
                     VCard7 = "";
                     VCard7Link = "";
                 }
 
-              
                 if (isEmail)
                 {
-                   
                     LabelText = "Email: ";
                     VCard11 = qrTxt;
                     VCard11Link = "mailto:" + qrTxt;
@@ -130,17 +119,10 @@ namespace QR_CodeScanner.ViewModel
                 }
                 else
                 {
-                  
                     VCard11 = "";
                     VCard11Link = "";
                 }
-                
-
-
-
             }
-
-           
 
             tcColor = "Black";
             bgColor = "White";
@@ -148,18 +130,16 @@ namespace QR_CodeScanner.ViewModel
             ButtonLocation = new Command(LaunchingMap);
             ButtonAddTo = new Command(DoNext);
             ButtonShare = new Command(ShareQR);
-           
-           
         }
 
         async void ShareQR()
         {
-          await shareQR.ShareText(resultToAdd);
+            await shareQR.ShareText(resultToAdd);
         }
         [Obsolete]
         async void DoNext()
         {
-            if(SaveTo == "Save\nto Contacts")
+            if (SaveTo == "Save\nto Contacts")
             {
                 await CheckAndRequestContactsPermission();
                 //Permisssions must be granted for Contacts
@@ -172,7 +152,7 @@ namespace QR_CodeScanner.ViewModel
                 //Permisssions must be granted for Calendar
                 await GetCalendarAsync();
             }
-            if(SaveTo == "Nummer\nKopieren" || SaveTo == "Copy\nnumber")
+            if (SaveTo == "Nummer\nKopieren" || SaveTo == "Copy\nnumber")
             {
                 await Clipboard.SetTextAsync(resultToAdd);
                 var activity = Forms.Context as Activity;
@@ -267,7 +247,7 @@ namespace QR_CodeScanner.ViewModel
         }
         public string Text4
         {
-            get => text4 ;
+            get => text4;
             set => SetProperty(ref text4, value);
         }
         public string VCard1
@@ -353,7 +333,6 @@ namespace QR_CodeScanner.ViewModel
             set => SetProperty(ref vcard13, value);
         }
 
-     
         [Obsolete]
         public async Task<PermissionStatus> CheckAndRequestContactsPermission()
         {
@@ -365,12 +344,11 @@ namespace QR_CodeScanner.ViewModel
             if (status == PermissionStatus.Denied && DeviceInfo.Platform == DevicePlatform.iOS)
             {
                 var activity = Forms.Context as Activity;
-                if(culture.GetCulture() == "de")
+                if (culture.GetCulture() == "de")
 
                     Toast.MakeText(activity, "Bitte schalten Sie die Berechtigung für Ihre Kontakte ein, damit diese App das ergebnis zu Ihren kontakten hnzufügen kann.", ToastLength.Long).Show();
                 else
-
-                Toast.MakeText(activity, "Turn on the Contacts permission that the App can write a new Contact from QR-Code result.", ToastLength.Long).Show();
+                    Toast.MakeText(activity, "Turn on the Contacts permission that the App can write a new Contact from QR-Code result.", ToastLength.Long).Show();
                 // Prompt the user with additional information as to why the permission is needed
                 // Prompt the user to turn on in settings
                 // On iOS once a permission has been denied it may not be requested again from the application
@@ -380,9 +358,9 @@ namespace QR_CodeScanner.ViewModel
             if (Permissions.ShouldShowRationale<Permissions.ContactsWrite>())
             {
                 var activity = Forms.Context as Activity;
-                if(culture.GetCulture() == "de")
+                if (culture.GetCulture() == "de")
 
-                Toast.MakeText(activity, "Die Berechtigung auf Kontakte zugreifen zu dürfen wird benötigt um das ergebnis ihren Kontakten hinzuzufügen ", ToastLength.Long).Show();
+                    Toast.MakeText(activity, "Die Berechtigung auf Kontakte zugreifen zu dürfen wird benötigt um das ergebnis ihren Kontakten hinzuzufügen ", ToastLength.Long).Show();
 
                 else
 
@@ -401,12 +379,10 @@ namespace QR_CodeScanner.ViewModel
             var status = await CheckAndRequestPermissionAsync(new Permissions.ContactsWrite());
             if (status != PermissionStatus.Granted)
             {
-                 
                 var activity = Forms.Context as Activity;
-                if(culture.GetCulture() == "de")
+                if (culture.GetCulture() == "de")
 
-                Toast.MakeText(activity, "Beim letzten mal haben Sie den zugriff auf Ihre Kontake abgelehnt. Geben Sie dieser App die Berechtigung auf Ihre Kontakte zuzugreifen um das ergebnis direkt zu Ihren Kontakten hinzuzufügen. ", ToastLength.Long).Show();
-                
+                    Toast.MakeText(activity, "Beim letzten mal haben Sie den zugriff auf Ihre Kontake abgelehnt. Geben Sie dieser App die Berechtigung auf Ihre Kontakte zuzugreifen um das ergebnis direkt zu Ihren Kontakten hinzuzufügen. ", ToastLength.Long).Show();
                 else
                     Toast.MakeText(activity, "The last time you refused the authorization to access the Contacts.Give this App the authorization for your Contacts to add Contacts directly via a QR-Code.", ToastLength.Long).Show();
                 return;
@@ -414,7 +390,6 @@ namespace QR_CodeScanner.ViewModel
 
             //Add vcard to contacts
             SaveContacts(vCardName, vCardTel, vCardEmail, vCardORG, vCardTitle, vCardAdress, vCardURL);
-            
         }
         [Obsolete]
         public void SaveContacts(string name, string number, string email, string company, string jobtitle, string postal, string website)
@@ -496,8 +471,6 @@ namespace QR_CodeScanner.ViewModel
                         {
                             try
                             {
-                                
-
                                 if (splitVcard[i].Substring(0, 1) == "N")
                                 {
                                     splitVcardName = splitVcard[i].Split(':');
@@ -568,13 +541,6 @@ namespace QR_CodeScanner.ViewModel
                         }
 
                     }
-                    
-
-
-
-
-
-
                 }
             }
         }
@@ -609,7 +575,6 @@ namespace QR_CodeScanner.ViewModel
                         {
                             splitDTStart = splitVcal[i].Split(':');
                             dtStartEvent = splitDTStart[1];
-                            
                         }
                         if (splitVcal[i].Substring(0, 4) == "DTEN")
                         {
@@ -653,18 +618,17 @@ namespace QR_CodeScanner.ViewModel
                 if (culture.GetCulture() == "de")
                 {
                     Text3 = "Start: " + Convert.ToString(BuildNewDateTime(splitToSubStart, timeStart));
-                    Text4   = "Ende:  " + Convert.ToString(BuildNewDateTime(splitToSubEnd, timeEnd));
+                    Text4 = "Ende:  " + Convert.ToString(BuildNewDateTime(splitToSubEnd, timeEnd));
                     txt = "Ein neues Event steht an: ";
                 }
                 else
                 {
                     Text3 = "Start: " + Convert.ToString(BuildNewDateTime(splitToSubStart, timeStart));
-                    Text4   = "End:   " + Convert.ToString(BuildNewDateTime(splitToSubEnd, timeEnd));
+                    Text4 = "End:   " + Convert.ToString(BuildNewDateTime(splitToSubEnd, timeEnd));
                     txt = "There is a new Event: ";
                 }
 
                 resultToAdd = txt + "\n\n" + Text1 + "\n\n" + Text2 + "\n" + Text3 + "\n" + Text4 + "\n" + "Location: " + Location;
-                
             }
             catch
             {
@@ -675,13 +639,6 @@ namespace QR_CodeScanner.ViewModel
                 else
                     Toast.MakeText(activity, "QR-Code not readable.", ToastLength.Long).Show();
             }
-
-
-           
-
-
-
-
         }
 
         //Get the Location of the Users Entry
@@ -703,10 +660,7 @@ namespace QR_CodeScanner.ViewModel
                 var activity = Forms.Context as Activity;
                 Toast.MakeText(activity, "Dont find this Place.", ToastLength.Long).Show();
             }
-           
         }
-        
-
         [Obsolete]
         public async Task<PermissionStatus> CheckAndRequestCALENDARPermission()
         {
@@ -754,7 +708,6 @@ namespace QR_CodeScanner.ViewModel
             var status = await CheckAndRequestPermissionAsync(new Permissions.CalendarWrite());
             if (status != PermissionStatus.Granted)
             {
-                
                 var activity = Forms.Context as Activity;
                 Toast.MakeText(activity, "The last time you refused the authorization to access the Calendar.Give this App the authorization for your Calendar to add Calendar directly via a QR-Code.", ToastLength.Long).Show();
                 return;
@@ -762,7 +715,6 @@ namespace QR_CodeScanner.ViewModel
 
             // Add vcalendar to contacts
             SaveEvents(titleEvent, descriptionEvent, dtStartEvent, dtEndEvent, locationEvent);
-            
         }
 
         [Obsolete]
@@ -826,8 +778,4 @@ namespace QR_CodeScanner.ViewModel
         }
 
     }
-    
-
-
-
 }

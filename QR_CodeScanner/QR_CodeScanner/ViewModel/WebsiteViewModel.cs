@@ -9,10 +9,10 @@ using QR_CodeScanner.Model;
 
 namespace QR_CodeScanner.ViewModel
 {
-    public class WebsiteViewModel : BaseViewModel 
+    public class WebsiteViewModel : BaseViewModel
     {
         CultureLang culture;
-        string entry,entryCulture,buttonCulture,titleCulture;
+        string entry, entryCulture, buttonCulture, titleCulture;
         public ICommand ButtonHTTPSClicked { get; set; }
         public ICommand ButtonHTTPClicked { get; set; }
         public ICommand ButtonWWWClicked { get; set; }
@@ -34,7 +34,7 @@ namespace QR_CodeScanner.ViewModel
             ButtonCOMClicked = new Command(COM_Clicked);
             ButtonDEClicked = new Command(DE_Clicked);
 
-            if(culture.GetCulture() == "de")
+            if (culture.GetCulture() == "de")
             {
                 EntryTextCulture = "Website";
                 ButtonCulture = "QR-Code generieren";
@@ -46,17 +46,12 @@ namespace QR_CodeScanner.ViewModel
                 ButtonCulture = "Generate QR-Code";
                 TitleCulture = "Generate Website QR-Code";
             }
-                
-                
-                
-
         }
 
         [Obsolete]
         public async Task CallQRGeneratorPage()
         {
-          
-            await Navigation.PushAsync(new QRGeneratorPage(EntryText,false,true,false,false,false,false,false,false,false,string.Empty,false));
+            await Navigation.PushAsync(new QRGeneratorPage(EntryText, false, true, false, false, false, false, false, false, false, string.Empty, false));
         }
         public string EntryText
         {
@@ -90,19 +85,15 @@ namespace QR_CodeScanner.ViewModel
         }
         void WWW_Clicked()
         {
-          
             EntryText += "www.";
         }
         void COM_Clicked()
         {
-            
             EntryText += ".com";
         }
         void DE_Clicked()
         {
-            
             EntryText += ".de";
         }
-       
     }
 }

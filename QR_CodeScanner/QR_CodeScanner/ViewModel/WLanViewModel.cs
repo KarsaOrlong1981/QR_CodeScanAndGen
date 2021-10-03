@@ -12,7 +12,6 @@ namespace QR_CodeScanner.ViewModel
     public class WLanViewModel : BaseViewModel
     {
         CultureLang culture;
-       
         string ssid;
         string wpa;
         string password, passwordCulture, titleCulture;
@@ -29,8 +28,7 @@ namespace QR_CodeScanner.ViewModel
         public WLanViewModel(INavigation navigation)
         {
             culture = new CultureLang();
-          
-            if(culture.GetCulture() == "de")
+            if (culture.GetCulture() == "de")
             {
                 ButtonCulture = "QR-Code generieren";
                 TitleCulture = "Wlan QR-Code generieren";
@@ -42,10 +40,7 @@ namespace QR_CodeScanner.ViewModel
                 TitleCulture = "Generate Wlan QR-Code";
                 PasswordCulture = "Password";
             }
-           
-             
-            
-                ReadOnly = "True";
+            ReadOnly = "True";
             WpaWep = "WPA/WPA2";
             this.Navigation = navigation;
             wlanKey = "WPA/WPA2";
@@ -53,7 +48,6 @@ namespace QR_CodeScanner.ViewModel
             ButtonWEPClicked = new Command(WEP_Clicked);
             ButtonNoneClicked = new Command(None_Clicked);
             ButtonGenerateClicked = new Command(GetWlanConnectionCode);
-           
         }
         public string ButtonCulture
         {
@@ -85,7 +79,6 @@ namespace QR_CodeScanner.ViewModel
             get => ssid;
             set => SetProperty(ref ssid, value);
         }
-      
         public string Password
         {
             get => password;
@@ -99,7 +92,7 @@ namespace QR_CodeScanner.ViewModel
         void WPA_Clicked()
         {
             ReadOnly = "False";
-           WpaWep = "";
+            WpaWep = "";
             wlanKey = "WPA/WPA2";
             WpaWep = wlanKey;
             ReadOnly = "True";
@@ -141,8 +134,7 @@ namespace QR_CodeScanner.ViewModel
                     GenerateText = "WIFI:S:" + SSIDText + ";T:;P:" + Password + ";;";
                     break;
             }
-            await Navigation.PushAsync(new QRGeneratorPage(GenerateText,true,false,false,false,false,false,false,false,false,string.Empty,false));
-           
+            await Navigation.PushAsync(new QRGeneratorPage(GenerateText, true, false, false, false, false, false, false, false, false, string.Empty, false));
         }
-    } 
+    }
 }

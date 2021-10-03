@@ -11,8 +11,8 @@ namespace QR_CodeScanner.ViewModel
 {
     public class SMSViewModel : BaseViewModel
     {
-        string sms,number;
-        string editorCulture,buttonCulture,titleCulture,numberCulture;
+        string sms, number;
+        string editorCulture, buttonCulture, titleCulture, numberCulture;
         public INavigation Navigation { get; set; }
         public ICommand ButtonGeneratorPageClicked { get; set; }
 
@@ -44,8 +44,7 @@ namespace QR_CodeScanner.ViewModel
         [Obsolete]
         public async Task CallQRGeneratorPage()
         {
-            
-            await Navigation.PushAsync(new QRGeneratorPage(Message,false,false, false, false, false, false,true,false,false,Number,false));
+            await Navigation.PushAsync(new QRGeneratorPage(Message, false, false, false, false, false, false, true, false, false, Number, false));
         }
 
         public string Message
@@ -75,7 +74,7 @@ namespace QR_CodeScanner.ViewModel
         }
         public string TitleCulture
         {
-            get => titleCulture ;
+            get => titleCulture;
             set => SetProperty(ref titleCulture, value);
         }
     }

@@ -15,8 +15,8 @@ namespace QR_CodeScanner.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MainPageViewModel : ContentPage
     {
-        
-       [Obsolete]
+
+        [Obsolete]
         public MainPageViewModel()
         {
             InitializeComponent();
@@ -24,6 +24,6 @@ namespace QR_CodeScanner.Views
             BindingContext = new MainViewModel(Navigation);
         }
 
-     
+
     }
 }

@@ -21,7 +21,7 @@ namespace QR_CodeScanner.Views
             btn_Generate.IsEnabled = false;
         }
 
-      
+
 
         private void entry_TextChanged(object sender, TextChangedEventArgs e)
         {
