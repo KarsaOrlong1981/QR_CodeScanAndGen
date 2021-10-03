@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage BackgroundColor="MintCream" xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentPage BackgroundColor="White" xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewmodel="clr-namespace:QR_CodeScanner.ViewModel" x:DataType="viewmodel:MainViewModel"
              x:Class="QR_CodeScanner.Views.MainPageViewModel" Title="QR-Code Scan &amp; Gen"
               >
@@ -25,11 +25,11 @@
         <Button Margin="0,0,0,10" Grid.Row="1" Grid.Column="1" Command="{Binding ButtonScannerClicked}"
             Text="Mit Kamera Scannen" 
             CornerRadius="20" 
-            BorderColor="Gray" 
-            BorderWidth="5" 
+            BorderColor="SteelBlue"   
+            BorderWidth="2" 
             FontSize="Medium"      
             BackgroundColor="LightSteelBlue"  
-            TextColor="Black" 
+            TextColor="White" 
             
             HorizontalOptions="Fill"  
             VerticalOptions="EndAndExpand"         
@@ -51,9 +51,9 @@
             </Grid.ColumnDefinitions>
           
 
-            <Button Grid.Row="1" Grid.Column="2" Command="{Binding ButtonGeneratorClicked}" Text="Generator" TextColor="Black" ImageSource="Gen24.png" ContentLayout="Top,0" BackgroundColor="MintCream" FontSize="Small"  HorizontalOptions="CenterAndExpand"   VerticalOptions="CenterAndExpand"  />
-            <Button Grid.Row="1" Grid.Column="1" Text="Info" TextColor="Black" ImageSource="info26.png" ContentLayout="Top,0" BackgroundColor="MintCream" FontSize="Small"    VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" />
-            <Button Grid.Row="1" Grid.Column="0"  Command="{Binding ButtonProgressClicked}" Text="Verlauf" ContentLayout="Top,0" TextColor="Black" BackgroundColor="MintCream" ImageSource="verlauf.png" FontSize="Small"  VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" />
+            <Button Grid.Row="1" Grid.Column="2" Command="{Binding ButtonGeneratorClicked}" Text="Generator" TextColor="Black" ImageSource="Gen24.png" ContentLayout="Top,0" BackgroundColor="White"  FontSize="Small"  HorizontalOptions="CenterAndExpand"   VerticalOptions="CenterAndExpand"  />
+            <Button Grid.Row="1" Grid.Column="1" Text="Info" TextColor="Black" ImageSource="info26.png" ContentLayout="Top,0" BackgroundColor="White"  FontSize="Small"    VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" />
+            <Button Grid.Row="1" Grid.Column="0"  Command="{Binding ButtonProgressClicked}" Text="Verlauf" ContentLayout="Top,0" TextColor="Black" BackgroundColor="White"  ImageSource="verlauf.png" FontSize="Small"  VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" />
         </Grid>
 
     </Grid>

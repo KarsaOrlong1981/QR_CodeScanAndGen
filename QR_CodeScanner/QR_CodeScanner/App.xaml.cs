@@ -9,19 +9,31 @@ namespace QR_CodeScanner
 {
     public partial class App : Application
     {
-        static QRDatabase database;
-
-        public static QRDatabase Database
+        static QRDatabase database1;
+        static QRDatabase database2;
+        public static QRDatabase Database1
         {
             get
             {
-                if (database == null)
+                if (database1 == null)
                 {
-                    database = new QRDatabase(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "qrcodeScannAndGen.db3"));
+                    database1 = new QRDatabase(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "QRcodeHistory.db1"));
                 }
-                return database;
+                return database1;
             }
         }
+        public static QRDatabase Database2
+        {
+            get
+            {
+                if (database2 == null)
+                {
+                    database2 = new QRDatabase(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "FoodList.db1"));
+                }
+                return database2;
+            }
+        }
+
         [Obsolete]
         public App()
         {

@@ -28,25 +28,8 @@ namespace QR_CodeScanner.Views
             InitializeComponent();
             culture = new CultureLang();
             history = new QRhistory();
-          
-            if( App.Database.GetQRcodeAsync().Result.Count == 0)
-            {
-                toolItem.IsEnabled = false;
-                string txt = string.Empty;
-                if(culture.GetCulture()== "de")
-                {
-                    txt = "Kein Verlauf vorhanden.";
-                }
-                else
-                {
-                    txt = "No History";
-                }
-                Label lab = new Label { Text = txt, FontSize = 40.0,
-                    HorizontalOptions = LayoutOptions.CenterAndExpand, 
-                    VerticalOptions = LayoutOptions.CenterAndExpand,
-                    TextColor = Color.Black,};
-                grid.Children.Add(lab);
-            }
+            DataBaseresult();
+           
             if(qrText != null)
             {
                if(course == true)
@@ -57,12 +40,36 @@ namespace QR_CodeScanner.Views
         }
      
 
-       
+       private void DataBaseresult()
+       {
+            if (App.Database1.GetQRcodeAsync().Result.Count == 0)
+            {
+                toolItem.IsEnabled = false;
+                string txt = string.Empty;
+                if (culture.GetCulture() == "de")
+                {
+                    txt = "Kein Verlauf vorhanden.";
+                }
+                else
+                {
+                    txt = "No History";
+                }
+                Label lab = new Label
+                {
+                    Text = txt,
+                    FontSize = 25.0,
+                    HorizontalOptions = LayoutOptions.CenterAndExpand,
+                    VerticalOptions = LayoutOptions.CenterAndExpand,
+                    TextColor = Color.Black,
+                };
+                grid.Children.Add(lab);
+            }
+       }
        
         protected override async void OnAppearing()
         {
             base.OnAppearing();
-            collectionView.ItemsSource = await App.Database.GetQRcodeAsync();
+            collectionView.ItemsSource = await App.Database1.GetQRcodeAsync();
         }
 
         private async void AddToDB(string qrTxt,string ev)
@@ -70,7 +77,7 @@ namespace QR_CodeScanner.Views
             if (!string.IsNullOrWhiteSpace(qrTxt) && !string.IsNullOrWhiteSpace(ev))
             {
                 
-                await App.Database.SaveQRcodeAsync(new Model.QRhistory
+                await App.Database1.SaveQRcodeAsync(new Model.QRhistory
                 {
                     
                     QRText = qrTxt ,
@@ -80,7 +87,7 @@ namespace QR_CodeScanner.Views
 
                 
                
-                collectionView.ItemsSource = await App.Database.GetQRcodeAsync();
+                collectionView.ItemsSource = await App.Database1.GetQRcodeAsync();
             }
         }
 
@@ -152,12 +159,34 @@ namespace QR_CodeScanner.Views
         private async void clearItem_Clicked(object sender, EventArgs e)
         {
             var item = (sender as Xamarin.Forms.Button).Text;
-
             int id = Convert.ToInt32(item);
-            await App.Database.DeleteItemAsync(id);
-            Navigation.RemovePage(this);
+            string title = string.Empty;
+            string yes = string.Empty;
+            string no = string.Empty;
 
-            await Navigation.PushAsync(new HistoryPage(null, null, false), true);
+            if (culture.GetCulture() == "de")
+            {
+                title = "Wollen sie diesen QR-Code wirklich löschen?";
+                yes = "Ja";
+                no = "Nein";
+            }
+            else
+            {
+                title = "Do you really want to delete this QR-Code?";
+                yes = "Yes";
+                no = "No";
+            }
+
+
+            string result = await DisplayActionSheet(title, null, null, yes, no);
+            if (result == yes)
+            {
+                await App.Database1.DeleteItemAsync(id);
+                collectionView.ItemsSource = await App.Database1.GetQRcodeAsync();
+                DataBaseresult();
+            }
+           
+          
         }
 
        
@@ -191,10 +220,9 @@ namespace QR_CodeScanner.Views
                 string result = await DisplayActionSheet(title, null, null, yes, no);
                 if (result == yes)
                 {
-                    await App.Database.DeleteAllItems<QRhistory>();
-                    Navigation.RemovePage(this);
-
-                    await Navigation.PushAsync(new HistoryPage(null, null, false), true);
+                    await App.Database1.DeleteAllItems<QRhistory>();
+                    collectionView.ItemsSource = await App.Database1.GetQRcodeAsync();
+                    DataBaseresult();
                 }
             
            

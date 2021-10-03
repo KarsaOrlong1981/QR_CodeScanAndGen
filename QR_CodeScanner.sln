@@ -5,7 +5,12 @@ VisualStudioVersion = 16.0.31129.286
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QR_CodeScanner.Android", "QR_CodeScanner\QR_CodeScanner.Android\QR_CodeScanner.Android.csproj", "{AB2083CD-30FD-4CC2-AD57-39F67CEDD7C1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QR_CodeScanner", "QR_CodeScanner\QR_CodeScanner\QR_CodeScanner.csproj", "{115D2160-6F4E-49F0-A5F7-13941954DE99}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QR_CodeScanner", "QR_CodeScanner\QR_CodeScanner\QR_CodeScanner.csproj", "{115D2160-6F4E-49F0-A5F7-13941954DE99}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{04C726CB-40DC-4ABB-B6AB-5EF24D4A8408}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

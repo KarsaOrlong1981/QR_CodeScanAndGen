@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage BackgroundColor="MintCream" xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentPage BackgroundColor="Azure"  xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:ZXing="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms" xmlns:zxingcommon="clr-namespace:ZXing.Common;assembly=zxing.portable"
              x:Class="QR_CodeScanner.Views.HistoryPage" Disappearing="ContentPage_Disappearing" >
     <ContentPage.ToolbarItems>
@@ -38,7 +38,7 @@
                            BorderColor="LightGray" 
                            Margin="10" 
                            CornerRadius="20" 
-                           BackgroundColor="White" >
+                           BackgroundColor="White"   >
                             <Grid>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto"/>
@@ -52,14 +52,16 @@
                                        VerticalOptions="StartAndExpand"
                                        FontSize="Medium" TextColor="DarkCyan" />
                                 <ZXing:ZXingBarcodeImageView x:Name="barCode" Grid.Row="1"
+                                                           
                                        BindingContext="{x:Reference Name=Entry}" 
                                        BarcodeValue="{Binding Path=Text}" 
                                        BarcodeFormat="QR_CODE" 
                                        VerticalOptions="StartAndExpand"   
                                        HeightRequest="100" 
                                        WidthRequest="100" >
-                                    <ZXing:ZXingBarcodeImageView.BarcodeOptions >
-                                        <zxingcommon:EncodingOptions Height="200" Width="200" />
+                                    <ZXing:ZXingBarcodeImageView.BarcodeOptions>
+                                        
+                                        <zxingcommon:EncodingOptions Height="200" Width="200"/>
                                     </ZXing:ZXingBarcodeImageView.BarcodeOptions>
                                 </ZXing:ZXingBarcodeImageView>
                                 <Label Grid.Row="2" Text="{Binding QRText}"
@@ -73,7 +75,7 @@
                                         ImageSource="clear24.png" 
                                         HeightRequest="50" 
                                         WidthRequest="50" 
-                                        BackgroundColor="White"  
+                                        BackgroundColor="White"    
                                         HorizontalOptions="EndAndExpand" 
                                         VerticalOptions="EndAndExpand"
                                         Clicked="clearItem_Clicked"
