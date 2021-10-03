@@ -1,4 +1,5 @@
-﻿using QR_CodeScanner.Views;
+﻿using QR_CodeScanner.Model;
+using QR_CodeScanner.Views;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -16,19 +17,22 @@ namespace QR_CodeScanner.ViewModel
         public ICommand ButtonInfoClicked { get; set; }
         public ICommand ButtonProgressClicked { get; set; }
         public ICommand ButtonScannerClicked { get; set; }
-
+        
+        QRhistory progress;
         [Obsolete]
         public MainViewModel(INavigation navigation)
         {
             this.Navigation = navigation;
+            progress = new QRhistory();
             ButtonGeneratorClicked = new Command(async () => await CallQRVersionPage());
             ButtonScannerClicked = new Command(async () => await CallScannerPage());
             ButtonProgressClicked = new Command(async () => await CallProgressPage());
         }
 
+        [Obsolete]
         private async Task CallProgressPage()
         {
-            await Navigation.PushAsync(new ProgressPage(null));
+            await Navigation.PushAsync(new HistoryPage(null,null,false));
         }
 
         [Obsolete]

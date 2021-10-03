@@ -29,7 +29,7 @@ namespace QR_CodeScanner.ViewModel
             bool isEvent = false;
             bool isPhoneNumber = false;
             bool isEmail = true;
-            await Navigation.PushAsync(new QRGeneratorPage(ADD, false, false, false,false,false,true,false,string.Empty));
+            await Navigation.PushAsync(new QRGeneratorPage(ADD, false,false,false, false, false,false,false,true,false,string.Empty,false));
         }
 
         public string ADD { get => add; set => SetProperty(ref add, value); }

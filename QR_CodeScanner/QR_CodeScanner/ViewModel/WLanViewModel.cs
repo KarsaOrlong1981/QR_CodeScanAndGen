@@ -12,6 +12,7 @@ namespace QR_CodeScanner.ViewModel
     public class WLanViewModel : BaseViewModel
     {
         CultureLang culture;
+       
         string ssid;
         string wpa;
         string password, passwordCulture, titleCulture;
@@ -28,7 +29,7 @@ namespace QR_CodeScanner.ViewModel
         public WLanViewModel(INavigation navigation)
         {
             culture = new CultureLang();
-
+          
             if(culture.GetCulture() == "de")
             {
                 ButtonCulture = "QR-Code generieren";
@@ -124,24 +125,24 @@ namespace QR_CodeScanner.ViewModel
         async void GetWlanConnectionCode()
 
         {
-          
 
-                if (wlanKey == "WPA/WPA2")
-                {
-                 GenerateText = "WIFI:S:" + SSIDText + ";T:WPA;P:" + Password + ";";
-                }
-                
-                if (wlanKey == "WEP")
-                {
-                    GenerateText = "WIFI:S:" + SSIDText + ";T:WEP;P:" + Password + ";";
-                }
-                
-                if (wlanKey == "none")
-                {
-                    GenerateText = "WIFI:S:" + SSIDText + ";T:;P:" + Password + ";";
-                }
+            switch (wlanKey)
+            {
 
-            await Navigation.PushAsync(new QRGeneratorPage(GenerateText,false,false,false,false,false,false,false,string.Empty));
+                case "WPA/WPA2":
+                    GenerateText = "WIFI:S:" + SSIDText + ";T:WPA;P:" + Password + ";;";
+                    break;
+
+                case "WEP":
+                    GenerateText = "WIFI:S:" + SSIDText + ";T:WEP;P:" + Password + ";;";
+                    break;
+
+                case "none":
+                    GenerateText = "WIFI:S:" + SSIDText + ";T:;P:" + Password + ";;";
+                    break;
+            }
+            await Navigation.PushAsync(new QRGeneratorPage(GenerateText,true,false,false,false,false,false,false,false,false,string.Empty,false));
+           
         }
     } 
 }

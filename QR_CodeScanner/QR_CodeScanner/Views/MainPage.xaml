@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage BackgroundColor="MintCream" xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewmodel="clr-namespace:QR_CodeScanner.ViewModel" x:DataType="viewmodel:MainViewModel"
-             x:Class="QR_CodeScanner.Views.MainPage" Title="QR-Code Scan &amp; Gen"
-            >
+             x:Class="QR_CodeScanner.Views.MainPageViewModel" Title="QR-Code Scan &amp; Gen"
+              >
 
 
   
@@ -46,14 +46,14 @@
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
           
 
-            <Button Grid.Row="1" Grid.Column="2" Command="{Binding ButtonGeneratorClicked}" Text="Generator" TextColor="Black" ImageSource="Gen24.png" ContentLayout="Top,0" BackgroundColor="MintCream" FontSize="Small"    VerticalOptions="CenterAndExpand"  />
-            <Button Grid.Row="1" Grid.Column="1" Text="Info" TextColor="Black" ImageSource="info26.png" ContentLayout="Top,0" BackgroundColor="MintCream" FontSize="Small"    VerticalOptions="CenterAndExpand"/>
-            <Button Grid.Row="1" Grid.Column="0"  Command="{Binding ButtonProgressClicked}" Text="Verlauf" ContentLayout="Top,0" TextColor="Black" BackgroundColor="MintCream" ImageSource="Gen24.png" FontSize="Small"  VerticalOptions="CenterAndExpand"/>
+            <Button Grid.Row="1" Grid.Column="2" Command="{Binding ButtonGeneratorClicked}" Text="Generator" TextColor="Black" ImageSource="Gen24.png" ContentLayout="Top,0" BackgroundColor="MintCream" FontSize="Small"  HorizontalOptions="CenterAndExpand"   VerticalOptions="CenterAndExpand"  />
+            <Button Grid.Row="1" Grid.Column="1" Text="Info" TextColor="Black" ImageSource="info26.png" ContentLayout="Top,0" BackgroundColor="MintCream" FontSize="Small"    VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" />
+            <Button Grid.Row="1" Grid.Column="0"  Command="{Binding ButtonProgressClicked}" Text="Verlauf" ContentLayout="Top,0" TextColor="Black" BackgroundColor="MintCream" ImageSource="verlauf.png" FontSize="Small"  VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" />
         </Grid>
 
     </Grid>

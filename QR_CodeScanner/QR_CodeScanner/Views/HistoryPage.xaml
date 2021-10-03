@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage BackgroundColor="MintCream" xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:ZXing="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms" xmlns:zxingcommon="clr-namespace:ZXing.Common;assembly=zxing.portable"
+             x:Class="QR_CodeScanner.Views.HistoryPage" Disappearing="ContentPage_Disappearing" >
+    <ContentPage.ToolbarItems>
+        <ToolbarItem x:Name="toolItem"
+                 IconImageSource="Clear1.png"
+                 Order="Primary"
+                 Priority="0"
+                     Clicked="ToolbarItem_Clicked"    />
+        
+
+
+       
+    </ContentPage.ToolbarItems>
+
+    <ScrollView >
+        
+   
+    <Grid x:Name="grid">
+        <Grid.RowDefinitions>
+            
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+           
+
+
+            <CollectionView x:Name="collectionView"
+                            Grid.Row="0" 
+                            HorizontalOptions="CenterAndExpand" 
+                            Margin="10"
+                            SelectionMode="Single"
+                            SelectionChanged="CollectionView_SelectionChanged"
+                            >
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame HasShadow="True" 
+                           BorderColor="LightGray" 
+                           Margin="10" 
+                           CornerRadius="20" 
+                           BackgroundColor="White" >
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Entry x:Name="Entry" Text="{Binding QRText}" IsVisible="false"/>
+                                
+                                <Label Grid.Row="0" Text="{Binding Date}"
+                                       HorizontalOptions="CenterAndExpand" 
+                                       VerticalOptions="StartAndExpand"
+                                       FontSize="Medium" TextColor="DarkCyan" />
+                                <ZXing:ZXingBarcodeImageView x:Name="barCode" Grid.Row="1"
+                                       BindingContext="{x:Reference Name=Entry}" 
+                                       BarcodeValue="{Binding Path=Text}" 
+                                       BarcodeFormat="QR_CODE" 
+                                       VerticalOptions="StartAndExpand"   
+                                       HeightRequest="100" 
+                                       WidthRequest="100" >
+                                    <ZXing:ZXingBarcodeImageView.BarcodeOptions >
+                                        <zxingcommon:EncodingOptions Height="200" Width="200" />
+                                    </ZXing:ZXingBarcodeImageView.BarcodeOptions>
+                                </ZXing:ZXingBarcodeImageView>
+                                <Label Grid.Row="2" Text="{Binding QRText}"
+                                       HorizontalOptions="CenterAndExpand" 
+                                       VerticalOptions="CenterAndExpand" 
+                                       FontSize="Medium" TextColor="SteelBlue" />
+                                <Button Grid.Row="2" 
+                                        Margin="5" 
+                                        Text="{Binding ID}"
+                                        x:Name="clearItem" 
+                                        ImageSource="clear24.png" 
+                                        HeightRequest="50" 
+                                        WidthRequest="50" 
+                                        BackgroundColor="White"  
+                                        HorizontalOptions="EndAndExpand" 
+                                        VerticalOptions="EndAndExpand"
+                                        Clicked="clearItem_Clicked"
+                                        />
+                            </Grid>
+                       
+                        </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+    </ScrollView>
+</ContentPage>

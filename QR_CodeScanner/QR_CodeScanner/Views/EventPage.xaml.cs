@@ -29,5 +29,10 @@ namespace QR_CodeScanner.Views
             else
                 btn_generate.IsEnabled = true;
         }
+
+        private void ContentPage_Disappearing(object sender, EventArgs e)
+        {
+            Navigation.RemovePage(this);
+        }
     }
 }

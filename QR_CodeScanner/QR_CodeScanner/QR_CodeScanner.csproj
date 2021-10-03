@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
+    <PackageReference Include="Uno.UI" Version="3.10.11" />
     <PackageReference Include="Xam.Plugin.Media" Version="5.0.1" />
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2083" />
     <PackageReference Include="Xamarin.Essentials" Version="1.7.0" />
@@ -38,7 +39,7 @@
     <EmbeddedResource Update="Views\PhonePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\ProgressPage.xaml">
+    <EmbeddedResource Update="Views\HistoryPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\QRVersionPage.xaml">
@@ -80,6 +81,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Service\" />
+    <Compile Update="Views\HistoryPage.xaml.cs">
+      <DependentUpon>HistoryPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 </Project>

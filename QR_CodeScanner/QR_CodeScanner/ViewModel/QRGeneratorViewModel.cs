@@ -24,7 +24,7 @@ namespace QR_CodeScanner.ViewModel
         string text;
         string labelText;
         string progressFile;
-        
+        string number;
         string bgColor;
         string tcColor;
         string qrCode;
@@ -36,24 +36,44 @@ namespace QR_CodeScanner.ViewModel
         ShareContent share;
         Stream stream;
         CultureLang culture;
-       
+        bool txt, wlan,website,contact, eventX, phonenumber, email, sms, food, browser;
         
         public ICommand ButtonShareClicked { get; set; }
         public ICommand ButtonSaveClicked { get; set; }
        
         [Obsolete]
-        public QRGeneratorViewModel(string qrTxt,bool isContact,bool isEvent,bool isPhoneNumber,bool isEmail,bool isSMS,bool isFood,bool isWebsite, string phoneNumber)
+        public QRGeneratorViewModel(string qrTxt,bool isWlan, bool isWebsite,bool isContact,bool isEvent,bool isPhoneNumber,bool isEmail,bool isSMS,bool isFood,bool isBrowser, string phoneNumberString,bool fromProgress)
         {
             //this creates the Barcode text
             Text = qrTxt;
-            GetImageAndText();
+            number = phoneNumberString;
+            wlan = isWlan;
+            website = isWebsite;
+            contact = isContact;
+            eventX = isEvent;
+            phonenumber = isPhoneNumber;
+            email = isEmail;
+            sms = isSMS;
+            food = isFood;
+            browser = isBrowser;
+            if (fromProgress == false)
+            {
+                GetImageAndTextProgress();
+            }
             share = new ShareContent();
             qrCode = qrTxt;
             FontSizeQR = 20;
             LabelText = "";
             culture = new CultureLang();
-            
-            
+
+            if (isWlan)
+            {
+                Text = qrTxt;
+            }
+            if (isWebsite)
+            {
+                Text = qrTxt;
+            }
             if (isContact)
             {
                 FontSizeQR = 13;
@@ -110,8 +130,6 @@ namespace QR_CodeScanner.ViewModel
                // Text = qrTxt;
                 LabelText = qrTxt;
 
-              
-                
                 if (isPhoneNumber)
                 {
                     
@@ -120,15 +138,11 @@ namespace QR_CodeScanner.ViewModel
                     VCard7Link = "tel:" + qrTxt;
                 }
               
-               
-               
-
                 if (isEmail)
                 {
-                    
-                        LabelText = "Email: ";
-                        VCard11 = qrTxt;
-                        VCard11Link = "mailto:" + qrTxt;
+                    LabelText = "Email: ";
+                    VCard11 = qrTxt;
+                    VCard11Link = "mailto:" + qrTxt;
                      
                 }
               
@@ -138,16 +152,10 @@ namespace QR_CodeScanner.ViewModel
 
                     LabelText = "SMS: ";
                     VCard10 = qrTxt;
-                    VCard11 = phoneNumber;
-                    VCard11Link = "smsto:" + phoneNumber + ":" + qrTxt;
-                    Text = "smsto:" + phoneNumber + ":" + qrTxt;
+                    VCard11 = number;
+                    VCard11Link = "smsto:" + number + ":" + qrTxt;
+                    Text = "smsto:" + number + ":" + qrTxt;
                 }
-                
-
-               
-
-               
-               
             }
             
             tcColor = "Black";
@@ -157,8 +165,6 @@ namespace QR_CodeScanner.ViewModel
             shareIsVisible = "true";
             ButtonShareClicked = new Command(ShareQRImage);
             ButtonSaveClicked = new Command(SaveQR);
-
-           
         }
 
        
@@ -283,11 +289,40 @@ namespace QR_CodeScanner.ViewModel
             set => SetProperty(ref vcard13, value);
         }
 
-        private void GetImageAndText()
+        [Obsolete]
+        private void GetImageAndTextProgress()
         {
-            
+           
+            string eventQRString = string.Empty;
             string text = Text;
-            new ProgressPage(text);
+            
+            if (wlan == true)
+                eventQRString = "Wlan";
+            if (website == true)
+                eventQRString = "Website";
+            if (contact == true)
+                eventQRString = "Contact";
+            if (eventX == true)
+                eventQRString = "Event";
+            if (phonenumber == true)
+                eventQRString = "Phonenumber";
+            if (email == true)
+                eventQRString = "Email";
+            if (sms == true)
+            {
+                eventQRString = "SMS";
+                text = "smsto:" + number + ":" + Text;
+            }
+            if (food == true)
+                eventQRString = "Food";
+            if (browser == true)
+                eventQRString = "Browser";
+            if(eventQRString != "Wlan" && eventQRString != "Website" && eventQRString != "Contact" && eventQRString != "Event" && eventQRString != "Phonenumber" &&
+               eventQRString != "Email" && eventQRString != "SMS" && eventQRString != "Food" && eventQRString != "Browser")
+            {
+                eventQRString = "Text";
+            }
+            new HistoryPage(text,eventQRString,true);
         }
         async Task<string> CaptureScreenshot()
         {

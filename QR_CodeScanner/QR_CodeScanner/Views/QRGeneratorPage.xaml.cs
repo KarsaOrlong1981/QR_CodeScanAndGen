@@ -19,13 +19,16 @@ namespace QR_CodeScanner.Views
        
 
         [Obsolete]
-        public QRGeneratorPage(string qrCodeText,bool isContact,bool isEvent,bool isPhoneNumber,bool isEmail,bool isSMS, bool isFood, bool isWebsite,string phoneNumber)
+        public QRGeneratorPage(string qrCodeText,bool isWlan,bool isWebsite,bool isContact,bool isEvent,bool isPhoneNumber,bool isEmail,bool isSMS, bool isFood, bool isBrowser,string phoneNumber,bool fromProgress)
         {
             InitializeComponent();
 
-            BindingContext = new QRGeneratorViewModel(qrCodeText, isContact,isEvent,isPhoneNumber,isEmail,isSMS,isFood,isWebsite,phoneNumber);              
+            BindingContext = new QRGeneratorViewModel(qrCodeText,isWlan ,isWebsite, isContact,isEvent,isPhoneNumber,isEmail,isSMS,isFood,isBrowser,phoneNumber,fromProgress);              
         }
 
-      
+        private void ContentPage_Disappearing(object sender, EventArgs e)
+        {
+            Navigation.RemovePage(this);
+        }
     }
 }

@@ -45,7 +45,7 @@ namespace QR_CodeScanner.ViewModel
         async Task CallQRGeneratorPage()
         {
            
-            await Navigation.PushAsync(new QRGeneratorPage(GetEvent(), false,true,false,false,false,false ,false,string.Empty));
+            await Navigation.PushAsync(new QRGeneratorPage(GetEvent(), false,false,false,true,false,false,false,false ,false,string.Empty,false));
 
         }
         string GetEvent()

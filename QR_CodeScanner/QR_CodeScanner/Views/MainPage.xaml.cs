@@ -13,16 +13,17 @@ using Xamarin.Forms.Xaml;
 namespace QR_CodeScanner.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class MainPage : ContentPage
+    public partial class MainPageViewModel : ContentPage
     {
         
        [Obsolete]
-        public MainPage()
+        public MainPageViewModel()
         {
             InitializeComponent();
+
             BindingContext = new MainViewModel(Navigation);
         }
 
-      
+     
     }
 }

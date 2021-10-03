@@ -18,5 +18,10 @@ namespace QR_CodeScanner.Views
             InitializeComponent();
             BindingContext = new EmailViewModel(Navigation);
         }
+
+        private void ContentPage_Disappearing(object sender, EventArgs e)
+        {
+            Navigation.RemovePage(this);
+        }
     }
 }

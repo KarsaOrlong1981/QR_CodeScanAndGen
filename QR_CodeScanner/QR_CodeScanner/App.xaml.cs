@@ -17,7 +17,7 @@ namespace QR_CodeScanner
             {
                 if (database == null)
                 {
-                    database = new QRDatabase(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "qrcodeScannAndGen.db2"));
+                    database = new QRDatabase(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "qrcodeScannAndGen.db3"));
                 }
                 return database;
             }
@@ -27,7 +27,7 @@ namespace QR_CodeScanner
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new MainPage()) { BarBackgroundColor = Color.SteelBlue, BarTextColor = Color.White };
+            MainPage = new NavigationPage(new MainPageViewModel()) { BarBackgroundColor = Color.SteelBlue, BarTextColor = Color.White };
         }
 
         protected override void OnStart()

@@ -42,7 +42,7 @@ namespace QR_CodeScanner.ViewModel
         public ICommand ButtonShare { get; set; }
 
         [Obsolete]
-        public ResultViewModel(string qrTxt,bool isContact,bool isEvent,bool isPhoneNumber, bool isEmail,bool isSMS,bool isFood, bool isWebsite,string phoneNumberSMS)
+        public ResultViewModel(string qrTxt,bool isWlan, bool isWebsite,bool isContact,bool isEvent,bool isPhoneNumber, bool isEmail,bool isSMS,bool isFood, bool isBrowser,string phoneNumberSMS)
         {
             shareQR = new ShareContent();
             culture = new CultureLang();

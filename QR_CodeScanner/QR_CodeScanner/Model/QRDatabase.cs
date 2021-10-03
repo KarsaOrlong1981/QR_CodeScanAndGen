@@ -1,4 +1,4 @@
-﻿using QR_CodeScanner.Model;
+﻿
 
 using SQLite;
 using System;
@@ -19,18 +19,31 @@ namespace QR_CodeScanner.Model
         public QRDatabase(string dbPath)
         {
             _database = new SQLiteAsyncConnection(dbPath);
-            _database.CreateTableAsync<QRprogress>().Wait();
+            _database.CreateTableAsync<QRhistory>().Wait();
         }
 
-        public Task<List<QRprogress>> GetQRcodeAsync()
+        public Task<List<QRhistory>> GetQRcodeAsync()
         {
-            return _database.Table<QRprogress>().ToListAsync();
+            return _database.Table<QRhistory>().ToListAsync();
         }
 
-        public Task<int> SaveQRcodeAsync(QRprogress qrCode)
+        public Task<int> SaveQRcodeAsync(QRhistory qrCode)
         {
             return _database.InsertAsync(qrCode);
         }
+       public async Task DeleteItemAsync(int id)
+        {
+            var item = await _database.Table<QRhistory>().Where(x => x.ID == id).FirstOrDefaultAsync();
+            if(item != null)
+            {
+                await _database.DeleteAsync(item);
+            }
+        }
+        public Task<int> DeleteAllItems<T>()
+        {
+            return _database.DeleteAllAsync<QRhistory>();
+        }
+
     }
 
 

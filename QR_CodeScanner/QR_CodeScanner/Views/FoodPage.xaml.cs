@@ -19,5 +19,10 @@ namespace QR_CodeScanner.Views
             InitializeComponent();
             BindingContext = new FoodViewModel(Navigation);
         }
+
+        private void ContentPage_Disappearing(object sender, EventArgs e)
+        {
+            Navigation.RemovePage(this);
+        }
     }
 }

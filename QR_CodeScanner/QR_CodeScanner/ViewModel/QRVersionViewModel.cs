@@ -49,6 +49,7 @@ namespace QR_CodeScanner.ViewModel
         public async Task CallSmSPage()
         {
             await Navigation.PushAsync(new SMSPage());
+           
         }
 
         [Obsolete]
@@ -56,6 +57,7 @@ namespace QR_CodeScanner.ViewModel
         {
 
             await Navigation.PushAsync(new PhonePage());
+            
         }
 
         [Obsolete]
@@ -63,6 +65,7 @@ namespace QR_CodeScanner.ViewModel
         {
 
             await Navigation.PushAsync(new EmailPage());
+           
         }
 
         [Obsolete]
@@ -70,6 +73,7 @@ namespace QR_CodeScanner.ViewModel
         {
             
             await Navigation.PushAsync(new EventPage());
+           
         }
 
         [Obsolete]
@@ -77,6 +81,7 @@ namespace QR_CodeScanner.ViewModel
         {
 
             await Navigation.PushAsync(new TextPage());
+          
         }
 
         [Obsolete]
@@ -84,6 +89,7 @@ namespace QR_CodeScanner.ViewModel
         {
 
             await Navigation.PushAsync(new WebsitePage());
+            
         }
 
         [Obsolete]
@@ -91,6 +97,7 @@ namespace QR_CodeScanner.ViewModel
         {
 
             await Navigation.PushAsync(new WlanPage());
+           
         }
 
         [Obsolete]
@@ -98,6 +105,7 @@ namespace QR_CodeScanner.ViewModel
         {
 
             await Navigation.PushAsync(new ContactPage());
+           
         }
 
         [Obsolete]

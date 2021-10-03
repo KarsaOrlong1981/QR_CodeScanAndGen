@@ -14,6 +14,8 @@ using Android.App;
 using Android.Widget;
 using Result = ZXing.Result;
 using QR_CodeScanner.Model;
+using Android.Net.Wifi;
+using Android.Media.Midi;
 
 namespace QR_CodeScanner.Views
 {
@@ -22,11 +24,12 @@ namespace QR_CodeScanner.Views
     public partial class ScannerPage : ContentPage
     {
         CultureLang culture;
-        
+        WifiConnector wifi;
         public ScannerPage()
         {
             InitializeComponent();
 
+            wifi = new WifiConnector();
             culture = new CultureLang();
         }
         //If the Scanner recognizes an QR-Code
@@ -53,13 +56,13 @@ namespace QR_CodeScanner.Views
                         {
 
 
-                            BooleanCallResult(result.Text, false, true, false, false,false,false,false,string.Empty);
+                            BooleanCallResult(result.Text,false,false, false, true, false, false,false,false,false,string.Empty);
                         }
                         //To recognizes an VCalendar and read Vcalendar
                         if (resultString.Substring(0, 11) == "BEGIN:VCALE")
                         {
 
-                            BooleanCallResult(result.Text, true, false, false, false,false,false,false,string.Empty);
+                            BooleanCallResult(result.Text,false,false, true, false, false, false,false,false,false,string.Empty);
                             
                         }
                         
@@ -70,7 +73,7 @@ namespace QR_CodeScanner.Views
                        
 
                         //here i can say that is Text
-                        BooleanCallResult(result.Text, false, false, false, false, false, false, false,string.Empty);
+                        BooleanCallResult(result.Text,false,false, false, false, false, false, false, false, false,string.Empty);
                     }
 
                     if (resultString.Length >= 11)
@@ -78,9 +81,9 @@ namespace QR_CodeScanner.Views
                         if (!(resultString.Substring(0, 11) == "BEGIN:VCARD") && (!(resultString.Substring(0,11) == "BEGIN:VCALE")))
                         {
                             if (resultString.Length >= 4)
-                            //open website with Browser
+                            //open website with Browser or sms or wlan
                             {
-                                if (resultString.Substring(0, 4) == "http" || resultString.Substring(0, 4) == "smst")
+                                if (resultString.Substring(0, 4) == "http" || resultString.Substring(0, 4) == "smst" || resultString.Substring(0,4) == "WIFI")
                                 {
                                     if (resultString.Substring(0, 4) == "http")
                                     {
@@ -102,17 +105,22 @@ namespace QR_CodeScanner.Views
                                     }
                                     if(resultString.Substring(0,4) == "smst")
                                     {
-                                        //smsMethode aufrufen
+                                        
                                         string[] messageAndNumber = resultString.Split(':');
                                       await SendSms(messageAndNumber[2], messageAndNumber[1]);
                                     }
-
+                                    if (resultString.Substring(0, 4) == "WIFI")
+                                    {
+                                        string[] splitWlan = resultString.Split(':', ';');
+                                        lab_Label.Text = result.Text;
+                                        wifi.ConnectToWifi(splitWlan[2], splitWlan[6]);
+                                    }
                                 }
                                 else
-                                    BooleanCallResult(result.Text, false, false, false, false, false, false, false, string.Empty);//Here ican say that is Text
+                                    BooleanCallResult(result.Text,false,false, false, false, false, false, false, false, false, string.Empty);//Here ican say that is Text
                             }
                             else
-                                BooleanCallResult(result.Text, false, false, false, false, false, false, false, string.Empty);//Here ican say that is Text
+                                BooleanCallResult(result.Text,false,false, false, false, false, false, false, false, false, string.Empty);//Here ican say that is Text
 
                         }
                     }
@@ -120,25 +128,26 @@ namespace QR_CodeScanner.Views
                 else
                 {
                     //hére i can say its an Phonenumber
-                    BooleanCallResult(result.Text, false, false, true, false,false,false,false,string.Empty);
+                    BooleanCallResult(result.Text,false,false, false, false, true, false,false,false,false,string.Empty);
                 }
+                
             });
         }
 
         [Obsolete]
-        void BooleanCallResult(string result,bool isEv, bool isCon, bool isPho, bool isEmail,bool isSMS,bool isFood, bool isWebsite,string phoneNumber)
+        void BooleanCallResult(string result,bool isWL,bool isWeb,bool isEv, bool isCon, bool isPho, bool isEmail,bool isSMS,bool isFood, bool isBrowser,string phoneNumber)
         {
            
 
-            CallResultPageWithConEven(result, isEv, isCon, isPho,isEmail,isSMS,isFood , isWebsite, phoneNumber);
+            CallResultPageWithConEven(result,isWL,isWeb, isEv, isCon, isPho,isEmail,isSMS,isFood , isBrowser, phoneNumber);
         }
 
         [Obsolete]
-        async void CallResultPageWithConEven(string resultQrCode,bool isContact,bool isEvent,bool isPhonenumber, bool isEmail,bool isSMS,bool isFood, bool isWebsite,string phoneNumber)
+        async void CallResultPageWithConEven(string resultQrCode,bool isWlan,bool isWebsite,bool isContact,bool isEvent,bool isPhonenumber, bool isEmail,bool isSMS,bool isFood, bool isBrowser,string phoneNumber)
         {
            
            
-            ResultPage call = new ResultPage(resultQrCode,isContact,isEvent,isPhonenumber,isEmail,isSMS,isFood,isWebsite,string.Empty);
+            ResultPage call = new ResultPage(resultQrCode,isWlan,isWebsite,isContact,isEvent,isPhonenumber,isEmail,isSMS,isFood,isBrowser,string.Empty);
             await Navigation.PushAsync(call);
             scanView.IsScanning = true;
             scanView.IsAnalyzing = true;
@@ -179,11 +188,9 @@ namespace QR_CodeScanner.Views
             
         }
 
-
-
-
-
-
-
+        private void ContentPage_Disappearing(object sender, EventArgs e)
+        {
+            Navigation.RemovePage(this);
+        }
     }
 }
