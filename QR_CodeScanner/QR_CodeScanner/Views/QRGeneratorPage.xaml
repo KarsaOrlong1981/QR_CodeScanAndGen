@@ -8,26 +8,28 @@
               xmlns:viewmodel="clr-namespace:QR_CodeScanner.ViewModel" xmlns:local1="clr-namespace:QR_CodeScanner.Model" x:DataType="viewmodel:QRGeneratorViewModel"
               >
 
-    
-        
-   
-    <Grid >
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="5*"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-      
 
-          
-          
-                <Button Text="Save"   Grid.Row="0" Grid.Column="1" Margin=" 0,0,0,10"
-                        HorizontalOptions="StartAndExpand"    VerticalOptions="CenterAndExpand"  
+
+    <ScrollView>
+
+
+        <Grid >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="5*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+
+
+
+            <Button Text="Save"   Grid.Row="2" Grid.Column="1" Margin=" 0,20,0,10"
+                        HorizontalOptions="StartAndExpand"    VerticalOptions="StartAndExpand"   
                         
                                         Command="{Binding ButtonSaveClicked}"
                                         IsVisible="{Binding SaveIsVis}"
@@ -40,8 +42,8 @@
                                         BorderWidth="2"
                                         BorderColor="Gray"
                                         FontSize="15"/>
-        <Button Text="Share"  Grid.Row="0" Grid.Column="1"  Margin=" 0,0,0,10"
-                       VerticalOptions="CenterAndExpand"   
+            <Button Text="Share"  Grid.Row="2" Grid.Column="1"  Margin=" 0,20,0,10"
+                                        VerticalOptions="StartAndExpand"    
                                         
                                         IsVisible="{Binding ShareIsVis}"
                                         x:Name="btn_Share"
@@ -57,22 +59,22 @@
                                         HorizontalOptions="EndAndExpand"    />
 
 
-               
-            
 
-           
-                <ZXing:ZXingBarcodeImageView x:Name="barCode" Grid.Row="1" Grid.Column="1"
+
+
+
+            <ZXing:ZXingBarcodeImageView x:Name="barCode" Grid.Row="0" Grid.Column="1"
                                      BackgroundColor="{Binding BGColor}" 
                                      BarcodeValue="{Binding Text}" 
                                      BarcodeFormat="QR_CODE" 
                                      VerticalOptions="StartAndExpand"   
                                      HeightRequest="518" 
                                      WidthRequest="518" >
-                    <ZXing:ZXingBarcodeImageView.BarcodeOptions >
-                        <zxingcommon:EncodingOptions Height="600" Width="600" />
-                    </ZXing:ZXingBarcodeImageView.BarcodeOptions>
-                </ZXing:ZXingBarcodeImageView>
-        <Label  x:Name="lab_Gen" VerticalOptions="StartAndExpand"  Grid.Row="2" Grid.Column="1"   
+                <ZXing:ZXingBarcodeImageView.BarcodeOptions >
+                    <zxingcommon:EncodingOptions Height="600" Width="600" />
+                </ZXing:ZXingBarcodeImageView.BarcodeOptions>
+            </ZXing:ZXingBarcodeImageView>
+            <Label  x:Name="lab_Gen" VerticalOptions="StartAndExpand" HorizontalOptions="CenterAndExpand"  Grid.Row="1" Grid.Column="1"   
                    
                     
                                    HorizontalTextAlignment="Center"  
@@ -81,64 +83,42 @@
                                    FontSize="{Binding FontSizeQR}" 
                                    TextColor="{Binding TCColor}">
 
-                    <Label.FormattedText >
-                        <FormattedString >
+                <Label.FormattedText >
+                    <FormattedString >
 
-                            <Span Text="{Binding LabelText}" />
-                            <Span Text="{Binding VCard1 }" />
-                            <Span Text="{Binding VCard2 }"/>
-                            <Span Text="{Binding VCard3 }"/>
-                            <Span Text="{Binding VCard4 }"/>
-                            <Span Text="{Binding VCard5 }"/>
-                            <Span Text="{Binding VCard6 }"/>
-                            <local1:HyperlinkSpan 
+                        <Span Text="{Binding LabelText}" />
+                        <Span Text="{Binding VCard1 }" />
+                        <Span Text="{Binding VCard2 }"/>
+                        <Span Text="{Binding VCard3 }"/>
+                        <Span Text="{Binding VCard4 }"/>
+                        <Span Text="{Binding VCard5 }"/>
+                        <Span Text="{Binding VCard6 }"/>
+                        <local1:HyperlinkSpan 
                                               Text="{Binding VCard7}"
                                               Url="{Binding VCard7Link}"/>
-                            <Span Text="{Binding VCard8 }"/>
+                        <Span Text="{Binding VCard8 }"/>
 
-                            <local1:HyperlinkSpan
+                        <local1:HyperlinkSpan
                                               Text="{Binding VCard9}"
                                               Url="{Binding VCard9Link}"/>
-                            <Span Text="{Binding VCard10 }"/>
+                        <Span Text="{Binding VCard10 }"/>
 
-                            <local1:HyperlinkSpan  
+                        <local1:HyperlinkSpan  
                                                Text="{Binding VCard11}"
                                                Url="{Binding VCard11Link}"
                                               />
 
 
-                            <Span Text="{Binding VCard12 }"/>
-                            <Span Text="{Binding VCard13 }"/>
+                        <Span Text="{Binding VCard12 }"/>
+                        <Span Text="{Binding VCard13 }"/>
 
-                        </FormattedString>
-                    </Label.FormattedText>
+                    </FormattedString>
+                </Label.FormattedText>
 
-                </Label>
-           
+            </Label>
 
+        </Grid>
 
-
-
-        
-
-    </Grid>
+    </ScrollView>
     
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 </ContentPage>

@@ -77,7 +77,6 @@ namespace QR_CodeScanner.ViewModel
             food = isFood;
             browser = isBrowser;
             number = phoneNumberSMS;
-            
             if (culture.GetCulture() == "de")
             {
                 SaveTo = "Kopieren";
@@ -162,7 +161,7 @@ namespace QR_CodeScanner.ViewModel
 
             if (isPhoneNumber)
             {
-                Text1 = "";
+                Text1 = "TEL: " + qrTxt;
                 IsVis = true;
                 ImageTop = "Telefon.png";
                 if (culture.GetCulture() == "de")
@@ -178,7 +177,7 @@ namespace QR_CodeScanner.ViewModel
                     ShareTo = "Share\nnumber";
                 }
 
-                LabelText = "TEL: ";
+                LabelText = "call: ";
                 VCard7 = qrTxt;
                 VCard7Link = "tel:" + qrTxt;
             }

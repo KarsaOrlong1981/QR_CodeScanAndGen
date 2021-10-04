@@ -22,7 +22,7 @@ namespace QR_CodeScanner.Model
             if (historyScan)
                 _database.CreateTableAsync<QRhistory>().Wait();
             else
-                _database.CreateTableAsync <ScanHistoryModel>().Wait();
+                _database.CreateTableAsync<ScanHistoryModel>().Wait();
         }
 
         public Task<List<QRhistory>> GetQRcodeAsync()
@@ -34,10 +34,10 @@ namespace QR_CodeScanner.Model
         {
             return _database.InsertAsync(qrCode);
         }
-       public async Task DeleteItemAsync(int id)
+        public async Task DeleteItemAsync(int id)
         {
             var item = await _database.Table<QRhistory>().Where(x => x.ID == id).FirstOrDefaultAsync();
-            if(item != null)
+            if (item != null)
             {
                 await _database.DeleteAsync(item);
             }

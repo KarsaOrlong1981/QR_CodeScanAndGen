@@ -3,10 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local1="clr-namespace:QR_CodeScanner.Model" 
              xmlns:viewmodel="clr-namespace:QR_CodeScanner.ViewModel" 
              x:DataType="viewmodel:ResultViewModel"
-             x:Class="QR_CodeScanner.Views.ResultPage" >
-  
+             x:Class="QR_CodeScanner.Views.ResultPage" Title="Scan Result">
+
+
+    <ScrollView>
         
-    
+  
     <Grid>
         <Grid.RowDefinitions >
             <RowDefinition Height="2*" />
@@ -17,23 +19,27 @@
         <Grid Grid.Row="0" >
            
 
-            <Frame Margin="10" BackgroundColor="AliceBlue ">
-                <StackLayout >
+            <Frame Margin="10" BackgroundColor="White">
+                <StackLayout>
 
-                    <Button 
-                    Margin="20"
-                    ContentLayout="top,50" 
-                    ImageSource="{Binding ImageTop}" 
-                    Text="{Binding Text1}" FontSize="Medium"   
-                    HorizontalOptions="CenterAndExpand"  
-                    TextColor="Black"
-                    
-                   
-                    BackgroundColor="White" 
-                    BorderColor="Gray" 
-                    BorderWidth="1" 
-                        IsVisible="{Binding IsVis}"
-                     />
+                    <Frame
+                           Margin="25"
+                           HasShadow="True"
+                           HorizontalOptions="CenterAndExpand"  
+                           CornerRadius="20"
+                           BackgroundColor="Azure"  
+                           BorderColor="Gray" 
+                           IsVisible="{Binding IsVis}"
+                     >
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Image Source="{Binding ImageTop}" HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand" />
+                            <Label Grid.Row="1" Text="{Binding Text1}" FontSize="Large"  TextColor="Black" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"  HorizontalTextAlignment="Center"  />
+                        </Grid>
+                    </Frame>
                     <StackLayout >
                         <Label FontSize="Medium"    TextColor="DarkGray" HorizontalTextAlignment="Center" Text="{Binding Text2}" />
                         <StackLayout Orientation="Horizontal" HorizontalOptions="Center" >
@@ -109,7 +115,7 @@
                 </StackLayout>
             </Frame>
         </Grid>
-        <Grid Grid.Row="1" >
+        <Grid Grid.Row="1" VerticalOptions="StartAndExpand" Margin="0,40,0,0"   >
             <Grid.RowDefinitions >
 
                 <RowDefinition Height="*"/>
@@ -155,6 +161,6 @@
                                         VerticalOptions="CenterAndExpand" />
         </Grid>
     </Grid>
-    
+    </ScrollView>
 
 </ContentPage>

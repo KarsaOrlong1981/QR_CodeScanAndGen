@@ -31,7 +31,6 @@ namespace QR_CodeScanner.ViewModel
         string vcard1, vcard2, vcard3, vcard4, vcard5, vcard6, vcard7, vcard7Link, vcard8, vcard9, vcard9Link, vcard10, vcard11, vcard11Link, vcard12, vcard13;
         int fontSize;
         ShareContent share;
-        Stream stream;
         CultureLang culture;
         QRImage qrImage;
         private bool wlan;
