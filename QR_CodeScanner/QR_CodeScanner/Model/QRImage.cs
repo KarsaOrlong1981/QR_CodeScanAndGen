@@ -69,7 +69,7 @@ namespace QR_CodeScanner.Model
             barcodeWriter.Renderer = new BitmapRenderer();
             var bitmap = barcodeWriter.Write(text);
             var stream = new MemoryStream();
-            bitmap.Compress(Bitmap.CompressFormat.Png, 500, stream);
+            bitmap.Compress(Bitmap.CompressFormat.Png, 100, stream);
             stream.Position = 0;
             string filePath = System.IO.Path.Combine(FileSystem.CacheDirectory, "screenshot.png");
             byte[] imageData = stream.ToArray();
