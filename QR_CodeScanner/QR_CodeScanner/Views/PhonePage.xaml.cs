@@ -20,9 +20,5 @@ namespace QR_CodeScanner.Views
             BindingContext = new PhoneViewModel(Navigation);
         }
 
-        private void ContentPage_Disappearing(object sender, EventArgs e)
-        {
-            Navigation.RemovePage(this);
-        }
     }
 }

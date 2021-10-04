@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local1="clr-namespace:QR_CodeScanner.Model" 
              xmlns:viewmodel="clr-namespace:QR_CodeScanner.ViewModel" 
              x:DataType="viewmodel:ResultViewModel"
-             x:Class="QR_CodeScanner.Views.ResultPage" Disappearing="ContentPage_Disappearing">
+             x:Class="QR_CodeScanner.Views.ResultPage" >
   
         
     
@@ -38,7 +38,7 @@
                         <Label FontSize="Medium"    TextColor="DarkGray" HorizontalTextAlignment="Center" Text="{Binding Text2}" />
                         <StackLayout Orientation="Horizontal" HorizontalOptions="Center" >
                             <Image Source="zeit30.png" IsVisible="{Binding IsVisEvent}"/>
-                            <Label FontSize="20"  TextColor="Black" Text="{Binding Text3}"/>
+                            <Label FontSize="20"  TextColor="Black" Text="{Binding Text3}"  />
                         </StackLayout>
                         <StackLayout Orientation="Horizontal" HorizontalOptions="Center"  >
                             <Image Source="zeit30.png" IsVisible="{Binding IsVisEvent}"/>
@@ -58,7 +58,7 @@
                         <Label.FormattedText >
                             <FormattedString >
 
-                                <Span Text="{Binding LabelText}" />
+                                <Span Text="{Binding LabelText}" FontSize="12" />
                                 <Span Text="{Binding VCard1 }" />
                                 <Span Text="{Binding VCard2 }"/>
                                 <Span Text="{Binding VCard3 }"/>
@@ -88,6 +88,9 @@
                         </Label.FormattedText>
 
                     </Label>
+                    <Image Source="{Binding ImageInfo}" HorizontalOptions="CenterAndExpand" />
+                    
+                    <Label Text="{Binding TextInfo}" FontSize="15" HorizontalOptions="CenterAndExpand" />
                     <Button Margin="20"
                     Command="{Binding ButtonLocation}"
                     ContentLayout="left,0" 

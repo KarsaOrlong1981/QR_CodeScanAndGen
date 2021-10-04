@@ -26,9 +26,5 @@ namespace QR_CodeScanner.Views
             BindingContext = new QRGeneratorViewModel(qrCodeText, isWlan, isWebsite, isContact, isEvent, isPhoneNumber, isEmail, isSMS, isFood, isBrowser, phoneNumber, fromProgress);
         }
 
-        private void ContentPage_Disappearing(object sender, EventArgs e)
-        {
-            Navigation.RemovePage(this);
-        }
     }
 }

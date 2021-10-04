@@ -14,15 +14,11 @@ namespace QR_CodeScanner.Views
     public partial class ResultPage : ContentPage
     {
         [Obsolete]//hier noch die anderen schalter hinzufügen
-        public ResultPage(string qrCodeText, bool isWlan, bool isWebsite, bool isContact, bool isEvent, bool isPhoneNr, bool isEmail, bool isSMS, bool isFood, bool isBrowser, string phoneNumber)
+        public ResultPage(string qrCodeText, bool isWlan, bool isWebsite, bool isContact, bool isEvent, bool isPhoneNr, bool isEmail, bool isSMS, bool isFood, bool isBrowser, string phoneNumber, bool fromScanHistory)
         {
             InitializeComponent();
-            BindingContext = new ResultViewModel(qrCodeText, isWlan, isWebsite, isContact, isEvent, isPhoneNr, isEmail, isSMS, isFood, isBrowser, string.Empty);
+            BindingContext = new ResultViewModel(qrCodeText, isWlan, isWebsite, isContact, isEvent, isPhoneNr, isEmail, isSMS, isFood, isBrowser, string.Empty, fromScanHistory);
         }
 
-        private void ContentPage_Disappearing(object sender, EventArgs e)
-        {
-            Navigation.RemovePage(this);
-        }
     }
 }

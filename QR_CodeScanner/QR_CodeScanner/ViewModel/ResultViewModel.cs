@@ -13,13 +13,17 @@ using Xamarin.Forms;
 using QR_CodeScanner.Model;
 using static Xamarin.Essentials.Permissions;
 using Java.Util;
+using QR_CodeScanner.Views;
 
 namespace QR_CodeScanner.ViewModel
 {
     public class ResultViewModel : BaseViewModel
     {
-        string text1, location, text2, text3, text4;
-        string labelText, imageTop;
+        string text1, location, text2, text3, text4, textINfo;
+        string ssid;
+        string password;
+        string number;
+        string labelText, imageTop, imageInfo;
         string resultToAdd;
         string bgColor;
         string tcColor;
@@ -33,6 +37,15 @@ namespace QR_CodeScanner.ViewModel
         string vcard9, vcard9Link, vcard10, vcard11, vcard11Link, vcard12, vcard13;
         int fontSize;
         bool isVisEvent, isVis;
+        private bool wlan;
+        private bool website;
+        private bool contact;
+        private bool eventX;
+        private bool phonenumber;
+        private bool email;
+        private bool sms;
+        private bool food;
+        private bool browser;
         ShareContent shareQR;
         public ICommand ButtonAddTo { get; set; }
         public ICommand ButtonLocation { get; set; }
@@ -40,10 +53,31 @@ namespace QR_CodeScanner.ViewModel
         public ICommand ButtonShare { get; set; }
 
         [Obsolete]
-        public ResultViewModel(string qrTxt, bool isWlan, bool isWebsite, bool isContact, bool isEvent, bool isPhoneNumber, bool isEmail, bool isSMS, bool isFood, bool isBrowser, string phoneNumberSMS)
+        public ResultViewModel(string qrTxt, bool isWlan, bool isWebsite, bool isContact, bool isEvent, bool isPhoneNumber, bool isEmail, bool isSMS, bool isFood, bool isBrowser, string phoneNumberSMS, bool scanHistory)
         {
+            ssid = string.Empty;
+            password = string.Empty;
             shareQR = new ShareContent();
             culture = new CultureLang();
+            FontSizeQR = 20;
+            resultToAdd = qrTxt;
+            IsVisEvent = false;
+            IsVis = true;
+            ImageTop = "TextOR.png";
+            timeStart = DateTime.Now;
+            timeEnd = DateTime.Now;
+            Text1 = qrTxt;
+            wlan = isWlan;
+            website = isWebsite;
+            contact = isContact;
+            eventX = isEvent;
+            phonenumber = isPhoneNumber;
+            email = isEmail;
+            sms = isSMS;
+            food = isFood;
+            browser = isBrowser;
+            number = phoneNumberSMS;
+            
             if (culture.GetCulture() == "de")
             {
                 SaveTo = "Kopieren";
@@ -54,14 +88,59 @@ namespace QR_CodeScanner.ViewModel
                 SaveTo = "Copy";
                 ShareTo = "Share";
             }
-            FontSizeQR = 20;
-            resultToAdd = qrTxt;
-            IsVisEvent = false;
-            IsVis = true;
-            ImageTop = "TextOR.png";
-            timeStart = DateTime.Now;
-            timeEnd = DateTime.Now;
-            Text1 = qrTxt;
+            if (isWlan)
+            {
+                string manual = string.Empty;
+                string info = string.Empty;
+                string trimWiFi = resultToAdd.Substring(5);
+                string[] splitSSidPass = trimWiFi.Split(';', ' ');
+                for (int i = 0; i < splitSSidPass.Length; i++)
+                {
+                    if (splitSSidPass[i] == string.Empty)
+                        continue;
+                    else
+                    {
+                        if (splitSSidPass[i].Substring(0, 2) == "S:")
+                        {
+                            string subSSID = splitSSidPass[i].Substring(2);
+                            ssid = subSSID;
+                        }
+                        if (splitSSidPass[i].Substring(0, 2) == "P:")
+                        {
+                            string subPassword = splitSSidPass[i].Substring(2);
+                            password = subPassword;
+                        }
+                    }
+                }
+                Text1 = ssid;
+                Text2 = password;
+                ImageInfo = "Info26.png";
+                ImageTop = "Wlan.png";
+                if (culture.GetCulture() == "de")
+                {
+                    info = "Entschuldigen Sie bitte, Google empfiehlt ab Android 10 manuell eine Verbindung zu einem WLAN-Netzwerk herzustellen, um die Privatsphäre der Nutzer zu schützen.";
+                    manual = "- Klicken Sie auf \"Passwort Kopieren\".\n\n- wählen Sie Wifi-Netzwerk \"" + ssid + "\".\n\n- Fügen Sie das Passwort ein und stellen Sie eine Verbindung her.";
+                }
+                else
+                {
+                    info = "Sorry, Google recommends manually connecting to \na WiFi network from Android 10 onwards in order to protect user privacy.";
+                    manual = "- Click on \"Copy Password \".\n\n- select Wifi Network \"" + ssid + "\". \n\n- Paste the password and connect .";
+                }
+                LabelText = info;
+                TextInfo = manual;
+                if (culture.GetCulture() == "de")
+                {
+                    SaveTo = "Passwort\nKopieren";
+
+                    ShareTo = "Passwort\nTeilen";
+                }
+                else
+                {
+                    SaveTo = "Copy\npassword";
+
+                    ShareTo = "Share\npassword";
+                }
+            }
             if (isContact)
             {
                 Text1 = "";
@@ -71,65 +150,56 @@ namespace QR_CodeScanner.ViewModel
                 GetContactsResult(qrTxt);
             }
 
-            else
+
+            if (isEvent)
             {
-                if (isEvent)
-                {
-                    Text1 = "";
-                    ImageTop = "Ereignis.png";
-                    SaveTo = "Save\nto Calendar";
-                    ShareTo = "Share\nEvent";
-                    GetCalendarResult(qrTxt);
-                }
-
-                if (isPhoneNumber)
-                {
-                    Text1 = "";
-                    IsVis = true;
-                    ImageTop = "Telefon.png";
-                    if (culture.GetCulture() == "de")
-                    {
-                        SaveTo = "Nummer\nKopieren";
-
-                        ShareTo = "Nummer\nTeilen";
-                    }
-                    else
-                    {
-                        SaveTo = "Copy\nnumber";
-
-                        ShareTo = "Share\nnumber";
-                    }
-
-                    LabelText = "TEL: ";
-                    VCard7 = qrTxt;
-                    VCard7Link = "tel:" + qrTxt;
-                }
-                else
-                {
-                    VCard7 = "";
-                    VCard7Link = "";
-                }
-
-                if (isEmail)
-                {
-                    LabelText = "Email: ";
-                    VCard11 = qrTxt;
-                    VCard11Link = "mailto:" + qrTxt;
-
-                }
-                else
-                {
-                    VCard11 = "";
-                    VCard11Link = "";
-                }
+                Text1 = "";
+                ImageTop = "Ereignis.png";
+                SaveTo = "Save\nto Calendar";
+                ShareTo = "Share\nEvent";
+                GetCalendarResult(qrTxt);
             }
 
+            if (isPhoneNumber)
+            {
+                Text1 = "";
+                IsVis = true;
+                ImageTop = "Telefon.png";
+                if (culture.GetCulture() == "de")
+                {
+                    SaveTo = "Nummer\nKopieren";
+
+                    ShareTo = "Nummer\nTeilen";
+                }
+                else
+                {
+                    SaveTo = "Copy\nnumber";
+
+                    ShareTo = "Share\nnumber";
+                }
+
+                LabelText = "TEL: ";
+                VCard7 = qrTxt;
+                VCard7Link = "tel:" + qrTxt;
+            }
+            if (isEmail)
+            {
+                LabelText = "Email: ";
+                VCard11 = qrTxt;
+                VCard11Link = "mailto:" + qrTxt;
+
+            }
             tcColor = "Black";
             bgColor = "White";
+
 
             ButtonLocation = new Command(LaunchingMap);
             ButtonAddTo = new Command(DoNext);
             ButtonShare = new Command(ShareQR);
+            if (scanHistory == false)
+            {
+                GetImageAndTextHistory();
+            }
         }
 
         async void ShareQR()
@@ -152,17 +222,38 @@ namespace QR_CodeScanner.ViewModel
                 //Permisssions must be granted for Calendar
                 await GetCalendarAsync();
             }
-            if (SaveTo == "Nummer\nKopieren" || SaveTo == "Copy\nnumber")
+            if (SaveTo == "Nummer\nKopieren" || SaveTo == "Copy\nnumber" || SaveTo == "Passwort\nKopieren" || SaveTo == "Copy\npassword")
             {
-                await Clipboard.SetTextAsync(resultToAdd);
-                var activity = Forms.Context as Activity;
                 if (culture.GetCulture() == "de")
-
-                    Toast.MakeText(activity, "Telefonnummer wurde Kopiert", ToastLength.Long).Show();
-
+                {
+                    if (SaveTo == "Nummer\nKopieren")
+                    {
+                        await Clipboard.SetTextAsync(resultToAdd);
+                        var activity = Forms.Context as Activity;
+                        Toast.MakeText(activity, "Telefonnummer wurde kopiert.", ToastLength.Long).Show();
+                    }
+                    else
+                    {
+                        await Clipboard.SetTextAsync(password);
+                        var activity = Forms.Context as Activity;
+                        Toast.MakeText(activity, "Passwort wurde kopiert.", ToastLength.Long).Show();
+                    }
+                }
                 else
-
-                    Toast.MakeText(activity, "Copied Phonenumber", ToastLength.Long).Show();
+                {
+                    if (SaveTo == "Copy\nnumber")
+                    {
+                        await Clipboard.SetTextAsync(resultToAdd);
+                        var activity = Forms.Context as Activity;
+                        Toast.MakeText(activity, "Phone number was copied.", ToastLength.Long).Show();
+                    }
+                    else
+                    {
+                        await Clipboard.SetTextAsync(password);
+                        var activity = Forms.Context as Activity;
+                        Toast.MakeText(activity, "Password was copied.", ToastLength.Long).Show();
+                    }
+                }
             }
             if (SaveTo == "Kopieren" || SaveTo == "Copy")
             {
@@ -178,10 +269,20 @@ namespace QR_CodeScanner.ViewModel
             }
 
         }
+        public string TextInfo
+        {
+            get => textINfo;
+            set => SetProperty(ref textINfo, value);
+        }
         public string ImageTop
         {
             get => imageTop;
             set => SetProperty(ref imageTop, value);
+        }
+        public string ImageInfo
+        {
+            get => imageInfo;
+            set => SetProperty(ref imageInfo, value);
         }
         public bool IsVisEvent
         {
@@ -777,5 +878,37 @@ namespace QR_CodeScanner.ViewModel
             return c.TimeInMillis;
         }
 
+        private void GetImageAndTextHistory()
+        {
+            string eventQRString = string.Empty;
+            string text = resultToAdd;
+            if (wlan == true)
+                eventQRString = "Wlan";
+            if (website == true)
+                eventQRString = "Website";
+            if (contact == true)
+                eventQRString = "Contact";
+            if (eventX == true)
+                eventQRString = "Event";
+            if (phonenumber == true)
+                eventQRString = "Phonenumber";
+            if (email == true)
+                eventQRString = "Email";
+            if (sms == true)
+            {
+                eventQRString = "SMS";
+                text = "smsto:" + number + ":" + resultToAdd;
+            }
+            if (food == true)
+                eventQRString = "Food";
+            if (browser == true)
+                eventQRString = "Browser";
+            if (eventQRString != "Wlan" && eventQRString != "Website" && eventQRString != "Contact" && eventQRString != "Event" && eventQRString != "Phonenumber" &&
+               eventQRString != "Email" && eventQRString != "SMS" && eventQRString != "Food" && eventQRString != "Browser")
+            {
+                eventQRString = "Text";
+            }
+            new ScanHistory(text, eventQRString, true);
+        }
     }
 }

@@ -24,12 +24,9 @@ namespace QR_CodeScanner.Views
     public partial class ScannerPage : ContentPage
     {
         CultureLang culture;
-        WifiConnector wifi;
         public ScannerPage()
         {
             InitializeComponent();
-
-            wifi = new WifiConnector();
             culture = new CultureLang();
         }
         //If the Scanner recognizes an QR-Code
@@ -56,13 +53,13 @@ namespace QR_CodeScanner.Views
                         {
 
 
-                            BooleanCallResult(result.Text, false, false, false, true, false, false, false, false, false, string.Empty);
+                            BooleanCallResult(result.Text, false, false, true, false, false, false, false, false, false, string.Empty);
                         }
                         //To recognizes an VCalendar and read Vcalendar
                         if (resultString.Substring(0, 11) == "BEGIN:VCALE")
                         {
 
-                            BooleanCallResult(result.Text, false, false, true, false, false, false, false, false, false, string.Empty);
+                            BooleanCallResult(result.Text, false, false, false, true, false, false, false, false, false, string.Empty);
 
                         }
 
@@ -111,9 +108,7 @@ namespace QR_CodeScanner.Views
                                     }
                                     if (resultString.Substring(0, 4) == "WIFI")
                                     {
-                                        string[] splitWlan = resultString.Split(':', ';');
-                                        lab_Label.Text = result.Text;
-                                        wifi.ConnectToWifi(splitWlan[2], splitWlan[6]);
+                                        BooleanCallResult(result.Text, true, false, false, false, false, false, false, false, false, string.Empty);
                                     }
                                 }
                                 else
@@ -135,11 +130,11 @@ namespace QR_CodeScanner.Views
         }
 
         [Obsolete]
-        void BooleanCallResult(string result, bool isWL, bool isWeb, bool isEv, bool isCon, bool isPho, bool isEmail, bool isSMS, bool isFood, bool isBrowser, string phoneNumber)
+        void BooleanCallResult(string result, bool isWL, bool isWeb, bool isCon, bool isEv, bool isPho, bool isEmail, bool isSMS, bool isFood, bool isBrowser, string phoneNumber)
         {
 
 
-            CallResultPageWithConEven(result, isWL, isWeb, isEv, isCon, isPho, isEmail, isSMS, isFood, isBrowser, phoneNumber);
+            CallResultPageWithConEven(result, isWL, isWeb, isCon, isEv, isPho, isEmail, isSMS, isFood, isBrowser, phoneNumber);
         }
 
         [Obsolete]
@@ -147,7 +142,7 @@ namespace QR_CodeScanner.Views
         {
 
 
-            ResultPage call = new ResultPage(resultQrCode, isWlan, isWebsite, isContact, isEvent, isPhonenumber, isEmail, isSMS, isFood, isBrowser, string.Empty);
+            ResultPage call = new ResultPage(resultQrCode, isWlan, isWebsite, isContact, isEvent, isPhonenumber, isEmail, isSMS, isFood, isBrowser, string.Empty, false);
             await Navigation.PushAsync(call);
             scanView.IsScanning = true;
             scanView.IsAnalyzing = true;
@@ -187,9 +182,5 @@ namespace QR_CodeScanner.Views
             }
         }
 
-        private void ContentPage_Disappearing(object sender, EventArgs e)
-        {
-            Navigation.RemovePage(this);
-        }
     }
 }

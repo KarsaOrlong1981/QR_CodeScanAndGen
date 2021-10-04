@@ -51,9 +51,9 @@
             </Grid.ColumnDefinitions>
           
 
-            <Button Grid.Row="1" Grid.Column="2" Command="{Binding ButtonGeneratorClicked}" Text="Generator" TextColor="Black" ImageSource="Gen24.png" ContentLayout="Top,0" BackgroundColor="White"  FontSize="Small"  HorizontalOptions="CenterAndExpand"   VerticalOptions="CenterAndExpand"  />
-            <Button Grid.Row="1" Grid.Column="1" Text="Info" TextColor="Black" ImageSource="info26.png" ContentLayout="Top,0" BackgroundColor="White"  FontSize="Small"    VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" />
-            <Button Grid.Row="1" Grid.Column="0"  Command="{Binding ButtonProgressClicked}" Text="Verlauf" ContentLayout="Top,0" TextColor="Black" BackgroundColor="White"  ImageSource="verlauf.png" FontSize="Small"  VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" />
+            <Button Grid.Row="1" Grid.Column="2" Command="{Binding ButtonGeneratorClicked}" Text="Generator" TextColor="Black" ImageSource="Gen24.png" ContentLayout="Top,0" BackgroundColor="White"  FontSize="10"  HorizontalOptions="CenterAndExpand"   VerticalOptions="CenterAndExpand"  />
+            <Button Grid.Row="1" Grid.Column="1" Command="{Binding ButtonScanHistoryClicked}" Text="Scanned" TextColor="Black" ImageSource="scanH.png" ContentLayout="Top,0" BackgroundColor="White"  FontSize="10"    VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" />
+            <Button Grid.Row="1" Grid.Column="0"  Command="{Binding ButtonProgressClicked}" Text="History" ContentLayout="Top,0" TextColor="Black" BackgroundColor="White"  ImageSource="verlauf.png" FontSize="10"  VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" />
         </Grid>
 
     </Grid>

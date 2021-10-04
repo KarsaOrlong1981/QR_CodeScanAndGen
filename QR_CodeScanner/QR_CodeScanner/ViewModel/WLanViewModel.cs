@@ -123,15 +123,15 @@ namespace QR_CodeScanner.ViewModel
             {
 
                 case "WPA/WPA2":
-                    GenerateText = "WIFI:S:" + SSIDText + ";T:WPA;P:" + Password + ";;";
+                    GenerateText = "WIFI:S:" + SSIDText + ";T:WPA;P:" + Password + ";H:false;;";
                     break;
 
                 case "WEP":
-                    GenerateText = "WIFI:S:" + SSIDText + ";T:WEP;P:" + Password + ";;";
+                    GenerateText = "WIFI:S:" + SSIDText + ";T:WEP;P:" + Password + ";H:false;;";
                     break;
 
                 case "none":
-                    GenerateText = "WIFI:S:" + SSIDText + ";T:;P:" + Password + ";;";
+                    GenerateText = "WIFI:S:" + SSIDText + ";T:;P:" + Password + ";H:false;;";
                     break;
             }
             await Navigation.PushAsync(new QRGeneratorPage(GenerateText, true, false, false, false, false, false, false, false, false, string.Empty, false));

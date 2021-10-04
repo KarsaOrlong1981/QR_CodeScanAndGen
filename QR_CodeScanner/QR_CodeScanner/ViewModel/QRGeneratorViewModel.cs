@@ -12,7 +12,7 @@ using System.Globalization;
 using QR_CodeScanner.Model;
 using System.Collections.ObjectModel;
 using SQLite;
-
+using Android.Graphics;
 
 namespace QR_CodeScanner.ViewModel
 {
@@ -21,8 +21,7 @@ namespace QR_CodeScanner.ViewModel
         string[] splitVCard;
         string text;
         string labelText;
-        string progressFile;
-        string number;
+        private readonly string number;
         string bgColor;
         string tcColor;
         string qrCode;
@@ -34,12 +33,23 @@ namespace QR_CodeScanner.ViewModel
         ShareContent share;
         Stream stream;
         CultureLang culture;
-        bool txt, wlan, website, contact, eventX, phonenumber, email, sms, food, browser;
+        QRImage qrImage;
+        private bool wlan;
+        private bool website;
+        private bool contact;
+        private bool eventX;
+        private bool phonenumber;
+        private bool email;
+        private bool sms;
+        private bool food;
+        private bool browser;
+
         public ICommand ButtonShareClicked { get; set; }
         public ICommand ButtonSaveClicked { get; set; }
         [Obsolete]
         public QRGeneratorViewModel(string qrTxt, bool isWlan, bool isWebsite, bool isContact, bool isEvent, bool isPhoneNumber, bool isEmail, bool isSMS, bool isFood, bool isBrowser, string phoneNumberString, bool fromProgress)
         {
+            qrImage = new QRImage();
             //this creates the Barcode text
             Text = qrTxt;
             number = phoneNumberString;
@@ -145,7 +155,7 @@ namespace QR_CodeScanner.ViewModel
                 }
             }
             tcColor = "Black";
-            bgColor = "MintCream";
+            bgColor = "White";
             saveIsvisible = "true";
             shareIsVisible = "true";
             ButtonShareClicked = new Command(ShareQRImage);
@@ -302,108 +312,25 @@ namespace QR_CodeScanner.ViewModel
             }
             new HistoryPage(text, eventQRString, true);
         }
-        async Task<string> CaptureScreenshot()
-        {
-            var screenshot = await Screenshot.CaptureAsync();
-            stream = await screenshot.OpenReadAsync();
 
-            var file = Path.Combine(FileSystem.CacheDirectory, "screenshot.png");
-            using (FileStream fs = File.Open(file, FileMode.Create))
-            {
-                await stream.CopyToAsync(fs);
-                await fs.FlushAsync();
-            }
-            return file;
-
-
-        }
+        [Obsolete]
         async void ShareQRImage()
         {
-            BGColor = "Black";
-            TCColor = "White";
-            ShareIsVis = "false";
-            SaveIsVis = "false";
-            string file = Convert.ToString(CaptureScreenshot());
-            filepath = Path.Combine(FileSystem.CacheDirectory, "screenshot.png");
-            await share.ShareFile(file, filepath);
-
-            BGColor = "MintCream";
-            TCColor = "Black";
-            ShareIsVis = "true";
-            SaveIsVis = "true";
+            //this overrides the filePath and set an new Image and text.
+            qrImage.ShareQRAsImage(Text);
+            filepath = System.IO.Path.Combine(FileSystem.CacheDirectory, "screenshot.png");
+            await share.ShareFile(Text, filepath);
         }
 
         [Obsolete]
         async void SaveQR()
         {
-            BGColor = "Black";
-            TCColor = "White";
-            ShareIsVis = "false";
-            SaveIsVis = "false";
-            string labelT = LabelText;
-            LabelText = "";
-            string v1 = VCard1;
-            VCard1 = "";
-            string v2 = vcard2;
-            VCard2 = "";
-            string v3 = VCard3;
-            VCard3 = "";
-            string v4 = VCard4;
-            VCard4 = "";
-            string v5 = VCard5;
-            VCard5 = "";
-            string v6 = VCard6;
-            VCard6 = "";
-            string v7 = VCard7;
-            VCard7 = "";
-            string v7L = VCard7Link;
-            VCard7Link = "";
-            string v8 = VCard8;
-            VCard8 = "";
-            string v9 = VCard9;
-            VCard9 = "";
-            string v9L = VCard9Link;
-            VCard9Link = "";
-            string v10 = VCard10;
-            VCard10 = "";
-            string v11 = VCard11;
-            VCard11 = "";
-            string v11L = VCard11Link;
-            VCard11Link = "";
-            string v12 = VCard12;
-            VCard12 = "";
-            string v13 = VCard13;
-            VCard13 = "";
-            string file = await CaptureScreenshot();
-            progressFile = file;
-            SaveImage(file);
-            LabelText = labelT;
-            VCard1 = v1;
-            VCard2 = v2;
-            VCard3 = v3;
-            VCard4 = v4;
-            VCard5 = v5;
-            VCard6 = v6;
-            VCard7 = v7;
-            VCard7Link = v7L;
-            VCard8 = v8;
-            VCard9 = v9;
-            VCard9Link = v9L;
-            VCard10 = v10;
-            VCard11 = v11;
-            VCard11Link = v11L;
-            VCard12 = v12;
-            VCard13 = v13;
-            BGColor = "MintCream";
-            TCColor = "Black";
-            ShareIsVis = "true";
-            SaveIsVis = "true";
+            await qrImage.SaveQRAsImage(Text);
             var activity = Forms.Context as Activity;
             if (culture.GetCulture() == "de")
                 Toast.MakeText(activity, "Qr-Code in der Gallrie gespeichert", ToastLength.Short).Show();
             else
                 Toast.MakeText(activity, "Qr-Code was saved in Gallery", ToastLength.Short).Show();
-            // await App.Current.MainPage.DisplayAlert("QR-Code was saved in the Gallery", "", "OK");
         }
 
         [Obsolete]
@@ -415,7 +342,7 @@ namespace QR_CodeScanner.ViewModel
                 var dir = Android.OS.Environment.GetExternalStoragePublicDirectory(Android.OS.Environment.DirectoryPictures);
                 var pictures = dir.AbsolutePath;
                 var filename = "QR_Code_" + DateTime.Now.ToString("yyyyMMddHHmmssfff") + ".png";
-                var newFilepath = Path.Combine(pictures, filename);
+                var newFilepath = System.IO.Path.Combine(pictures, filename);
 
                 File.WriteAllBytes(newFilepath, imageData);
                 //mediascan adds the saved image into the gallery

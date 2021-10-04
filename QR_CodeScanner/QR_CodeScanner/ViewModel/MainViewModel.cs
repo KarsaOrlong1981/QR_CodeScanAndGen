@@ -17,6 +17,7 @@ namespace QR_CodeScanner.ViewModel
         public ICommand ButtonInfoClicked { get; set; }
         public ICommand ButtonProgressClicked { get; set; }
         public ICommand ButtonScannerClicked { get; set; }
+        public ICommand ButtonScanHistoryClicked { get; set; }
 
         QRhistory progress;
         [Obsolete]
@@ -26,11 +27,12 @@ namespace QR_CodeScanner.ViewModel
             progress = new QRhistory();
             ButtonGeneratorClicked = new Command(async () => await CallQRVersionPage());
             ButtonScannerClicked = new Command(async () => await CallScannerPage());
-            ButtonProgressClicked = new Command(async () => await CallProgressPage());
+            ButtonProgressClicked = new Command(async () => await CallHistoryPage());
+            ButtonScanHistoryClicked = new Command(async () => await CallScanHistoryPage());
         }
 
         [Obsolete]
-        private async Task CallProgressPage()
+        private async Task CallHistoryPage()
         {
             await Navigation.PushAsync(new HistoryPage(null, null, false));
         }
@@ -43,13 +45,13 @@ namespace QR_CodeScanner.ViewModel
         }
         private async Task CallScannerPage()
         {
-
-
-
             await Navigation.PushAsync(new ScannerPage());
         }
 
-
+        private async Task CallScanHistoryPage()
+        {
+            await Navigation.PushAsync(new ScanHistory(null, null, false));
+        }
 
 
 

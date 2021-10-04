@@ -12,7 +12,5 @@ namespace QR_CodeScanner.Model
         public string QRText { get; set; }
         public string Event { get; set; }
         public DateTime Date { get; set; }
-        
-
     }
 }

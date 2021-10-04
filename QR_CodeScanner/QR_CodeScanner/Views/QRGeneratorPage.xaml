@@ -6,7 +6,7 @@
              xmlns:ZXing="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms" 
              xmlns:zxingcommon="clr-namespace:ZXing.Common;assembly=zxing.portable"
               xmlns:viewmodel="clr-namespace:QR_CodeScanner.ViewModel" xmlns:local1="clr-namespace:QR_CodeScanner.Model" x:DataType="viewmodel:QRGeneratorViewModel"
-              Disappearing="ContentPage_Disappearing" >
+              >
 
     
         

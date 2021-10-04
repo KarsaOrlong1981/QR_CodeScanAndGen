@@ -2,7 +2,7 @@
 <ContentPage BackgroundColor="White"    xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewmodel="clr-namespace:QR_CodeScanner.ViewModel" x:DataType="viewmodel:QRVersionViewModel"
              x:Class="QR_CodeScanner.Views.QRVersionPage"
-             Title="QR-Code generieren" Disappearing="ContentPage_Disappearing"  >
+             Title="QR-Code generieren" >
 
     <Grid Margin="0,10,0,0" >
         <Grid.RowDefinitions>

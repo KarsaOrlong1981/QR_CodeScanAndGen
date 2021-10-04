@@ -1,30 +1,30 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage BackgroundColor="Azure"  xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-             xmlns:ZXing="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms" 
+             xmlns:ZXing="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms"
              xmlns:zxingcommon="clr-namespace:ZXing.Common;assembly=zxing.portable"
-             x:Class="QR_CodeScanner.Views.HistoryPage" Title="History of Generated QR-Codes">
+             x:Class="QR_CodeScanner.Views.ScanHistory" Title="History of Scanned QR-Codes">
     <ContentPage.ToolbarItems>
         <ToolbarItem x:Name="toolItem"
                  IconImageSource="Clear1.png"
                  Order="Primary"
                  Priority="0"
-                     Clicked="ToolbarItem_Clicked"    />
-        
+                     Clicked="toolItem_Clicked"     />
 
 
-       
+
+
     </ContentPage.ToolbarItems>
 
     <ScrollView >
-        
-   
-    <Grid x:Name="grid">
-        <Grid.RowDefinitions>
-            
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-           
+
+
+        <Grid x:Name="grid">
+            <Grid.RowDefinitions>
+
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
 
 
             <CollectionView x:Name="collectionView"
@@ -32,11 +32,11 @@
                             HorizontalOptions="CenterAndExpand" 
                             Margin="10"
                             SelectionMode="Single"
-                            SelectionChanged="CollectionView_SelectionChanged"
+                            SelectionChanged="CollectionView_SelectionChanged" 
                             >
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <Frame HasShadow="True" 
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame HasShadow="True" 
                            BorderColor="LightGray" 
                            Margin="10" 
                            CornerRadius="20" 
@@ -47,9 +47,9 @@
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="Auto"/>
                                 </Grid.RowDefinitions>
-                                <Entry x:Name="Entry" Text="{Binding QRText}" IsVisible="false"/>
-                                
-                                <Label Grid.Row="0" Text="{Binding Date}"
+                                <Entry x:Name="Entry" Text="{Binding ScanQRText}" IsVisible="false"/>
+
+                                <Label Grid.Row="0" Text="{Binding ScanDate}"
                                        HorizontalOptions="CenterAndExpand" 
                                        VerticalOptions="StartAndExpand"
                                        FontSize="Medium" TextColor="DarkCyan" />
@@ -62,17 +62,17 @@
                                        HeightRequest="100" 
                                        WidthRequest="100" >
                                     <ZXing:ZXingBarcodeImageView.BarcodeOptions>
-                                        
+
                                         <zxingcommon:EncodingOptions Height="200" Width="200"/>
                                     </ZXing:ZXingBarcodeImageView.BarcodeOptions>
                                 </ZXing:ZXingBarcodeImageView>
-                                <Label Grid.Row="2" Text="{Binding QRText}"
+                                <Label Grid.Row="2" Text="{Binding ScanQRText}"
                                        HorizontalOptions="CenterAndExpand" 
                                        VerticalOptions="CenterAndExpand" 
                                        FontSize="Medium" TextColor="SteelBlue" />
                                 <Button Grid.Row="2" 
                                         Margin="5" 
-                                        Text="{Binding ID}"
+                                        Text="{Binding ScanID}"
                                         x:Name="clearItem" 
                                         ImageSource="clear24.png" 
                                         HeightRequest="50" 
@@ -80,14 +80,14 @@
                                         BackgroundColor="White"    
                                         HorizontalOptions="EndAndExpand" 
                                         VerticalOptions="EndAndExpand"
-                                        Clicked="clearItem_Clicked"
+                                        Clicked="clearItem_ClickedAsync"  
                                         />
                             </Grid>
-                       
+
                         </Frame>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
-    </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
     </ScrollView>
 </ContentPage>

@@ -4,7 +4,7 @@
              xmlns:zxing="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms" 
             
              x:Class="QR_CodeScanner.Views.ScannerPage"
-             Title="Scan QR-Code" Disappearing="ContentPage_Disappearing" >
+             Title="Scan QR-Code"  >
     <ContentPage.Content>
         <StackLayout>
             <Label x:Name="lab_Label" TextColor="Black"/>

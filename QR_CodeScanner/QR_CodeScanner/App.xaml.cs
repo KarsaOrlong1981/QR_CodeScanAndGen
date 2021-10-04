@@ -17,7 +17,7 @@ namespace QR_CodeScanner
             {
                 if (database1 == null)
                 {
-                    database1 = new QRDatabase(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "QRcodeHistory.db1"));
+                    database1 = new QRDatabase(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "QRcodeHistory.db1"), true);
                 }
                 return database1;
             }
@@ -28,7 +28,7 @@ namespace QR_CodeScanner
             {
                 if (database2 == null)
                 {
-                    database2 = new QRDatabase(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "FoodList.db1"));
+                    database2 = new QRDatabase(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "ScanHistory.db1"), false);
                 }
                 return database2;
             }

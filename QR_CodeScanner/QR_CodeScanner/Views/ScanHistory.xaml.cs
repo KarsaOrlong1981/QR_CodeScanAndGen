@@ -1,48 +1,63 @@
-﻿
-using Android.App;
-using Android.Widget;
-using QR_CodeScanner.Model;
-using QR_CodeScanner.ViewModel;
+﻿using QR_CodeScanner.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using SQLite;
+
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using System.IO;
-using Windows.Storage;
 
 namespace QR_CodeScanner.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class HistoryPage : ContentPage
+    public partial class ScanHistory : ContentPage
     {
-        QRhistory history;
+        ScanHistoryModel history;
         CultureLang culture;
 
-        [Obsolete]
-        public HistoryPage(string qrText, string eventQR, bool course)
+        public ScanHistory(string qrText, string eventQR, bool course)
         {
             InitializeComponent();
             culture = new CultureLang();
-            history = new QRhistory();
+            history = new ScanHistoryModel();
             DataBaseresult();
 
             if (qrText != null)
             {
                 if (course == true)
-                    AddToDB(qrText, eventQR);
+                    AddToScanDB(qrText, eventQR);
             }
-
-
         }
 
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+            collectionView.ItemsSource = await App.Database2.GetScanQRcodeAsync();
+        }
+        private async void AddToScanDB(string qrTxt, string ev)
+        {
+            if (!string.IsNullOrWhiteSpace(qrTxt) && !string.IsNullOrWhiteSpace(ev))
+            {
+
+                await App.Database2.SaveScanQRcodeAsync(new ScanHistoryModel
+                {
+
+                    ScanQRText = qrTxt,
+                    ScanEvent = ev,
+                    ScanDate = DateTime.Now
+
+                });
+
+
+
+                collectionView.ItemsSource = await App.Database2.GetScanQRcodeAsync();
+            }
+        }
 
         private void DataBaseresult()
         {
-            if (App.Database1.GetQRcodeAsync().Result.Count == 0)
+            if (App.Database2.GetScanQRcodeAsync().Result.Count == 0)
             {
                 toolItem.IsEnabled = false;
                 string txt = string.Empty;
@@ -66,36 +81,11 @@ namespace QR_CodeScanner.Views
             }
         }
 
-        protected override async void OnAppearing()
-        {
-            base.OnAppearing();
-            collectionView.ItemsSource = await App.Database1.GetQRcodeAsync();
-        }
-
-        private async void AddToDB(string qrTxt, string ev)
-        {
-            if (!string.IsNullOrWhiteSpace(qrTxt) && !string.IsNullOrWhiteSpace(ev))
-            {
-
-                await App.Database1.SaveQRcodeAsync(new Model.QRhistory
-                {
-
-                    QRText = qrTxt,
-                    Event = ev,
-                    Date = DateTime.Now,
-                });
-
-
-
-                collectionView.ItemsSource = await App.Database1.GetQRcodeAsync();
-            }
-        }
-
         [Obsolete]
         private void CollectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            string qrtxt = (e.CurrentSelection.FirstOrDefault() as QRhistory)?.QRText;
-            string eve = (e.CurrentSelection.FirstOrDefault() as QRhistory)?.Event;
+            string qrtxt = (e.CurrentSelection.FirstOrDefault() as ScanHistoryModel)?.ScanQRText;
+            string eve = (e.CurrentSelection.FirstOrDefault() as ScanHistoryModel)?.ScanEvent;
 
             string number = string.Empty;
             bool text = false;
@@ -158,12 +148,40 @@ namespace QR_CodeScanner.Views
         [Obsolete]
         private async void OpenNewGenerator(string qrtxtX, bool wlanX, bool websiteX, bool contactX, bool eventX, bool phoneNRX, bool emailX, bool smsX, bool foodX, bool browserX, string numberX, bool fromProgress)
         {
-            QRGeneratorPage qrGVM = new QRGeneratorPage(qrtxtX, wlanX, websiteX, contactX, eventX, phoneNRX, emailX, smsX, foodX, browserX, numberX, true);
+            ResultPage qrGVM = new ResultPage(qrtxtX, wlanX, websiteX, contactX, eventX, phoneNRX, emailX, smsX, foodX, browserX, numberX, true);
             await Navigation.PushAsync(qrGVM);
         }
 
-        [Obsolete]
-        private async void clearItem_Clicked(object sender, EventArgs e)
+        private async void toolItem_Clicked(object sender, EventArgs e)
+        {
+            string title = string.Empty;
+            string yes = string.Empty;
+            string no = string.Empty;
+
+            if (culture.GetCulture() == "de")
+            {
+                title = "Wollen sie wirklich den gesamten Verlauf löschen?";
+                yes = "Ja";
+                no = "Nein";
+            }
+            else
+            {
+                title = "Do you really want to delete the entire history?";
+                yes = "Yes";
+                no = "No";
+            }
+
+
+            string result = await DisplayActionSheet(title, null, null, yes, no);
+            if (result == yes)
+            {
+                await App.Database2.DeleteAllScanItems<ScanHistoryModel>();
+                collectionView.ItemsSource = await App.Database2.GetScanQRcodeAsync();
+                DataBaseresult();
+            }
+        }
+
+        private async void clearItem_ClickedAsync(object sender, EventArgs e)
         {
             var item = (sender as Xamarin.Forms.Button).Text;
             int id = Convert.ToInt32(item);
@@ -188,45 +206,10 @@ namespace QR_CodeScanner.Views
             string result = await DisplayActionSheet(title, null, null, yes, no);
             if (result == yes)
             {
-                await App.Database1.DeleteItemAsync(id);
-                collectionView.ItemsSource = await App.Database1.GetQRcodeAsync();
+                await App.Database2.DeleteScanItemAsync(id);
+                collectionView.ItemsSource = await App.Database2.GetScanQRcodeAsync();
                 DataBaseresult();
             }
-
-
-        }
-
-
-
-        [Obsolete]
-        private async void ToolbarItem_Clicked(object sender, EventArgs e)
-        {
-            string title = string.Empty;
-            string yes = string.Empty;
-            string no = string.Empty;
-
-            if (culture.GetCulture() == "de")
-            {
-                title = "Wollen sie wirklich den gesamten Verlauf löschen?";
-                yes = "Ja";
-                no = "Nein";
-            }
-            else
-            {
-                title = "Do you really want to delete the entire history?";
-                yes = "Yes";
-                no = "No";
-            }
-
-
-            string result = await DisplayActionSheet(title, null, null, yes, no);
-            if (result == yes)
-            {
-                await App.Database1.DeleteAllItems<QRhistory>();
-                collectionView.ItemsSource = await App.Database1.GetQRcodeAsync();
-                DataBaseresult();
-            }
-
 
         }
     }
