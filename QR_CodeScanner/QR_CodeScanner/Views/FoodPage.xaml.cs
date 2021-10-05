@@ -17,8 +17,7 @@ namespace QR_CodeScanner.Views
         public FoodPage()
         {
             InitializeComponent();
-            BindingContext = new FoodViewModel(Navigation);
+            BindingContext = new FoodViewModel(Navigation,grid);
         }
-
     }
 }

@@ -15,7 +15,6 @@ namespace QR_CodeScanner.Model
     public class QRDatabase
     {
         readonly SQLiteAsyncConnection _database;
-
         public QRDatabase(string dbPath, bool historyScan)
         {
             _database = new SQLiteAsyncConnection(dbPath);
