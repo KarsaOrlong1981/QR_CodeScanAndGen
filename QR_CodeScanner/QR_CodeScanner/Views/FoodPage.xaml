@@ -1,13 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage BackgroundColor="MintCream" xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentPage BackgroundColor="MintCream" Padding ="20"  xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewmodel="clr-namespace:QR_CodeScanner.ViewModel" x:DataType="viewmodel:FoodViewModel"
              x:Class="QR_CodeScanner.Views.FoodPage" Title="Generate Food QR-Code">
     <ScrollView>
+        
+   
         <Grid x:Name="grid">
-            <Grid.RowDefinitions >
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
+           
             <Label Text="{Binding LabText}" BackgroundColor="MintCream" 
                    TextColor="Black" 
                    FontSize="40"  
@@ -16,13 +15,13 @@
                    HorizontalOptions="CenterAndExpand" 
                    VerticalOptions="StartAndExpand"
                    IsVisible="{Binding IsVisLab}"/>
-            <Button Grid.Row="0"
+            <Button 
                     Command="{Binding ButtonPackagedFoodClicked}"
                     Text ="{Binding PackagedFood}" 
                     IsVisible="{Binding IsVisPF}"
                     HorizontalOptions="CenterAndExpand"
-                    VerticalOptions="CenterAndExpand" 
-                    Margin="20"
+                    VerticalOptions="StartAndExpand"  
+                    Margin="0,150,0,0"
                     TextColor="White" 
                     BackgroundColor="SteelBlue" 
                     FontSize="Large"
@@ -30,13 +29,13 @@
                     BorderColor="LightGray" 
                     BorderWidth="3"
                     WidthRequest="300"/>
-            <Button Grid.Row="0"
+            <Button 
                     Command="{Binding ButtonUnpackagedFoodClicked}"
                     Text ="{Binding UnpackagedFood}" 
                     IsVisible="{Binding IsVisUPF}" 
                     HorizontalOptions="CenterAndExpand"
-                    VerticalOptions="EndAndExpand" 
-                    Margin="20"
+                    VerticalOptions="StartAndExpand"  
+                    Margin="0,250,0,0"
                     TextColor="White"  
                     BackgroundColor="SteelBlue"
                     FontSize="Large"
@@ -46,6 +45,6 @@
                     WidthRequest="300"/>
 
         </Grid>
+
     </ScrollView>
-   
 </ContentPage>
