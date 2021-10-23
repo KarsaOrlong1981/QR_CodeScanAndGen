@@ -16,6 +16,8 @@ using Result = ZXing.Result;
 using QR_CodeScanner.Model;
 using Android.Net.Wifi;
 using Android.Media.Midi;
+using ZXing.Net.Mobile.Forms;
+using System.Diagnostics;
 
 namespace QR_CodeScanner.Views
 {
@@ -41,8 +43,12 @@ namespace QR_CodeScanner.Views
                 scanView.IsAnalyzing = false;
                 Navigation.RemovePage(this);
                 string resultString = result.Text;
-
-
+                if (result.BarcodeFormat == BarcodeFormat.EAN_13 || result.BarcodeFormat == BarcodeFormat.EAN_8 || result.BarcodeFormat == BarcodeFormat.AZTEC || result.BarcodeFormat == BarcodeFormat.CODE_39 || result.BarcodeFormat == BarcodeFormat.CODABAR ||
+                      result.BarcodeFormat == BarcodeFormat.CODE_93 || result.BarcodeFormat == BarcodeFormat.CODE_128 || result.BarcodeFormat == BarcodeFormat.DATA_MATRIX || result.BarcodeFormat == BarcodeFormat.ITF || result.BarcodeFormat == BarcodeFormat.MAXICODE ||
+                      result.BarcodeFormat == BarcodeFormat.PDF_417 || result.BarcodeFormat == BarcodeFormat.RSS_14 || result.BarcodeFormat == BarcodeFormat.RSS_EXPANDED || result.BarcodeFormat == BarcodeFormat.UPC_A || result.BarcodeFormat == BarcodeFormat.UPC_E ||
+                      result.BarcodeFormat == BarcodeFormat.All_1D || result.BarcodeFormat == BarcodeFormat.UPC_EAN_EXTENSION || result.BarcodeFormat == BarcodeFormat.MSI || result.BarcodeFormat == BarcodeFormat.PLESSEY || result.BarcodeFormat == BarcodeFormat.IMB)
+                    BooleanCallResult(result.BarcodeFormat + ": " + result.Text, false, false, false, false, false, false, false, true, false, string.Empty);//Here ican say that is Barcode
+                else
                 if (!resultString.All(Char.IsDigit))
                 {
                     if (resultString.Length >= 11)
@@ -67,8 +73,6 @@ namespace QR_CodeScanner.Views
                     }
                     else
                     {
-
-
                         //here i can say that is Text
                         BooleanCallResult(result.Text, false, false, false, false, false, false, false, false, false, string.Empty);
                     }
@@ -127,24 +131,24 @@ namespace QR_CodeScanner.Views
                     //hére i can say its an Phonenumber
                     BooleanCallResult(result.Text, false, false, false, false, true, false, false, false, false, string.Empty);
                 }
-
+                Debug.WriteLine("Format:" + result.BarcodeFormat);
             });
         }
 
         [Obsolete]
-        void BooleanCallResult(string result, bool isWL, bool isWeb, bool isCon, bool isEv, bool isPho, bool isEmail, bool isSMS, bool isFood, bool isBrowser, string phoneNumber)
+        void BooleanCallResult(string result, bool isWL, bool isWeb, bool isCon, bool isEv, bool isPho, bool isEmail, bool isSMS, bool isBarcode, bool isBrowser, string phoneNumber)
         {
 
 
-            CallResultPageWithConEven(result, isWL, isWeb, isCon, isEv, isPho, isEmail, isSMS, isFood, isBrowser, phoneNumber);
+            CallResultPageWithConEven(result, isWL, isWeb, isCon, isEv, isPho, isEmail, isSMS, isBarcode, isBrowser, phoneNumber);
         }
 
         [Obsolete]
-        async void CallResultPageWithConEven(string resultQrCode, bool isWlan, bool isWebsite, bool isContact, bool isEvent, bool isPhonenumber, bool isEmail, bool isSMS, bool isFood, bool isBrowser, string phoneNumber)
+        async void CallResultPageWithConEven(string resultQrCode, bool isWlan, bool isWebsite, bool isContact, bool isEvent, bool isPhonenumber, bool isEmail, bool isSMS, bool isBarcode, bool isBrowser, string phoneNumber)
         {
 
 
-            ResultPage call = new ResultPage(resultQrCode, isWlan, isWebsite, isContact, isEvent, isPhonenumber, isEmail, isSMS, isFood, isBrowser, string.Empty, false);
+            ResultPage call = new ResultPage(resultQrCode, isWlan, isWebsite, isContact, isEvent, isPhonenumber, isEmail, isSMS, isBarcode, isBrowser, string.Empty, false);
             await Navigation.PushAsync(call);
             scanView.IsScanning = true;
             scanView.IsAnalyzing = true;

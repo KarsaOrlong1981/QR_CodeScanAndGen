@@ -44,7 +44,7 @@ namespace QR_CodeScanner.ViewModel
         private bool phonenumber;
         private bool email;
         private bool sms;
-        private bool food;
+        private bool barcode;
         private bool browser;
         ShareContent shareQR;
         public ICommand ButtonAddTo { get; set; }
@@ -53,7 +53,7 @@ namespace QR_CodeScanner.ViewModel
         public ICommand ButtonShare { get; set; }
 
         [Obsolete]
-        public ResultViewModel(string qrTxt, bool isWlan, bool isWebsite, bool isContact, bool isEvent, bool isPhoneNumber, bool isEmail, bool isSMS, bool isFood, bool isBrowser, string phoneNumberSMS, bool scanHistory)
+        public ResultViewModel(string qrTxt, bool isWlan, bool isWebsite, bool isContact, bool isEvent, bool isPhoneNumber, bool isEmail, bool isSMS, bool isBarcode, bool isBrowser, string phoneNumberSMS, bool scanHistory)
         {
             ssid = string.Empty;
             password = string.Empty;
@@ -74,7 +74,7 @@ namespace QR_CodeScanner.ViewModel
             phonenumber = isPhoneNumber;
             email = isEmail;
             sms = isSMS;
-            food = isFood;
+            barcode = isBarcode;
             browser = isBrowser;
             number = phoneNumberSMS;
             if (culture.GetCulture() == "de")
@@ -157,7 +157,21 @@ namespace QR_CodeScanner.ViewModel
                 string[] messageAndNumber = qrTxt.Split(':');
                 SendSms(messageAndNumber[2], messageAndNumber[1]);
             }
-
+            if (isBarcode)
+            {
+                ImageTop = "barcode.png";
+                Text1 = qrTxt;
+                if (culture.GetCulture() == "de")
+                {
+                    SaveTo = "Kopieren";
+                    ShareTo = "Teilen";
+                }
+                else
+                {
+                    SaveTo = "Copy";
+                    ShareTo = "Share";
+                }
+            }
             if (isEvent)
             {
                 Text1 = "";
@@ -933,12 +947,12 @@ namespace QR_CodeScanner.ViewModel
                 eventQRString = "SMS";
                 text = "smsto:" + number + ":" + resultToAdd;
             }
-            if (food == true)
-                eventQRString = "Food";
+            if (barcode == true)
+                eventQRString = "Barcode";
             if (browser == true)
                 eventQRString = "Browser";
             if (eventQRString != "Wlan" && eventQRString != "Website" && eventQRString != "Contact" && eventQRString != "Event" && eventQRString != "Phonenumber" &&
-               eventQRString != "Email" && eventQRString != "SMS" && eventQRString != "Food" && eventQRString != "Browser")
+               eventQRString != "Email" && eventQRString != "SMS" && eventQRString != "Barcode" && eventQRString != "Browser")
             {
                 eventQRString = "Text";
             }

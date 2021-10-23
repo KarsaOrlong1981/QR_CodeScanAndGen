@@ -15,7 +15,7 @@
             
             <zxing:ZXingScannerView  x:Name="scanView"
                                         OnScanResult="scanView_OnScanResult"
-                                       
+                                        
                                         IsScanning="true"
                                       
                                         VerticalOptions="FillAndExpand" 

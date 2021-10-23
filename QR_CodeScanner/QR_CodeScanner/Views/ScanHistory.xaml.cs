@@ -96,7 +96,7 @@ namespace QR_CodeScanner.Views
             bool phoneNR = false;
             bool email = false;
             bool sms = false;
-            bool food = false;
+            bool barcode = false;
             bool browser = false;
 
 
@@ -129,8 +129,8 @@ namespace QR_CodeScanner.Views
                     qrtxt = messageAndNumber[1];
                     number = messageAndNumber[2];
                     break;
-                case "Food":
-                    food = true;
+                case "Barcode":
+                    barcode = true;
                     break;
                 case "Browser":
                     browser = true;
@@ -142,13 +142,13 @@ namespace QR_CodeScanner.Views
             }
             else
                 //wenn hier generator geöffnet wird true
-                OpenNewResult(qrtxt, wlan, website, contact, eventY, phoneNR, email, sms, food, browser, number, true);
+                OpenNewResult(qrtxt, wlan, website, contact, eventY, phoneNR, email, sms, barcode, browser, number, true);
         }
 
         [Obsolete]
-        private async void OpenNewResult(string qrtxtX, bool wlanX, bool websiteX, bool contactX, bool eventX, bool phoneNRX, bool emailX, bool smsX, bool foodX, bool browserX, string numberX, bool fromProgress)
+        private async void OpenNewResult(string qrtxtX, bool wlanX, bool websiteX, bool contactX, bool eventX, bool phoneNRX, bool emailX, bool smsX, bool barcodeX, bool browserX, string numberX, bool fromProgress)
         {
-            ResultPage qrGVM = new ResultPage(qrtxtX, wlanX, websiteX, contactX, eventX, phoneNRX, emailX, smsX, foodX, browserX, numberX, true);
+            ResultPage qrGVM = new ResultPage(qrtxtX, wlanX, websiteX, contactX, eventX, phoneNRX, emailX, smsX, barcodeX, browserX, numberX, true);
             await Navigation.PushAsync(qrGVM);
         }
 

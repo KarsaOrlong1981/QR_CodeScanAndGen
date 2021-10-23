@@ -13,6 +13,7 @@ using QR_CodeScanner.Model;
 using System.Collections.ObjectModel;
 using SQLite;
 using Android.Graphics;
+using ZXing.Net.Mobile.Forms;
 
 namespace QR_CodeScanner.ViewModel
 {
