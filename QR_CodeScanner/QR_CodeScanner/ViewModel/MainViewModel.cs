@@ -18,17 +18,49 @@ namespace QR_CodeScanner.ViewModel
         public ICommand ButtonProgressClicked { get; set; }
         public ICommand ButtonScannerClicked { get; set; }
         public ICommand ButtonScanHistoryClicked { get; set; }
-
+       
         QRhistory progress;
+        CultureLang culture;
+        string historyGen, historyScan, scanWithCam;
+
+        public string HistoryGen
+        {
+            get => historyGen;
+            set => SetProperty(ref historyGen, value);
+        }
+        public string HistoryScan
+        {
+            get => historyScan;
+            set => SetProperty(ref historyScan, value);
+        }
+        public string ScanWithCam
+        {
+            get => scanWithCam;
+            set => SetProperty(ref scanWithCam, value);
+        }
         [Obsolete]
         public MainViewModel(INavigation navigation)
         {
             this.Navigation = navigation;
+            culture = new CultureLang();
             progress = new QRhistory();
             ButtonGeneratorClicked = new Command(async () => await CallQRVersionPage());
             ButtonScannerClicked = new Command(async () => await CallScannerPage());
             ButtonProgressClicked = new Command(async () => await CallHistoryPage());
             ButtonScanHistoryClicked = new Command(async () => await CallScanHistoryPage());
+            ButtonInfoClicked = new Command(async () => await CallInfoPage());
+            if (culture.GetCulture() == "de")
+            {
+                ScanWithCam = "Mit Kamera Scannen";
+                HistoryGen = "Generierte\nQR-Codes\nVerlauf";
+                HistoryScan = "Gescannte\nQR-Codes\nVerlauf";
+            }
+            else
+            {
+                ScanWithCam = "Scan with Camera";
+                HistoryGen = "Generated\nHistory";
+                HistoryScan = "Scanned\nHistory";
+            }
         }
 
         [Obsolete]
@@ -53,7 +85,10 @@ namespace QR_CodeScanner.ViewModel
             await Navigation.PushAsync(new ScanHistory(null, null, false));
         }
 
-
+        private async Task CallInfoPage()
+        {
+            await Navigation.PushAsync(new InfoPage());
+        }
 
 
     }

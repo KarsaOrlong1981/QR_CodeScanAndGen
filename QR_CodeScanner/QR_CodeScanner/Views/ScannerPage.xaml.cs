@@ -86,7 +86,9 @@ namespace QR_CodeScanner.Views
                                     {
                                         try
                                         {
+                                            ScanHistory scanned = new ScanHistory(resultString, "Browser", true);
                                             await OpenBrowser(resultString);
+
                                         }
                                         catch
                                         {
@@ -102,7 +104,7 @@ namespace QR_CodeScanner.Views
                                     }
                                     if (resultString.Substring(0, 4) == "smst")
                                     {
-
+                                        ScanHistory scanned = new ScanHistory(resultString, "SMS", true);
                                         string[] messageAndNumber = resultString.Split(':');
                                         await SendSms(messageAndNumber[2], messageAndNumber[1]);
                                     }

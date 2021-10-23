@@ -34,7 +34,6 @@ namespace QR_CodeScanner.Droid
 #pragma warning restore CS0809 // Veraltetes Element überschreibt nicht veraltetes Element
         {
             base.OnCreate(savedInstanceState);
-            
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             AppCompatDelegate.DefaultNightMode = AppCompatDelegate.ModeNightNo;
 
@@ -42,26 +41,14 @@ namespace QR_CodeScanner.Droid
             //für BarCode Scanner
             ZXing.Net.Mobile.Forms.Android.Platform.Init();
             LoadApplication(new App());
-           
-
-
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
             //für BarCode Scanner
             global::ZXing.Net.Mobile.Android.PermissionsHandler.OnRequestPermissionsResult(requestCode, permissions, grantResults);
-
-           
-            
-                base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
-            
+            base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
-
-       
-
-
-
 
     }
 }

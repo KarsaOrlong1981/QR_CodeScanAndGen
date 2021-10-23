@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage BackgroundColor="White" Padding="20" xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewmodel="clr-namespace:QR_CodeScanner.ViewModel" xmlns:local1="clr-namespace:QR_CodeScanner.Model" x:DataType="viewmodel:InfoPageViewModel"
+             x:Class="QR_CodeScanner.Views.InfoPage" Title="Info/License">
+    <ScrollView >
+        <Grid >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Label Grid.Row="1" FontSize="13" TextColor="Black" HorizontalOptions="CenterAndExpand">
+                <Label.FormattedText >
+                    <FormattedString >
+                        <Span Text="{Binding Developer}"/>
+                        <local1:HyperlinkSpan  Text="{Binding DeveloperADD}"
+                                               Url="{Binding DeveloperLINK}"/>
+                        <Span Text="{Binding Icons}"/>
+                        <local1:HyperlinkSpan Text="{Binding IconsLINK}"
+                                              Url="{Binding IconsLINK}"/>
+                        <Span Text="{Binding LicenseXamFat}" FontSize="Large"/>
+                        <Span Text="{Binding LicenseXam}"/>
+                        <Span Text="{Binding LicenseApache}"/>
+                        <local1:HyperlinkSpan 
+                                              Text="{Binding LicenseApacheLINK}"
+                                              Url="{Binding LicenseApacheLINK}"/>
+                        </FormattedString>
+                </Label.FormattedText>
+            </Label>
+        </Grid>
+    </ScrollView>
+</ContentPage>

@@ -133,20 +133,20 @@ namespace QR_CodeScanner.Views
                     food = true;
                     break;
                 case "Browser":
-                    website = true;
+                    browser = true;
                     break;
             }
             if (text == true)
             {
-                OpenNewGenerator(qrtxt, false, false, false, false, false, false, false, false, false, number, true);
+                OpenNewResult(qrtxt, false, false, false, false, false, false, false, false, false, number, true);
             }
             else
                 //wenn hier generator geöffnet wird true
-                OpenNewGenerator(qrtxt, wlan, website, contact, eventY, phoneNR, email, sms, food, browser, number, true);
+                OpenNewResult(qrtxt, wlan, website, contact, eventY, phoneNR, email, sms, food, browser, number, true);
         }
 
         [Obsolete]
-        private async void OpenNewGenerator(string qrtxtX, bool wlanX, bool websiteX, bool contactX, bool eventX, bool phoneNRX, bool emailX, bool smsX, bool foodX, bool browserX, string numberX, bool fromProgress)
+        private async void OpenNewResult(string qrtxtX, bool wlanX, bool websiteX, bool contactX, bool eventX, bool phoneNRX, bool emailX, bool smsX, bool foodX, bool browserX, string numberX, bool fromProgress)
         {
             ResultPage qrGVM = new ResultPage(qrtxtX, wlanX, websiteX, contactX, eventX, phoneNRX, emailX, smsX, foodX, browserX, numberX, true);
             await Navigation.PushAsync(qrGVM);

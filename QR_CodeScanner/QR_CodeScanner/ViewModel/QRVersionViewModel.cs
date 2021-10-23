@@ -22,7 +22,6 @@ namespace QR_CodeScanner.ViewModel
         public ICommand ButtonPhoneClicked { get; set; }
         public ICommand ButtonEmailClicked { get; set; }
         public ICommand ButtonSmSClicked { get; set; }
-        public ICommand ButtonFoodClicked { get; set; }
 
         [Obsolete]
         public QRVersionViewModel(INavigation navigation)
@@ -36,15 +35,7 @@ namespace QR_CodeScanner.ViewModel
             ButtonPhoneClicked = new Command(GotoPhonePage);
             ButtonEmailClicked = new Command(GotoEmailPage);
             ButtonSmSClicked = new Command(GotoSmSPage);
-            ButtonFoodClicked = new Command(GotoFoodPage);
         }
-
-        [Obsolete]
-        public async Task CallFoodPage()
-        {
-            await Navigation.PushAsync(new FoodPage());
-        }
-
         [Obsolete]
         public async Task CallSmSPage()
         {
@@ -100,16 +91,10 @@ namespace QR_CodeScanner.ViewModel
         {
             await CallWebsitePage();
         }
-
         [Obsolete]
         private async void GotoTextPage()
         {
             await CallTextPage();
-        }
-        [Obsolete]
-        private async void GotoFoodPage()
-        {
-            await CallFoodPage();
         }
         [Obsolete]
         private async void GotoWlanPage()

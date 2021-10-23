@@ -148,7 +148,15 @@ namespace QR_CodeScanner.ViewModel
                 ShareTo = "Share\nContact";
                 GetContactsResult(qrTxt);
             }
-
+            if (isBrowser)
+            {
+                OpenBrowser(qrTxt);
+            }
+            if (isSMS)
+            {
+                string[] messageAndNumber = qrTxt.Split(':');
+                SendSms(messageAndNumber[2], messageAndNumber[1]);
+            }
 
             if (isEvent)
             {
@@ -267,6 +275,33 @@ namespace QR_CodeScanner.ViewModel
                     Toast.MakeText(activity, "Copied Text", ToastLength.Long).Show();
             }
 
+        }
+
+        [Obsolete]
+        private async void SendSms(string messageText, string recipient)
+        {
+            try
+            {
+                var message = new SmsMessage(messageText, recipient);
+                await Xamarin.Essentials.Sms.ComposeAsync(message);
+            }
+            catch
+            {
+                // Sms is not supported on this device.
+                var activity = Forms.Context as Activity;
+                if (culture.GetCulture() == "de")
+
+                    Toast.MakeText(activity, "SMS wird auf diesem Gerät nicht unterstützt.", ToastLength.Long).Show();
+
+                else
+
+                    Toast.MakeText(activity, "Sms is not supported on this device.", ToastLength.Long).Show();
+            }
+        }
+        //If Scanner recognizes an Website open Browser
+        private async void OpenBrowser(string uri)
+        {
+            await Xamarin.Essentials.Browser.OpenAsync(uri, BrowserLaunchMode.SystemPreferred);
         }
         public string TextInfo
         {

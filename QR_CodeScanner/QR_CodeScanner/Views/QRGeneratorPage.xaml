@@ -17,20 +17,16 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="Auto"/>
-                <RowDefinition Height="1*"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="5*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
+           
 
 
 
 
-            <Button Text="Save"   Grid.Row="2" Grid.Column="1" Margin=" 0,20,0,10"
+            <Button Text="Save"   Grid.Row="2"  Margin="10,40,0,0"
                         HorizontalOptions="StartAndExpand"    VerticalOptions="StartAndExpand"   
-                        
+                                        WidthRequest="200"
                                         Command="{Binding ButtonSaveClicked}"
                                         IsVisible="{Binding SaveIsVis}"
                                         TextColor="White"
@@ -42,9 +38,9 @@
                                         BorderWidth="2"
                                         BorderColor="Gray"
                                         FontSize="15"/>
-            <Button Text="Share"  Grid.Row="2" Grid.Column="1"  Margin=" 0,20,0,10"
+            <Button Text="Share"  Grid.Row="2"  Margin="0,40,10,0"
                                         VerticalOptions="StartAndExpand"    
-                                        
+                                        WidthRequest="200"
                                         IsVisible="{Binding ShareIsVis}"
                                         x:Name="btn_Share"
                                         TextColor="White"
@@ -56,25 +52,26 @@
                                         BorderWidth="2"
                                         BorderColor="Gray"
                                         FontSize="15"
-                                        HorizontalOptions="EndAndExpand"    />
+                                        HorizontalOptions="EndAndExpand"      />
 
 
 
 
 
 
-            <ZXing:ZXingBarcodeImageView x:Name="barCode" Grid.Row="0" Grid.Column="1"
+            <ZXing:ZXingBarcodeImageView x:Name="barCode" Grid.Row="0" 
                                      BackgroundColor="{Binding BGColor}" 
                                      BarcodeValue="{Binding Text}" 
                                      BarcodeFormat="QR_CODE" 
                                      VerticalOptions="StartAndExpand"   
+                                     HorizontalOptions="CenterAndExpand"
                                      HeightRequest="518" 
                                      WidthRequest="518" >
                 <ZXing:ZXingBarcodeImageView.BarcodeOptions >
                     <zxingcommon:EncodingOptions Height="600" Width="600" />
                 </ZXing:ZXingBarcodeImageView.BarcodeOptions>
             </ZXing:ZXingBarcodeImageView>
-            <Label  x:Name="lab_Gen" VerticalOptions="StartAndExpand" HorizontalOptions="CenterAndExpand"  Grid.Row="1" Grid.Column="1"   
+            <Label  x:Name="lab_Gen" Margin="10" VerticalOptions="StartAndExpand" HorizontalOptions="CenterAndExpand"  Grid.Row="1"   
                    
                     
                                    HorizontalTextAlignment="Center"  
