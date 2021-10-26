@@ -25,7 +25,7 @@ namespace QR_CodeScanner.ViewModel
         public INavigation Navigation { get; set; }
 
         [Obsolete]
-        public WLanViewModel(INavigation navigation)
+        public WLanViewModel(INavigation navigation, Grid grid)
         {
             culture = new CultureLang();
             if (culture.GetCulture() == "de")

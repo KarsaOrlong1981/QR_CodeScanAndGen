@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QR_CodeScanner.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,19 +7,17 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using QR_CodeScanner.ViewModel;
 
 namespace QR_CodeScanner.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class WlanPage : ContentPage
+    public partial class LayoutDesignPage : ContentPage
     {
         [Obsolete]
-        public WlanPage()
+        public LayoutDesignPage(Color background)
         {
             InitializeComponent();
-            BindingContext = new WLanViewModel(Navigation, container);
+            BindingContext = new LayoutDesignViewModel(Navigation, mainGrid, this, background);
         }
-
     }
 }

@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage  BackgroundColor="{Binding BGColor}" xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentPage  BackgroundColor="{Binding BGColor}" Padding="10" xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="QR_CodeScanner.Views.QRGeneratorPage"
           xmlns:local="clr-namespace:QR_CodeScanner.Model"
              xmlns:ZXing="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms" 
              xmlns:zxingcommon="clr-namespace:ZXing.Common;assembly=zxing.portable"
               xmlns:viewmodel="clr-namespace:QR_CodeScanner.ViewModel" xmlns:local1="clr-namespace:QR_CodeScanner.Model" x:DataType="viewmodel:QRGeneratorViewModel"
-              >
+              Title="Generator Result" >
 
 
 
@@ -26,7 +26,7 @@
 
             <Button Text="Save"   Grid.Row="2"  Margin="10,40,0,0"
                         HorizontalOptions="StartAndExpand"    VerticalOptions="StartAndExpand"   
-                                        WidthRequest="200"
+                                        WidthRequest="150"
                                         Command="{Binding ButtonSaveClicked}"
                                         IsVisible="{Binding SaveIsVis}"
                                         TextColor="White"
@@ -40,7 +40,7 @@
                                         FontSize="15"/>
             <Button Text="Share"  Grid.Row="2"  Margin="0,40,10,0"
                                         VerticalOptions="StartAndExpand"    
-                                        WidthRequest="200"
+                                        WidthRequest="150"
                                         IsVisible="{Binding ShareIsVis}"
                                         x:Name="btn_Share"
                                         TextColor="White"

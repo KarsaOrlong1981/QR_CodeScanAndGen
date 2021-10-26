@@ -15,13 +15,15 @@ namespace QR_CodeScanner.Model
     public class QRDatabase
     {
         readonly SQLiteAsyncConnection _database;
-        public QRDatabase(string dbPath, bool historyScan)
+        public QRDatabase(string dbPath, string operation)
         {
             _database = new SQLiteAsyncConnection(dbPath);
-            if (historyScan)
+            if (operation == "gen")
                 _database.CreateTableAsync<QRhistory>().Wait();
-            else
+            if (operation == "scan")
                 _database.CreateTableAsync<ScanHistoryModel>().Wait();
+            if (operation == "lay")
+                _database.CreateTableAsync<SaveLayoutModel>().Wait();
         }
 
         public Task<List<QRhistory>> GetQRcodeAsync()
@@ -46,7 +48,7 @@ namespace QR_CodeScanner.Model
         {
             return _database.DeleteAllAsync<QRhistory>();
         }
-
+        //For Scan History
         public Task<int> SaveScanQRcodeAsync(ScanHistoryModel scanHistoryModel)
         {
             return _database.InsertAsync(scanHistoryModel);
@@ -68,6 +70,23 @@ namespace QR_CodeScanner.Model
         public Task<int> DeleteAllScanItems<T>()
         {
             return _database.DeleteAllAsync<ScanHistoryModel>();
+        }
+        //For Layout
+        public Task<List<SaveLayoutModel>> GetLayoutAsync()
+        {
+            return _database.Table<SaveLayoutModel>().ToListAsync();
+        }
+        public Task<int> SaveLayoutAsync(SaveLayoutModel saveLayoutModel)
+        {
+            return _database.InsertAsync(saveLayoutModel);
+        }
+        public Task<int> DeleteAllLayoutItems<T>()
+        {
+            return _database.DeleteAllAsync<SaveLayoutModel>();
+        }
+        public Task<int> GetLayoutCount()
+        {
+            return _database.Table<SaveLayoutModel>().CountAsync();
         }
 
     }

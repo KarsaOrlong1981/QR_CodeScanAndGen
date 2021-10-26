@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using QR_CodeScanner.Model;
 using QR_CodeScanner.ViewModel;
 using QR_CodeScanner.Views;
 using Xamarin.Essentials;
@@ -13,17 +15,28 @@ using Xamarin.Forms.Xaml;
 namespace QR_CodeScanner.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class MainPageViewModel : ContentPage
+    public partial class MainPage : ContentPage
     {
-
+        Color background;
         [Obsolete]
-        public MainPageViewModel()
+        public MainPage(Color background, Color txtC, Color button, Color border, Color btnTxt, string generateIMG, string historyScanIMG, string historyGenIMG, string mainIMG)
         {
             InitializeComponent();
-
-            BindingContext = new MainViewModel(Navigation);
+            this.background = background;
+            BindingContext = new MainViewModel(Navigation, background, txtC, button, border, btnTxt, generateIMG, historyScanIMG, historyGenIMG, mainIMG);
+        }
+        [Obsolete]
+        private void design_Clicked(object sender, EventArgs e)
+        {
+            CallLayoutPage(background);
         }
 
-
+        [Obsolete]
+        private async void CallLayoutPage(Color background)
+        {
+            LayoutDesignPage call = new LayoutDesignPage(background);
+            await Navigation.PushAsync(call);
+            Navigation.RemovePage(this);
+        }
     }
 }

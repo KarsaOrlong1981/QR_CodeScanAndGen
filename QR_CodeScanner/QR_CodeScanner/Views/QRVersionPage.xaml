@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage BackgroundColor="White"    xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentPage BackgroundColor="SteelBlue"    xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewmodel="clr-namespace:QR_CodeScanner.ViewModel" x:DataType="viewmodel:QRVersionViewModel"
              x:Class="QR_CodeScanner.Views.QRVersionPage"
              Title="QR-Code generieren" >
@@ -38,7 +38,7 @@
                     TextColor="Black" 
                     CornerRadius="20" 
                     BackgroundColor="Azure"  
-                    BorderColor="Gray"
+                    BorderColor="LightGray"  
                     BorderWidth="3" />
 
                 <Button Grid.Row="1" Grid.Column="1" ContentLayout="Left,0" VerticalOptions="CenterAndExpand"   
@@ -50,7 +50,7 @@
                   
                      CornerRadius="20" 
                      BackgroundColor="Azure"  
-                     BorderColor="Gray" 
+                     BorderColor="LightGray"  
                      BorderWidth="3"/>
             
 
@@ -66,7 +66,7 @@
                    
                     CornerRadius="20" 
                     BackgroundColor="Azure"  
-                    BorderColor="Gray"
+                    BorderColor="LightGray" 
                     BorderWidth="3" />
                 <Button  Grid.Row="7" Grid.Column="1" VerticalOptions="CenterAndExpand" 
                     ContentLayout="Left,0" 
@@ -78,7 +78,7 @@
                    TextColor="Black"
                      CornerRadius="20" 
                      BackgroundColor="Azure"  
-                     BorderColor="Gray" 
+                     BorderColor="LightGray"  
                      BorderWidth="3"/>
            
            
@@ -93,7 +93,7 @@
                     
                     CornerRadius="20" 
                     BackgroundColor="Azure" 
-                    BorderColor="Gray"
+                    BorderColor="LightGray" 
                     BorderWidth="3" />
                 <Button Grid.Row="4" Grid.Column="1" VerticalOptions="CenterAndExpand" 
                     ContentLayout="Left,0" 
@@ -105,7 +105,7 @@
                      
                      CornerRadius="20" 
                      BackgroundColor="Azure"  
-                     BorderColor="Gray" 
+                     BorderColor="LightGray"  
                      BorderWidth="3"/>
 
             
@@ -121,7 +121,7 @@
                     
                     CornerRadius="20" 
                     BackgroundColor="Azure"  
-                    BorderColor="Gray" 
+                    BorderColor="LightGray"  
                     BorderWidth="3"
                 />
                 <Button  Grid.Row="6" Grid.Column="1" VerticalOptions="CenterAndExpand"
@@ -133,7 +133,7 @@
                         Command="{Binding ButtonSmSClicked }"
                          CornerRadius="20" 
                          BackgroundColor="Azure" 
-                         BorderColor="Gray" 
+                         BorderColor="LightGray"  
                          BorderWidth="3"
                 />
     </Grid>
