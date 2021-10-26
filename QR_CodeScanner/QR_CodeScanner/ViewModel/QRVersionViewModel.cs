@@ -22,11 +22,41 @@ namespace QR_CodeScanner.ViewModel
         public ICommand ButtonPhoneClicked { get; set; }
         public ICommand ButtonEmailClicked { get; set; }
         public ICommand ButtonSmSClicked { get; set; }
-
+        Color background, button, txt, frame, border;
+        public Color Background
+        {
+            get => background;
+            set => SetProperty(ref background, value);
+        }
+        public Color Button
+        {
+            get => button;
+            set => SetProperty(ref button, value);
+        }
+        public Color Txt
+        {
+            get => txt;
+            set => SetProperty(ref txt, value);
+        }
+        public Color Frame
+        {
+            get => frame;
+            set => SetProperty(ref frame, value);
+        }
+        public Color Border
+        {
+            get => border;
+            set => SetProperty(ref border, value);
+        }
         [Obsolete]
-        public QRVersionViewModel(INavigation navigation)
+        public QRVersionViewModel(INavigation navigation, Color background, Color button, Color txt, Color frame, Color border)
         {
             this.Navigation = navigation;
+            Background = background;
+            Button = button;
+            Txt = txt;
+            Frame = frame;
+            Border = border;
             ButtonWebsiteClicked = new Command(GotoWebsitePage);
             ButtonTextClicked = new Command(GotoTextPage);
             ButtonWLanClicked = new Command(GotoWlanPage);

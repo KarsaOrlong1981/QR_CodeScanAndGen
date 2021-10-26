@@ -15,7 +15,7 @@ namespace QR_CodeScanner.ViewModel
         CultureLang culture;
         ScrollView scrollView;
         Page page;
-        Color backgroundC, txtC, buttonC, borderC, buttunTxtC;
+        Color backgroundC, txtC, buttonC, borderC, buttonTxtC;
         string generateIMG, scanHIMG, genHIMG, mainIMG;
         [Obsolete]
         public LayoutDesignViewModel(INavigation navigation, Grid grid, Page page, Color background)
@@ -109,7 +109,12 @@ namespace QR_CodeScanner.ViewModel
         [Obsolete]
         private async void SetNewDesign()
         {
-            MainPage mainP = new MainPage(backgroundC, txtC, buttonC, borderC, buttunTxtC, generateIMG, scanHIMG, genHIMG, mainIMG);
+            if (mainIMG == "logoJediBlueIrishIR.png" || mainIMG == "logoModernPolit.png")
+                App.NavPage.BarTextColor = txtC;
+            else
+                App.NavPage.BarTextColor = borderC;
+            App.NavPage.BarBackgroundColor = buttonC;
+            MainPage mainP = new MainPage(backgroundC, txtC, buttonC, borderC, buttonTxtC, generateIMG, scanHIMG, genHIMG, mainIMG);
             await Navigation.PushAsync(mainP);
             Navigation.RemovePage(page);
         }
@@ -121,7 +126,7 @@ namespace QR_CodeScanner.ViewModel
             txtC = Color.FromHex("c99718");
             buttonC = Color.FromHex("113182");
             borderC = Color.FromHex("1c55e6");
-            buttunTxtC = Color.FromHex("ffffffff");
+            buttonTxtC = Color.FromHex("ffffffff");
             generateIMG = "Gen24C99.png";
             scanHIMG = "ScanHC99.png";
             genHIMG = "verlaufC99.png";
@@ -137,7 +142,7 @@ namespace QR_CodeScanner.ViewModel
             txtC = Color.FromHex("fa2878");
             buttonC = Color.FromHex("064ab8");
             borderC = Color.FromHex("56de02");
-            buttunTxtC = Color.FromHex("56e600");
+            buttonTxtC = Color.FromHex("56e600");
             generateIMG = "generateLime24.png";
             scanHIMG = "scanHistLime24.png";
             genHIMG = "verlaufLime24.png";
@@ -153,7 +158,7 @@ namespace QR_CodeScanner.ViewModel
             txtC = Color.FromHex("ff5400");
             buttonC = Color.FromHex("390099");
             borderC = Color.FromHex("ff0054");
-            buttunTxtC = Color.FromHex("390099");
+            buttonTxtC = Color.FromHex("390099");
             generateIMG = "generateJazzberry24.png";
             scanHIMG = "scanHistJazzberry24.png";
             genHIMG = "verlaufJazzberry24.png";
@@ -169,7 +174,7 @@ namespace QR_CodeScanner.ViewModel
             txtC = Color.FromHex("defc44");
             buttonC = Color.FromHex("9f09bd");
             borderC = Color.FromHex("364ec7");
-            buttunTxtC = Color.FromHex("364ec7");
+            buttonTxtC = Color.FromHex("364ec7");
             generateIMG = "generateModern24.png";
             scanHIMG = "scanHistModern24.png";
             genHIMG = "verlaufModern24.png";
@@ -185,7 +190,7 @@ namespace QR_CodeScanner.ViewModel
             txtC = Color.FromHex("88e9fc");
             buttonC = Color.FromHex("965345");
             borderC = Color.FromHex("1bd5fa");
-            buttunTxtC = Color.FromHex("ffffffff");
+            buttonTxtC = Color.FromHex("ffffffff");
             generateIMG = "generateCali24.png";
             scanHIMG = "scanHistCali24.png";
             genHIMG = "verlaufCali24.png";

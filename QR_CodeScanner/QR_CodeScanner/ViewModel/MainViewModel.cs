@@ -126,8 +126,7 @@ namespace QR_CodeScanner.ViewModel
         [Obsolete]
         private async Task CallQRVersionPage()
         {
-            //string logo, Color background, Color button, Color txt, Color frame, Color border
-            await Navigation.PushAsync(new QRVersionPage());
+            await Navigation.PushAsync(new QRVersionPage(Background, Button, TXTC, Border, BtnTxt));
         }
         private async Task CallScannerPage()
         {

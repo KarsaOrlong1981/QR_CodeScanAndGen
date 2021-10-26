@@ -13,8 +13,10 @@ namespace QR_CodeScanner
         static QRDatabase database2;
         static QRDatabase dataBaseLayout;
         Color backgroundC, txtC, buttonC, borderC, buttunTxtC;
+        Color overColor;
         string generateIMG, scanHIMG, genHIMG, mainIMG;
         string getLayout;
+
         public static QRDatabase Database1
         {
             get
@@ -48,6 +50,7 @@ namespace QR_CodeScanner
                 return dataBaseLayout;
             }
         }
+        public static NavigationPage NavPage { get; set; }
         [Obsolete]
         public App()
         {
@@ -55,7 +58,7 @@ namespace QR_CodeScanner
             int result = 0;
             try
             {
-                result = App.DatabaseLayout.GetLayoutCount().Result;
+                result = DatabaseLayout.GetLayoutCount().Result;
             }
             catch
             {
@@ -63,7 +66,7 @@ namespace QR_CodeScanner
             }
             if (!(result == 0))
             {
-                getLayout = App.DatabaseLayout.GetLayoutAsync().Result[0].LayoutDesign;
+                getLayout = DatabaseLayout.GetLayoutAsync().Result[0].LayoutDesign;
             }
             else
             {
@@ -127,7 +130,12 @@ namespace QR_CodeScanner
                     mainIMG = "logoModernPolit.png";
                     break;
             }
-            MainPage = new NavigationPage(new MainPage(backgroundC, txtC, buttonC, borderC, buttunTxtC, generateIMG, scanHIMG, genHIMG, mainIMG)) { BarBackgroundColor = Color.White, BarTextColor = Color.Black };
+            if (mainIMG == "logoJediBlueIrishIR.png" || mainIMG == "logoModernPolit.png")
+               overColor = txtC;
+            else
+                overColor = borderC;
+            NavPage = new NavigationPage(new MainPage(backgroundC, txtC, buttonC, borderC, buttunTxtC, generateIMG, scanHIMG, genHIMG, mainIMG)) { BarBackgroundColor = buttonC, BarTextColor = overColor };
+            MainPage = NavPage;
         }
         protected override void OnStart()
         {

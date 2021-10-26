@@ -13,10 +13,10 @@ namespace QR_CodeScanner.Views
     public partial class QRVersionPage : ContentPage
     {
         [Obsolete]
-        public QRVersionPage()
+        public QRVersionPage(Color background, Color button, Color txt, Color frame, Color border)
         {
             InitializeComponent();
-            BindingContext = new QRVersionViewModel(Navigation);
+            BindingContext = new QRVersionViewModel(Navigation, background, button, txt, frame, border);
         }
 
     }
