@@ -18,11 +18,13 @@ namespace QR_CodeScanner.Views
     public partial class MainPage : ContentPage
     {
         Color background;
+        string mainIMG;
         [Obsolete]
         public MainPage(Color background, Color txtC, Color button, Color border, Color btnTxt, string generateIMG, string historyScanIMG, string historyGenIMG, string mainIMG)
         {
             InitializeComponent();
             this.background = background;
+            this.mainIMG = mainIMG;
             BindingContext = new MainViewModel(Navigation, background, txtC, button, border, btnTxt, generateIMG, historyScanIMG, historyGenIMG, mainIMG);
         }
         [Obsolete]
@@ -34,7 +36,7 @@ namespace QR_CodeScanner.Views
         [Obsolete]
         private async void CallLayoutPage(Color background)
         {
-            LayoutDesignPage call = new LayoutDesignPage(background);
+            LayoutDesignPage call = new LayoutDesignPage(background, mainIMG);
             await Navigation.PushAsync(call);
             Navigation.RemovePage(this);
         }

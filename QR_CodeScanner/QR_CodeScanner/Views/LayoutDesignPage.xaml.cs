@@ -14,10 +14,10 @@ namespace QR_CodeScanner.Views
     public partial class LayoutDesignPage : ContentPage
     {
         [Obsolete]
-        public LayoutDesignPage(Color background)
+        public LayoutDesignPage(Color background, string logo)
         {
             InitializeComponent();
-            BindingContext = new LayoutDesignViewModel(Navigation, mainGrid, this, background);
+            BindingContext = new LayoutDesignViewModel(Navigation, mainGrid, this, background, logo);
         }
     }
 }

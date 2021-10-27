@@ -15,17 +15,17 @@ namespace QR_CodeScanner.ViewModel
         CultureLang culture;
         ScrollView scrollView;
         Page page;
+        Color activeJedi, activeCali, activeModern, activeMango, activeAzure, activeDark, activeSpring;
         Color backgroundC, txtC, buttonC, borderC, buttonTxtC;
         string generateIMG, scanHIMG, genHIMG, mainIMG;
         [Obsolete]
-        public LayoutDesignViewModel(INavigation navigation, Grid grid, Page page, Color background)
+        public LayoutDesignViewModel(INavigation navigation, Grid grid, Page page, Color background, string logo)
         {
             this.Navigation = navigation;
             this.page = page;
             culture = new CultureLang();
             scrollView = new ScrollView();
             this.grid = grid;
-            SetLayout(this.grid);
             string txt;
             if (culture.GetCulture() == "de")
             {
@@ -37,6 +37,77 @@ namespace QR_CodeScanner.ViewModel
             }
             page.Title = txt;
             page.BackgroundColor = background;
+            if (logo == "logoJediBlueIrishIR.png")
+            {
+                activeJedi = Color.Orange;
+                activeAzure = Color.Black;
+                activeCali = Color.Black;
+                activeDark = Color.Black;
+                activeMango = Color.Black;
+                activeModern = Color.Black;
+                activeSpring = Color.Black;
+            }
+            if (logo == "logoAzureLime.png")
+            {
+                activeJedi = Color.Black;
+                activeAzure = Color.Orange;
+                activeCali = Color.Black;
+                activeDark = Color.Black;
+                activeMango = Color.Black;
+                activeModern = Color.Black;
+                activeSpring = Color.Black;
+            }
+            if (logo == "logoCaliforniaHereICome.png")
+            {
+                activeJedi = Color.Black;
+                activeAzure = Color.Black;
+                activeCali = Color.Orange;
+                activeDark = Color.Black;
+                activeMango = Color.Black;
+                activeModern = Color.Black;
+                activeSpring = Color.Black;
+            }
+            if (logo == "logoMangoJazzberry.png")
+            {
+                activeJedi = Color.Black;
+                activeAzure = Color.Black;
+                activeCali = Color.Black;
+                activeDark = Color.Black;
+                activeMango = Color.Orange;
+                activeModern = Color.Black;
+                activeSpring = Color.Black;
+            }
+            if (logo == "logoModernPolit.png")
+            {
+                activeJedi = Color.Black;
+                activeAzure = Color.Black;
+                activeCali = Color.Black;
+                activeDark = Color.Black;
+                activeMango = Color.Black;
+                activeModern = Color.Orange;
+                activeSpring = Color.Black;
+            }
+            if (logo == "logoSpringGreenWhite.png")
+            {
+                activeJedi = Color.Black;
+                activeAzure = Color.Black;
+                activeCali = Color.Black;
+                activeDark = Color.Black;
+                activeMango = Color.Black;
+                activeModern = Color.Black;
+                activeSpring = Color.Orange;
+            }
+            if (logo == "logoDarkMode.png")
+            {
+                activeJedi = Color.Black;
+                activeAzure = Color.Black;
+                activeCali = Color.Black;
+                activeDark = Color.Orange;
+                activeMango = Color.Black;
+                activeModern = Color.Black;
+                activeSpring = Color.Black;
+            }
+            SetLayout(this.grid);
         }
 
         [Obsolete]
@@ -56,12 +127,22 @@ namespace QR_CodeScanner.ViewModel
                          new RowDefinition { Height = new GridLength(0, GridUnitType.Auto)},
                           new RowDefinition { Height = new GridLength(0, GridUnitType.Auto)},
                            new RowDefinition { Height = new GridLength(0, GridUnitType.Auto)},
+                            new RowDefinition { Height = new GridLength(0, GridUnitType.Auto)},
                 }
             };
+            Button btn_DesignSpringWhite = new Button
+            {
+                ImageSource = "logoSpringGreenWhite200.png",
+                BackgroundColor = activeSpring,
+                VerticalOptions = LayoutOptions.CenterAndExpand,
+                HorizontalOptions = LayoutOptions.CenterAndExpand
+            };
+            btn_DesignSpringWhite.Clicked += Btn_DesignSpringWhite_Clicked;
+            container.Children.Add(btn_DesignSpringWhite, 0, 0);
             Button btn_DesignCali = new Button
             {
                 ImageSource = "CaliforniaHereICome200.png",
-                BackgroundColor = Color.Black,
+                BackgroundColor = activeCali,
                 VerticalOptions = LayoutOptions.CenterAndExpand,
                 HorizontalOptions = LayoutOptions.CenterAndExpand
             };
@@ -70,7 +151,7 @@ namespace QR_CodeScanner.ViewModel
             Button btn_DesignModern = new Button
             {
                 ImageSource = "ModernPolit200.png",
-                BackgroundColor = Color.Black,
+                BackgroundColor = activeModern,
                 VerticalOptions = LayoutOptions.CenterAndExpand,
                 HorizontalOptions = LayoutOptions.CenterAndExpand
             };
@@ -79,7 +160,7 @@ namespace QR_CodeScanner.ViewModel
             Button btn_DesignMango = new Button
             {
                 ImageSource = "MangoJazzberry200.png",
-                BackgroundColor = Color.Black,
+                BackgroundColor = activeMango,
                 VerticalOptions = LayoutOptions.CenterAndExpand,
                 HorizontalOptions = LayoutOptions.CenterAndExpand
             };
@@ -88,7 +169,7 @@ namespace QR_CodeScanner.ViewModel
             Button btn_DesignAzure = new Button
             {
                 ImageSource = "AzureLime200.png",
-                BackgroundColor = Color.Black,
+                BackgroundColor = activeAzure,
                 VerticalOptions = LayoutOptions.CenterAndExpand,
                 HorizontalOptions = LayoutOptions.CenterAndExpand
             };
@@ -97,15 +178,57 @@ namespace QR_CodeScanner.ViewModel
             Button btn_DesignJedi = new Button
             {
                 ImageSource = "JediBlueIrishIR200.png",
-                BackgroundColor = Color.Black,
+                BackgroundColor = activeJedi,
                 VerticalOptions = LayoutOptions.CenterAndExpand,
                 HorizontalOptions = LayoutOptions.CenterAndExpand
             };
             btn_DesignJedi.Clicked += Btn_DesignJedi_Clicked;
             container.Children.Add(btn_DesignJedi, 0, 5);
+            Button btn_DesignDarkMode = new Button
+            {
+                ImageSource = "logoDarkMode200.png",
+                BackgroundColor = activeDark,
+                VerticalOptions = LayoutOptions.CenterAndExpand,
+                HorizontalOptions = LayoutOptions.CenterAndExpand
+            };
+            btn_DesignDarkMode.Clicked += Btn_DesignDarkMode_Clicked;
+            container.Children.Add(btn_DesignDarkMode, 0, 6);
             scroll.Content = container;
             gridUse.Children.Add(scroll);
         }
+
+        [Obsolete]
+        private void Btn_DesignDarkMode_Clicked(object sender, EventArgs e)
+        {
+            AddToLayoutDB("logoDarkMode.png");
+            backgroundC = Color.FromHex("292929");
+            txtC = Color.FromHex("1bd5fa");
+            buttonC = Color.Black;
+            borderC = Color.FromHex("53a7b8");
+            buttonTxtC = Color.FromHex("1bd5fa");
+            generateIMG = "Gen24.png";
+            scanHIMG = "ScanH.png";
+            genHIMG = "verlauf.png";
+            mainIMG = "logoDarkMode.png";
+            SetNewDesign();
+        }
+
+        [Obsolete]
+        private void Btn_DesignSpringWhite_Clicked(object sender, EventArgs e)
+        {
+            AddToLayoutDB("logoSpringGreenWhite.png");
+            backgroundC = Color.FromHex("ffffffff");
+            txtC = Color.FromHex("ffffffff");
+            buttonC = Color.FromHex("556b2f");
+            borderC = Color.FromHex("00ff7f");
+            buttonTxtC = Color.Black;
+            generateIMG = "Gen24.png";
+            scanHIMG = "ScanH.png";
+            genHIMG = "verlauf.png";
+            mainIMG = "logoSpringGreenWhite.png";
+            SetNewDesign();
+        }
+
         [Obsolete]
         private async void SetNewDesign()
         {
@@ -114,6 +237,11 @@ namespace QR_CodeScanner.ViewModel
             else
                 App.NavPage.BarTextColor = borderC;
             App.NavPage.BarBackgroundColor = buttonC;
+            if (mainIMG == "logoCaliforniaHereICome.png")
+            {
+                App.NavPage.BarBackgroundColor = Color.FromHex("965345");
+                App.NavPage.BarTextColor = Color.White;
+            }
             MainPage mainP = new MainPage(backgroundC, txtC, buttonC, borderC, buttonTxtC, generateIMG, scanHIMG, genHIMG, mainIMG);
             await Navigation.PushAsync(mainP);
             Navigation.RemovePage(page);
@@ -187,8 +315,8 @@ namespace QR_CodeScanner.ViewModel
         {
             AddToLayoutDB("logoCaliforniaHereICome.png");
             backgroundC = Color.FromHex("53a7b8");
-            txtC = Color.FromHex("88e9fc");
-            buttonC = Color.FromHex("965345");
+            txtC = Color.FromHex("ffffffff");
+            buttonC = Color.FromHex("f27157");
             borderC = Color.FromHex("1bd5fa");
             buttonTxtC = Color.FromHex("ffffffff");
             generateIMG = "generateCali24.png";
