@@ -360,6 +360,15 @@
     <AndroidResource Include="Resources\drawable\logoSpringGreenWhite.png" />
   </ItemGroup>
   <ItemGroup>
+    <AndroidResource Include="Resources\drawable\scanner24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\verlaufSpring24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\qrcode24.png" />
+  </ItemGroup>
+  <ItemGroup>
     <AndroidResource Include="Resources\drawable\logoDarkMode200.png" />
   </ItemGroup>
   <ItemGroup>

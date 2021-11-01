@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage BackgroundColor="SteelBlue"  xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentPage Padding="20" xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              xmlns:ZXing="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms"
              xmlns:zxingcommon="clr-namespace:ZXing.Common;assembly=zxing.portable"
@@ -30,17 +30,18 @@
             <CollectionView x:Name="collectionView"
                             Grid.Row="0" 
                             HorizontalOptions="CenterAndExpand" 
-                            Margin="10"
+                            
                             SelectionMode="Single"
                             SelectionChanged="CollectionView_SelectionChanged" 
                             >
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Frame HasShadow="True" 
-                           BorderColor="LightGray" 
-                           Margin="10" 
+                           BorderColor="Black" 
+                            
+                           HorizontalOptions="CenterAndExpand" 
                            CornerRadius="20" 
-                           BackgroundColor="White"   >
+                           BackgroundColor="White">
                             <Grid>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto"/>
@@ -77,7 +78,7 @@
                                         ImageSource="clear24.png" 
                                         HeightRequest="50" 
                                         WidthRequest="50" 
-                                        BackgroundColor="White"    
+                                        BackgroundColor="White"      
                                         HorizontalOptions="EndAndExpand" 
                                         VerticalOptions="EndAndExpand"
                                         Clicked="clearItem_ClickedAsync"  

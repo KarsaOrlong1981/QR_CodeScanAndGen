@@ -15,14 +15,17 @@ namespace QR_CodeScanner.Views
     {
         ScanHistoryModel history;
         CultureLang culture;
-
-        public ScanHistory(string qrText, string eventQR, bool course)
+        Color background, frame;
+        public ScanHistory(string qrText, string eventQR, bool course, Color backGround, Color frame)
         {
             InitializeComponent();
             culture = new CultureLang();
             history = new ScanHistoryModel();
             DataBaseresult();
-
+            grid.BackgroundColor = backGround;
+            this.BackgroundColor = backGround;
+            this.background = backGround;
+            this.frame = frame;
             if (qrText != null)
             {
                 if (course == true)
@@ -75,7 +78,7 @@ namespace QR_CodeScanner.Views
                     FontSize = 25.0,
                     HorizontalOptions = LayoutOptions.CenterAndExpand,
                     VerticalOptions = LayoutOptions.CenterAndExpand,
-                    TextColor = Color.Black,
+                    TextColor = frame,
                 };
                 grid.Children.Add(lab);
             }

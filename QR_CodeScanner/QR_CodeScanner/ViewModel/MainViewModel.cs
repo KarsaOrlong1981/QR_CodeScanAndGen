@@ -130,12 +130,12 @@ namespace QR_CodeScanner.ViewModel
         }
         private async Task CallScannerPage()
         {
-            await Navigation.PushAsync(new ScannerPage());
+            await Navigation.PushAsync(new ScannerPage(background, button));
         }
 
         private async Task CallScanHistoryPage()
         {
-            await Navigation.PushAsync(new ScanHistory(null, null, false));
+            await Navigation.PushAsync(new ScanHistory(null, null, false, background, button));
         }
 
         private async Task CallInfoPage()

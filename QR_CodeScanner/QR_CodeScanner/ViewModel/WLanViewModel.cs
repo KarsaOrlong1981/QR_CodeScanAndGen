@@ -23,9 +23,8 @@ namespace QR_CodeScanner.ViewModel
         public ICommand ButtonWEPClicked { get; set; }
         public ICommand ButtonNoneClicked { get; set; }
         public INavigation Navigation { get; set; }
-
         [Obsolete]
-        public WLanViewModel(INavigation navigation, Grid grid)
+        public WLanViewModel(INavigation navigation)
         {
             culture = new CultureLang();
             if (culture.GetCulture() == "de")

@@ -47,6 +47,7 @@ namespace QR_CodeScanner.ViewModel
         private bool barcode;
         private bool browser;
         ShareContent shareQR;
+        Color background, frame;
         public ICommand ButtonAddTo { get; set; }
         public ICommand ButtonLocation { get; set; }
 
@@ -55,6 +56,9 @@ namespace QR_CodeScanner.ViewModel
         [Obsolete]
         public ResultViewModel(string qrTxt, bool isWlan, bool isWebsite, bool isContact, bool isEvent, bool isPhoneNumber, bool isEmail, bool isSMS, bool isBarcode, bool isBrowser, string phoneNumberSMS, bool scanHistory)
         {
+            //Die zuweisung der farben muss noch angepasst werden wenn alle teile farben zugewiesen bekommen haben.
+            this.background = Color.Black;
+            this.frame = Color.White;
             ssid = string.Empty;
             password = string.Empty;
             shareQR = new ShareContent();
@@ -956,7 +960,7 @@ namespace QR_CodeScanner.ViewModel
             {
                 eventQRString = "Text";
             }
-            new ScanHistory(text, eventQRString, true);
+            new ScanHistory(text, eventQRString, true, background, frame);
         }
     }
 }

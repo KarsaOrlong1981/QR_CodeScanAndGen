@@ -1,33 +1,34 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage BackgroundColor="MintCream" xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentPage Padding="20" xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:zxing="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms" 
             
              x:Class="QR_CodeScanner.Views.ScannerPage"
              Title="Scan QR-Code"  >
     <ContentPage.Content>
-        <StackLayout>
-            <Label x:Name="lab_Label" TextColor="Black"/>
+       
         
-        <Grid VerticalOptions="FillAndExpand"
+        <Grid
+            VerticalOptions="FillAndExpand" 
               HorizontalOptions="FillAndExpand">
+             
             
             
             <zxing:ZXingScannerView  x:Name="scanView"
                                         OnScanResult="scanView_OnScanResult"
                                         
                                         IsScanning="true"
-                                      
+                                        
                                         VerticalOptions="FillAndExpand" 
                                         HorizontalOptions="FillAndExpand" />
             
-            <zxing:ZXingDefaultOverlay TopText="Align the QR-Code within the frame" 
+            <zxing:ZXingDefaultOverlay x:Name="overlay" TopText="Align the QR-Code within the frame" 
                                        ShowFlashButton="True" 
                                         FlashButtonClicked="ZXingDefaultOverlay_FlashButtonClicked"
                                        
                                        />
-                <Label x:Name="lab"/>
-            </Grid>
-        </StackLayout>
+               
+        </Grid>
+        
     </ContentPage.Content>
 </ContentPage>

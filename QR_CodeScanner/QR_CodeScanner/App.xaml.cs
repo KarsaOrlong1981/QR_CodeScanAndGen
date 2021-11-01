@@ -98,8 +98,8 @@ namespace QR_CodeScanner
                     break;
                 case "logoCaliforniaHereICome.png":
                     backgroundC = Color.FromHex("53a7b8");
-                    txtC = Color.FromHex("ffffffff");
-                    buttonC = Color.FromHex("f27157");
+                    txtC = Color.Black;
+                    buttonC = Color.FromHex("88e9fc");
                     borderC = Color.FromHex("1bd5fa");
                     buttonTxtC = Color.FromHex("ffffffff");
                     generateIMG = "generateCali24.png";
@@ -135,9 +135,9 @@ namespace QR_CodeScanner
                     buttonC = Color.FromHex("556b2f");
                     borderC = Color.FromHex("00ff7f");
                     buttonTxtC = Color.Black;
-                    generateIMG = "Gen24.png";
-                    scanHIMG = "ScanH.png";
-                    genHIMG = "verlauf.png";
+                    generateIMG = "qrcode24.png";
+                    scanHIMG = "scanner24.png";
+                    genHIMG = "verlaufSpring24.png";
                     mainIMG = "logoSpringGreenWhite.png";
                     break;
                 case "logoDarkMode.png":
@@ -157,7 +157,9 @@ namespace QR_CodeScanner
             else
                 overColor = borderC;
             if (mainIMG == "logoCaliforniaHereICome.png")
-                overColor = Color.White;
+            {
+                overColor = Color.Black;
+            }
             NavPage = new NavigationPage(new MainPage(backgroundC, txtC, buttonC, borderC, buttonTxtC, generateIMG, scanHIMG, genHIMG, mainIMG)) { BarBackgroundColor = buttonC, BarTextColor = overColor };
             MainPage = NavPage;
         }

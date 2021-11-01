@@ -107,7 +107,7 @@ namespace QR_CodeScanner.ViewModel
         [Obsolete]
         public async Task CallWLanPage()
         {
-            await Navigation.PushAsync(new WlanPage());
+            await Navigation.PushAsync(new WlanPage(Background, Button, Txt, Frame, Border));
         }
 
         [Obsolete]

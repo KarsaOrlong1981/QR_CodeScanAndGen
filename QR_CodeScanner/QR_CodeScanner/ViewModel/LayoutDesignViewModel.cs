@@ -40,72 +40,72 @@ namespace QR_CodeScanner.ViewModel
             if (logo == "logoJediBlueIrishIR.png")
             {
                 activeJedi = Color.Orange;
-                activeAzure = Color.Black;
-                activeCali = Color.Black;
-                activeDark = Color.Black;
-                activeMango = Color.Black;
-                activeModern = Color.Black;
-                activeSpring = Color.Black;
+                activeAzure = Color.Gray;
+                activeCali = Color.Gray;
+                activeDark = Color.Gray;
+                activeMango = Color.Gray;
+                activeModern = Color.Gray;
+                activeSpring = Color.Gray;
             }
             if (logo == "logoAzureLime.png")
             {
-                activeJedi = Color.Black;
+                activeJedi = Color.Gray;
                 activeAzure = Color.Orange;
-                activeCali = Color.Black;
-                activeDark = Color.Black;
-                activeMango = Color.Black;
-                activeModern = Color.Black;
-                activeSpring = Color.Black;
+                activeCali = Color.Gray;
+                activeDark = Color.Gray;
+                activeMango = Color.Gray;
+                activeModern = Color.Gray;
+                activeSpring = Color.Gray;
             }
             if (logo == "logoCaliforniaHereICome.png")
             {
-                activeJedi = Color.Black;
-                activeAzure = Color.Black;
+                activeJedi = Color.Gray;
+                activeAzure = Color.Gray;
                 activeCali = Color.Orange;
-                activeDark = Color.Black;
-                activeMango = Color.Black;
-                activeModern = Color.Black;
-                activeSpring = Color.Black;
+                activeDark = Color.Gray;
+                activeMango = Color.Gray;
+                activeModern = Color.Gray;
+                activeSpring = Color.Gray;
             }
             if (logo == "logoMangoJazzberry.png")
             {
-                activeJedi = Color.Black;
-                activeAzure = Color.Black;
-                activeCali = Color.Black;
-                activeDark = Color.Black;
-                activeMango = Color.Orange;
-                activeModern = Color.Black;
-                activeSpring = Color.Black;
+                activeJedi = Color.Gray;
+                activeAzure = Color.Gray;
+                activeCali = Color.Gray;
+                activeDark = Color.Gray;
+                activeMango = Color.Cyan;
+                activeModern = Color.Gray;
+                activeSpring = Color.Gray;
             }
             if (logo == "logoModernPolit.png")
             {
-                activeJedi = Color.Black;
-                activeAzure = Color.Black;
-                activeCali = Color.Black;
-                activeDark = Color.Black;
-                activeMango = Color.Black;
+                activeJedi = Color.Gray;
+                activeAzure = Color.Gray;
+                activeCali = Color.Gray;
+                activeDark = Color.Gray;
+                activeMango = Color.Gray;
                 activeModern = Color.Orange;
-                activeSpring = Color.Black;
+                activeSpring = Color.Gray;
             }
             if (logo == "logoSpringGreenWhite.png")
             {
-                activeJedi = Color.Black;
-                activeAzure = Color.Black;
-                activeCali = Color.Black;
-                activeDark = Color.Black;
-                activeMango = Color.Black;
-                activeModern = Color.Black;
+                activeJedi = Color.Gray;
+                activeAzure = Color.Gray;
+                activeCali = Color.Gray;
+                activeDark = Color.Gray;
+                activeMango = Color.Gray;
+                activeModern = Color.Gray;
                 activeSpring = Color.Orange;
             }
             if (logo == "logoDarkMode.png")
             {
-                activeJedi = Color.Black;
-                activeAzure = Color.Black;
-                activeCali = Color.Black;
+                activeJedi = Color.Gray;
+                activeAzure = Color.Gray;
+                activeCali = Color.Gray;
                 activeDark = Color.Orange;
-                activeMango = Color.Black;
-                activeModern = Color.Black;
-                activeSpring = Color.Black;
+                activeMango = Color.Gray;
+                activeModern = Color.Gray;
+                activeSpring = Color.Gray;
             }
             SetLayout(this.grid);
         }
@@ -222,9 +222,9 @@ namespace QR_CodeScanner.ViewModel
             buttonC = Color.FromHex("556b2f");
             borderC = Color.FromHex("00ff7f");
             buttonTxtC = Color.Black;
-            generateIMG = "Gen24.png";
-            scanHIMG = "ScanH.png";
-            genHIMG = "verlauf.png";
+            generateIMG = "qrcode24.png";
+            scanHIMG = "scanner24.png";
+            genHIMG = "verlaufSpring24.png";
             mainIMG = "logoSpringGreenWhite.png";
             SetNewDesign();
         }
@@ -315,8 +315,8 @@ namespace QR_CodeScanner.ViewModel
         {
             AddToLayoutDB("logoCaliforniaHereICome.png");
             backgroundC = Color.FromHex("53a7b8");
-            txtC = Color.FromHex("ffffffff");
-            buttonC = Color.FromHex("f27157");
+            txtC = Color.Black;
+            buttonC = Color.FromHex("88e9fc");
             borderC = Color.FromHex("1bd5fa");
             buttonTxtC = Color.FromHex("ffffffff");
             generateIMG = "generateCali24.png";

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage BackgroundColor="SteelBlue" xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewmodel="clr-namespace:QR_CodeScanner.ViewModel" x:DataType="viewmodel:WLanViewModel"
              x:Class="QR_CodeScanner.Views.WlanPage" Title="{Binding TitleCulture}" >
     <Grid x:Name="container">
@@ -14,28 +14,24 @@
             <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="0.5*"/>
         </Grid.ColumnDefinitions>
-        <Frame Grid.Row="0" Grid.Column="1" Margin="10" BorderColor="SteelBlue" CornerRadius="20" HasShadow="true" VerticalOptions="CenterAndExpand" >
-            <Entry
+        <Frame x:Name="frameRow0" Grid.Row="0" Grid.Column="1" Margin="10" CornerRadius="20" HasShadow="true" VerticalOptions="CenterAndExpand" >
+            <Entry x:Name="entryRow0"
                 
                 Text="{Binding SSIDText}"
                 Keyboard="Url" 
-               BackgroundColor="White" 
-               TextColor="Black" 
                FontSize="Medium" 
                Placeholder="SSID" 
-               PlaceholderColor="SteelBlue" 
+               
                />
         </Frame>
        
-            <Frame Grid.Row="1" Grid.Column="1" Margin="10" BorderColor="SteelBlue" CornerRadius="20" HasShadow="true" VerticalOptions="CenterAndExpand" >
+            <Frame x:Name="frameRow1" Grid.Row="1" Grid.Column="1" Margin="10"  CornerRadius="20" HasShadow="true" VerticalOptions="CenterAndExpand" >
                 <StackLayout>
                     <Entry
-                
+                x:Name="entryRow1"
                 Text="{Binding WpaWep}"
                 Keyboard="Url" 
-               BackgroundColor="White" 
-               TextColor="Black" 
-               FontSize="Medium"   
+                FontSize="Medium"   
                 
               
                     IsReadOnly="{Binding ReadOnly}"
@@ -50,40 +46,31 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                        <Button 
+                        <Button x:Name="btn_Row1_btn1"
                 
                    Grid.Row="0" Grid.Column="0"
                     Command="{Binding ButtonWPAClicked}"
                     CornerRadius="20" 
                     Text="WPA/WPA2"
                     FontSize="Micro" 
-                    TextColor="Black" 
-                    BackgroundColor="White" 
-                    BorderColor="SteelBlue" 
                     BorderWidth="2" 
                     HorizontalOptions="StartAndExpand"   />
-                        <Button 
+                    <Button x:Name="btn_Row1_btn2"
                 
                    Grid.Row="0" Grid.Column="1"
                     Command="{Binding ButtonWEPClicked}"
                     CornerRadius="20" 
                     Text="WEP"
                     FontSize="Micro"
-                    TextColor="Black"
-                    BackgroundColor="White" 
-                    BorderColor="SteelBlue" 
                     BorderWidth="2" 
                     HorizontalOptions="CenterAndExpand"    />
-                        <Button 
+                    <Button x:Name="btn_Row1_btn3"
                 
                    Grid.Row="0" Grid.Column="2"
                     Command="{Binding ButtonNoneClicked}"
                     CornerRadius="20" 
                     Text="none"
                     FontSize="Micro"  
-                TextColor="Black"
-                    BackgroundColor="White" 
-                    BorderColor="SteelBlue" 
                     BorderWidth="2" 
                     HorizontalOptions="EndAndExpand"   />
                     </Grid>
@@ -95,13 +82,13 @@
                
           
 
-                <Frame Grid.Row="2" Grid.Column="1" VerticalOptions="CenterAndExpand"  Margin="10" CornerRadius="20" BorderColor="SteelBlue" BackgroundColor="White">
-                    <Entry  Placeholder="{Binding PasswordCulture}"
+                <Frame x:Name="frameRow2" Grid.Row="2" Grid.Column="1" VerticalOptions="CenterAndExpand"  Margin="10" CornerRadius="20" >
+                       <Entry  x:Name="entryRow2" Placeholder="{Binding PasswordCulture}"
                             Text="{Binding Password}"    
                             FontSize="Medium"
-                            TextColor="Black" 
-                            PlaceholderColor="SteelBlue" />
-                </Frame>
+                       />
+
+                 </Frame>
 
                
             
@@ -114,9 +101,6 @@
                     CornerRadius="20" 
                     Text="{Binding ButtonCulture}"
                     FontSize="20"
-                    TextColor="White"
-                    BackgroundColor="LightSteelBlue"  
-                    BorderColor="Gray" 
                     BorderWidth="4" 
                     HorizontalOptions="Center"    />
         

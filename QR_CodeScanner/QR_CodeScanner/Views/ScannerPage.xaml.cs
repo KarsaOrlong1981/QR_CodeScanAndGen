@@ -26,10 +26,15 @@ namespace QR_CodeScanner.Views
     public partial class ScannerPage : ContentPage
     {
         CultureLang culture;
-        public ScannerPage()
+        Color background, frame;
+        public ScannerPage(Color background, Color frame)
         {
             InitializeComponent();
             culture = new CultureLang();
+            this.background = background;
+            this.frame = frame;
+            this.BackgroundColor = background;
+            var redLine = overlay.Children.First(x => x.BackgroundColor == Color.Red); overlay.Children.Remove(redLine);
         }
         //If the Scanner recognizes an QR-Code
         [Obsolete]
@@ -90,7 +95,7 @@ namespace QR_CodeScanner.Views
                                     {
                                         try
                                         {
-                                            ScanHistory scanned = new ScanHistory(resultString, "Browser", true);
+                                            ScanHistory scanned = new ScanHistory(resultString, "Browser", true, background, frame);
                                             await OpenBrowser(resultString);
 
                                         }
@@ -108,7 +113,7 @@ namespace QR_CodeScanner.Views
                                     }
                                     if (resultString.Substring(0, 4) == "smst")
                                     {
-                                        ScanHistory scanned = new ScanHistory(resultString, "SMS", true);
+                                        ScanHistory scanned = new ScanHistory(resultString, "SMS", true, background, frame);
                                         string[] messageAndNumber = resultString.Split(':');
                                         await SendSms(messageAndNumber[2], messageAndNumber[1]);
                                     }

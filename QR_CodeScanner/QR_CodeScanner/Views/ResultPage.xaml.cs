@@ -14,6 +14,7 @@ namespace QR_CodeScanner.Views
     public partial class ResultPage : ContentPage
     {
         [Obsolete]//hier noch die anderen schalter hinzufügen
+        //Hier muss die Backround color übergeben werden aber erst wenn alle teile schon farben zugewiesen bekommen haben.
         public ResultPage(string qrCodeText, bool isWlan, bool isWebsite, bool isContact, bool isEvent, bool isPhoneNr, bool isEmail, bool isSMS, bool isFood, bool isBrowser, string phoneNumber, bool fromScanHistory)
         {
             InitializeComponent();
