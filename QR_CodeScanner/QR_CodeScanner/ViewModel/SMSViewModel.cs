@@ -17,14 +17,44 @@ namespace QR_CodeScanner.ViewModel
         public ICommand ButtonGeneratorPageClicked { get; set; }
 
         CultureLang culture;
+        Color background, button, txt, frame, border;
+        public Color Background
+        {
+            get => background;
+            set => SetProperty(ref background, value);
+        }
+        public Color Button
+        {
+            get => button;
+            set => SetProperty(ref button, value);
+        }
+        public Color Txt
+        {
+            get => txt;
+            set => SetProperty(ref txt, value);
+        }
+        public Color Frame
+        {
+            get => frame;
+            set => SetProperty(ref frame, value);
+        }
+        public Color Border
+        {
+            get => border;
+            set => SetProperty(ref border, value);
+        }
         [Obsolete]
-        public SMSViewModel(INavigation navigation)
+        public SMSViewModel(INavigation navigation, Color background, Color button, Color txt, Color frame, Color border)
         {
 
             this.Navigation = navigation;
             ButtonGeneratorPageClicked = new Command(async () => await CallQRGeneratorPage());
             culture = new CultureLang();
-
+            Background = background;
+            Button = button;
+            Txt = txt;
+            Frame = frame;
+            Border = border;
             if (culture.GetCulture() == "de")
             {
                 NumberCulture = "Telefonnummer";

@@ -46,13 +46,13 @@ namespace QR_CodeScanner.Model
                 var mediaScanIntent = new Intent(Intent.ActionMediaScannerScanFile);
                 mediaScanIntent.SetData(Android.Net.Uri.FromFile(new Java.IO.File(filePath)));
 
-                Xamarin.Forms.Forms.Context.SendBroadcast(mediaScanIntent);
+                Android.App.Application.Context.SendBroadcast(mediaScanIntent);
                 SaveQRComplete.SetResult(filePath);
                 return SaveQRComplete.Task;
             }
             catch
             {
-                var activity = Forms.Context as Activity;
+                var activity = Android.App.Application.Context as Activity;
                 if (culture.GetCulture() == "de")
                     Toast.MakeText(activity, "Qr-Code konnte nicht gespeichert werden. Möglicherweise fehlt der Pictures Ordner auf dem Gerät.", ToastLength.Short).Show();
                 else

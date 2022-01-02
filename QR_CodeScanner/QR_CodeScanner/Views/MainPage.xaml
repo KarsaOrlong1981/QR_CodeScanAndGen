@@ -27,8 +27,8 @@
 
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
 
             </Grid.RowDefinitions>
@@ -38,7 +38,8 @@
                 <ColumnDefinition Width="0.1*"/>
             </Grid.ColumnDefinitions>
             <StackLayout x:Name="stack" Grid.Row="0" Grid.Column="1">
-                <Image Source="{Binding MainIMG}"  Aspect="AspectFit"     HorizontalOptions="FillAndExpand"   VerticalOptions="FillAndExpand"   />
+                <!-- Bild von OpenClipart-Vectors auf Pixabay -->
+                <Image Source="scanCodemain.png" Aspect="AspectFit" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
             </StackLayout>
 
             <Button  x:Name="btn_scan" Margin="0,0,0,10" Grid.Row="1" Grid.Column="1" Command="{Binding ButtonScannerClicked}"
@@ -50,7 +51,7 @@
             BackgroundColor="{Binding Button}"   
             TextColor="{Binding TXTC}" 
             
-            HorizontalOptions="Fill"  
+            HorizontalOptions="Fill"     
             VerticalOptions="EndAndExpand"         
             />
 

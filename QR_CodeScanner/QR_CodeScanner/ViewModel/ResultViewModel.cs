@@ -254,13 +254,13 @@ namespace QR_CodeScanner.ViewModel
                     if (SaveTo == "Nummer\nKopieren")
                     {
                         await Clipboard.SetTextAsync(resultToAdd);
-                        var activity = Forms.Context as Activity;
+                        var activity = Android.App.Application.Context as Activity;
                         Toast.MakeText(activity, "Telefonnummer wurde kopiert.", ToastLength.Long).Show();
                     }
                     else
                     {
                         await Clipboard.SetTextAsync(password);
-                        var activity = Forms.Context as Activity;
+                        var activity = Android.App.Application.Context as Activity;
                         Toast.MakeText(activity, "Passwort wurde kopiert.", ToastLength.Long).Show();
                     }
                 }
@@ -269,13 +269,13 @@ namespace QR_CodeScanner.ViewModel
                     if (SaveTo == "Copy\nnumber")
                     {
                         await Clipboard.SetTextAsync(resultToAdd);
-                        var activity = Forms.Context as Activity;
+                        var activity = Android.App.Application.Context as Activity;
                         Toast.MakeText(activity, "Phone number was copied.", ToastLength.Long).Show();
                     }
                     else
                     {
                         await Clipboard.SetTextAsync(password);
-                        var activity = Forms.Context as Activity;
+                        var activity = Android.App.Application.Context as Activity;
                         Toast.MakeText(activity, "Password was copied.", ToastLength.Long).Show();
                     }
                 }
@@ -283,7 +283,7 @@ namespace QR_CodeScanner.ViewModel
             if (SaveTo == "Kopieren" || SaveTo == "Copy")
             {
                 await Clipboard.SetTextAsync(resultToAdd);
-                var activity = Forms.Context as Activity;
+                var activity = Android.App.Application.Context as Activity;
                 if (culture.GetCulture() == "de")
 
                     Toast.MakeText(activity, "Text wurde Kopiert", ToastLength.Long).Show();
@@ -306,7 +306,7 @@ namespace QR_CodeScanner.ViewModel
             catch
             {
                 // Sms is not supported on this device.
-                var activity = Forms.Context as Activity;
+                var activity = Android.App.Application.Context as Activity;
                 if (culture.GetCulture() == "de")
 
                     Toast.MakeText(activity, "SMS wird auf diesem Gerät nicht unterstützt.", ToastLength.Long).Show();
@@ -496,7 +496,7 @@ namespace QR_CodeScanner.ViewModel
 
             if (status == PermissionStatus.Denied && DeviceInfo.Platform == DevicePlatform.iOS)
             {
-                var activity = Forms.Context as Activity;
+                var activity = Android.App.Application.Context as Activity;
                 if (culture.GetCulture() == "de")
 
                     Toast.MakeText(activity, "Bitte schalten Sie die Berechtigung für Ihre Kontakte ein, damit diese App das ergebnis zu Ihren kontakten hnzufügen kann.", ToastLength.Long).Show();
@@ -510,7 +510,7 @@ namespace QR_CodeScanner.ViewModel
 
             if (Permissions.ShouldShowRationale<Permissions.ContactsWrite>())
             {
-                var activity = Forms.Context as Activity;
+                var activity = Android.App.Application.Context as Activity;
                 if (culture.GetCulture() == "de")
 
                     Toast.MakeText(activity, "Die Berechtigung auf Kontakte zugreifen zu dürfen wird benötigt um das ergebnis ihren Kontakten hinzuzufügen ", ToastLength.Long).Show();
@@ -532,7 +532,7 @@ namespace QR_CodeScanner.ViewModel
             var status = await CheckAndRequestPermissionAsync(new Permissions.ContactsWrite());
             if (status != PermissionStatus.Granted)
             {
-                var activity = Forms.Context as Activity;
+                var activity = Android.App.Application.Context as Activity;
                 if (culture.GetCulture() == "de")
 
                     Toast.MakeText(activity, "Beim letzten mal haben Sie den zugriff auf Ihre Kontake abgelehnt. Geben Sie dieser App die Berechtigung auf Ihre Kontakte zuzugreifen um das ergebnis direkt zu Ihren Kontakten hinzuzufügen. ", ToastLength.Long).Show();
@@ -550,7 +550,7 @@ namespace QR_CodeScanner.ViewModel
 
             try
             {
-                var activity = Forms.Context as Activity;
+                var activity = Android.App.Application.Context as Activity;
                 var intent = new Intent(Intent.ActionInsert);
                 intent.SetType(ContactsContract.Contacts.ContentType);
                 intent.PutExtra(ContactsContract.Intents.Insert.Name, name);
@@ -571,7 +571,7 @@ namespace QR_CodeScanner.ViewModel
             }
             catch
             {
-                var activity = Forms.Context as Activity;
+                var activity = Android.App.Application.Context as Activity;
                 if (culture.GetCulture() == "de")
                     Toast.MakeText(activity, "Kann nicht zu den Kontakten hinzugefügt werden", ToastLength.Long).Show();
 
@@ -687,7 +687,7 @@ namespace QR_CodeScanner.ViewModel
                             }
                             catch
                             {
-                                var activity = Forms.Context as Activity;
+                                var activity = Android.App.Application.Context as Activity;
                                 Toast.MakeText(activity, "QR-Code not readable !", ToastLength.Long).Show();
                             }
 
@@ -785,7 +785,7 @@ namespace QR_CodeScanner.ViewModel
             }
             catch
             {
-                var activity = Forms.Context as Activity;
+                var activity = Android.App.Application.Context as Activity;
                 if (culture.GetCulture() == "de")
                     Toast.MakeText(activity, "Der QR-Code wird nicht erkannt.", ToastLength.Long).Show();
 
@@ -810,7 +810,7 @@ namespace QR_CodeScanner.ViewModel
             }
             catch
             {
-                var activity = Forms.Context as Activity;
+                var activity = Android.App.Application.Context as Activity;
                 Toast.MakeText(activity, "Dont find this Place.", ToastLength.Long).Show();
             }
         }
@@ -824,7 +824,7 @@ namespace QR_CodeScanner.ViewModel
 
             if (status == PermissionStatus.Denied && DeviceInfo.Platform == DevicePlatform.iOS)
             {
-                var activity = Forms.Context as Activity;
+                var activity = Android.App.Application.Context as Activity;
                 Toast.MakeText(activity, "Turn on the Calendar permission that the App can write a new Event from QR-Code result.", ToastLength.Long).Show();
                 // Prompt the user with additional information as to why the permission is needed
                 // Prompt the user to turn on in settings
@@ -834,7 +834,7 @@ namespace QR_CodeScanner.ViewModel
 
             if (Permissions.ShouldShowRationale<Permissions.CalendarWrite>())
             {
-                var activity = Forms.Context as Activity;
+                var activity = Android.App.Application.Context as Activity;
                 Toast.MakeText(activity, "Needed your permission to write a new Event in Calendar from QR-Code result.", ToastLength.Long).Show();
                 // Prompt the user with additional information as to why the permission is needed
             }
@@ -861,7 +861,7 @@ namespace QR_CodeScanner.ViewModel
             var status = await CheckAndRequestPermissionAsync(new Permissions.CalendarWrite());
             if (status != PermissionStatus.Granted)
             {
-                var activity = Forms.Context as Activity;
+                var activity = Android.App.Application.Context as Activity;
                 Toast.MakeText(activity, "The last time you refused the authorization to access the Calendar.Give this App the authorization for your Calendar to add Calendar directly via a QR-Code.", ToastLength.Long).Show();
                 return;
             }
@@ -889,7 +889,7 @@ namespace QR_CodeScanner.ViewModel
                 string timeEndHour = splitDTEnd[1].Substring(0, 2);
                 string timeEndMin = splitDTEnd[1].Substring(2, 2);
 
-                var activity = Forms.Context as Activity;
+                var activity = Android.App.Application.Context as Activity;
                 Intent calIntent = new Intent(Intent.ActionInsert);
                 calIntent.SetData(CalendarContract.Events.ContentUri);
                 calIntent.SetType("vnd.android.cursor.item/event");
@@ -910,7 +910,7 @@ namespace QR_CodeScanner.ViewModel
             }
             catch
             {
-                var activity = Forms.Context as Activity;
+                var activity = Android.App.Application.Context as Activity;
                 Toast.MakeText(activity, "Can not Save", ToastLength.Long).Show();
             }
 

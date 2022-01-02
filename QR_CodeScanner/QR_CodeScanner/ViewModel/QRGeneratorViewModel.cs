@@ -326,7 +326,7 @@ namespace QR_CodeScanner.ViewModel
         async void SaveQR()
         {
             await qrImage.SaveQRAsImage(Text);
-            var activity = Forms.Context as Activity;
+            var activity = Android.App.Application.Context as Activity;
             if (culture.GetCulture() == "de")
                 Toast.MakeText(activity, "Qr-Code in der Gallrie gespeichert", ToastLength.Short).Show();
             else

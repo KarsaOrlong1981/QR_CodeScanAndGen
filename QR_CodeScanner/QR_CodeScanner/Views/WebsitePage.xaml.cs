@@ -14,10 +14,10 @@ namespace QR_CodeScanner.Views
     public partial class WebsitePage : ContentPage
     {
         [Obsolete]
-        public WebsitePage()
+        public WebsitePage(Color background, Color button, Color txt, Color frame, Color border)
         {
             InitializeComponent();
-            BindingContext = new WebsiteViewModel(Navigation);
+            BindingContext = new WebsiteViewModel(Navigation, background, button, txt, frame, border);
         }
     }
 }

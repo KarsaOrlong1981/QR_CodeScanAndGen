@@ -69,7 +69,7 @@ namespace QR_CodeScanner.ViewModel
         [Obsolete]
         public async Task CallSmSPage()
         {
-            await Navigation.PushAsync(new SMSPage());
+            await Navigation.PushAsync(new SMSPage(Background, Button, Txt, Frame, Border));
         }
 
         [Obsolete]
@@ -95,13 +95,13 @@ namespace QR_CodeScanner.ViewModel
         [Obsolete]
         public async Task CallTextPage()
         {
-            await Navigation.PushAsync(new TextPage());
+            await Navigation.PushAsync(new TextPage(Background, Button, Txt, Frame, Border));
         }
 
         [Obsolete]
         public async Task CallWebsitePage()
         {
-            await Navigation.PushAsync(new WebsitePage());
+            await Navigation.PushAsync(new WebsitePage(Background, Button, Txt, Frame, Border));
         }
 
         [Obsolete]

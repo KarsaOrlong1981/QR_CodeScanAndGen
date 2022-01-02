@@ -14,10 +14,10 @@ namespace QR_CodeScanner.Views
     public partial class SMSPage : ContentPage
     {
         [Obsolete]
-        public SMSPage()
+        public SMSPage(Color background, Color button, Color txt, Color frame, Color border)
         {
             InitializeComponent();
-            BindingContext = new SMSViewModel(Navigation);
+            BindingContext = new SMSViewModel(Navigation, background, button, txt, frame, border);
         }
 
     }

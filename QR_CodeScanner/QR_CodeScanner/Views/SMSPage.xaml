@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage BackgroundColor="MintCream" xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentPage BackgroundColor="{Binding Background}" xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewmodel="clr-namespace:QR_CodeScanner.ViewModel" x:DataType="viewmodel:SMSViewModel"
              x:Class="QR_CodeScanner.Views.SMSPage"
              Title="{Binding TitleCulture }"  >
@@ -15,32 +15,32 @@
                 <ColumnDefinition Width="5*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Frame Grid.Row="0" Grid.Column="1" Margin="10" BorderColor="SteelBlue" CornerRadius="20" HasShadow="true" VerticalOptions="CenterAndExpand" >
+            <Frame Grid.Row="0" Grid.Column="1" Margin="10" BorderColor="{Binding Frame}" BackgroundColor="{Binding Button}" CornerRadius="20" HasShadow="true" VerticalOptions="CenterAndExpand" >
                 <Editor
                     
                     MaxLength="510"
                  
                 Text="{Binding Message}"
                 Keyboard="Text"  
-               BackgroundColor="White" 
-               TextColor="Black" 
+               BackgroundColor="{Binding Button}" 
+               TextColor="{Binding Txt}" 
                FontSize="20" 
                Placeholder="{Binding EditorCulture}" 
-               PlaceholderColor="SteelBlue" 
+               PlaceholderColor="{Binding Background}" 
                />
             </Frame>
-            <Frame Grid.Row="1" Grid.Column="1" Margin="10" BorderColor="SteelBlue" CornerRadius="20" HasShadow="true" VerticalOptions="CenterAndExpand" >
+            <Frame Grid.Row="1" Grid.Column="1" Margin="10" BorderColor="{Binding Frame}" BackgroundColor="{Binding Button}" CornerRadius="20" HasShadow="true" VerticalOptions="CenterAndExpand" >
                 <Editor
                    
                     MaxLength="510"
                  
                 Text="{Binding Number}"
                 Keyboard="Telephone"  
-               BackgroundColor="White" 
-               TextColor="Black" 
+               BackgroundColor="{Binding Button}" 
+               TextColor="{Binding Txt}" 
                FontSize="20" 
                Placeholder="{Binding NumberCulture}" 
-               PlaceholderColor="SteelBlue" 
+               PlaceholderColor="{Binding Background}" 
                />
             </Frame>
             <Button Grid.Row="2" Grid.Column="1" VerticalOptions="CenterAndExpand"
@@ -51,8 +51,8 @@
                     Text="{Binding ButtonCulture}"
                     FontSize="20"
                     TextColor="White"
-                    BackgroundColor="LightSteelBlue"  
-                    BorderColor="Gray" 
+                    BackgroundColor="{Binding Frame}"  
+                    BorderColor="{Binding Button}" 
                     BorderWidth="4" 
                     HorizontalOptions="Fill"     />
         </Grid>

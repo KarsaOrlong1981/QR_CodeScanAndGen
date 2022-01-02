@@ -101,7 +101,7 @@ namespace QR_CodeScanner.Views
                                         }
                                         catch
                                         {
-                                            var activity = Forms.Context as Activity;
+                                            var activity = Android.App.Application.Context as Activity;
                                             if (culture.GetCulture() == "de")
 
                                                 Toast.MakeText(activity, "Website kann nicht geladen werden.", ToastLength.Long).Show();
@@ -182,7 +182,7 @@ namespace QR_CodeScanner.Views
             catch
             {
                 // Sms is not supported on this device.
-                var activity = Forms.Context as Activity;
+                var activity = Android.App.Application.Context as Activity;
                 if (culture.GetCulture() == "de")
 
                     Toast.MakeText(activity, "SMS wird auf diesem Gerät nicht unterstützt.", ToastLength.Long).Show();

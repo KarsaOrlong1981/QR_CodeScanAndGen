@@ -14,10 +14,10 @@ namespace QR_CodeScanner.Views
     public partial class TextPage : ContentPage
     {
         [Obsolete]
-        public TextPage()
+        public TextPage(Color background, Color button, Color txt, Color frame, Color border)
         {
             InitializeComponent();
-            BindingContext = new TextViewModel(Navigation);
+            BindingContext = new TextViewModel(Navigation, background, button, txt, frame, border);
             btn_Generate.IsEnabled = false;
         }
 

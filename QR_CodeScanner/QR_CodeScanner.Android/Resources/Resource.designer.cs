@@ -14,7 +14,7 @@ namespace QR_CodeScanner.Droid
 {
 	
 	
-	[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Android.Build.Tasks", "1.0.0.0")]
+	[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Android.Build.Tasks", "12.1.0.11")]
 	public partial class Resource
 	{
 		
@@ -27656,110 +27656,119 @@ namespace QR_CodeScanner.Droid
 			// aapt resource value: 0x7F0700B6
 			public const int preference_list_divider_material = 2131165366;
 			
-			// aapt resource value: 0x7F0700B7
-			public const int QRCode = 2131165367;
-			
 			// aapt resource value: 0x7F0700B8
-			public const int qrcode24 = 2131165368;
+			public const int QRCode = 2131165368;
 			
 			// aapt resource value: 0x7F0700B9
-			public const int Save = 2131165369;
+			public const int qrcode24 = 2131165369;
 			
 			// aapt resource value: 0x7F0700BA
-			public const int save24 = 2131165370;
+			public const int qrCodeMain = 2131165370;
+			
+			// aapt resource value: 0x7F0700B7
+			public const int qr_code_100px = 2131165367;
 			
 			// aapt resource value: 0x7F0700BB
-			public const int ScanGen = 2131165371;
+			public const int Save = 2131165371;
 			
 			// aapt resource value: 0x7F0700BC
-			public const int scanH = 2131165372;
+			public const int save24 = 2131165372;
 			
 			// aapt resource value: 0x7F0700BD
-			public const int scanHC99 = 2131165373;
+			public const int scanCodeMain = 2131165373;
 			
 			// aapt resource value: 0x7F0700BE
-			public const int scanHistCali24 = 2131165374;
+			public const int ScanGen = 2131165374;
 			
 			// aapt resource value: 0x7F0700BF
-			public const int scanHistJazzberry24 = 2131165375;
+			public const int scanH = 2131165375;
 			
 			// aapt resource value: 0x7F0700C0
-			public const int scanHistLime24 = 2131165376;
+			public const int scanHC99 = 2131165376;
 			
 			// aapt resource value: 0x7F0700C1
-			public const int scanHistModern24 = 2131165377;
+			public const int scanHistCali24 = 2131165377;
 			
 			// aapt resource value: 0x7F0700C2
-			public const int scanner24 = 2131165378;
+			public const int scanHistJazzberry24 = 2131165378;
 			
 			// aapt resource value: 0x7F0700C3
-			public const int Share = 2131165379;
+			public const int scanHistLime24 = 2131165379;
 			
 			// aapt resource value: 0x7F0700C4
-			public const int share24 = 2131165380;
+			public const int scanHistModern24 = 2131165380;
 			
 			// aapt resource value: 0x7F0700C5
-			public const int SMS = 2131165381;
+			public const int scanner24 = 2131165381;
 			
 			// aapt resource value: 0x7F0700C6
-			public const int sms24 = 2131165382;
+			public const int Share = 2131165382;
 			
 			// aapt resource value: 0x7F0700C7
-			public const int Telefon = 2131165383;
+			public const int share24 = 2131165383;
 			
 			// aapt resource value: 0x7F0700C8
-			public const int telefon24 = 2131165384;
+			public const int SMS = 2131165384;
 			
 			// aapt resource value: 0x7F0700C9
-			public const int test_custom_background = 2131165385;
+			public const int sms24 = 2131165385;
 			
 			// aapt resource value: 0x7F0700CA
-			public const int Text24 = 2131165386;
+			public const int Telefon = 2131165386;
 			
 			// aapt resource value: 0x7F0700CB
-			public const int TextOR = 2131165387;
+			public const int telefon24 = 2131165387;
 			
 			// aapt resource value: 0x7F0700CC
-			public const int tooltip_frame_dark = 2131165388;
+			public const int test_custom_background = 2131165388;
 			
 			// aapt resource value: 0x7F0700CD
-			public const int tooltip_frame_light = 2131165389;
+			public const int Text24 = 2131165389;
 			
 			// aapt resource value: 0x7F0700CE
-			public const int verlauf = 2131165390;
+			public const int TextOR = 2131165390;
 			
 			// aapt resource value: 0x7F0700CF
-			public const int verlaufC99 = 2131165391;
+			public const int tooltip_frame_dark = 2131165391;
 			
 			// aapt resource value: 0x7F0700D0
-			public const int verlaufCali24 = 2131165392;
+			public const int tooltip_frame_light = 2131165392;
 			
 			// aapt resource value: 0x7F0700D1
-			public const int verlaufJazzberry24 = 2131165393;
+			public const int verlauf = 2131165393;
 			
 			// aapt resource value: 0x7F0700D2
-			public const int verlaufLime24 = 2131165394;
+			public const int verlaufC99 = 2131165394;
 			
 			// aapt resource value: 0x7F0700D3
-			public const int verlaufModern24 = 2131165395;
+			public const int verlaufCali24 = 2131165395;
 			
 			// aapt resource value: 0x7F0700D4
-			public const int verlaufSpring24 = 2131165396;
+			public const int verlaufJazzberry24 = 2131165396;
 			
 			// aapt resource value: 0x7F0700D5
-			public const int Web = 2131165397;
+			public const int verlaufLime24 = 2131165397;
 			
 			// aapt resource value: 0x7F0700D6
-			public const int Website24 = 2131165398;
+			public const int verlaufModern24 = 2131165398;
 			
 			// aapt resource value: 0x7F0700D7
-			public const int Wlan = 2131165399;
+			public const int verlaufSpring24 = 2131165399;
 			
 			// aapt resource value: 0x7F0700D8
-			public const int wlan24 = 2131165400;
+			public const int Web = 2131165400;
 			
 			// aapt resource value: 0x7F0700D9
-			public const int zeit30 = 2131165401;
+			public const int Website24 = 2131165401;
+			
+			// aapt resource value: 0x7F0700DA
+			public const int Wlan = 2131165402;
+			
+			// aapt resource value: 0x7F0700DB
+			public const int wlan24 = 2131165403;
+			
+			// aapt resource value: 0x7F0700DC
+			public const int zeit30 = 2131165404;
 			
 			static Drawable()
 			{
