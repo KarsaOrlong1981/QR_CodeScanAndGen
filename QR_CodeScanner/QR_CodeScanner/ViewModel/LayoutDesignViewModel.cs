@@ -130,73 +130,41 @@ namespace QR_CodeScanner.ViewModel
                             new RowDefinition { Height = new GridLength(0, GridUnitType.Auto)},
                 }
             };
-            Button btn_DesignSpringWhite = new Button
-            {
-                ImageSource = "logoSpringGreenWhite200.png",
-                BackgroundColor = activeSpring,
-                VerticalOptions = LayoutOptions.CenterAndExpand,
-                HorizontalOptions = LayoutOptions.CenterAndExpand
-            };
+            Button btn_DesignSpringWhite = CreateButton("logoSpringGreenWhite200.png", activeSpring);
             btn_DesignSpringWhite.Clicked += Btn_DesignSpringWhite_Clicked;
             container.Children.Add(btn_DesignSpringWhite, 0, 0);
-            Button btn_DesignCali = new Button
-            {
-                ImageSource = "CaliforniaHereICome200.png",
-                BackgroundColor = activeCali,
-                VerticalOptions = LayoutOptions.CenterAndExpand,
-                HorizontalOptions = LayoutOptions.CenterAndExpand
-            };
+            Button btn_DesignCali = CreateButton("CaliforniaHereICome200.png", activeCali);
             btn_DesignCali.Clicked += Btn_DesignCali_Clicked;
             container.Children.Add(btn_DesignCali, 0, 1);
-            Button btn_DesignModern = new Button
-            {
-                ImageSource = "ModernPolit200.png",
-                BackgroundColor = activeModern,
-                VerticalOptions = LayoutOptions.CenterAndExpand,
-                HorizontalOptions = LayoutOptions.CenterAndExpand
-            };
+            Button btn_DesignModern = CreateButton("ModernPolit200.png", activeModern);
             btn_DesignModern.Clicked += Btn_DesignModern_Clicked;
             container.Children.Add(btn_DesignModern, 0, 2);
-            Button btn_DesignMango = new Button
-            {
-                ImageSource = "MangoJazzberry200.png",
-                BackgroundColor = activeMango,
-                VerticalOptions = LayoutOptions.CenterAndExpand,
-                HorizontalOptions = LayoutOptions.CenterAndExpand
-            };
+            Button btn_DesignMango = CreateButton("MangoJazzberry200.png", activeMango);
             btn_DesignMango.Clicked += Btn_DesignMango_Clicked;
             container.Children.Add(btn_DesignMango, 0, 3);
-            Button btn_DesignAzure = new Button
-            {
-                ImageSource = "AzureLime200.png",
-                BackgroundColor = activeAzure,
-                VerticalOptions = LayoutOptions.CenterAndExpand,
-                HorizontalOptions = LayoutOptions.CenterAndExpand
-            };
+            Button btn_DesignAzure = CreateButton("AzureLime200.png", activeAzure);
             btn_DesignAzure.Clicked += Btn_DesignAzure_Clicked;
             container.Children.Add(btn_DesignAzure, 0, 4);
-            Button btn_DesignJedi = new Button
-            {
-                ImageSource = "JediBlueIrishIR200.png",
-                BackgroundColor = activeJedi,
-                VerticalOptions = LayoutOptions.CenterAndExpand,
-                HorizontalOptions = LayoutOptions.CenterAndExpand
-            };
+            Button btn_DesignJedi = CreateButton("JediBlueIrishIR200.png", activeJedi);
             btn_DesignJedi.Clicked += Btn_DesignJedi_Clicked;
             container.Children.Add(btn_DesignJedi, 0, 5);
-            Button btn_DesignDarkMode = new Button
-            {
-                ImageSource = "logoDarkMode200.png",
-                BackgroundColor = activeDark,
-                VerticalOptions = LayoutOptions.CenterAndExpand,
-                HorizontalOptions = LayoutOptions.CenterAndExpand
-            };
+            Button btn_DesignDarkMode = CreateButton("logoDarkMode200.png", activeDark);
             btn_DesignDarkMode.Clicked += Btn_DesignDarkMode_Clicked;
             container.Children.Add(btn_DesignDarkMode, 0, 6);
             scroll.Content = container;
             gridUse.Children.Add(scroll);
         }
-
+        private Button CreateButton(string design, Color color)
+        {
+            Button btn = new Button
+            {
+                ImageSource = design,
+                BackgroundColor = color,
+                VerticalOptions = LayoutOptions.CenterAndExpand,
+                HorizontalOptions = LayoutOptions.CenterAndExpand
+            };
+            return btn;
+        }
         [Obsolete]
         private void Btn_DesignDarkMode_Clicked(object sender, EventArgs e)
         {

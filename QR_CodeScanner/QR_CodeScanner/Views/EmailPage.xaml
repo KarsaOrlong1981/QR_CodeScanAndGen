@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentPage BackgroundColor="{Binding Background}" xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewmodel="clr-namespace:QR_CodeScanner.ViewModel" x:DataType="viewmodel:EmailViewModel"
              x:Class="QR_CodeScanner.Views.EmailPage" >
     <Grid>
@@ -13,19 +13,21 @@
             <ColumnDefinition Width="*"/>
            
         </Grid.ColumnDefinitions>
-        <Frame Grid.Row="0" Grid.Column="0" BorderColor="SteelBlue" CornerRadius="20" HasShadow="true" HorizontalOptions="FillAndExpand" Margin="10" VerticalOptions="CenterAndExpand"  >
+        <Frame Grid.Row="0" Grid.Column="0"  BorderColor="{Binding Frame}" BackgroundColor="{Binding Button}" CornerRadius="20" HasShadow="true" HorizontalOptions="FillAndExpand" Margin="10" VerticalOptions="CenterAndExpand"  >
             <StackLayout Orientation="Horizontal">
                 <Image Source="EmailQR.png" />
                 <Entry
+                    x:Name="entry"
                 HorizontalOptions="FillAndExpand" 
                 Text="{Binding EmailADD}"
+                    TextChanged="Entry_TextChanged"  
                 Keyboard="Email" 
-               BackgroundColor="White" 
-               TextColor="Black" 
+               BackgroundColor="{Binding Button}" 
+               TextColor="{Binding Txt}" 
                FontSize="20" 
                SelectionLength="200"
                Placeholder="Email address" 
-               PlaceholderColor="SteelBlue" 
+               PlaceholderColor="{Binding Border}" 
                />
             </StackLayout>
         </Frame>
@@ -41,8 +43,8 @@
                     Text="Generate QR-Code"
                     FontSize="30"
                     TextColor="White"
-                    BackgroundColor="LightSteelBlue"  
-                    BorderColor="Gray" 
+                    BackgroundColor="{Binding Frame}"  
+                    BorderColor="{Binding Button}" 
                     BorderWidth="4" 
                       />
       

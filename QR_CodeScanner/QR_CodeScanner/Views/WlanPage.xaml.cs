@@ -42,8 +42,16 @@ namespace QR_CodeScanner.Views
             this.btn_Generate.BackgroundColor = frame;
             this.btn_Generate.TextColor = background;
             this.btn_Generate.BorderColor = button;
-            BindingContext = new WLanViewModel(Navigation);
+            BindingContext = new WLanViewModel(Navigation, background, frame);
+            btn_Generate.IsEnabled = false;
         }
 
+        private void EntryRow0_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (entryRow0.Text == "")
+                btn_Generate.IsEnabled = false;
+            else
+                btn_Generate.IsEnabled = true;
+        }
     }
 }

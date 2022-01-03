@@ -46,43 +46,6 @@ namespace QR_CodeScanner.ViewModel
             get => border;
             set => SetProperty(ref border, value);
         }
-        [Obsolete]
-        public WebsiteViewModel(INavigation navigation, Color background, Color button, Color txt, Color frame, Color border)
-        {
-
-            this.Navigation = navigation;
-            Background = background;
-            Button = button;
-            Txt = txt;
-            Frame = frame;
-            Border = border;
-            culture = new CultureLang();
-            ButtonGeneratorPageClicked = new Command(async () => await CallQRGeneratorPage());
-            ButtonHTTPSClicked = new Command(HTTPS_Clicked);
-            ButtonHTTPClicked = new Command(HTTP_Clicked);
-            ButtonWWWClicked = new Command(WWW_Clicked);
-            ButtonCOMClicked = new Command(COM_Clicked);
-            ButtonDEClicked = new Command(DE_Clicked);
-
-            if (culture.GetCulture() == "de")
-            {
-                EntryTextCulture = "Website";
-                ButtonCulture = "QR-Code generieren";
-                TitleCulture = "Website QR-Code generieren";
-            }
-            else
-            {
-                EntryTextCulture = "Website";
-                ButtonCulture = "Generate QR-Code";
-                TitleCulture = "Generate Website QR-Code";
-            }
-        }
-
-        [Obsolete]
-        public async Task CallQRGeneratorPage()
-        {
-            await Navigation.PushAsync(new QRGeneratorPage(EntryText, false, true, false, false, false, false, false, false, false, string.Empty, false));
-        }
         public string EntryText
         {
             get => entry;
@@ -125,5 +88,43 @@ namespace QR_CodeScanner.ViewModel
         {
             EntryText += ".de";
         }
+        [Obsolete]
+        public WebsiteViewModel(INavigation navigation, Color background, Color button, Color txt, Color frame, Color border)
+        {
+
+            this.Navigation = navigation;
+            Background = background;
+            Button = button;
+            Txt = txt;
+            Frame = frame;
+            Border = border;
+            culture = new CultureLang();
+            ButtonGeneratorPageClicked = new Command(async () => await CallQRGeneratorPage());
+            ButtonHTTPSClicked = new Command(HTTPS_Clicked);
+            ButtonHTTPClicked = new Command(HTTP_Clicked);
+            ButtonWWWClicked = new Command(WWW_Clicked);
+            ButtonCOMClicked = new Command(COM_Clicked);
+            ButtonDEClicked = new Command(DE_Clicked);
+
+            if (culture.GetCulture() == "de")
+            {
+                EntryTextCulture = "Website";
+                ButtonCulture = "QR-Code generieren";
+                TitleCulture = "Website QR-Code generieren";
+            }
+            else
+            {
+                EntryTextCulture = "Website";
+                ButtonCulture = "Generate QR-Code";
+                TitleCulture = "Generate Website QR-Code";
+            }
+        }
+
+        [Obsolete]
+        public async Task CallQRGeneratorPage()
+        {
+            await Navigation.PushAsync(new QRGeneratorPage(EntryText, false, true, false, false, false, false, false, false, false, string.Empty, false, Background, Frame));
+        }
+      
     }
 }

@@ -14,11 +14,19 @@ namespace QR_CodeScanner.Views
     public partial class PhonePage : ContentPage
     {
         [Obsolete]
-        public PhonePage()
+        public PhonePage(Color background, Color button, Color txt, Color frame, Color border)
         {
             InitializeComponent();
-            BindingContext = new PhoneViewModel(Navigation);
+            BindingContext = new PhoneViewModel(Navigation, background, button, txt, frame, border);
+            btn_Generate.IsEnabled = false;
         }
 
+        private void Entry_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (entry.Text == "")
+                btn_Generate.IsEnabled = false;
+            else
+                btn_Generate.IsEnabled = true;
+        }
     }
 }

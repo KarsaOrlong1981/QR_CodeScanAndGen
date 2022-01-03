@@ -52,12 +52,180 @@ namespace QR_CodeScanner.ViewModel
         public ICommand ButtonLocation { get; set; }
 
         public ICommand ButtonShare { get; set; }
+        public Color Background
+        {
+            get => background;
+            set => SetProperty(ref background, value);
+        }
+        public string TextInfo
+        {
+            get => textINfo;
+            set => SetProperty(ref textINfo, value);
+        }
+        public string ImageTop
+        {
+            get => imageTop;
+            set => SetProperty(ref imageTop, value);
+        }
+        public string ImageInfo
+        {
+            get => imageInfo;
+            set => SetProperty(ref imageInfo, value);
+        }
+        public bool IsVisEvent
+        {
+            get => isVisEvent;
+            set => SetProperty(ref isVisEvent, value);
+        }
+        public bool IsVis
+        {
+            get => isVis;
+            set => SetProperty(ref isVis, value);
+        }
+        public string Location
+        {
+            get => location;
+            set => SetProperty(ref location, value);
+        }
+        public string LabelText
+        {
+            get => labelText;
+            set => SetProperty(ref labelText, value);
+        }
+        public string SaveTo
+        {
+            get => saveTo;
+            set => SetProperty(ref saveTo, value);
+        }
+        public string ShareTo
+        {
+            get => shareTo;
+            set => SetProperty(ref shareTo, value);
+        }
+        public int FontSizeQR
+        {
+            get => fontSize;
+            set => SetProperty(ref fontSize, value);
+        }
+        public string Text1
+        {
+            get => text1;
+            set => SetProperty(ref text1, value);
+        }
+        public string BGColor
+        {
+            get => bgColor;
+            set => SetProperty(ref bgColor, value);
+        }
+        public string TCColor
+        {
+            get => tcColor;
+            set => SetProperty(ref tcColor, value);
+        }
+
+        public string Text2
+        {
+            get => text2;
+            set => SetProperty(ref text2, value);
+        }
+
+        public string Text3
+        {
+            get => text3;
+            set => SetProperty(ref text3, value);
+        }
+        public string Text4
+        {
+            get => text4;
+            set => SetProperty(ref text4, value);
+        }
+        public string VCard1
+        {
+            get => vcard1;
+            set => SetProperty(ref vcard1, value);
+        }
+        public string VCard2
+        {
+            get => vcard2;
+            set => SetProperty(ref vcard2, value);
+        }
+        public string VCard3
+        {
+            get => vcard3;
+            set => SetProperty(ref vcard3, value);
+        }
+        public string VCard4
+        {
+            get => vcard4;
+            set => SetProperty(ref vcard4, value);
+        }
+        public string VCard5
+        {
+            get => vcard5;
+            set => SetProperty(ref vcard5, value);
+        }
+        public string VCard6
+        {
+            get => vcard6;
+            set => SetProperty(ref vcard6, value);
+        }
+        public string VCard7
+        {
+            get => vcard7;
+            set => SetProperty(ref vcard7, value);
+        }
+        public string VCard7Link
+        {
+            get => vcard7Link;
+            set => SetProperty(ref vcard7Link, value);
+        }
+
+
+        public string VCard8
+        {
+            get => vcard8;
+            set => SetProperty(ref vcard8, value);
+        }
+        public string VCard9
+        {
+            get => vcard9;
+            set => SetProperty(ref vcard9, value);
+        }
+        public string VCard9Link
+        {
+            get => vcard9Link;
+            set => SetProperty(ref vcard9Link, value);
+        }
+        public string VCard10
+        {
+            get => vcard10;
+            set => SetProperty(ref vcard10, value);
+        }
+        public string VCard11
+        {
+            get => vcard11;
+            set => SetProperty(ref vcard11, value);
+        }
+        public string VCard11Link
+        {
+            get => vcard11Link;
+            set => SetProperty(ref vcard11Link, value);
+        }
+        public string VCard12
+        {
+            get => vcard12;
+            set => SetProperty(ref vcard12, value);
+        }
+        public string VCard13
+        {
+            get => vcard13;
+            set => SetProperty(ref vcard13, value);
+        }
 
         [Obsolete]
-        public ResultViewModel(string qrTxt, bool isWlan, bool isWebsite, bool isContact, bool isEvent, bool isPhoneNumber, bool isEmail, bool isSMS, bool isBarcode, bool isBrowser, string phoneNumberSMS, bool scanHistory)
+        public ResultViewModel(string qrTxt, bool isWlan, bool isWebsite, bool isContact, bool isEvent, bool isPhoneNumber, bool isEmail, bool isSMS, bool isBarcode, bool isBrowser, string phoneNumberSMS, bool scanHistory, Color background)
         {
-            //Die zuweisung der farben muss noch angepasst werden wenn alle teile farben zugewiesen bekommen haben.
-            this.background = Color.Black;
+            this.Background = background;
             this.frame = Color.White;
             ssid = string.Empty;
             password = string.Empty;
@@ -254,14 +422,12 @@ namespace QR_CodeScanner.ViewModel
                     if (SaveTo == "Nummer\nKopieren")
                     {
                         await Clipboard.SetTextAsync(resultToAdd);
-                        var activity = Android.App.Application.Context as Activity;
-                        Toast.MakeText(activity, "Telefonnummer wurde kopiert.", ToastLength.Long).Show();
+                        WriteToast.ShowLongToast("Telefonnummer wurde kopiert.");
                     }
                     else
                     {
                         await Clipboard.SetTextAsync(password);
-                        var activity = Android.App.Application.Context as Activity;
-                        Toast.MakeText(activity, "Passwort wurde kopiert.", ToastLength.Long).Show();
+                        WriteToast.ShowLongToast("Passwort wurde kopiert.");
                     }
                 }
                 else
@@ -269,14 +435,12 @@ namespace QR_CodeScanner.ViewModel
                     if (SaveTo == "Copy\nnumber")
                     {
                         await Clipboard.SetTextAsync(resultToAdd);
-                        var activity = Android.App.Application.Context as Activity;
-                        Toast.MakeText(activity, "Phone number was copied.", ToastLength.Long).Show();
+                        WriteToast.ShowLongToast("Phone number was copied.");
                     }
                     else
                     {
                         await Clipboard.SetTextAsync(password);
-                        var activity = Android.App.Application.Context as Activity;
-                        Toast.MakeText(activity, "Password was copied.", ToastLength.Long).Show();
+                        WriteToast.ShowLongToast("Password was copied.");
                     }
                 }
             }
@@ -285,12 +449,9 @@ namespace QR_CodeScanner.ViewModel
                 await Clipboard.SetTextAsync(resultToAdd);
                 var activity = Android.App.Application.Context as Activity;
                 if (culture.GetCulture() == "de")
-
-                    Toast.MakeText(activity, "Text wurde Kopiert", ToastLength.Long).Show();
-
+                    WriteToast.ShowLongToast("Text wurde Kopiert");
                 else
-
-                    Toast.MakeText(activity, "Copied Text", ToastLength.Long).Show();
+                    WriteToast.ShowLongToast("Copied Text");
             }
 
         }
@@ -306,14 +467,10 @@ namespace QR_CodeScanner.ViewModel
             catch
             {
                 // Sms is not supported on this device.
-                var activity = Android.App.Application.Context as Activity;
                 if (culture.GetCulture() == "de")
-
-                    Toast.MakeText(activity, "SMS wird auf diesem Gerät nicht unterstützt.", ToastLength.Long).Show();
-
+                    WriteToast.ShowShortToast("SMS wird auf diesem Gerät nicht unterstützt.");
                 else
-
-                    Toast.MakeText(activity, "Sms is not supported on this device.", ToastLength.Long).Show();
+                    WriteToast.ShowShortToast("Sms is not supported on this device.");
             }
         }
         //If Scanner recognizes an Website open Browser
@@ -321,171 +478,6 @@ namespace QR_CodeScanner.ViewModel
         {
             await Xamarin.Essentials.Browser.OpenAsync(uri, BrowserLaunchMode.SystemPreferred);
         }
-        public string TextInfo
-        {
-            get => textINfo;
-            set => SetProperty(ref textINfo, value);
-        }
-        public string ImageTop
-        {
-            get => imageTop;
-            set => SetProperty(ref imageTop, value);
-        }
-        public string ImageInfo
-        {
-            get => imageInfo;
-            set => SetProperty(ref imageInfo, value);
-        }
-        public bool IsVisEvent
-        {
-            get => isVisEvent;
-            set => SetProperty(ref isVisEvent, value);
-        }
-        public bool IsVis
-        {
-            get => isVis;
-            set => SetProperty(ref isVis, value);
-        }
-        public string Location
-        {
-            get => location;
-            set => SetProperty(ref location, value);
-        }
-        public string LabelText
-        {
-            get => labelText;
-            set => SetProperty(ref labelText, value);
-        }
-        public string SaveTo
-        {
-            get => saveTo;
-            set => SetProperty(ref saveTo, value);
-        }
-        public string ShareTo
-        {
-            get => shareTo;
-            set => SetProperty(ref shareTo, value);
-        }
-        public int FontSizeQR
-        {
-            get => fontSize;
-            set => SetProperty(ref fontSize, value);
-        }
-        public string Text1
-        {
-            get => text1;
-            set => SetProperty(ref text1, value);
-        }
-        public string BGColor
-        {
-            get => bgColor;
-            set => SetProperty(ref bgColor, value);
-        }
-        public string TCColor
-        {
-            get => tcColor;
-            set => SetProperty(ref tcColor, value);
-        }
-
-        public string Text2
-        {
-            get => text2;
-            set => SetProperty(ref text2, value);
-        }
-
-        public string Text3
-        {
-            get => text3;
-            set => SetProperty(ref text3, value);
-        }
-        public string Text4
-        {
-            get => text4;
-            set => SetProperty(ref text4, value);
-        }
-        public string VCard1
-        {
-            get => vcard1;
-            set => SetProperty(ref vcard1, value);
-        }
-        public string VCard2
-        {
-            get => vcard2;
-            set => SetProperty(ref vcard2, value);
-        }
-        public string VCard3
-        {
-            get => vcard3;
-            set => SetProperty(ref vcard3, value);
-        }
-        public string VCard4
-        {
-            get => vcard4;
-            set => SetProperty(ref vcard4, value);
-        }
-        public string VCard5
-        {
-            get => vcard5;
-            set => SetProperty(ref vcard5, value);
-        }
-        public string VCard6
-        {
-            get => vcard6;
-            set => SetProperty(ref vcard6, value);
-        }
-        public string VCard7
-        {
-            get => vcard7;
-            set => SetProperty(ref vcard7, value);
-        }
-        public string VCard7Link
-        {
-            get => vcard7Link;
-            set => SetProperty(ref vcard7Link, value);
-        }
-
-
-        public string VCard8
-        {
-            get => vcard8;
-            set => SetProperty(ref vcard8, value);
-        }
-        public string VCard9
-        {
-            get => vcard9;
-            set => SetProperty(ref vcard9, value);
-        }
-        public string VCard9Link
-        {
-            get => vcard9Link;
-            set => SetProperty(ref vcard9Link, value);
-        }
-        public string VCard10
-        {
-            get => vcard10;
-            set => SetProperty(ref vcard10, value);
-        }
-        public string VCard11
-        {
-            get => vcard11;
-            set => SetProperty(ref vcard11, value);
-        }
-        public string VCard11Link
-        {
-            get => vcard11Link;
-            set => SetProperty(ref vcard11Link, value);
-        }
-        public string VCard12
-        {
-            get => vcard12;
-            set => SetProperty(ref vcard12, value);
-        }
-        public string VCard13
-        {
-            get => vcard13;
-            set => SetProperty(ref vcard13, value);
-        }
-
         [Obsolete]
         public async Task<PermissionStatus> CheckAndRequestContactsPermission()
         {
@@ -496,12 +488,10 @@ namespace QR_CodeScanner.ViewModel
 
             if (status == PermissionStatus.Denied && DeviceInfo.Platform == DevicePlatform.iOS)
             {
-                var activity = Android.App.Application.Context as Activity;
                 if (culture.GetCulture() == "de")
-
-                    Toast.MakeText(activity, "Bitte schalten Sie die Berechtigung für Ihre Kontakte ein, damit diese App das ergebnis zu Ihren kontakten hnzufügen kann.", ToastLength.Long).Show();
+                    WriteToast.ShowShortToast("Bitte schalten Sie die Berechtigung für Ihre Kontakte ein, damit diese App das ergebnis zu Ihren kontakten hnzufügen kann.");
                 else
-                    Toast.MakeText(activity, "Turn on the Contacts permission that the App can write a new Contact from QR-Code result.", ToastLength.Long).Show();
+                    WriteToast.ShowShortToast("Turn on the Contacts permission that the App can write a new Contact from QR-Code result.");
                 // Prompt the user with additional information as to why the permission is needed
                 // Prompt the user to turn on in settings
                 // On iOS once a permission has been denied it may not be requested again from the application
@@ -510,14 +500,10 @@ namespace QR_CodeScanner.ViewModel
 
             if (Permissions.ShouldShowRationale<Permissions.ContactsWrite>())
             {
-                var activity = Android.App.Application.Context as Activity;
                 if (culture.GetCulture() == "de")
-
-                    Toast.MakeText(activity, "Die Berechtigung auf Kontakte zugreifen zu dürfen wird benötigt um das ergebnis ihren Kontakten hinzuzufügen ", ToastLength.Long).Show();
-
+                    WriteToast.ShowLongToast("Die Berechtigung auf Kontakte zugreifen zu dürfen wird benötigt um das ergebnis ihren Kontakten hinzuzufügen ");
                 else
-
-                    Toast.MakeText(activity, "Needed your permission to write a new Contact from QR-Code result.", ToastLength.Long).Show();
+                    WriteToast.ShowLongToast("Needed your permission to write a new Contact from QR-Code result.");
                 // Prompt the user with additional information as to why the permission is needed
             }
 
@@ -532,12 +518,10 @@ namespace QR_CodeScanner.ViewModel
             var status = await CheckAndRequestPermissionAsync(new Permissions.ContactsWrite());
             if (status != PermissionStatus.Granted)
             {
-                var activity = Android.App.Application.Context as Activity;
                 if (culture.GetCulture() == "de")
-
-                    Toast.MakeText(activity, "Beim letzten mal haben Sie den zugriff auf Ihre Kontake abgelehnt. Geben Sie dieser App die Berechtigung auf Ihre Kontakte zuzugreifen um das ergebnis direkt zu Ihren Kontakten hinzuzufügen. ", ToastLength.Long).Show();
+                    WriteToast.ShowLongToast("Beim letzten mal haben Sie den zugriff auf Ihre Kontake abgelehnt. Geben Sie dieser App die Berechtigung auf Ihre Kontakte zuzugreifen um das ergebnis direkt zu Ihren Kontakten hinzuzufügen. ");
                 else
-                    Toast.MakeText(activity, "The last time you refused the authorization to access the Contacts.Give this App the authorization for your Contacts to add Contacts directly via a QR-Code.", ToastLength.Long).Show();
+                    WriteToast.ShowLongToast("The last time you refused the authorization to access the Contacts.Give this App the authorization for your Contacts to add Contacts directly via a QR-Code.");
                 return;
             }
 
@@ -550,7 +534,7 @@ namespace QR_CodeScanner.ViewModel
 
             try
             {
-                var activity = Android.App.Application.Context as Activity;
+                Context context = Android.App.Application.Context;
                 var intent = new Intent(Intent.ActionInsert);
                 intent.SetType(ContactsContract.Contacts.ContentType);
                 intent.PutExtra(ContactsContract.Intents.Insert.Name, name);
@@ -560,23 +544,18 @@ namespace QR_CodeScanner.ViewModel
                 intent.PutExtra(ContactsContract.Intents.Insert.JobTitle, jobtitle);
                 intent.PutExtra(ContactsContract.Intents.Insert.Postal, postal);
                 intent.PutExtra(ContactsContract.Intents.Insert.Notes, website);
-
-
-
-                activity.StartActivity(intent);
+                context.StartActivity(intent);
                 if (culture.GetCulture() == "de")
-                    Toast.MakeText(activity, "Zu Kontakten hinzufügen", ToastLength.Short).Show();
+                    Toast.MakeText(context, "Zu Kontakten hinzufügen", ToastLength.Short).Show();
                 else
-                    Toast.MakeText(activity, "Add to Contacts", ToastLength.Short).Show();
+                    Toast.MakeText(context, "Add to Contacts", ToastLength.Short).Show();
             }
             catch
             {
-                var activity = Android.App.Application.Context as Activity;
                 if (culture.GetCulture() == "de")
-                    Toast.MakeText(activity, "Kann nicht zu den Kontakten hinzugefügt werden", ToastLength.Long).Show();
-
+                    WriteToast.ShowShortToast("Kann nicht zu den Kontakten hinzugefügt werden");
                 else
-                    Toast.MakeText(activity, "Can not Add to Contacts", ToastLength.Long).Show();
+                    WriteToast.ShowShortToast("Can not Add to Contacts");
             }
 
         }
@@ -687,8 +666,7 @@ namespace QR_CodeScanner.ViewModel
                             }
                             catch
                             {
-                                var activity = Android.App.Application.Context as Activity;
-                                Toast.MakeText(activity, "QR-Code not readable !", ToastLength.Long).Show();
+                                WriteToast.ShowLongToast("QR-Code not readable !");
                             }
 
                         }
@@ -785,12 +763,10 @@ namespace QR_CodeScanner.ViewModel
             }
             catch
             {
-                var activity = Android.App.Application.Context as Activity;
                 if (culture.GetCulture() == "de")
-                    Toast.MakeText(activity, "Der QR-Code wird nicht erkannt.", ToastLength.Long).Show();
-
+                    WriteToast.ShowLongToast("Der QR-Code wird nicht erkannt.");
                 else
-                    Toast.MakeText(activity, "QR-Code not readable.", ToastLength.Long).Show();
+                    WriteToast.ShowLongToast("QR-Code not readable.");
             }
         }
 
@@ -810,8 +786,7 @@ namespace QR_CodeScanner.ViewModel
             }
             catch
             {
-                var activity = Android.App.Application.Context as Activity;
-                Toast.MakeText(activity, "Dont find this Place.", ToastLength.Long).Show();
+                WriteToast.ShowShortToast("Dont find this Place.");
             }
         }
         [Obsolete]
@@ -834,8 +809,7 @@ namespace QR_CodeScanner.ViewModel
 
             if (Permissions.ShouldShowRationale<Permissions.CalendarWrite>())
             {
-                var activity = Android.App.Application.Context as Activity;
-                Toast.MakeText(activity, "Needed your permission to write a new Event in Calendar from QR-Code result.", ToastLength.Long).Show();
+                WriteToast.ShowLongToast("Needed your permission to write a new Event in Calendar from QR-Code result.");
                 // Prompt the user with additional information as to why the permission is needed
             }
 
@@ -861,8 +835,7 @@ namespace QR_CodeScanner.ViewModel
             var status = await CheckAndRequestPermissionAsync(new Permissions.CalendarWrite());
             if (status != PermissionStatus.Granted)
             {
-                var activity = Android.App.Application.Context as Activity;
-                Toast.MakeText(activity, "The last time you refused the authorization to access the Calendar.Give this App the authorization for your Calendar to add Calendar directly via a QR-Code.", ToastLength.Long).Show();
+                WriteToast.ShowLongToast("The last time you refused the authorization to access the Calendar.Give this App the authorization for your Calendar to add Calendar directly via a QR-Code.");
                 return;
             }
 
@@ -910,8 +883,7 @@ namespace QR_CodeScanner.ViewModel
             }
             catch
             {
-                var activity = Android.App.Application.Context as Activity;
-                Toast.MakeText(activity, "Can not Save", ToastLength.Long).Show();
+                WriteToast.ShowShortToast("Can not Save");
             }
 
 

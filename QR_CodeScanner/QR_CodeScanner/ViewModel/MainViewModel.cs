@@ -21,32 +21,32 @@ namespace QR_CodeScanner.ViewModel
         QRhistory progress;
         CultureLang culture;
         string historyGen, historyScan, scanWithCam;
-        Color background, txtC, button, border, btnTxtC;
+        Color background, button, txt, frame, border;
         string generateIMG, historyScanIMG, historyGenIMG, mainIMG;
         public Color Background
         {
             get => background;
             set => SetProperty(ref background, value);
         }
-        public Color TXTC
-        {
-            get => txtC;
-            set => SetProperty(ref txtC, value);
-        }
         public Color Button
         {
             get => button;
             set => SetProperty(ref button, value);
         }
+        public Color Txt
+        {
+            get => txt;
+            set => SetProperty(ref txt, value);
+        }
+        public Color Frame
+        {
+            get => frame;
+            set => SetProperty(ref frame, value);
+        }
         public Color Border
         {
             get => border;
             set => SetProperty(ref border, value);
-        }
-        public Color BtnTxt
-        {
-            get => btnTxtC;
-            set => SetProperty(ref btnTxtC, value);
         }
         public string GenerateIMG
         {
@@ -85,14 +85,14 @@ namespace QR_CodeScanner.ViewModel
         }
 
         [Obsolete]
-        public MainViewModel(INavigation navigation, Color background, Color txtC, Color button, Color border, Color btnTxt, string generateIMG, string historyScanIMG, string historyGenIMG, string mainIMG)
+        public MainViewModel(INavigation navigation, Color background, Color button, Color txt, Color frame, Color border, string generateIMG, string historyScanIMG, string historyGenIMG, string mainIMG)
         {
             this.Navigation = navigation;
             Background = background;
-            TXTC = txtC;
             Button = button;
+            Txt = txt;
+            Frame = frame;
             Border = border;
-            BtnTxt = btnTxt;
             GenerateIMG = generateIMG;
             HistoryScanIMG = historyScanIMG;
             HistoryGenIMG = historyGenIMG;
@@ -120,13 +120,13 @@ namespace QR_CodeScanner.ViewModel
         [Obsolete]
         private async Task CallHistoryPage()
         {
-            await Navigation.PushAsync(new HistoryPage(null, null, false));
+            await Navigation.PushAsync(new HistoryPage(null, null, false, Background, Frame));
         }
         //hier muss ich alle farben übergeben
         [Obsolete]
         private async Task CallQRVersionPage()
         {
-            await Navigation.PushAsync(new QRVersionPage(Background, Button, TXTC, Border, BtnTxt));
+            await Navigation.PushAsync(new QRVersionPage(Background, Txt, Button, Frame, Border));
         }
         private async Task CallScannerPage()
         {

@@ -17,6 +17,9 @@
                         <Span Text="{Binding Icons}"/>
                         <local1:HyperlinkSpan Text="{Binding IconsLINK}"
                                               Url="{Binding IconsLINK}"/>
+                        <Span Text="{Binding Photo}"/>
+                        <local1:HyperlinkSpan Text="{Binding PhotoLINK}"
+                                              Url="{Binding PhotoLINK}"/>
                         <Span Text="{Binding LicenseXamFat}" FontSize="Large"/>
                         <Span Text="{Binding LicenseXam}"/>
                         <Span Text="{Binding LicenseApache}"/>

@@ -18,30 +18,31 @@ namespace QR_CodeScanner.ViewModel
         string phone;
         string adress;
         string website;
-
-        public INavigation Navigation { get; set; }
-
-        public ICommand ButtonGenerateClicked { get; set; }
-
-        [Obsolete]
-        public ContactViewModel(INavigation navigation)
+        Color background, button, txt, frame, border;
+        public Color Background
         {
-            this.Navigation = navigation;
-            ButtonGenerateClicked = new Command(async () => await CallQRGeneratorPage());
-
+            get => background;
+            set => SetProperty(ref background, value);
         }
-
-        [Obsolete]
-        async Task CallQRGeneratorPage()
+        public Color Button
         {
-            await Navigation.PushAsync(new QRGeneratorPage(GetContact(), false, false, true, false, false, false, false, false, false, string.Empty, false));
+            get => button;
+            set => SetProperty(ref button, value);
         }
-        string GetContact()
+        public Color Txt
         {
-            string vCard;
-            vCard = "BEGIN:VCARD\nVERSION:3.0\nN:" + CompName + "\nORG:" + Company + "\nTITLE:" + Titel + "\nTEL:" + Phone +
-                    "\nURL:" + Website + "\nEMAIL:" + Email + "\nADR:" + Adress + "\nEND:VCARD";
-            return vCard;
+            get => txt;
+            set => SetProperty(ref txt, value);
+        }
+        public Color Frame
+        {
+            get => frame;
+            set => SetProperty(ref frame, value);
+        }
+        public Color Border
+        {
+            get => border;
+            set => SetProperty(ref border, value);
         }
         public string CompName
         {
@@ -78,5 +79,35 @@ namespace QR_CodeScanner.ViewModel
             get => website;
             set => SetProperty(ref website, value);
         }
+        public INavigation Navigation { get; set; }
+
+        public ICommand ButtonGenerateClicked { get; set; }
+
+        [Obsolete]
+        public ContactViewModel(INavigation navigation, Color background, Color button, Color txt, Color frame, Color border)
+        {
+            this.Navigation = navigation;
+            Background = background;
+            Button = button;
+            Txt = txt;
+            Frame = frame;
+            Border = border;
+            ButtonGenerateClicked = new Command(async () => await CallQRGeneratorPage());
+
+        }
+
+        [Obsolete]
+        async Task CallQRGeneratorPage()
+        {
+            await Navigation.PushAsync(new QRGeneratorPage(GetContact(), false, false, true, false, false, false, false, false, false, string.Empty, false, background, frame));
+        }
+        string GetContact()
+        {
+            string vCard;
+            vCard = "BEGIN:VCARD\nVERSION:3.0\nN:" + CompName + "\nORG:" + Company + "\nTITLE:" + Titel + "\nTEL:" + Phone +
+                    "\nURL:" + Website + "\nEMAIL:" + Email + "\nADR:" + Adress + "\nEND:VCARD";
+            return vCard;
+        }
+      
     }
 }

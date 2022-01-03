@@ -12,6 +12,5 @@ namespace QR_CodeScanner.Model
             string culture = CultureInfo.CurrentCulture.TwoLetterISOLanguageName.ToString();
             return culture;
         }
-      
     }
 }

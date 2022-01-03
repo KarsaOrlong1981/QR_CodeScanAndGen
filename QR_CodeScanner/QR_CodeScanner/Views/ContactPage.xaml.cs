@@ -14,10 +14,10 @@ namespace QR_CodeScanner.Views
     public partial class ContactPage : ContentPage
     {
         [Obsolete]
-        public ContactPage()
+        public ContactPage(Color background, Color button, Color txt, Color frame, Color border)
         {
             InitializeComponent();
-            BindingContext = new ContactViewModel(Navigation);
+            BindingContext = new ContactViewModel(Navigation, background, button, txt, frame, border);
             btn_Generate.IsEnabled = false;
         }
 

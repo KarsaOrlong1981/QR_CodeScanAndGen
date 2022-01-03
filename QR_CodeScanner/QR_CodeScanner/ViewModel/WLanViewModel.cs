@@ -18,36 +18,12 @@ namespace QR_CodeScanner.ViewModel
         string wlanKey;
         string generate, buttonCulture;
         string readOnly;
+        Color background, frame;
         public ICommand ButtonGenerateClicked { get; set; }
         public ICommand ButtonWPAClicked { get; set; }
         public ICommand ButtonWEPClicked { get; set; }
         public ICommand ButtonNoneClicked { get; set; }
         public INavigation Navigation { get; set; }
-        [Obsolete]
-        public WLanViewModel(INavigation navigation)
-        {
-            culture = new CultureLang();
-            if (culture.GetCulture() == "de")
-            {
-                ButtonCulture = "QR-Code generieren";
-                TitleCulture = "Wlan QR-Code generieren";
-                PasswordCulture = "Passwort";
-            }
-            else
-            {
-                ButtonCulture = "Generate QR-Code";
-                TitleCulture = "Generate Wlan QR-Code";
-                PasswordCulture = "Password";
-            }
-            ReadOnly = "True";
-            WpaWep = "WPA/WPA2";
-            this.Navigation = navigation;
-            wlanKey = "WPA/WPA2";
-            ButtonWPAClicked = new Command(WPA_Clicked);
-            ButtonWEPClicked = new Command(WEP_Clicked);
-            ButtonNoneClicked = new Command(None_Clicked);
-            ButtonGenerateClicked = new Command(GetWlanConnectionCode);
-        }
         public string ButtonCulture
         {
             get => buttonCulture;
@@ -87,6 +63,33 @@ namespace QR_CodeScanner.ViewModel
         {
             get => readOnly;
             set => SetProperty(ref readOnly, value);
+        }
+        [Obsolete]
+        public WLanViewModel(INavigation navigation, Color background, Color frame)
+        {
+            this.background = background;
+            this.frame = frame;
+            culture = new CultureLang();
+            if (culture.GetCulture() == "de")
+            {
+                ButtonCulture = "QR-Code generieren";
+                TitleCulture = "Wlan QR-Code generieren";
+                PasswordCulture = "Passwort";
+            }
+            else
+            {
+                ButtonCulture = "Generate QR-Code";
+                TitleCulture = "Generate Wlan QR-Code";
+                PasswordCulture = "Password";
+            }
+            ReadOnly = "True";
+            WpaWep = "WPA/WPA2";
+            this.Navigation = navigation;
+            wlanKey = "WPA/WPA2";
+            ButtonWPAClicked = new Command(WPA_Clicked);
+            ButtonWEPClicked = new Command(WEP_Clicked);
+            ButtonNoneClicked = new Command(None_Clicked);
+            ButtonGenerateClicked = new Command(GetWlanConnectionCode);
         }
         void WPA_Clicked()
         {
@@ -133,7 +136,7 @@ namespace QR_CodeScanner.ViewModel
                     GenerateText = "WIFI:S:" + SSIDText + ";T:;P:" + Password + ";H:false;;";
                     break;
             }
-            await Navigation.PushAsync(new QRGeneratorPage(GenerateText, true, false, false, false, false, false, false, false, false, string.Empty, false));
+            await Navigation.PushAsync(new QRGeneratorPage(GenerateText, true, false, false, false, false, false, false, false, false, string.Empty, false, background, frame));
         }
     }
 }

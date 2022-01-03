@@ -17,8 +17,9 @@
        
             <Frame Grid.Row="0" Grid.Column="0" Margin="10" BorderColor="{Binding Button}"  BackgroundColor="{Binding Frame}" CornerRadius="20" HasShadow="true" VerticalOptions="CenterAndExpand"   >
                 <Entry
-                
+               
                 Text="{Binding EntryText}"
+                    TextChanged="Entry_TextChanged"
                 Keyboard="Url" 
                BackgroundColor="{Binding Frame}" 
                TextColor="{Binding Border}" 

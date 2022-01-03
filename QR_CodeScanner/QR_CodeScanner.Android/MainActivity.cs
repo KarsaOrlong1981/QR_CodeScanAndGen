@@ -21,10 +21,9 @@ using QR_CodeScanner.Droid.Models;
 using System.IO;
 using AndroidX.AppCompat.App;
 
+
 namespace QR_CodeScanner.Droid
 {
-   
-
     [Activity(Label = "QR_CodeScanner", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ScreenOrientation = ScreenOrientation.Portrait, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
@@ -36,8 +35,7 @@ namespace QR_CodeScanner.Droid
             base.OnCreate(savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             AppCompatDelegate.DefaultNightMode = AppCompatDelegate.ModeNightNo;
-
-            global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+            Forms.Init(this, savedInstanceState);
             //für BarCode Scanner
             ZXing.Net.Mobile.Forms.Android.Platform.Init();
             LoadApplication(new App());

@@ -17,10 +17,11 @@
             </Grid.ColumnDefinitions>
             <Frame Grid.Row="0" Grid.Column="1" Margin="10" BorderColor="{Binding Frame}" BackgroundColor="{Binding Button}" CornerRadius="20" HasShadow="true" VerticalOptions="CenterAndExpand" >
                 <Editor
-                    
+                    x:Name="editor"
                     MaxLength="510"
-                 
+                    
                 Text="{Binding Message}"
+                    TextChanged="Editor_TextChanged" 
                 Keyboard="Text"  
                BackgroundColor="{Binding Button}" 
                TextColor="{Binding Txt}" 

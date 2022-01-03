@@ -45,11 +45,11 @@
             <Button  x:Name="btn_scan" Margin="0,0,0,10" Grid.Row="1" Grid.Column="1" Command="{Binding ButtonScannerClicked}"
             Text="{Binding ScanWithCam}" 
             CornerRadius="20" 
-            BorderColor="{Binding Border}"    
+            BorderColor="{Binding Frame}"    
             BorderWidth="2" 
             FontSize="Medium"      
-            BackgroundColor="{Binding Button}"   
-            TextColor="{Binding TXTC}" 
+            BackgroundColor="{Binding Txt}"   
+            TextColor="{Binding Button}" 
             
             HorizontalOptions="Fill"     
             VerticalOptions="EndAndExpand"         
@@ -71,9 +71,9 @@
                 </Grid.ColumnDefinitions>
 
 
-                <Button Grid.Row="1" Grid.Column="1" Command="{Binding ButtonGeneratorClicked}" Text="Generator" Margin="0,0,0,25" TextColor="{Binding BtnTxt}" ImageSource="{Binding GenerateIMG}" ContentLayout="Top,0" BackgroundColor="{Binding Background}"  FontSize="10"  HorizontalOptions="CenterAndExpand"   VerticalOptions="CenterAndExpand"  />
-                <Button Grid.Row="1" Grid.Column="2" Command="{Binding ButtonScanHistoryClicked}" Text="{Binding HistoryScan}" TextColor="{Binding BtnTxt}" ImageSource="{Binding HistoryScanIMG}" ContentLayout="Top,0" BackgroundColor="{Binding Background}"  FontSize="10"    VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" />
-                <Button Grid.Row="1" Grid.Column="0"  Command="{Binding ButtonProgressClicked}" Text="{Binding HistoryGen}" ContentLayout="Top,0" TextColor="{Binding BtnTxt}"  BackgroundColor="{Binding Background}"  ImageSource="{Binding HistoryGenIMG}" FontSize="10"  VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" />
+                <Button Grid.Row="1" Grid.Column="1" Command="{Binding ButtonGeneratorClicked}" Text="Generator"  TextColor="{Binding Border}" ImageSource="{Binding GenerateIMG}" ContentLayout="Top,0" BackgroundColor="{Binding Background}"  FontSize="10"  HorizontalOptions="CenterAndExpand"   VerticalOptions="CenterAndExpand"  />
+                <Button Grid.Row="1" Grid.Column="2" Command="{Binding ButtonScanHistoryClicked}" Text="{Binding HistoryScan}" TextColor="{Binding Border}" ImageSource="{Binding HistoryScanIMG}" ContentLayout="Top,0" BackgroundColor="{Binding Background}"  FontSize="10"    VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" />
+                <Button Grid.Row="1" Grid.Column="0"  Command="{Binding ButtonProgressClicked}" Text="{Binding HistoryGen}" ContentLayout="Top,0" TextColor="{Binding Border}"  BackgroundColor="{Binding Background}"  ImageSource="{Binding HistoryGenIMG}" FontSize="10"  VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" />
             </Grid>
 
         </Grid>

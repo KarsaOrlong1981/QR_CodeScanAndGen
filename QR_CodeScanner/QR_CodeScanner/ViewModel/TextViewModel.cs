@@ -44,6 +44,26 @@ namespace QR_CodeScanner.ViewModel
             get => border;
             set => SetProperty(ref border, value);
         }
+        public string EntryText
+        {
+            get => entry;
+            set => SetProperty(ref entry, value);
+        }
+        public string EditorCulture
+        {
+            get => editorCulture;
+            set => SetProperty(ref editorCulture, value);
+        }
+        public string ButtonCulture
+        {
+            get => buttonCulture;
+            set => SetProperty(ref buttonCulture, value);
+        }
+        public string TitleCulture
+        {
+            get => titleCulture;
+            set => SetProperty(ref titleCulture, value);
+        }
         [Obsolete]
         public TextViewModel(INavigation navigation, Color background, Color button, Color txt, Color frame, Color border)
         {
@@ -72,27 +92,8 @@ namespace QR_CodeScanner.ViewModel
         [Obsolete]
         public async Task CallQRGeneratorPage()
         {
-            await Navigation.PushAsync(new QRGeneratorPage(EntryText, false, false, false, false, false, false, false, false, false, string.Empty, false));
+            await Navigation.PushAsync(new QRGeneratorPage(EntryText, false, false, false, false, false, false, false, false, false, string.Empty, false, Background, Frame));
         }
-        public string EntryText
-        {
-            get => entry;
-            set => SetProperty(ref entry, value);
-        }
-        public string EditorCulture
-        {
-            get => editorCulture;
-            set => SetProperty(ref editorCulture, value);
-        }
-        public string ButtonCulture
-        {
-            get => buttonCulture;
-            set => SetProperty(ref buttonCulture, value);
-        }
-        public string TitleCulture
-        {
-            get => titleCulture;
-            set => SetProperty(ref titleCulture, value);
-        }
+
     }
 }

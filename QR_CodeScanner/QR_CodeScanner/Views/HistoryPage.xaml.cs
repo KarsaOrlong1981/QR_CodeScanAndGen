@@ -21,15 +21,18 @@ namespace QR_CodeScanner.Views
     {
         QRhistory history;
         CultureLang culture;
-
+        Color background, frame;
         [Obsolete]
-        public HistoryPage(string qrText, string eventQR, bool course)
+        public HistoryPage(string qrText, string eventQR, bool course, Color background, Color frame)
         {
             InitializeComponent();
             culture = new CultureLang();
             history = new QRhistory();
             DataBaseresult();
-
+            grid.BackgroundColor = background;
+            this.background = background;
+            this.BackgroundColor = background;
+            this.frame = frame;
             if (qrText != null)
             {
                 if (course == true)
@@ -158,7 +161,7 @@ namespace QR_CodeScanner.Views
         [Obsolete]
         private async void OpenNewGenerator(string qrtxtX, bool wlanX, bool websiteX, bool contactX, bool eventX, bool phoneNRX, bool emailX, bool smsX, bool foodX, bool browserX, string numberX, bool fromProgress)
         {
-            QRGeneratorPage qrGVM = new QRGeneratorPage(qrtxtX, wlanX, websiteX, contactX, eventX, phoneNRX, emailX, smsX, foodX, browserX, numberX, true);
+            QRGeneratorPage qrGVM = new QRGeneratorPage(qrtxtX, wlanX, websiteX, contactX, eventX, phoneNRX, emailX, smsX, foodX, browserX, numberX, true, background, frame);
             await Navigation.PushAsync(qrGVM);
         }
 

@@ -52,11 +52,11 @@ namespace QR_CodeScanner.Model
             }
             catch
             {
-                var activity = Android.App.Application.Context as Activity;
+
                 if (culture.GetCulture() == "de")
-                    Toast.MakeText(activity, "Qr-Code konnte nicht gespeichert werden. Möglicherweise fehlt der Pictures Ordner auf dem Gerät.", ToastLength.Short).Show();
+                    WriteToast.ShowLongToast("Qr-Code konnte nicht gespeichert werden. Möglicherweise fehlt der Pictures Ordner auf dem Gerät.");
                 else
-                    Toast.MakeText(activity, "Qr code could not be saved. The Pictures folder may be missing on the device.", ToastLength.Short).Show();
+                    WriteToast.ShowLongToast("Qr code could not be saved. The Pictures folder may be missing on the device.");
                 return null;
             }
 

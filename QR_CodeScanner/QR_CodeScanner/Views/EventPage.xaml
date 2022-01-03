@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage BackgroundColor="SteelBlue"  xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentPage BackgroundColor="{Binding Background}"  xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewmodel="clr-namespace:QR_CodeScanner.ViewModel" x:DataType="viewmodel:EventViewModel"
              x:Class="QR_CodeScanner.Views.EventPage" Title="Generate Event QR-Code" >
     
@@ -17,22 +17,22 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Frame Grid.Column="0" Grid.Row="0"  BorderColor="SteelBlue" CornerRadius="20"  HasShadow="true">
+        <Frame Grid.Column="0" Grid.Row="0"  BorderColor="{Binding Frame}" BackgroundColor="{Binding Button}" CornerRadius="20"  HasShadow="true">
             <Entry 
                 x:Name="entry"
                 Text="{Binding Title}"
-                  TextChanged="entry_TextChanged" 
+                  TextChanged="Entry_TextChanged" 
                 Keyboard="Text"  
-               BackgroundColor="White" 
-               TextColor="Black" 
+               BackgroundColor="{Binding Button}" 
+               TextColor="{Binding Txt}" 
                FontSize="Medium"  
                Placeholder="Title" 
-               PlaceholderColor="SteelBlue" 
+               PlaceholderColor="{Binding Border}" 
             />
         </Frame>
-        
 
-            <Frame Grid.Row="1"  BorderColor="SteelBlue" CornerRadius="20" HasShadow="true" >
+
+        <Frame Grid.Row="1"  BorderColor="{Binding Frame}" BackgroundColor="{Binding Button}" CornerRadius="20" HasShadow="true" >
               <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
@@ -45,25 +45,25 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                     <Image Grid.Column="0" Source="DateTime.png"/>
-                    <Label Grid.Column="1" VerticalOptions="CenterAndExpand"  Text="Start date" TextColor="SteelBlue" FontSize="Medium"/>
+                    <Label Grid.Column="1" VerticalOptions="CenterAndExpand"  Text="Start date" TextColor="{Binding Border}" FontSize="Medium"/>
                     <DatePicker Grid.Column="2"
-                                 TextColor="Blue"
+                                 TextColor="{Binding Txt}"
                                 Visual="Default"  
                                 HorizontalOptions="StartAndExpand"
                                 Date="{Binding StartDate}"
                                 MinimumDate="{Binding StartDate}"
                                 MaximumDate="12/31/2040" />
                     <TimePicker Grid.Column="3" Time="{Binding TimeStart}"
-                                 TextColor="Magenta">
+                                 TextColor="{Binding Txt}">
                         <TimePicker.Format>HH:mm</TimePicker.Format>
                     </TimePicker>
                 </Grid>
             </Frame>
-        
 
 
-        
-            <Frame Grid.Row="2" BorderColor="SteelBlue" CornerRadius="20" HasShadow="true" >
+
+
+        <Frame Grid.Row="2"  BorderColor="{Binding Frame}" BackgroundColor="{Binding Button}" CornerRadius="20" HasShadow="true" >
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
@@ -76,58 +76,58 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Image Grid.Column="0" Source="DateTime.png" />
-                    <Label Grid.Column="1" VerticalOptions="CenterAndExpand"  Text="End date" TextColor="SteelBlue" FontSize="Medium"  />
+                    <Label Grid.Column="1" VerticalOptions="CenterAndExpand"  Text="End date" TextColor="{Binding Border}" FontSize="Medium"  />
                     <DatePicker Grid.Column="2" 
                                 Visual="Default" 
-                                TextColor="Blue"
+                                TextColor="{Binding Txt}"
                                 
                                 HorizontalOptions="StartAndExpand"
                                 Date="{Binding EndDate}"
                                 MinimumDate="{Binding StartDate}"
                                 MaximumDate="12/31/2040" />
                     <TimePicker Grid.Column="3" Time="{Binding TimeEnd}" 
-                                 TextColor="Magenta">
+                                 TextColor="{Binding Txt}">
                         <TimePicker.Format>HH:mm</TimePicker.Format>
                     </TimePicker>
                 </Grid>
             </Frame>
-        
 
 
 
 
-        
-            <Frame Grid.Row="3" BorderColor="SteelBlue" CornerRadius="20" HasShadow="true" >
+
+
+        <Frame Grid.Row="3"  BorderColor="{Binding Frame}" BackgroundColor="{Binding Button}" CornerRadius="20" HasShadow="true" >
                 <StackLayout Orientation="Horizontal">
                     <Image Source="Place.png" />
                     <Entry
                 HorizontalOptions="FillAndExpand" 
                 Text="{Binding Location}"
                 Keyboard="Text" 
-               BackgroundColor="White" 
-               TextColor="Black" 
+               BackgroundColor="{Binding Button}" 
+               TextColor="{Binding Txt}" 
                FontSize="Medium"  
                SelectionLength="200"
                Placeholder="Location" 
-               PlaceholderColor="SteelBlue" 
+               PlaceholderColor="{Binding Border}" 
                />
                 </StackLayout>
             </Frame>
-       
-        
-            <Frame Grid.Row="4" BorderColor="SteelBlue" CornerRadius="20" HasShadow="true" >
+
+
+        <Frame Grid.Row="4"  BorderColor="{Binding Frame}" BackgroundColor="{Binding Button}" CornerRadius="20" HasShadow="true" >
                 <StackLayout Orientation="Horizontal">
 
                     <Entry
                 HorizontalOptions="FillAndExpand" 
                 Text="{Binding Description}"
                 Keyboard="Text" 
-               BackgroundColor="White" 
-               TextColor="Black" 
+               BackgroundColor="{Binding Button}" 
+               TextColor="{Binding Txt}" 
                FontSize="20" 
                SelectionLength="200"
                Placeholder="Description" 
-               PlaceholderColor="SteelBlue" 
+               PlaceholderColor="{Binding Border}" 
                />
                 </StackLayout>
             </Frame>
@@ -141,8 +141,8 @@
                     Text="Generate QR-Code "
                     FontSize="Medium"  
                     TextColor="White"
-                    BackgroundColor="LightSteelBlue"  
-                    BorderColor="Gray" 
+                    BackgroundColor="{Binding Frame}"  
+                    BorderColor="{Binding Button}" 
                     BorderWidth="4" 
                     HorizontalOptions="FillAndExpand"  
                      VerticalOptions="CenterAndExpand" />

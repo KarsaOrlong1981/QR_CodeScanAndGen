@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage BackgroundColor="MintCream" xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentPage BackgroundColor="{Binding Background}" xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewmodel="clr-namespace:QR_CodeScanner.ViewModel" x:DataType="viewmodel:PhoneViewModel"
              x:Class="QR_CodeScanner.Views.PhonePage" Title="Generate Phonenumber QR-Code">
     <Grid >
@@ -9,21 +9,23 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
        
-        <Frame Grid.Row="0" Margin="20,20,20,0" BorderColor="SteelBlue" CornerRadius="20" HasShadow="true" HorizontalOptions="FillAndExpand"  VerticalOptions="CenterAndExpand" >
+        <Frame Grid.Row="0" Margin="20,20,20,0" BorderColor="{Binding Frame}" BackgroundColor="{Binding Button}" CornerRadius="20" HasShadow="true" HorizontalOptions="FillAndExpand"  VerticalOptions="CenterAndExpand" >
             <StackLayout Orientation="Horizontal">
                 <Image Source="Telefon.png" />
                 <Entry
-                HorizontalOptions="CenterAndExpand"  
-                Text="{Binding PhoneNumber}"
-                Keyboard="Telephone" 
-               BackgroundColor="White" 
-               TextColor="Black" 
-               FontSize="Large"   
-               SelectionLength="200"
-               Placeholder="Phone number" 
-               PlaceholderColor="SteelBlue" 
-               />
-                </StackLayout> 
+                     x:Name="entry"
+                     HorizontalOptions="CenterAndExpand"  
+                     Text="{Binding PhoneNumber}"
+                     TextChanged="Entry_TextChanged" 
+                     Keyboard="Telephone" 
+                     BackgroundColor="{Binding Button}" 
+                     TextColor="{Binding Txt}" 
+                     FontSize="Large"   
+                     SelectionLength="200"
+                     Placeholder="Phone number" 
+                     PlaceholderColor="{Binding Background}" 
+                   />
+            </StackLayout> 
             </Frame> 
         
                          
@@ -36,8 +38,8 @@
                     Text="Generate QR-Code"
                     FontSize="Large" 
                     TextColor="White"
-                    BackgroundColor="LightSteelBlue"  
-                    BorderColor="Gray" 
+                    BackgroundColor="{Binding Frame}"  
+                    BorderColor="{Binding Button}" 
                     BorderWidth="4" 
                     HorizontalOptions="FillAndExpand"   
                     VerticalOptions="StartAndExpand" />

@@ -18,6 +18,16 @@ namespace QR_CodeScanner.Views
         {
             InitializeComponent();
             BindingContext = new WebsiteViewModel(Navigation, background, button, txt, frame, border);
+            btn_Generate.IsEnabled = false;
+        }
+
+        private void Entry_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+            if (entryWebsite.Text == "")
+                btn_Generate.IsEnabled = false;
+            else
+                btn_Generate.IsEnabled = true;
         }
     }
 }

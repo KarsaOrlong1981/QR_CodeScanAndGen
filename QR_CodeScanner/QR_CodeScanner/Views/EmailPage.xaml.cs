@@ -13,11 +13,18 @@ namespace QR_CodeScanner.Views
     public partial class EmailPage : ContentPage
     {
         [Obsolete]
-        public EmailPage()
+        public EmailPage(Color background, Color button, Color txt, Color frame, Color border)
         {
             InitializeComponent();
-            BindingContext = new EmailViewModel(Navigation);
+            BindingContext = new EmailViewModel(Navigation, background, button, txt, frame, border);
+            btn_Generate.IsEnabled = false;
         }
-
+        private void Entry_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (entry.Text == "")
+                btn_Generate.IsEnabled = false;
+            else
+                btn_Generate.IsEnabled = true;
+        }
     }
 }

@@ -16,15 +16,15 @@ namespace QR_CodeScanner.Views
         ScanHistoryModel history;
         CultureLang culture;
         Color background, frame;
-        public ScanHistory(string qrText, string eventQR, bool course, Color backGround, Color frame)
+        public ScanHistory(string qrText, string eventQR, bool course, Color background, Color frame)
         {
             InitializeComponent();
             culture = new CultureLang();
             history = new ScanHistoryModel();
             DataBaseresult();
-            grid.BackgroundColor = backGround;
-            this.BackgroundColor = backGround;
-            this.background = backGround;
+            grid.BackgroundColor = background;
+            this.background = background;
+            this.BackgroundColor = background;
             this.frame = frame;
             if (qrText != null)
             {
@@ -151,7 +151,7 @@ namespace QR_CodeScanner.Views
         [Obsolete]
         private async void OpenNewResult(string qrtxtX, bool wlanX, bool websiteX, bool contactX, bool eventX, bool phoneNRX, bool emailX, bool smsX, bool barcodeX, bool browserX, string numberX, bool fromProgress)
         {
-            ResultPage qrGVM = new ResultPage(qrtxtX, wlanX, websiteX, contactX, eventX, phoneNRX, emailX, smsX, barcodeX, browserX, numberX, true);
+            ResultPage qrGVM = new ResultPage(qrtxtX, wlanX, websiteX, contactX, eventX, phoneNRX, emailX, smsX, barcodeX, browserX, numberX, true, background);
             await Navigation.PushAsync(qrGVM);
         }
 

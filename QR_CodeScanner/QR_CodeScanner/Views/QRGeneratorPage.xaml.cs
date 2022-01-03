@@ -20,10 +20,10 @@ namespace QR_CodeScanner.Views
 
 
         [Obsolete]
-        public QRGeneratorPage(string qrCodeText, bool isWlan, bool isWebsite, bool isContact, bool isEvent, bool isPhoneNumber, bool isEmail, bool isSMS, bool isFood, bool isBrowser, string phoneNumber, bool fromProgress)
+        public QRGeneratorPage(string qrCodeText, bool isWlan, bool isWebsite, bool isContact, bool isEvent, bool isPhoneNumber, bool isEmail, bool isSMS, bool isFood, bool isBrowser, string phoneNumber, bool fromProgress, Color background, Color frame)
         {
             InitializeComponent();
-            BindingContext = new QRGeneratorViewModel(qrCodeText, isWlan, isWebsite, isContact, isEvent, isPhoneNumber, isEmail, isSMS, isFood, isBrowser, phoneNumber, fromProgress);
+            BindingContext = new QRGeneratorViewModel(qrCodeText, isWlan, isWebsite, isContact, isEvent, isPhoneNumber, isEmail, isSMS, isFood, isBrowser, phoneNumber, fromProgress, background, frame);
         }
 
     }

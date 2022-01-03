@@ -15,13 +15,78 @@ namespace QR_CodeScanner.ViewModel
         TimeSpan timeStart, timeEnd;
         DateTime dateTime, startDate, endDate;
         CultureLang culture;
+        Color background, button, txt, frame, border;
         public ICommand ButtonGenerateClicked { get; set; }
         public INavigation Navigation { get; set; }
-
+        public Color Background
+        {
+            get => background;
+            set => SetProperty(ref background, value);
+        }
+        public Color Button
+        {
+            get => button;
+            set => SetProperty(ref button, value);
+        }
+        public Color Txt
+        {
+            get => txt;
+            set => SetProperty(ref txt, value);
+        }
+        public Color Frame
+        {
+            get => frame;
+            set => SetProperty(ref frame, value);
+        }
+        public Color Border
+        {
+            get => border;
+            set => SetProperty(ref border, value);
+        }
+        public TimeSpan TimeStart
+        {
+            get => timeStart;
+            set => SetProperty(ref timeStart, value);
+        }
+        public TimeSpan TimeEnd
+        {
+            get => timeEnd;
+            set => SetProperty(ref timeEnd, value);
+        }
+        public string Title
+        {
+            get => title;
+            set => SetProperty(ref title, value);
+        }
+        public DateTime StartDate
+        {
+            get => startDate;
+            set => SetProperty(ref startDate, value);
+        }
+        public DateTime EndDate
+        {
+            get => endDate;
+            set => SetProperty(ref endDate, value);
+        }
+        public string Location
+        {
+            get => location;
+            set => SetProperty(ref location, value);
+        }
+        public string Description
+        {
+            get => description;
+            set => SetProperty(ref description, value);
+        }
         [Obsolete]
-        public EventViewModel(INavigation navigation)
+        public EventViewModel(INavigation navigation, Color background, Color button, Color txt, Color frame, Color border)
         {
             this.Navigation = navigation;
+            Background = background;
+            Button = button;
+            Txt = txt;
+            Frame = frame;
+            Border = border;
             culture = new CultureLang();
 
             ButtonGenerateClicked = new Command(async () => await CallQRGeneratorPage());
@@ -42,7 +107,7 @@ namespace QR_CodeScanner.ViewModel
         async Task CallQRGeneratorPage()
         {
 
-            await Navigation.PushAsync(new QRGeneratorPage(GetEvent(), false, false, false, true, false, false, false, false, false, string.Empty, false));
+            await Navigation.PushAsync(new QRGeneratorPage(GetEvent(), false, false, false, true, false, false, false, false, false, string.Empty, false, background, frame));
 
         }
         string GetEvent()
@@ -88,40 +153,6 @@ namespace QR_CodeScanner.ViewModel
         }
 
 
-        public TimeSpan TimeStart
-        {
-            get => timeStart;
-            set => SetProperty(ref timeStart, value);
-        }
-        public TimeSpan TimeEnd
-        {
-            get => timeEnd;
-            set => SetProperty(ref timeEnd, value);
-        }
-        public string Title
-        {
-            get => title;
-            set => SetProperty(ref title, value);
-        }
-        public DateTime StartDate
-        {
-            get => startDate;
-            set => SetProperty(ref startDate, value);
-        }
-        public DateTime EndDate
-        {
-            get => endDate;
-            set => SetProperty(ref endDate, value);
-        }
-        public string Location
-        {
-            get => location;
-            set => SetProperty(ref location, value);
-        }
-        public string Description
-        {
-            get => description;
-            set => SetProperty(ref description, value);
-        }
+        
     }
 }

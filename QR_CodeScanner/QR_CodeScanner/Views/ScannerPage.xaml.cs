@@ -101,14 +101,10 @@ namespace QR_CodeScanner.Views
                                         }
                                         catch
                                         {
-                                            var activity = Android.App.Application.Context as Activity;
                                             if (culture.GetCulture() == "de")
-
-                                                Toast.MakeText(activity, "Website kann nicht geladen werden.", ToastLength.Long).Show();
-
+                                                WriteToast.ShowLongToast("Website kann nicht geladen werden.");
                                             else
-
-                                                Toast.MakeText(activity, "Website not found.", ToastLength.Long).Show();
+                                                WriteToast.ShowLongToast("Website not found.");
                                         }
                                     }
                                     if (resultString.Substring(0, 4) == "smst")
@@ -153,7 +149,7 @@ namespace QR_CodeScanner.Views
         {
 
 
-            ResultPage call = new ResultPage(resultQrCode, isWlan, isWebsite, isContact, isEvent, isPhonenumber, isEmail, isSMS, isBarcode, isBrowser, string.Empty, false);
+            ResultPage call = new ResultPage(resultQrCode, isWlan, isWebsite, isContact, isEvent, isPhonenumber, isEmail, isSMS, isBarcode, isBrowser, string.Empty, false, background);
             await Navigation.PushAsync(call);
             scanView.IsScanning = true;
             scanView.IsAnalyzing = true;
@@ -182,14 +178,10 @@ namespace QR_CodeScanner.Views
             catch
             {
                 // Sms is not supported on this device.
-                var activity = Android.App.Application.Context as Activity;
                 if (culture.GetCulture() == "de")
-
-                    Toast.MakeText(activity, "SMS wird auf diesem Gerät nicht unterstützt.", ToastLength.Long).Show();
-
+                    WriteToast.ShowLongToast("SMS wird auf diesem Gerät nicht unterstützt.");
                 else
-
-                    Toast.MakeText(activity, "Sms is not supported on this device.", ToastLength.Long).Show();
+                    WriteToast.ShowLongToast("Sms is not supported on this device.");
             }
         }
 

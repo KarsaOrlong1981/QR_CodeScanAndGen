@@ -18,6 +18,7 @@
             <Entry x:Name="entryRow0"
                 
                 Text="{Binding SSIDText}"
+                   TextChanged="EntryRow0_TextChanged"
                 Keyboard="Url" 
                FontSize="Medium" 
                Placeholder="SSID" 

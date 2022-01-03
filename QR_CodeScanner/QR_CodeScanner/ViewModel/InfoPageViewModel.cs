@@ -8,7 +8,7 @@ namespace QR_CodeScanner.ViewModel
 {
     public class InfoPageViewModel : BaseViewModel
     {
-        string licenseApache, licenseApacheLINK, licenseXam,licenseXamFat, developer, developerLINK, developerADD, icons, iconsLINK;
+        string licenseApache, licenseApacheLINK, licenseXam, licenseXamFat, developer, developerLINK, developerADD, icons, photo, iconsLINK, photoLINK;
         public INavigation Navigation { get; set; }
         public string LicenseApache
         {
@@ -50,6 +50,16 @@ namespace QR_CodeScanner.ViewModel
             get => icons;
             set => SetProperty(ref icons, value);
         }
+        public string Photo
+        {
+            get => photo;
+            set => SetProperty(ref photo, value);
+        }
+        public string PhotoLINK
+        {
+            get => photoLINK;
+            set => SetProperty(ref photoLINK, value);
+        }
         public string IconsLINK
         {
             get => iconsLINK;
@@ -64,9 +74,12 @@ namespace QR_CodeScanner.ViewModel
             DeveloperADD = "J1981Thomas@gmail.com";
             DeveloperLINK = "mailto:" + DeveloperADD;
             Icons = "\n\n\nAll Icons from Icons8 visit at ";
+            Photo = "\n\n\nMain page image from OpenClipart-Vectors at Pixabay ";
             IconsLINK = "https://icons8.de/";
+            PhotoLINK = "https://pixabay.com/de/";
             LicenseApache = "\n\n\nCopyright _____\n\nLicensed under the Apache License, Version 2.0 ";
             LicenseApacheLINK = "http://www.apache.org/licenses/LICENSE-2.0";
+
             if (culture.GetCulture() == "de")
             {
                 LicenseXamFat = "\n\n\nQR-Code Scan&Gen - Datenschutzrichtlinie für QR-Code-Scanner";

@@ -43,6 +43,36 @@ namespace QR_CodeScanner.ViewModel
             get => border;
             set => SetProperty(ref border, value);
         }
+        public string Message
+        {
+            get => sms;
+            set => SetProperty(ref sms, value);
+        }
+        public string Number
+        {
+            get => number;
+            set => SetProperty(ref number, value);
+        }
+        public string EditorCulture
+        {
+            get => editorCulture;
+            set => SetProperty(ref editorCulture, value);
+        }
+        public string NumberCulture
+        {
+            get => numberCulture;
+            set => SetProperty(ref numberCulture, value);
+        }
+        public string ButtonCulture
+        {
+            get => buttonCulture;
+            set => SetProperty(ref buttonCulture, value);
+        }
+        public string TitleCulture
+        {
+            get => titleCulture;
+            set => SetProperty(ref titleCulture, value);
+        }
         [Obsolete]
         public SMSViewModel(INavigation navigation, Color background, Color button, Color txt, Color frame, Color border)
         {
@@ -74,38 +104,9 @@ namespace QR_CodeScanner.ViewModel
         [Obsolete]
         public async Task CallQRGeneratorPage()
         {
-            await Navigation.PushAsync(new QRGeneratorPage(Message, false, false, false, false, false, false, true, false, false, Number, false));
+            await Navigation.PushAsync(new QRGeneratorPage(Message, false, false, false, false, false, false, true, false, false, Number, false, Background, Frame));
         }
 
-        public string Message
-        {
-            get => sms;
-            set => SetProperty(ref sms, value);
-        }
-        public string Number
-        {
-            get => number;
-            set => SetProperty(ref number, value);
-        }
-        public string EditorCulture
-        {
-            get => editorCulture;
-            set => SetProperty(ref editorCulture, value);
-        }
-        public string NumberCulture
-        {
-            get => numberCulture;
-            set => SetProperty(ref numberCulture, value);
-        }
-        public string ButtonCulture
-        {
-            get => buttonCulture;
-            set => SetProperty(ref buttonCulture, value);
-        }
-        public string TitleCulture
-        {
-            get => titleCulture;
-            set => SetProperty(ref titleCulture, value);
-        }
+       
     }
 }

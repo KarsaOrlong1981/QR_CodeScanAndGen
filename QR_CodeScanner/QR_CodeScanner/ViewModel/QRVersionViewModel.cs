@@ -14,7 +14,6 @@ namespace QR_CodeScanner.ViewModel
     {
         public INavigation Navigation { get; set; }
         public ICommand ButtonTextClicked { get; set; }
-
         public ICommand ButtonWebsiteClicked { get; set; }
         public ICommand ButtonWLanClicked { get; set; }
         public ICommand ButtonContactClicked { get; set; }
@@ -76,20 +75,20 @@ namespace QR_CodeScanner.ViewModel
         public async Task CallPhonePage()
         {
 
-            await Navigation.PushAsync(new PhonePage());
+            await Navigation.PushAsync(new PhonePage(Background, Button, Txt, Frame, Border));
         }
 
         [Obsolete]
         public async Task CallEmailPage()
         {
 
-            await Navigation.PushAsync(new EmailPage());
+            await Navigation.PushAsync(new EmailPage(Background, Button, Txt, Frame, Border));
         }
 
         [Obsolete]
         public async Task CallEventPage()
         {
-            await Navigation.PushAsync(new EventPage());
+            await Navigation.PushAsync(new EventPage(Background, Button, Txt, Frame, Border));
         }
 
         [Obsolete]
@@ -113,7 +112,7 @@ namespace QR_CodeScanner.ViewModel
         [Obsolete]
         public async Task CallContactPage()
         {
-            await Navigation.PushAsync(new ContactPage());
+            await Navigation.PushAsync(new ContactPage(Background, Button, Txt, Frame, Border));
         }
 
         [Obsolete]

@@ -4,6 +4,8 @@ using Xamarin.Forms.Xaml;
 using QR_CodeScanner.Views;
 using QR_CodeScanner.Model;
 using System.IO;
+using Java.Lang;
+using Android.Content;
 
 namespace QR_CodeScanner
 {
@@ -16,7 +18,6 @@ namespace QR_CodeScanner
         Color overColor;
         string generateIMG, scanHIMG, genHIMG, mainIMG;
         string getLayout;
-
         public static QRDatabase Database1
         {
             get
