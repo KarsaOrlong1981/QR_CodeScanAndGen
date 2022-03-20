@@ -22,18 +22,18 @@ namespace QR_CodeScanner.ViewModel
     public class QRGeneratorViewModel : BaseViewModel
     {
         string[] splitVCard;
-        private readonly string number;
+        private readonly string phoneNumberString;
         ShareContent share;
         QRImage qrImage;
-        private bool wlan;
-        private bool website;
-        private bool contact;
-        private bool eventX;
-        private bool phonenumber;
-        private bool email;
-        private bool sms;
-        private bool barcode;
-        private bool browser;
+        private bool isWlan;
+        private bool isWebsite;
+        private bool isContact;
+        private bool isEvent;
+        private bool isPhoneNumber;
+        private bool isEmail;
+        private bool isSMS;
+        private bool isBarcode;
+        private bool isBrowser;
         Color background, frame;
         public ICommand ButtonShareClicked { get; set; }
         public ICommand ButtonSaveClicked { get; set; }
@@ -173,16 +173,16 @@ namespace QR_CodeScanner.ViewModel
             qrImage = new QRImage();
             //this creates the Barcode text
             Text = qrTxt;
-            number = phoneNumberString;
-            wlan = isWlan;
-            website = isWebsite;
-            contact = isContact;
-            eventX = isEvent;
-            phonenumber = isPhoneNumber;
-            email = isEmail;
-            sms = isSMS;
-            barcode = isBarcode;
-            browser = isBrowser;
+            this.phoneNumberString = phoneNumberString;
+            this.isWlan = isWlan;
+            this.isWebsite = isWebsite;
+            this.isContact = isContact;
+            this.isEvent = isEvent;
+            this.isPhoneNumber = isPhoneNumber;
+            this.isEmail = isEmail;
+            this.isSMS = isSMS;
+            this.isBarcode = isBarcode;
+            this.isBrowser = isBrowser;
             if (fromProgress == false)
             {
                 GetImageAndTextProgress();
@@ -232,9 +232,9 @@ namespace QR_CodeScanner.ViewModel
 
                     LabelText = "SMS: ";
                     VCard10 = qrTxt;
-                    VCard11 = number;
-                    VCard11Link = "smsto:" + number + ":" + qrTxt;
-                    Text = "smsto:" + number + ":" + qrTxt;
+                    VCard11 = this.phoneNumberString;
+                    VCard11Link = "smsto:" + this.phoneNumberString + ":" + qrTxt;
+                    Text = "smsto:" + this.phoneNumberString + ":" + qrTxt;
                 }
             }
             tcColor = "Black";
@@ -290,26 +290,26 @@ namespace QR_CodeScanner.ViewModel
         {
             string eventQRString = string.Empty;
             string text = Text;
-            if (wlan)
+            if (isWlan)
                 eventQRString = "Wlan";
-            if (website)
+            if (isWebsite)
                 eventQRString = "Website";
-            if (contact)
+            if (isContact)
                 eventQRString = "Contact";
-            if (eventX)
+            if (isEvent)
                 eventQRString = "Event";
-            if (phonenumber)
+            if (isPhoneNumber)
                 eventQRString = "Phonenumber";
-            if (email)
+            if (isEmail)
                 eventQRString = "Email";
-            if (sms)
+            if (isSMS)
             {
                 eventQRString = "SMS";
-                text = "smsto:" + number + ":" + Text;
+                text = "smsto:" + phoneNumberString + ":" + Text;
             }
-            if (barcode)
+            if (isBarcode)
                 eventQRString = "Barcode";
-            if (browser)
+            if (isBrowser)
                 eventQRString = "Browser";
             if (eventQRString != "Wlan" && eventQRString != "Website" && eventQRString != "Contact" && eventQRString != "Event" && eventQRString != "Phonenumber" &&
                eventQRString != "Email" && eventQRString != "SMS" && eventQRString != "Food" && eventQRString != "Browser")
