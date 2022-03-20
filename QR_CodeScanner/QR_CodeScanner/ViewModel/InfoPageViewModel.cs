@@ -65,11 +65,10 @@ namespace QR_CodeScanner.ViewModel
             get => iconsLINK;
             set => SetProperty(ref iconsLINK, value);
         }
-        CultureLang culture;
+       
         public InfoPageViewModel(INavigation navigation)
         {
             this.Navigation = navigation;
-            culture = new CultureLang();
             Developer = "Developer: J.Thomas Germany 2021\n\nContact me at ";
             DeveloperADD = "J1981Thomas@gmail.com";
             DeveloperLINK = "mailto:" + DeveloperADD;
@@ -80,7 +79,7 @@ namespace QR_CodeScanner.ViewModel
             LicenseApache = "\n\n\nCopyright _____\n\nLicensed under the Apache License, Version 2.0 ";
             LicenseApacheLINK = "http://www.apache.org/licenses/LICENSE-2.0";
 
-            if (culture.GetCulture() == "de")
+            if (CultureLanguage.GetCulture() == "de")
             {
                 LicenseXamFat = "\n\n\nQR-Code Scan&Gen - Datenschutzrichtlinie für QR-Code-Scanner";
                 LicenseXam = "\n\n\nIch(J. Thomas) habe die QR-Code-Scanner-App als kostenlose App entwickelt. Dieser DIENST wird von mir kostenlos zur Verfügung gestellt und ist für die Nutzung bestimmt.\n\nDiese Seite wird verwendet, um Website - Besucher über meine Richtlinien zur Erfassung, Verwendung und Offenlegung personenbezogener Daten zu informieren, falls sich jemand für die Nutzung meines Dienstes entschieden hat.\n\nWenn Sie sich für die Nutzung meines Dienstes entscheiden, stimmen Sie der Erfassung und Verwendung von Informationen in Bezug auf diese Richtlinie zu.Die von mir erfassten personenbezogenen Daten werden zur Bereitstellung und Verbesserung des Dienstes verwendet. Ich werde Ihre Daten nicht verwenden oder an Dritte weitergeben, außer wie in dieser Datenschutzrichtlinie beschrieben.\n\nDie in dieser Datenschutzrichtlinie verwendeten Begriffe haben die gleiche Bedeutung wie in unseren Allgemeinen Geschäftsbedingungen, die unter QR - und Barcode - Reader zugänglich sind, sofern in dieser Datenschutzrichtlinie nicht anders definiert.\n\nInformationssammlung und -nutzung\n\nIch garantiere, Ihre persönlichen Daten in keiner Weise zu sammeln oder zu verkaufen.Die von mir erstellte App erfordert keine besondere Erlaubnis, um Ihre persönlichen Daten zu sammeln.\n\nFür ein besseres Erlebnis verwende ich bei der Nutzung unseres Dienstes einige Dienste, bei denen Sie möglicherweise bestimmte personenbezogene Daten angeben müssen.Die von mir angeforderten Informationen werden auf Ihrem Gerät gespeichert und in keiner Weise von mir erfasst.\n\nDie App verwendet die Kamera Ihres Telefons und greift auf Ihre Fotos zu, um QR-Codes und Barcodes von ihr zu erkennen.\n\nDie App verwendet Dienste von Drittanbietern, die möglicherweise Informationen sammeln, die verwendet werden, um Sie zu identifizieren.";

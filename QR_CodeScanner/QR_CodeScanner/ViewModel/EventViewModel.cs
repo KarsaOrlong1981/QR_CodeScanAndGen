@@ -14,7 +14,6 @@ namespace QR_CodeScanner.ViewModel
         string title, location, description;
         TimeSpan timeStart, timeEnd;
         DateTime dateTime, startDate, endDate;
-        CultureLang culture;
         Color background, button, txt, frame, border;
         public ICommand ButtonGenerateClicked { get; set; }
         public INavigation Navigation { get; set; }
@@ -87,8 +86,6 @@ namespace QR_CodeScanner.ViewModel
             Txt = txt;
             Frame = frame;
             Border = border;
-            culture = new CultureLang();
-
             ButtonGenerateClicked = new Command(async () => await CallQRGeneratorPage());
             dateTime = DateTime.Now;
 
@@ -119,7 +116,7 @@ namespace QR_CodeScanner.ViewModel
             string[] splitEndDate = Convert.ToString(EndDate).Split('.', ':', ',', '/', ' ');
             string[] splitTimeStartDate = Convert.ToString(TimeStart).Split('.', ':', ',', '/', ' ');
             string[] splitTimeEndDate = Convert.ToString(TimeEnd).Split('.', ':', ',', '/', ' ');
-            if (culture.GetCulture() == "de")
+            if (CultureLanguage.GetCulture() == "de")
             {
                 startDateG = splitDate[2] + splitDate[1] + splitDate[0];
                 endDateG = splitEndDate[2] + splitEndDate[1] + splitEndDate[0];

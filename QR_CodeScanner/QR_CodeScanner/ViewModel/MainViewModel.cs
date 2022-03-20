@@ -18,8 +18,7 @@ namespace QR_CodeScanner.ViewModel
         public ICommand ButtonProgressClicked { get; set; }
         public ICommand ButtonScannerClicked { get; set; }
         public ICommand ButtonScanHistoryClicked { get; set; }
-        QRhistory progress;
-        CultureLang culture;
+        QRhistoryModel progress;
         string historyGen, historyScan, scanWithCam;
         Color background, button, txt, frame, border;
         string generateIMG, historyScanIMG, historyGenIMG, mainIMG;
@@ -97,14 +96,13 @@ namespace QR_CodeScanner.ViewModel
             HistoryScanIMG = historyScanIMG;
             HistoryGenIMG = historyGenIMG;
             MainIMG = mainIMG;
-            culture = new CultureLang();
-            progress = new QRhistory();
+            progress = new QRhistoryModel();
             ButtonGeneratorClicked = new Command(async () => await CallQRVersionPage());
             ButtonScannerClicked = new Command(async () => await CallScannerPage());
             ButtonProgressClicked = new Command(async () => await CallHistoryPage());
             ButtonScanHistoryClicked = new Command(async () => await CallScanHistoryPage());
             ButtonInfoClicked = new Command(async () => await CallInfoPage());
-            if (culture.GetCulture() == "de")
+            if (CultureLanguage.GetCulture() == "de")
             {
                 ScanWithCam = "Mit Kamera Scannen";
                 HistoryGen = "Generierte\nQR-Codes\nVerlauf";

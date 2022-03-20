@@ -19,25 +19,25 @@ namespace QR_CodeScanner.Model
         {
             _database = new SQLiteAsyncConnection(dbPath);
             if (operation == "gen")
-                _database.CreateTableAsync<QRhistory>().Wait();
+                _database.CreateTableAsync<QRhistoryModel>().Wait();
             if (operation == "scan")
                 _database.CreateTableAsync<ScanHistoryModel>().Wait();
             if (operation == "lay")
                 _database.CreateTableAsync<SaveLayoutModel>().Wait();
         }
 
-        public Task<List<QRhistory>> GetQRcodeAsync()
+        public Task<List<QRhistoryModel>> GetQRcodeAsync()
         {
-            return _database.Table<QRhistory>().ToListAsync();
+            return _database.Table<QRhistoryModel>().ToListAsync();
         }
 
-        public Task<int> SaveQRcodeAsync(QRhistory qrCode)
+        public Task<int> SaveQRcodeAsync(QRhistoryModel qrCode)
         {
             return _database.InsertAsync(qrCode);
         }
         public async Task DeleteItemAsync(int id)
         {
-            var item = await _database.Table<QRhistory>().Where(x => x.ID == id).FirstOrDefaultAsync();
+            var item = await _database.Table<QRhistoryModel>().Where(x => x.ID == id).FirstOrDefaultAsync();
             if (item != null)
             {
                 await _database.DeleteAsync(item);
@@ -46,7 +46,7 @@ namespace QR_CodeScanner.Model
 
         public Task<int> DeleteAllItems<T>()
         {
-            return _database.DeleteAllAsync<QRhistory>();
+            return _database.DeleteAllAsync<QRhistoryModel>();
         }
         //For Scan History
         public Task<int> SaveScanQRcodeAsync(ScanHistoryModel scanHistoryModel)

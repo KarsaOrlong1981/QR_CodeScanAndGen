@@ -14,10 +14,9 @@ namespace QR_CodeScanner.ViewModel
 {
     public class TextViewModel : BaseViewModel
     {
-        string entry, editorCulture, buttonCulture, titleCulture;
-        CultureLang culture;
         public ICommand ButtonGeneratorPageClicked { get; set; }
         public INavigation Navigation { get; set; }
+        #region DesignColor Propertys
         Color background, button, txt, frame, border;
         public Color Background
         {
@@ -44,6 +43,9 @@ namespace QR_CodeScanner.ViewModel
             get => border;
             set => SetProperty(ref border, value);
         }
+        #endregion // DesignColor Propertys
+        #region Propertys
+        string entry, editorCulture, buttonCulture, titleCulture;
         public string EntryText
         {
             get => entry;
@@ -64,17 +66,17 @@ namespace QR_CodeScanner.ViewModel
             get => titleCulture;
             set => SetProperty(ref titleCulture, value);
         }
+        #endregion // Propertys
         [Obsolete]
         public TextViewModel(INavigation navigation, Color background, Color button, Color txt, Color frame, Color border)
         {
             this.Navigation = navigation;
-            culture = new CultureLang();
             Background = background;
             Button = button;
             Txt = txt;
             Frame = frame;
             Border = border;
-            if (culture.GetCulture() == "de")
+            if (CultureLanguage.GetCulture() == "de")
             {
                 EditorCulture = "Text eintragen";
                 ButtonCulture = "QR-Code generieren";

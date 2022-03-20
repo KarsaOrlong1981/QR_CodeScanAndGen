@@ -13,6 +13,7 @@ namespace QR_CodeScanner.ViewModel
     public class QRVersionViewModel : BaseViewModel
     {
         public INavigation Navigation { get; set; }
+        #region ICommand
         public ICommand ButtonTextClicked { get; set; }
         public ICommand ButtonWebsiteClicked { get; set; }
         public ICommand ButtonWLanClicked { get; set; }
@@ -21,6 +22,8 @@ namespace QR_CodeScanner.ViewModel
         public ICommand ButtonPhoneClicked { get; set; }
         public ICommand ButtonEmailClicked { get; set; }
         public ICommand ButtonSmSClicked { get; set; }
+        #endregion //ICommand
+        #region DesignColor
         Color background, button, txt, frame, border;
         public Color Background
         {
@@ -47,6 +50,7 @@ namespace QR_CodeScanner.ViewModel
             get => border;
             set => SetProperty(ref border, value);
         }
+        #endregion // DesignColor
         [Obsolete]
         public QRVersionViewModel(INavigation navigation, Color background, Color button, Color txt, Color frame, Color border)
         {
@@ -65,6 +69,7 @@ namespace QR_CodeScanner.ViewModel
             ButtonEmailClicked = new Command(GotoEmailPage);
             ButtonSmSClicked = new Command(GotoSmSPage);
         }
+        #region Async Tasks CallPages
         [Obsolete]
         public async Task CallSmSPage()
         {
@@ -114,6 +119,8 @@ namespace QR_CodeScanner.ViewModel
         {
             await Navigation.PushAsync(new ContactPage(Background, Button, Txt, Frame, Border));
         }
+        #endregion //CallPages
+        #region CommandFuctions
 
         [Obsolete]
         private async void GotoWebsitePage()
@@ -160,5 +167,6 @@ namespace QR_CodeScanner.ViewModel
         {
             await CallSmSPage();
         }
+        #endregion //CommandFuctions
     }
 }

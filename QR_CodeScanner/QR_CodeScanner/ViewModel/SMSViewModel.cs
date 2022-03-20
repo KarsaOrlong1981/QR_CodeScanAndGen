@@ -11,12 +11,9 @@ namespace QR_CodeScanner.ViewModel
 {
     public class SMSViewModel : BaseViewModel
     {
-        string sms, number;
-        string editorCulture, buttonCulture, titleCulture, numberCulture;
         public INavigation Navigation { get; set; }
         public ICommand ButtonGeneratorPageClicked { get; set; }
-
-        CultureLang culture;
+        #region DesignColor propertys
         Color background, button, txt, frame, border;
         public Color Background
         {
@@ -43,6 +40,10 @@ namespace QR_CodeScanner.ViewModel
             get => border;
             set => SetProperty(ref border, value);
         }
+        #endregion // DesignColor Propertys
+        #region Propertys
+        string sms, number;
+        string editorCulture, buttonCulture, titleCulture, numberCulture;
         public string Message
         {
             get => sms;
@@ -73,19 +74,19 @@ namespace QR_CodeScanner.ViewModel
             get => titleCulture;
             set => SetProperty(ref titleCulture, value);
         }
+        #endregion // Propertys
         [Obsolete]
         public SMSViewModel(INavigation navigation, Color background, Color button, Color txt, Color frame, Color border)
         {
 
             this.Navigation = navigation;
             ButtonGeneratorPageClicked = new Command(async () => await CallQRGeneratorPage());
-            culture = new CultureLang();
             Background = background;
             Button = button;
             Txt = txt;
             Frame = frame;
             Border = border;
-            if (culture.GetCulture() == "de")
+            if (CultureLanguage.GetCulture() == "de")
             {
                 NumberCulture = "Telefonnummer";
                 EditorCulture = "Nachricht eintragen";

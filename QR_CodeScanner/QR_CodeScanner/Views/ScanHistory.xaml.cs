@@ -14,12 +14,10 @@ namespace QR_CodeScanner.Views
     public partial class ScanHistory : ContentPage
     {
         ScanHistoryModel history;
-        CultureLang culture;
         Color background, frame;
         public ScanHistory(string qrText, string eventQR, bool course, Color background, Color frame)
         {
             InitializeComponent();
-            culture = new CultureLang();
             history = new ScanHistoryModel();
             DataBaseresult();
             grid.BackgroundColor = background;
@@ -64,7 +62,7 @@ namespace QR_CodeScanner.Views
             {
                 toolItem.IsEnabled = false;
                 string txt = string.Empty;
-                if (culture.GetCulture() == "de")
+                if (CultureLanguage.GetCulture() == "de")
                 {
                     txt = "Kein Verlauf vorhanden.";
                 }
@@ -161,7 +159,7 @@ namespace QR_CodeScanner.Views
             string yes = string.Empty;
             string no = string.Empty;
 
-            if (culture.GetCulture() == "de")
+            if (CultureLanguage.GetCulture() == "de")
             {
                 title = "Wollen sie wirklich den gesamten Verlauf löschen?";
                 yes = "Ja";
@@ -192,7 +190,7 @@ namespace QR_CodeScanner.Views
             string yes = string.Empty;
             string no = string.Empty;
 
-            if (culture.GetCulture() == "de")
+            if (CultureLanguage.GetCulture() == "de")
             {
                 title = "Wollen sie diesen QR-Code wirklich löschen?";
                 yes = "Ja";

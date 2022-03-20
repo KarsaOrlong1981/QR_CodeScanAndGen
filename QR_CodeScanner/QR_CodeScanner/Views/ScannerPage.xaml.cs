@@ -25,12 +25,10 @@ namespace QR_CodeScanner.Views
 
     public partial class ScannerPage : ContentPage
     {
-        CultureLang culture;
         Color background, frame;
         public ScannerPage(Color background, Color frame)
         {
             InitializeComponent();
-            culture = new CultureLang();
             this.background = background;
             this.frame = frame;
             this.BackgroundColor = background;
@@ -101,7 +99,7 @@ namespace QR_CodeScanner.Views
                                         }
                                         catch
                                         {
-                                            if (culture.GetCulture() == "de")
+                                            if (CultureLanguage.GetCulture() == "de")
                                                 WriteToast.ShowLongToast("Website kann nicht geladen werden.");
                                             else
                                                 WriteToast.ShowLongToast("Website not found.");
@@ -178,7 +176,7 @@ namespace QR_CodeScanner.Views
             catch
             {
                 // Sms is not supported on this device.
-                if (culture.GetCulture() == "de")
+                if (CultureLanguage.GetCulture() == "de")
                     WriteToast.ShowLongToast("SMS wird auf diesem Gerät nicht unterstützt.");
                 else
                     WriteToast.ShowLongToast("Sms is not supported on this device.");

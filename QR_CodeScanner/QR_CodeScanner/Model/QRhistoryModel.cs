@@ -5,7 +5,7 @@ using SQLite;
 
 namespace QR_CodeScanner.Model
 {
-    public class QRhistory
+    public class QRhistoryModel
     {
         [PrimaryKey, AutoIncrement]
         public int ID { get; set; }

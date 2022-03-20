@@ -11,19 +11,21 @@ namespace QR_CodeScanner.ViewModel
 {
     public class WLanViewModel : BaseViewModel
     {
-        CultureLang culture;
+        Color background, frame;
+        public INavigation Navigation { get; set; }
         string ssid;
         string wpa;
         string password, passwordCulture, titleCulture;
         string wlanKey;
         string generate, buttonCulture;
         string readOnly;
-        Color background, frame;
+        #region ICommands
         public ICommand ButtonGenerateClicked { get; set; }
         public ICommand ButtonWPAClicked { get; set; }
         public ICommand ButtonWEPClicked { get; set; }
         public ICommand ButtonNoneClicked { get; set; }
-        public INavigation Navigation { get; set; }
+        #endregion // ICommands
+        #region Propertys
         public string ButtonCulture
         {
             get => buttonCulture;
@@ -64,13 +66,13 @@ namespace QR_CodeScanner.ViewModel
             get => readOnly;
             set => SetProperty(ref readOnly, value);
         }
+        #endregion // Propertys
         [Obsolete]
         public WLanViewModel(INavigation navigation, Color background, Color frame)
         {
             this.background = background;
             this.frame = frame;
-            culture = new CultureLang();
-            if (culture.GetCulture() == "de")
+            if (CultureLanguage.GetCulture() == "de")
             {
                 ButtonCulture = "QR-Code generieren";
                 TitleCulture = "Wlan QR-Code generieren";
@@ -91,6 +93,7 @@ namespace QR_CodeScanner.ViewModel
             ButtonNoneClicked = new Command(None_Clicked);
             ButtonGenerateClicked = new Command(GetWlanConnectionCode);
         }
+        #region Command Events
         void WPA_Clicked()
         {
             ReadOnly = "False";
@@ -115,6 +118,7 @@ namespace QR_CodeScanner.ViewModel
             WpaWep = wlanKey;
             ReadOnly = "True";
         }
+        #endregion // Command Events
 
         [Obsolete]
         async void GetWlanConnectionCode()

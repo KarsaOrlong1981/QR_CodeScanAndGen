@@ -19,15 +19,13 @@ namespace QR_CodeScanner.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class HistoryPage : ContentPage
     {
-        QRhistory history;
-        CultureLang culture;
+        QRhistoryModel history;
         Color background, frame;
         [Obsolete]
         public HistoryPage(string qrText, string eventQR, bool course, Color background, Color frame)
         {
             InitializeComponent();
-            culture = new CultureLang();
-            history = new QRhistory();
+            history = new QRhistoryModel();
             DataBaseresult();
             grid.BackgroundColor = background;
             this.background = background;
@@ -49,7 +47,7 @@ namespace QR_CodeScanner.Views
             {
                 toolItem.IsEnabled = false;
                 string txt = string.Empty;
-                if (culture.GetCulture() == "de")
+                if (CultureLanguage.GetCulture() == "de")
                 {
                     txt = "Kein Verlauf vorhanden.";
                 }
@@ -80,7 +78,7 @@ namespace QR_CodeScanner.Views
             if (!string.IsNullOrWhiteSpace(qrTxt) && !string.IsNullOrWhiteSpace(ev))
             {
 
-                await App.Database1.SaveQRcodeAsync(new Model.QRhistory
+                await App.Database1.SaveQRcodeAsync(new Model.QRhistoryModel
                 {
 
                     QRText = qrTxt,
@@ -97,8 +95,8 @@ namespace QR_CodeScanner.Views
         [Obsolete]
         private void CollectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            string qrtxt = (e.CurrentSelection.FirstOrDefault() as QRhistory)?.QRText;
-            string eve = (e.CurrentSelection.FirstOrDefault() as QRhistory)?.Event;
+            string qrtxt = (e.CurrentSelection.FirstOrDefault() as QRhistoryModel)?.QRText;
+            string eve = (e.CurrentSelection.FirstOrDefault() as QRhistoryModel)?.Event;
 
             string number = string.Empty;
             bool text = false;
@@ -109,7 +107,7 @@ namespace QR_CodeScanner.Views
             bool phoneNR = false;
             bool email = false;
             bool sms = false;
-            bool food = false;
+            bool barcode = false;
             bool browser = false;
 
 
@@ -142,8 +140,8 @@ namespace QR_CodeScanner.Views
                     qrtxt = messageAndNumber[1];
                     number = messageAndNumber[2];
                     break;
-                case "Food":
-                    food = true;
+                case "Barcode":
+                    barcode = true;
                     break;
                 case "Browser":
                     website = true;
@@ -155,13 +153,13 @@ namespace QR_CodeScanner.Views
             }
             else
                 //wenn hier generator geöffnet wird true
-                OpenNewGenerator(qrtxt, wlan, website, contact, eventY, phoneNR, email, sms, food, browser, number, true);
+                OpenNewGenerator(qrtxt, wlan, website, contact, eventY, phoneNR, email, sms, barcode, browser, number, true);
         }
 
         [Obsolete]
-        private async void OpenNewGenerator(string qrtxtX, bool wlanX, bool websiteX, bool contactX, bool eventX, bool phoneNRX, bool emailX, bool smsX, bool foodX, bool browserX, string numberX, bool fromProgress)
+        private async void OpenNewGenerator(string qrtxtX, bool wlanX, bool websiteX, bool contactX, bool eventX, bool phoneNRX, bool emailX, bool smsX, bool barcodeX, bool browserX, string numberX, bool fromProgress)
         {
-            QRGeneratorPage qrGVM = new QRGeneratorPage(qrtxtX, wlanX, websiteX, contactX, eventX, phoneNRX, emailX, smsX, foodX, browserX, numberX, true, background, frame);
+            QRGeneratorPage qrGVM = new QRGeneratorPage(qrtxtX, wlanX, websiteX, contactX, eventX, phoneNRX, emailX, smsX, barcodeX, browserX, numberX, true, background, frame);
             await Navigation.PushAsync(qrGVM);
         }
 
@@ -174,7 +172,7 @@ namespace QR_CodeScanner.Views
             string yes = string.Empty;
             string no = string.Empty;
 
-            if (culture.GetCulture() == "de")
+            if (CultureLanguage.GetCulture() == "de")
             {
                 title = "Wollen sie diesen QR-Code wirklich löschen?";
                 yes = "Ja";
@@ -208,7 +206,7 @@ namespace QR_CodeScanner.Views
             string yes = string.Empty;
             string no = string.Empty;
 
-            if (culture.GetCulture() == "de")
+            if (CultureLanguage.GetCulture() == "de")
             {
                 title = "Wollen sie wirklich den gesamten Verlauf löschen?";
                 yes = "Ja";
@@ -225,7 +223,7 @@ namespace QR_CodeScanner.Views
             string result = await DisplayActionSheet(title, null, null, yes, no);
             if (result == yes)
             {
-                await App.Database1.DeleteAllItems<QRhistory>();
+                await App.Database1.DeleteAllItems<QRhistoryModel>();
                 collectionView.ItemsSource = await App.Database1.GetQRcodeAsync();
                 DataBaseresult();
             }

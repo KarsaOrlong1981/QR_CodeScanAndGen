@@ -5,9 +5,9 @@ using System.Globalization;
 
 namespace QR_CodeScanner.Model
 {
-    public class CultureLang
+    public static class CultureLanguage
     {
-        public string GetCulture()
+        public static string GetCulture()
         {
             string culture = CultureInfo.CurrentCulture.TwoLetterISOLanguageName.ToString();
             return culture;

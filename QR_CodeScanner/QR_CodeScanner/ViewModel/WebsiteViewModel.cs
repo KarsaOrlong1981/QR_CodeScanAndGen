@@ -11,15 +11,17 @@ namespace QR_CodeScanner.ViewModel
 {
     public class WebsiteViewModel : BaseViewModel
     {
-        CultureLang culture;
-        string entry, entryCulture, buttonCulture, titleCulture;
+        public INavigation Navigation { get; set; }
+        #region ICommands
         public ICommand ButtonHTTPSClicked { get; set; }
         public ICommand ButtonHTTPClicked { get; set; }
         public ICommand ButtonWWWClicked { get; set; }
         public ICommand ButtonCOMClicked { get; set; }
         public ICommand ButtonDEClicked { get; set; }
         public ICommand ButtonGeneratorPageClicked { get; set; }
-        public INavigation Navigation { get; set; }
+        #endregion // ICommands
+
+        #region DesignColor Propertys
         Color background, button, txt, frame, border;
         public Color Background
         {
@@ -46,6 +48,9 @@ namespace QR_CodeScanner.ViewModel
             get => border;
             set => SetProperty(ref border, value);
         }
+        #endregion // DesignColor Propertys
+        #region Propertys
+        string entry, entryCulture, buttonCulture, titleCulture;
         public string EntryText
         {
             get => entry;
@@ -66,6 +71,8 @@ namespace QR_CodeScanner.ViewModel
             get => buttonCulture;
             set => SetProperty(ref buttonCulture, value);
         }
+        #endregion //Propertys
+        #region Command Events
         void HTTPS_Clicked()
         {
             EntryText = "";
@@ -88,6 +95,7 @@ namespace QR_CodeScanner.ViewModel
         {
             EntryText += ".de";
         }
+        #endregion // Command Events
         [Obsolete]
         public WebsiteViewModel(INavigation navigation, Color background, Color button, Color txt, Color frame, Color border)
         {
@@ -98,7 +106,6 @@ namespace QR_CodeScanner.ViewModel
             Txt = txt;
             Frame = frame;
             Border = border;
-            culture = new CultureLang();
             ButtonGeneratorPageClicked = new Command(async () => await CallQRGeneratorPage());
             ButtonHTTPSClicked = new Command(HTTPS_Clicked);
             ButtonHTTPClicked = new Command(HTTP_Clicked);
@@ -106,7 +113,7 @@ namespace QR_CodeScanner.ViewModel
             ButtonCOMClicked = new Command(COM_Clicked);
             ButtonDEClicked = new Command(DE_Clicked);
 
-            if (culture.GetCulture() == "de")
+            if (CultureLanguage.GetCulture() == "de")
             {
                 EntryTextCulture = "Website";
                 ButtonCulture = "QR-Code generieren";
@@ -125,6 +132,5 @@ namespace QR_CodeScanner.ViewModel
         {
             await Navigation.PushAsync(new QRGeneratorPage(EntryText, false, true, false, false, false, false, false, false, false, string.Empty, false, Background, Frame));
         }
-      
     }
 }

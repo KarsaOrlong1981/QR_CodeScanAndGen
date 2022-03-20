@@ -19,6 +19,35 @@ namespace QR_CodeScanner.ViewModel
 {
     public class ResultViewModel : BaseViewModel
     {
+        private readonly DateTime timeStart;
+        private readonly DateTime timeEnd;
+        private int fontSize;
+        private bool isVisEvent, isVis;
+        private bool isWlan;
+        private bool isWebsite;
+        private bool isContact;
+        private bool isEvent;
+        private bool isPhoneNumber;
+        private bool isEmail;
+        private bool isSMS;
+        private bool isBarcode;
+        private bool isBrowser;
+        ShareContent shareQR;
+        #region ICommand
+        public ICommand ButtonAddTo { get; set; }
+        public ICommand ButtonLocation { get; set; }
+
+        public ICommand ButtonShare { get; set; }
+        #endregion // ICommand
+        #region DesignColor Propertys
+        Color background, frame;
+        public Color Background
+        {
+            get => background;
+            set => SetProperty(ref background, value);
+        }
+        #endregion // DesignColor Propertys
+        #region Propertys
         string text1, location, text2, text3, text4, textINfo;
         string ssid;
         string password;
@@ -28,35 +57,10 @@ namespace QR_CodeScanner.ViewModel
         string bgColor;
         string tcColor;
         string saveTo, shareTo;
-        private readonly DateTime timeStart;
-        private readonly DateTime timeEnd;
-        readonly CultureLang culture;
         string titleEvent, dtStartEvent, dtEndEvent, locationEvent, descriptionEvent;
         string vCardName, vCardEmail, vCardAdress, vCardURL, vCardTitle, vCardORG, vCardTel;
         string vcard1, vcard2, vcard3, vcard4, vcard5, vcard6, vcard7, vcard7Link, vcard8;
         string vcard9, vcard9Link, vcard10, vcard11, vcard11Link, vcard12, vcard13;
-        int fontSize;
-        bool isVisEvent, isVis;
-        private bool wlan;
-        private bool website;
-        private bool contact;
-        private bool eventX;
-        private bool phonenumber;
-        private bool email;
-        private bool sms;
-        private bool barcode;
-        private bool browser;
-        ShareContent shareQR;
-        Color background, frame;
-        public ICommand ButtonAddTo { get; set; }
-        public ICommand ButtonLocation { get; set; }
-
-        public ICommand ButtonShare { get; set; }
-        public Color Background
-        {
-            get => background;
-            set => SetProperty(ref background, value);
-        }
         public string TextInfo
         {
             get => textINfo;
@@ -221,16 +225,25 @@ namespace QR_CodeScanner.ViewModel
             get => vcard13;
             set => SetProperty(ref vcard13, value);
         }
+        #endregion // Propertys
 
         [Obsolete]
         public ResultViewModel(string qrTxt, bool isWlan, bool isWebsite, bool isContact, bool isEvent, bool isPhoneNumber, bool isEmail, bool isSMS, bool isBarcode, bool isBrowser, string phoneNumberSMS, bool scanHistory, Color background)
         {
             this.Background = background;
             this.frame = Color.White;
+            this.isWlan = isWlan;
+            this.isWebsite = isWebsite;
+            this.isContact = isContact;
+            this.isEvent = isEvent;
+            this.isPhoneNumber = isPhoneNumber;
+            this.isEmail = isEmail;
+            this.isSMS = isSMS;
+            this.isBarcode = isBarcode;
+            this.isBrowser = isBrowser;
             ssid = string.Empty;
             password = string.Empty;
             shareQR = new ShareContent();
-            culture = new CultureLang();
             FontSizeQR = 20;
             resultToAdd = qrTxt;
             IsVisEvent = false;
@@ -239,17 +252,8 @@ namespace QR_CodeScanner.ViewModel
             timeStart = DateTime.Now;
             timeEnd = DateTime.Now;
             Text1 = qrTxt;
-            wlan = isWlan;
-            website = isWebsite;
-            contact = isContact;
-            eventX = isEvent;
-            phonenumber = isPhoneNumber;
-            email = isEmail;
-            sms = isSMS;
-            barcode = isBarcode;
-            browser = isBrowser;
             number = phoneNumberSMS;
-            if (culture.GetCulture() == "de")
+            if (CultureLanguage.GetCulture() == "de")
             {
                 SaveTo = "Kopieren";
                 ShareTo = "Teilen";
@@ -287,7 +291,7 @@ namespace QR_CodeScanner.ViewModel
                 Text2 = password;
                 ImageInfo = "Info26.png";
                 ImageTop = "Wlan.png";
-                if (culture.GetCulture() == "de")
+                if (CultureLanguage.GetCulture() == "de")
                 {
                     info = "Entschuldigen Sie bitte, Google empfiehlt ab Android 10 manuell eine Verbindung zu einem WLAN-Netzwerk herzustellen, um die Privatsphäre der Nutzer zu schützen.";
                     manual = "- Klicken Sie auf \"Passwort Kopieren\".\n\n- wählen Sie Wifi-Netzwerk \"" + ssid + "\".\n\n- Fügen Sie das Passwort ein und stellen Sie eine Verbindung her.";
@@ -299,7 +303,7 @@ namespace QR_CodeScanner.ViewModel
                 }
                 LabelText = info;
                 TextInfo = manual;
-                if (culture.GetCulture() == "de")
+                if (CultureLanguage.GetCulture() == "de")
                 {
                     SaveTo = "Passwort\nKopieren";
 
@@ -333,7 +337,7 @@ namespace QR_CodeScanner.ViewModel
             {
                 ImageTop = "barcode.png";
                 Text1 = qrTxt;
-                if (culture.GetCulture() == "de")
+                if (CultureLanguage.GetCulture() == "de")
                 {
                     SaveTo = "Kopieren";
                     ShareTo = "Teilen";
@@ -358,7 +362,7 @@ namespace QR_CodeScanner.ViewModel
                 Text1 = "TEL: " + qrTxt;
                 IsVis = true;
                 ImageTop = "Telefon.png";
-                if (culture.GetCulture() == "de")
+                if (CultureLanguage.GetCulture() == "de")
                 {
                     SaveTo = "Nummer\nKopieren";
 
@@ -417,7 +421,7 @@ namespace QR_CodeScanner.ViewModel
             }
             if (SaveTo == "Nummer\nKopieren" || SaveTo == "Copy\nnumber" || SaveTo == "Passwort\nKopieren" || SaveTo == "Copy\npassword")
             {
-                if (culture.GetCulture() == "de")
+                if (CultureLanguage.GetCulture() == "de")
                 {
                     if (SaveTo == "Nummer\nKopieren")
                     {
@@ -448,7 +452,7 @@ namespace QR_CodeScanner.ViewModel
             {
                 await Clipboard.SetTextAsync(resultToAdd);
                 var activity = Android.App.Application.Context as Activity;
-                if (culture.GetCulture() == "de")
+                if (CultureLanguage.GetCulture() == "de")
                     WriteToast.ShowLongToast("Text wurde Kopiert");
                 else
                     WriteToast.ShowLongToast("Copied Text");
@@ -467,7 +471,7 @@ namespace QR_CodeScanner.ViewModel
             catch
             {
                 // Sms is not supported on this device.
-                if (culture.GetCulture() == "de")
+                if (CultureLanguage.GetCulture() == "de")
                     WriteToast.ShowShortToast("SMS wird auf diesem Gerät nicht unterstützt.");
                 else
                     WriteToast.ShowShortToast("Sms is not supported on this device.");
@@ -488,7 +492,7 @@ namespace QR_CodeScanner.ViewModel
 
             if (status == PermissionStatus.Denied && DeviceInfo.Platform == DevicePlatform.iOS)
             {
-                if (culture.GetCulture() == "de")
+                if (CultureLanguage.GetCulture() == "de")
                     WriteToast.ShowShortToast("Bitte schalten Sie die Berechtigung für Ihre Kontakte ein, damit diese App das ergebnis zu Ihren kontakten hnzufügen kann.");
                 else
                     WriteToast.ShowShortToast("Turn on the Contacts permission that the App can write a new Contact from QR-Code result.");
@@ -500,11 +504,10 @@ namespace QR_CodeScanner.ViewModel
 
             if (Permissions.ShouldShowRationale<Permissions.ContactsWrite>())
             {
-                if (culture.GetCulture() == "de")
+                if (CultureLanguage.GetCulture() == "de")
                     WriteToast.ShowLongToast("Die Berechtigung auf Kontakte zugreifen zu dürfen wird benötigt um das ergebnis ihren Kontakten hinzuzufügen ");
                 else
                     WriteToast.ShowLongToast("Needed your permission to write a new Contact from QR-Code result.");
-                // Prompt the user with additional information as to why the permission is needed
             }
 
             status = await Permissions.RequestAsync<Permissions.ContactsWrite>();
@@ -518,7 +521,7 @@ namespace QR_CodeScanner.ViewModel
             var status = await CheckAndRequestPermissionAsync(new Permissions.ContactsWrite());
             if (status != PermissionStatus.Granted)
             {
-                if (culture.GetCulture() == "de")
+                if (CultureLanguage.GetCulture() == "de")
                     WriteToast.ShowLongToast("Beim letzten mal haben Sie den zugriff auf Ihre Kontake abgelehnt. Geben Sie dieser App die Berechtigung auf Ihre Kontakte zuzugreifen um das ergebnis direkt zu Ihren Kontakten hinzuzufügen. ");
                 else
                     WriteToast.ShowLongToast("The last time you refused the authorization to access the Contacts.Give this App the authorization for your Contacts to add Contacts directly via a QR-Code.");
@@ -545,14 +548,14 @@ namespace QR_CodeScanner.ViewModel
                 intent.PutExtra(ContactsContract.Intents.Insert.Postal, postal);
                 intent.PutExtra(ContactsContract.Intents.Insert.Notes, website);
                 context.StartActivity(intent);
-                if (culture.GetCulture() == "de")
+                if (CultureLanguage.GetCulture() == "de")
                     Toast.MakeText(context, "Zu Kontakten hinzufügen", ToastLength.Short).Show();
                 else
                     Toast.MakeText(context, "Add to Contacts", ToastLength.Short).Show();
             }
             catch
             {
-                if (culture.GetCulture() == "de")
+                if (CultureLanguage.GetCulture() == "de")
                     WriteToast.ShowShortToast("Kann nicht zu den Kontakten hinzugefügt werden");
                 else
                     WriteToast.ShowShortToast("Can not Add to Contacts");
@@ -746,7 +749,7 @@ namespace QR_CodeScanner.ViewModel
                 string txt = "";
                 Text1 = titleEvent;
                 Text2 = descriptionEvent;
-                if (culture.GetCulture() == "de")
+                if (CultureLanguage.GetCulture() == "de")
                 {
                     Text3 = "Start: " + Convert.ToString(BuildNewDateTime(splitToSubStart, timeStart));
                     Text4 = "Ende:  " + Convert.ToString(BuildNewDateTime(splitToSubEnd, timeEnd));
@@ -763,7 +766,7 @@ namespace QR_CodeScanner.ViewModel
             }
             catch
             {
-                if (culture.GetCulture() == "de")
+                if (CultureLanguage.GetCulture() == "de")
                     WriteToast.ShowLongToast("Der QR-Code wird nicht erkannt.");
                 else
                     WriteToast.ShowLongToast("QR-Code not readable.");
@@ -906,26 +909,26 @@ namespace QR_CodeScanner.ViewModel
         {
             string eventQRString = string.Empty;
             string text = resultToAdd;
-            if (wlan == true)
+            if (isWlan == true)
                 eventQRString = "Wlan";
-            if (website == true)
+            if (isWebsite == true)
                 eventQRString = "Website";
-            if (contact == true)
+            if (isContact == true)
                 eventQRString = "Contact";
-            if (eventX == true)
+            if (isEvent == true)
                 eventQRString = "Event";
-            if (phonenumber == true)
+            if (isPhoneNumber == true)
                 eventQRString = "Phonenumber";
-            if (email == true)
+            if (isEmail == true)
                 eventQRString = "Email";
-            if (sms == true)
+            if (isSMS == true)
             {
                 eventQRString = "SMS";
                 text = "smsto:" + number + ":" + resultToAdd;
             }
-            if (barcode == true)
+            if (isBarcode == true)
                 eventQRString = "Barcode";
-            if (browser == true)
+            if (isBrowser == true)
                 eventQRString = "Browser";
             if (eventQRString != "Wlan" && eventQRString != "Website" && eventQRString != "Contact" && eventQRString != "Event" && eventQRString != "Phonenumber" &&
                eventQRString != "Email" && eventQRString != "SMS" && eventQRString != "Barcode" && eventQRString != "Browser")

@@ -16,11 +16,9 @@ namespace QR_CodeScanner.Model
     {
         TaskCompletionSource<string> SaveQRComplete = null;
         ShareContent share;
-        CultureLang culture;
         [Obsolete]
         public Task SaveQRAsImage(string text)
         {
-            culture = new CultureLang();
             share = new ShareContent();
             SaveQRComplete = new TaskCompletionSource<string>();
             try
@@ -53,7 +51,7 @@ namespace QR_CodeScanner.Model
             catch
             {
 
-                if (culture.GetCulture() == "de")
+                if (CultureLanguage.GetCulture() == "de")
                     WriteToast.ShowLongToast("Qr-Code konnte nicht gespeichert werden. Möglicherweise fehlt der Pictures Ordner auf dem Gerät.");
                 else
                     WriteToast.ShowLongToast("Qr code could not be saved. The Pictures folder may be missing on the device.");

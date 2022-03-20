@@ -22,19 +22,8 @@ namespace QR_CodeScanner.ViewModel
     public class QRGeneratorViewModel : BaseViewModel
     {
         string[] splitVCard;
-        string text;
-        string labelText;
         private readonly string number;
-        string bgColor;
-        string tcColor;
-        string qrCode;
-        string saveIsvisible;
-        string shareIsVisible;
-        string filepath;
-        string vcard1, vcard2, vcard3, vcard4, vcard5, vcard6, vcard7, vcard7Link, vcard8, vcard9, vcard9Link, vcard10, vcard11, vcard11Link, vcard12, vcard13;
-        int fontSize;
         ShareContent share;
-        CultureLang culture;
         QRImage qrImage;
         private bool wlan;
         private bool website;
@@ -43,11 +32,22 @@ namespace QR_CodeScanner.ViewModel
         private bool phonenumber;
         private bool email;
         private bool sms;
-        private bool food;
+        private bool barcode;
         private bool browser;
         Color background, frame;
         public ICommand ButtonShareClicked { get; set; }
         public ICommand ButtonSaveClicked { get; set; }
+        #region Propertys
+        string text;
+        string labelText;
+        string bgColor;
+        string tcColor;
+        string qrCode;
+        string saveIsvisible;
+        string shareIsVisible;
+        string filepath;
+        string vcard1, vcard2, vcard3, vcard4, vcard5, vcard6, vcard7, vcard7Link, vcard8, vcard9, vcard9Link, vcard10, vcard11, vcard11Link, vcard12, vcard13;
+        int fontSize;
         public string LabelText
         {
             get => labelText;
@@ -164,8 +164,9 @@ namespace QR_CodeScanner.ViewModel
             get => vcard13;
             set => SetProperty(ref vcard13, value);
         }
+        #endregion //Propertys
         [Obsolete]
-        public QRGeneratorViewModel(string qrTxt, bool isWlan, bool isWebsite, bool isContact, bool isEvent, bool isPhoneNumber, bool isEmail, bool isSMS, bool isFood, bool isBrowser, string phoneNumberString, bool fromProgress, Color background, Color frame)
+        public QRGeneratorViewModel(string qrTxt, bool isWlan, bool isWebsite, bool isContact, bool isEvent, bool isPhoneNumber, bool isEmail, bool isSMS, bool isBarcode, bool isBrowser, string phoneNumberString, bool fromProgress, Color background, Color frame)
         {
             this.background = background;
             this.frame = frame;
@@ -180,7 +181,7 @@ namespace QR_CodeScanner.ViewModel
             phonenumber = isPhoneNumber;
             email = isEmail;
             sms = isSMS;
-            food = isFood;
+            barcode = isBarcode;
             browser = isBrowser;
             if (fromProgress == false)
             {
@@ -190,8 +191,6 @@ namespace QR_CodeScanner.ViewModel
             qrCode = qrTxt;
             FontSizeQR = 20;
             LabelText = "";
-            culture = new CultureLang();
-
             if (isWlan)
             {
                 Text = qrTxt;
@@ -205,43 +204,7 @@ namespace QR_CodeScanner.ViewModel
                 FontSizeQR = 13;
                 splitVCard = qrTxt.Split(':', '\n');
 
-
-                LabelText = "";
-                VCard1 = splitVCard[0] + ":" + splitVCard[1] + "\n";
-                VCard2 = splitVCard[2] + ":" + splitVCard[3] + "\n";
-                VCard3 = splitVCard[4] + ":" + splitVCard[5] + "\n";
-                VCard4 = splitVCard[6] + ":" + splitVCard[7] + "\n";
-                VCard5 = splitVCard[8] + ":" + splitVCard[9] + "\n";
-                VCard6 = splitVCard[10] + ":";
-                VCard7 = splitVCard[11] + "\n"; //PhoneNumber
-                VCard7Link = "tel:" + splitVCard[11];
-                VCard8 = splitVCard[12] + ":";
-                VCard9 = splitVCard[13] + "\n"; //Website
-                VCard9Link = "https://" + splitVCard[13];
-                VCard10 = splitVCard[14] + ":";
-                VCard11 = splitVCard[15] + "\n"; //Email
-                VCard11Link = "mailto:" + splitVCard[15];
-                VCard12 = splitVCard[16] + ":" + splitVCard[17] + "\n";
-                VCard13 = splitVCard[18] + ":" + splitVCard[19] + "\n";
-
-                Text = VCard1 + VCard2 + VCard3 + VCard4 + VCard5 + VCard6 + VCard7 + VCard8 + VCard9 + VCard10 + VCard11 + VCard12 + VCard13;
-
-                VCard1 = splitVCard[0] + ":" + splitVCard[1] + " ";
-                VCard2 = splitVCard[2] + ":" + splitVCard[3] + " ";
-                VCard3 = splitVCard[4] + ":" + splitVCard[5] + " ";
-                VCard4 = splitVCard[6] + ":" + splitVCard[7] + " ";
-                VCard5 = splitVCard[8] + ":" + splitVCard[9] + " ";
-                VCard6 = splitVCard[10] + ":";
-                VCard7 = splitVCard[11] + " "; //PhoneNumber
-                VCard7Link = "tel:" + splitVCard[11] + " ";
-                VCard8 = splitVCard[12] + ":";
-                VCard9 = splitVCard[13] + " "; //Website
-                VCard9Link = "https://" + splitVCard[13] + " ";
-                VCard10 = splitVCard[14] + ":";
-                VCard11 = splitVCard[15] + " "; //Email
-                VCard11Link = "mailto:" + splitVCard[15] + " ";
-                VCard12 = splitVCard[16] + ":" + splitVCard[17] + " ";
-                VCard13 = splitVCard[18] + ":" + splitVCard[19];
+                CreateContact();
             }
             else
             {
@@ -282,33 +245,71 @@ namespace QR_CodeScanner.ViewModel
             ButtonSaveClicked = new Command(SaveQR);
         }
 
-      
+        private void CreateContact()
+        {
+            LabelText = "";
+            VCard1 = splitVCard[0] + ":" + splitVCard[1] + "\n";
+            VCard2 = splitVCard[2] + ":" + splitVCard[3] + "\n";
+            VCard3 = splitVCard[4] + ":" + splitVCard[5] + "\n";
+            VCard4 = splitVCard[6] + ":" + splitVCard[7] + "\n";
+            VCard5 = splitVCard[8] + ":" + splitVCard[9] + "\n";
+            VCard6 = splitVCard[10] + ":";
+            VCard7 = splitVCard[11] + "\n"; //PhoneNumber
+            VCard7Link = "tel:" + splitVCard[11];
+            VCard8 = splitVCard[12] + ":";
+            VCard9 = splitVCard[13] + "\n"; //Website
+            VCard9Link = "https://" + splitVCard[13];
+            VCard10 = splitVCard[14] + ":";
+            VCard11 = splitVCard[15] + "\n"; //Email
+            VCard11Link = "mailto:" + splitVCard[15];
+            VCard12 = splitVCard[16] + ":" + splitVCard[17] + "\n";
+            VCard13 = splitVCard[18] + ":" + splitVCard[19] + "\n";
+
+            Text = VCard1 + VCard2 + VCard3 + VCard4 + VCard5 + VCard6 + VCard7 + VCard8 + VCard9 + VCard10 + VCard11 + VCard12 + VCard13;
+
+            VCard1 = splitVCard[0] + ":" + splitVCard[1] + " ";
+            VCard2 = splitVCard[2] + ":" + splitVCard[3] + " ";
+            VCard3 = splitVCard[4] + ":" + splitVCard[5] + " ";
+            VCard4 = splitVCard[6] + ":" + splitVCard[7] + " ";
+            VCard5 = splitVCard[8] + ":" + splitVCard[9] + " ";
+            VCard6 = splitVCard[10] + ":";
+            VCard7 = splitVCard[11] + " "; //PhoneNumber
+            VCard7Link = "tel:" + splitVCard[11] + " ";
+            VCard8 = splitVCard[12] + ":";
+            VCard9 = splitVCard[13] + " "; //Website
+            VCard9Link = "https://" + splitVCard[13] + " ";
+            VCard10 = splitVCard[14] + ":";
+            VCard11 = splitVCard[15] + " "; //Email
+            VCard11Link = "mailto:" + splitVCard[15] + " ";
+            VCard12 = splitVCard[16] + ":" + splitVCard[17] + " ";
+            VCard13 = splitVCard[18] + ":" + splitVCard[19];
+        }
 
         [Obsolete]
         private void GetImageAndTextProgress()
         {
             string eventQRString = string.Empty;
             string text = Text;
-            if (wlan == true)
+            if (wlan)
                 eventQRString = "Wlan";
-            if (website == true)
+            if (website)
                 eventQRString = "Website";
-            if (contact == true)
+            if (contact)
                 eventQRString = "Contact";
-            if (eventX == true)
+            if (eventX)
                 eventQRString = "Event";
-            if (phonenumber == true)
+            if (phonenumber)
                 eventQRString = "Phonenumber";
-            if (email == true)
+            if (email)
                 eventQRString = "Email";
-            if (sms == true)
+            if (sms)
             {
                 eventQRString = "SMS";
                 text = "smsto:" + number + ":" + Text;
             }
-            if (food == true)
-                eventQRString = "Food";
-            if (browser == true)
+            if (barcode)
+                eventQRString = "Barcode";
+            if (browser)
                 eventQRString = "Browser";
             if (eventQRString != "Wlan" && eventQRString != "Website" && eventQRString != "Contact" && eventQRString != "Event" && eventQRString != "Phonenumber" &&
                eventQRString != "Email" && eventQRString != "SMS" && eventQRString != "Food" && eventQRString != "Browser")
@@ -331,10 +332,7 @@ namespace QR_CodeScanner.ViewModel
         async void SaveQR()
         {
             await qrImage.SaveQRAsImage(Text);
-            //"Qr-Code in der Gallrie gespeichert"
-            //"Qr-Code was saved in Gallery"
-
-            if (culture.GetCulture() == "de")
+            if (CultureLanguage.GetCulture() == "de")
                 WriteToast.ShowShortToast("Qr-Code in der Galerie gespeichert");
             else
                 WriteToast.ShowLongToast("Qr-Code was saved in Gallery");
@@ -359,7 +357,7 @@ namespace QR_CodeScanner.ViewModel
             }
             catch
             {
-                if (culture.GetCulture() == "de")
+                if (CultureLanguage.GetCulture() == "de")
                     App.Current.MainPage.DisplayAlert("Kein Pictures Ordner auf dem Gerät.", "", "OK");
                 else
                     App.Current.MainPage.DisplayAlert("No Pictures Folder on Device.", "", "OK");
