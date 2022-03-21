@@ -75,10 +75,11 @@ namespace QR_CodeScanner.Views
 
         private async void AddToDB(string qrTxt, string ev)
         {
+            var db = App.Database1;
             if (!string.IsNullOrWhiteSpace(qrTxt) && !string.IsNullOrWhiteSpace(ev))
             {
 
-                await App.Database1.SaveQRcodeAsync(new Model.QRhistoryModel
+                await db.SaveQRcodeAsync(new Model.QRhistoryModel
                 {
 
                     QRText = qrTxt,
@@ -88,7 +89,7 @@ namespace QR_CodeScanner.Views
 
 
 
-                collectionView.ItemsSource = await App.Database1.GetQRcodeAsync();
+                collectionView.ItemsSource = await db.GetQRcodeAsync();
             }
         }
 
@@ -166,6 +167,7 @@ namespace QR_CodeScanner.Views
         [Obsolete]
         private async void clearItem_Clicked(object sender, EventArgs e)
         {
+            var db = App.Database1;
             var item = (sender as Xamarin.Forms.Button).Text;
             int id = Convert.ToInt32(item);
             string title = string.Empty;
@@ -189,8 +191,8 @@ namespace QR_CodeScanner.Views
             string result = await DisplayActionSheet(title, null, null, yes, no);
             if (result == yes)
             {
-                await App.Database1.DeleteItemAsync(id);
-                collectionView.ItemsSource = await App.Database1.GetQRcodeAsync();
+                await db.DeleteItemAsync(id);
+                collectionView.ItemsSource = await db.GetQRcodeAsync();
                 DataBaseresult();
             }
 
@@ -205,7 +207,7 @@ namespace QR_CodeScanner.Views
             string title = string.Empty;
             string yes = string.Empty;
             string no = string.Empty;
-
+            var db = App.Database1;
             if (CultureLanguage.GetCulture() == "de")
             {
                 title = "Wollen sie wirklich den gesamten Verlauf löschen?";
@@ -223,8 +225,8 @@ namespace QR_CodeScanner.Views
             string result = await DisplayActionSheet(title, null, null, yes, no);
             if (result == yes)
             {
-                await App.Database1.DeleteAllItems<QRhistoryModel>();
-                collectionView.ItemsSource = await App.Database1.GetQRcodeAsync();
+                await db.DeleteAllItems<QRhistoryModel>();
+                collectionView.ItemsSource = await db.GetQRcodeAsync();
                 DataBaseresult();
             }
 
